@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use the DAS Standard in research or software, please cite it as follows."
+title: "DAS: The Docs as Software Standard (文码合一标准)"
+authors:
+  - name: "AzzCraft Inc. (重庆艾之舟科技有限公司)"
+    website: "https://azzcraft.com"
+version: 1.0.0
+date-released: "2026-01-20"
+url: "https://github.com/azzcraft/das-standard"
+license: CC-BY-4.0

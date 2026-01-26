@@ -2,12 +2,12 @@
 > **The Unified Engineering Methodology for AI-Enabled Products**
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Version: v1.0.0](https://img.shields.io/badge/Version-v1.0.0-blue.svg)](CHANGELOG.md)
+[![Version: v1.1.0](https://img.shields.io/badge/Version-v1.1.0-blue.svg)](CHANGELOG.md)
 
 **Name:** Docs as Software (DAS) Standard (中文：**文码合一标准**)
 **Maintained by:** AzzCraft Inc. 
 **Copyright:** © 2026 AzzCraft Inc. (重庆艾之舟科技有限公司)
-**Last updated:** 2026-01-20
+**Last updated:** 2026-01-24
 
 ---
 
@@ -86,12 +86,12 @@ Critical workflows are specified as Given/When/Then scenarios and enforced via a
 - **Refactor Mode**: a boundary behaves “atomically” from the perspective of the environment observing it (either within a single deployable artifact, or via a strictly enforced atomic cutover where no requests observe mixed versions). No persisted/external observation crosses the boundary.
   - **Clarification:** If you cannot *prove and enforce* “no mixed versions,” treat the boundary as **Compatibility Mode**.
 
-- **Contract hub**: the canonical home for schemas, fixtures, identifiers, and executable checks shared across repos.
+- **Contract hub**: the canonical home for cross-boundary contracts shared across repos: schemas, **semantics** (invariants/defaults/redaction), fixtures, stable identifiers, and executable checks. For HTTP surfaces, this includes (or references) a machine-readable endpoint inventory (e.g., `contracts/api/`).
 - **SDMM / Single-Deploy Modular Engineering**: build-time modularization inside a repo while shipping as one deployable artifact per app/service/library.
 
 ### 2.3 Conformance profiles and cost controls (scalable adoption)
 
-This standard is intended to work for both small, fast-moving teams and large, multi-team organizations. To avoid accidental over-engineering (or accidental under-governance), every project MUST declare a **conformance profile** in the Master Doc (§9.1):
+This standard is intended to work for both small, fast-moving teams and large, multi-team organizations. To avoid accidental over-engineering (or accidental under-governance), every project MUST declare a **conformance profile** in the Master Doc header (Document Control):
 
 - **L0 - Prototype**: exploration or pre-product; prioritize speed while still protecting users and data.
 - **L1 - Product (default)**: a shipped product with regular iteration; balance speed with reliability.
@@ -117,6 +117,8 @@ Practical profile guidance (non-exhaustive):
 
 Profiles are cost controls, not loopholes.
 
+- **MUST (when selecting `L0`):** If the project selects conformance profile `L0`, it MUST document what is intentionally deferred, who owns that debt, and when/why it will be revisited (date or explicit trigger).
+
 ### 2.4 Interaction profiles (HFVI extension)
 
 Conformance profiles (L0/L1/L2) control engineering cost and gate strictness. Some products also have a distinct risk: high-fidelity, spatial, continuous interaction surfaces (canvas/WebGL/game-like UI). For these products, textual UI specs tend to be under-specified, and naive AI generation frequently drifts (hit-testing, z-order, easing, coordinate transforms).
@@ -134,7 +136,6 @@ Rules:
 - MUST: The default is `standard_ui` if no interaction profile is declared.
 - MUST: If `hfvi_canvas_webgl_game` is declared, the project MUST adopt the HFVI requirements in §6.8 and Appendix K.
 - SHOULD: HFVI projects SHOULD treat interaction surfaces as contract surfaces for the purposes of fixtures, replayability, and verification gates.
-If you choose L0, you MUST document what you are not doing yet, who owns the debt, and when it will be revisited.
 
 ## 3. System topology and repo boundaries (monorepo vs multi-repo)
 
@@ -187,7 +188,7 @@ Typical for AI products:
 
 A typical system is organized as:
 
-1. `contracts` - canonical contract hub (schemas, fixtures, identifiers, codegen config)
+1. `contracts` - canonical contract hub (schemas, fixtures, identifiers, API registry, codegen config)
 1. `backend` - system-of-record + orchestrator (preferred owner for long-running jobs)
 1. `algo` - model/compute service or algorithm library
 1. `frontend` - UI client (if applicable)
@@ -202,9 +203,11 @@ A typical system is organized as:
 
 Owns:
 
-- canonical schemas (JSON Schema / Protobuf / OpenAPI fragments),
+- canonical schemas (JSON Schema / Protobuf; OpenAPI fragments only when OpenAPI-first or stored as generated snapshots),
+- contract semantics notes (field meaning, invariants, defaults, error mapping, redaction rules), preferably stored under `contracts/semantics/` (or embedded in schema descriptions with stable refs),
+- machine-readable API registry / endpoint inventory (recommended): `contracts/api/` (HTTP/RPC surfaces),
 - fixtures (known-good and known-bad),
-- stable identifier sets (route IDs, job types, stage IDs, error codes),
+- stable identifier sets (route IDs, job types, stage IDs, error codes, permission codes, feature flags),
 - codegen configuration and generated clients (when applicable),
 - executable checks (schema validation, contract tests, drift detection).
 
@@ -277,7 +280,7 @@ Cost-control rules:
 
 **MUST:** The contract hub MUST treat contracts as **complete artifacts**, not “just schemas”. A contract is only complete when it has:
 
-1. **Schema**: machine-validated structure (JSON Schema / Protobuf / OpenAPI components).
+1. **Schema**: machine-validated structure (JSON Schema / Protobuf; OpenAPI components only when OpenAPI-first).
 1. **Semantics**: field meaning, invariants, defaults, error conditions, redaction rules.
 1. **Fixtures**: known-good and known-bad examples, including edge cases.
 1. **Executable checks**: CI that validates schemas and fixtures, plus compatibility runners for versioned surfaces.
@@ -289,25 +292,33 @@ Cost-control rules:
 
 #### Minimal contract hub layout (recommended)
 
+> **SSOT note:** If multiple representations exist (e.g., OpenAPI + separate payload schemas), you MUST designate exactly one as the **authoring SSOT** and treat the others as generated artifacts with drift checks.
+
 ```
 contracts/
-  schemas/
+  api/                    # (recommended) machine-readable endpoint inventory (method/path/auth/status codes)
+  schemas/                # payload structures (JSON Schema / Protobuf / etc.)
     run_manifest.schema.json
     pipeline_result.schema.json
     job_envelope.schema.json
-  fixtures/
+  semantics/              # non-schema semantics (invariants/defaults/error mapping/redaction); stable refs
+    run_manifest.md
+    pipeline_result.md
+    job_envelope.md
+  fixtures/               # golden samples (valid/invalid; optionally compat)
     run_manifest/
       valid/
       invalid/
     pipeline_result/
       valid/
       invalid/
-  ids/
-    error_codes.json
-    stage_ids.json
-    job_types.json
+  identifiers/            # (aka ids/) stable value domains (error codes, permission codes, job types, route IDs)
+    error_codes.(json|ts)
+    stage_ids.(json|ts)
+    job_types.(json|ts)
+  openapi/                # (optional) generated snapshots for publishing/SDKs (DO NOT EDIT by hand)
+    public-api.yaml
   codegen/
-    openapi.yaml (or components/)
     generators/
   scripts/
     verify
@@ -315,6 +326,10 @@ contracts/
   CHANGELOG.md
   README.md
 ```
+
+**Semantics location rule:** Every cross-boundary schema or API surface MUST have a stable Semantics reference. Semantics MAY be encoded directly in schema constraints/`description` fields, but SHOULD also be linkable as a dedicated doc (e.g., `contracts/semantics/<contract_id>.md`) so Master Docs and tooling can reference it consistently.
+
+
 
 ### 3.6 Integration harness requirements (system truth source)
 
@@ -970,7 +985,10 @@ A practical SDMM taxonomy for UI apps:
 - `features/`: user-facing feature modules (workflow-oriented).
 - `ui/`: reusable UI components (design-system level).
 - `core/`: cross-cutting utilities and domain-agnostic services (logging, auth client, telemetry).
-- `contracts/`: shared contract types (OpenAPI/JSON Schema types, route IDs, event payloads).
+- `contracts/` (or `contract_types/`): generated/imported contract types + stable identifiers (NOT the SSOT Contract Hub; see §3.4).
+
+
+**Note:** In multi-repo topologies where the canonical Contract Hub is a repo/folder named `contracts/`, avoid naming an internal package `contracts/` if it causes confusion. Prefer `contract_types/`, `boundary_contracts/`, or similar for repo-local generated types and adapters.
 
 ### 6.2 Recommended dependency graph
 
@@ -1751,7 +1769,7 @@ If a conflict is found:
 
 1. Record it in **§10.2 Open Questions** (or as an ADR if already decided).
 1. Resolve it via the **Decision Log (ADR)** with the correct decision owner(s).
-1. Update this Master Doc, bump its version, and update branch copies per **Annex C**.
+1. Update this Master Doc, bump its version, and update branch copies per **Annex C-C**.
 
 #### Table of Contents
 
@@ -1768,9 +1786,11 @@ If a conflict is found:
 1. Risks, Open Questions, and Assumptions (#10-risks-open-questions-and-assumptions)
 1. AI Execution Plan (#11-ai-execution-plan-no-code-unambiguous)
 
-A. Annex A - AI Guide: Converting a PRD into this Master Doc (#annex-a--ai-guide-converting-a-prd-into-this-master-doc) B. Annex B - Template Snippets (#annex-b--template-snippets-copypaste) C. Annex C - Branch Copies and Sync Policy (#annex-c--branch-copies-and-sync-policy)
-
-D. Annex D - UI Spec Appendix (reference) (#annex-d--ui-spec-appendix-reference)
+Annexes:
+- Annex C-A - AI Guide: Converting a PRD into this Master Doc (#annex-c-a---ai-guide-converting-a-prd-into-this-master-doc)
+- Annex C-B - Template Snippets (copy/paste) (#annex-c-b---template-snippets-copypaste)
+- Annex C-C - Branch Copies and Sync Policy (#annex-c-c---branch-copies-and-sync-policy)
+- Annex C-D - UI Spec Appendix (reference) (#annex-c-d---ui-spec-appendix-reference)
 
 #### 0. Document Control
 
@@ -1781,6 +1801,10 @@ D. Annex D - UI Spec Appendix (reference) (#annex-d--ui-spec-appendix-reference)
 - **Project slug** (stable identifier; lowercase kebab-case recommended): `{{PROJECT_SLUG}}` (recommended: `my-product`)
 - **Canonical doc path** (MUST be stable across branches): `{{DOC_PATH}}` (recommended: `docs/master_doc.md`)
 - **Doc ID** (stable identifier): `{{DOC_ID}}` (recommended: `MASTER-{{PROJECT_SLUG}}`)
+- **Supersedes** (optional): `[[DOC_ID@VERSION]]` (previous master doc if this doc replaces another)
+- **Superseded by** (optional): `[[DOC_ID@VERSION]]` (fill when deprecating this doc)
+- **Migration mapping** (optional): `[[PATH_OR_URL]]` (ID remap table / migration notes)
+
 - **Repo / Branch**: `{{REPO}}@{{BRANCH}}`
 - **Doc revision commit SHA** (recommended): `{{DOC_COMMIT_SHA}}`
 - **Code baseline commit SHA** (recommended): `[[CODE_BASELINE_SHA]]` (the code state this doc currently describes)
@@ -1886,7 +1910,7 @@ The keywords **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY** indicat
 > Record any decision that affects behavior, data, contracts, architecture, or policy.
 
 | ADR ID | Date | Decision | Owner | Status | Rationale | Consequences |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 ##### 0.9 Branch progress tracking (required; branch-aware)
 
@@ -2222,7 +2246,7 @@ Definitions:
 | Boundary | Build (Y/N) | Deploy (Y/N) | Trust (Y/N) | Contracts | Evolution mode | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | backend -> algo | N | Y | Y | {{API/JOB_IDS}} | compat | {{NOTES}} |
-| backend <-> db | N | N | Y | {{SCHEMA_IDS}} | expand/contract | {{NOTES}} |
+| backend <-> db | N | Y | Y | {{SCHEMA_IDS}} | expand/contract | {{NOTES}} |
 
 #### 5. Contracts (Schematized, testable, versioned)
 
@@ -2256,10 +2280,20 @@ Casing examples (serialized):
 | Contract ID | Type | Purpose | Owner | Schema ref | Semantics ref | Fixtures ref | Checks ref |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
-##### 5.3 API contracts (OpenAPI / RPC)
+**Semantics ref guidance (recommended):** Use a stable pointer.
+- For payload/interface invariants (defaults, validation rules, redaction, status-code mapping), prefer `contracts/semantics/<contract_id>.md`.
+- For end-to-end behavioral semantics (workflows, acceptance criteria), reference the relevant scenario/spec section (e.g., `specs/<spec_id>#<anchor>` or an equivalent BDD artifact).
+- Avoid duplicating the endpoint inventory in freeform specs when `contracts/api` is the SSOT.
 
-| API ID | Endpoint / Method | Purpose | Request schema | Response schema | Error codes | Owner |
-| --- | --- | --- | --- | --- | --- | --- |
+##### 5.3 API contracts (HTTP / RPC / Webhooks)
+
+**Recommended:** Treat `contracts/api/` as the machine-readable **API Registry** (preferred authoring SSOT). This table SHOULD act as a human-readable index: list stable API IDs and reference the canonical registry entry or OpenAPI artifact to avoid dual-authoring drift.
+
+| API ID | Canonical ref | Endpoint / Method | Auth | Status codes | Purpose | Request schema | Response schema | Error codes | Owner |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+> **SSOT rule:** If multiple representations exist (e.g., `contracts/api` registry, OpenAPI, and/or separate request/response schemas), you MUST declare exactly one as the authoring SSOT. All others MUST be generated (or mechanically checked) to prevent drift.
+
 
 ##### 5.4 Async/job contracts
 
@@ -2332,10 +2366,15 @@ Casing examples (serialized):
 
 ##### 6.2 Storage design
 
-- Primary database: `{{TYPE}}`
+- Primary database engine: `{{DB_ENGINE}}` (example: `PostgreSQL`)
+- Primary database version: `{{DB_VERSION}}` (example: `16`)
+- Migration tooling + location: `{{MIGRATION_TOOLING}}` (example: `Prisma migrations at backend/prisma/migrations/`)
+- Migration policy (expand/contract; rollback posture): `{{DB_MIGRATION_POLICY}}`
 - Vector database: `[[TYPE]]`
 - Object storage: `[[TYPE]]`
 - Caching: `[[TYPE]]` with key/version policy (cache keys are contracts)
+
+> Note: DB rows are persisted contract surfaces; schema changes MUST follow Compatibility Mode rules (expand/contract with a window).
 
 ##### 6.3 Deletion and retention
 
@@ -2513,8 +2552,16 @@ Casing examples (serialized):
 
 > Keep tasks small, independently verifiable, and ordered by dependencies.
 
-| Task ID | Description | Scope (paths) | Contracts touched | Tests/verify | Owner | Status |
-| --- | --- | --- | --- | --- | --- | --- |
+| Task ID | Description | Scope (paths) | Contracts touched | Tests/verify | Owner | Status | Evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| T-001 | `[[TASK_DESCRIPTION]]` | `[[PATHS]]` | `[[CONTRACT_IDS]]` | `[[VERIFY_COMMANDS]]` | `[[OWNER]]` | planned | `[[PR_OR_COMMIT_OR_TEST_REPORT]]` |
+
+**Status vocabulary (recommended):** `planned | in_progress | blocked | partial | done`
+
+- **MUST:** Every task starts as `planned`.
+- **MUST:** A task marked `partial` or `done` MUST include objective Evidence (PR link, commit SHA, test report path, or CI run URL).
+- **SHOULD:** If a task is `blocked`, record the blocking dependency in §0.8 (Decision log) or §0.11 (Traceability index).
+
 
 ##### 11.3 Acceptance checklist (Definition of Done)
 
@@ -2525,7 +2572,30 @@ Casing examples (serialized):
 - [ ] Release notes / change log updated
 - [ ] Master Doc updated **if required** (requirements/workflows/contracts/topology/gates changed), or explicitly marked as “no doc change required”.
 
-#### Annex A - AI Guide: Converting a PRD into this Master Doc
+##### 11.4 Multi-worker implementation protocol (recommended when parallelizing)
+
+If implementation is split across multiple workers (human or AI), the project MUST pick one of the following models and follow its rules to avoid contract drift and merge conflicts.
+
+**Model A — Central coordinator (recommended):**
+
+- A single coordinator (human or AI) owns **contract changes** (`contracts/*`) and integration sequencing.
+- Workers implement in parallel **only on non-overlapping scopes** (module- or folder-level slices).
+- Contract changes MUST be serialized (one active PR touching `contracts/` at a time), or guarded by explicit locks (see below).
+
+**Model B — Federated (allowed only with mechanical locks):**
+
+- Any worker MAY propose contract changes, but MUST acquire an explicit lock before editing SSOT files (e.g., `contracts/LOCKS/<path>.lock` or an equivalent repo policy).
+- Locks MUST be released in the same PR that merges the change.
+
+**Rules (apply to both models):**
+
+- **MUST:** Each worker works on a separate branch/PR. Direct commits to shared branches are forbidden.
+- **MUST:** No two concurrent tasks may edit the same SSOT file (schema/identifier/api registry) unless they are in the same PR.
+- **MUST:** Every PR that changes boundary behavior MUST update the relevant contracts and fixtures, and MUST pass `verify` (per §11.1) before merge.
+- **SHOULD:** Use the integration harness as the final arbiter for cross-repo drift (see §3.6).
+
+
+#### Annex C-A - AI Guide: Converting a PRD into this Master Doc
 
 > Use this when you have a “normal PRD” (narrative + screenshots) and need to produce an execution-ready Master Doc.
 
@@ -2602,7 +2672,7 @@ A converted Master Doc must:
 - An initial WBS with verification commands
 - A traceability table mapping workflows -> features -> FRs -> contracts -> tests -> tasks
 
-#### Annex B - Template Snippets (copy/paste)
+#### Annex C-B - Template Snippets (copy/paste)
 
 ##### B.1 Requirement snippet
 
@@ -2621,7 +2691,7 @@ A converted Master Doc must:
 
 ##### B.2 Task snippet (AI execution)
 
-| Task ID | Description | Scope (paths) | Contracts touched | Tests/verify | Owner | Status |
+| Task ID | Description | Scope (paths) | Contracts touched | Tests/verify | Owner | Status | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
 
 ##### B.3 AI prompt snippet (optional)
@@ -2642,7 +2712,7 @@ Task:
 - Non-goals:
 ```
 
-#### Annex C - Branch Copies and Sync Policy
+#### Annex C-C - Branch Copies and Sync Policy
 
 > Each Git branch may carry its own Master Doc copy.
 
@@ -2680,7 +2750,7 @@ You SHOULD sync when:
   - the branch copy does not declare its baseline version in §0.9.
 - Add a PR checkbox: “Master Doc updated (or not needed)”.
 
-#### Annex D - UI Spec Appendix
+#### Annex C-D - UI Spec Appendix (reference)
 
 This Master Doc template is designed to be copied into a repo as a standalone `master_doc.md`. To avoid maintaining the **UI Spec Appendix template** in two places, this appendix intentionally contains only a reference.
 
@@ -2688,7 +2758,7 @@ If the project has user-facing UI, you MUST maintain a UI Spec Appendix using th
 
 - Repo-local UI Spec Appendix path (fill in): `{{UI_SPEC_APPENDIX_PATH}}` (recommended: `docs/ui_spec_appendix.md`)
 - Standard reference (fill in): `{{ENGINEERING_STANDARD_PATH_OR_URL}}#appendix-d-ui-spec-appendix-template-v1`
-  - If your doc host does not support anchors, search within the standard for `appendix-d-ui-spec-appendix-template-v1` or for the heading `Appendix D - UI Spec Appendix Template (v1)`.
+  - If your doc host does not support anchors, search within the standard for `appendix-d-ui-spec-appendix-template-v1` or for the heading `Appendix D - UI Spec Appendix Template`.
 
 Minimal procedure:
 
@@ -2702,7 +2772,13 @@ Minimal procedure:
 
 ### UI Spec Appendix - Template
 
-Status: `{{STATUS}}` (`draft | active | frozen | deprecated`) Version: `{{VERSION}}` (SemVer recommended) Last updated: `{{LAST_UPDATED_YYYY_MM_DD}}` Owners: PM `{{OWNER_PM}}`, Design `{{OWNER_DESIGN}}`, Eng `{{OWNER_ENG}}` Design source of truth: `{{FIGMA_OR_PROTOTYPE_URL}}` Design system / tokens: `[[DESIGN_SYSTEM_LINK_OR_PATH]]` Asset directory (repo): `docs/assets/ui/{{YYYYMMDD}}/` (recommended)
+- **Status:** `{{STATUS}}` (`draft | active | frozen | deprecated`)
+- **Version:** `{{VERSION}}` (SemVer recommended)
+- **Last updated:** `{{LAST_UPDATED_YYYY_MM_DD}}`
+- **Owners:** PM `{{OWNER_PM}}`, Design `{{OWNER_DESIGN}}`, Eng `{{OWNER_ENG}}`
+- **Design source of truth:** `{{FIGMA_OR_PROTOTYPE_URL}}`
+- **Design system / tokens:** `[[DESIGN_SYSTEM_LINK_OR_PATH]]`
+- **Asset directory (repo):** `docs/assets/ui/{{YYYYMMDD}}/` (recommended)
 
 #### 0. Purpose and scope
 
@@ -2760,6 +2836,7 @@ Recommended file naming:
 
 | Screen ID | Name | Surface | AI interaction mode | Route ID | Primary workflow(s) | Feature ID(s) | Design link | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
 
 Notes:
 
@@ -2918,7 +2995,9 @@ On failure, tests SHOULD capture:
 
 ### AI-Optimized Contract-Driven Multi-Repo Engineering Standard
 
-Status: General-purpose reference for AI-assisted development of full-stack AI products Scope: End-to-end systems that commonly include **Frontend**, **Business Backend (System of Record / Orchestrator)**, and an **Algorithm/Model Service** (plus optional Admin/Backoffice, Integration Harness, and Data/Evals). This standard focuses on **repo boundaries**, **contracts**, **contract evolution**, and **AI-friendly execution workflows**.
+- **Status:** General-purpose reference for AI-assisted development of full-stack AI products.
+- **Scope:** End-to-end systems that commonly include **Frontend**, **Business Backend (System of Record / Orchestrator)**, and an **Algorithm/Model Service** (plus optional Admin/Backoffice, Integration Harness, and Data/Evals).
+- **Focus:** **repo boundaries**, **contracts**, **contract evolution**, and **AI-friendly execution workflows**.
 
 #### 0. Normative language (Appendix E)
 
@@ -3047,7 +3126,7 @@ Common hybrids:
 
 Most AI systems are well served by **4-6 repos**, while keeping runtime services minimal:
 
-1. **`contracts`** - contract hub (schemas, fixtures, identifiers, codegen)
+1. **`contracts`** - contract hub (schemas, fixtures, identifiers, API registry, codegen)
 1. **`frontend`** - user experience and client logic
 1. **`backend`** - system-of-record + orchestrator
 1. **`algo`** - model/compute service
@@ -3069,13 +3148,14 @@ Optional (product-dependent):
 
 Owns canonical storage and distribution of:
 
-- OpenAPI specs (REST), and/or gRPC/Protobuf/GraphQL schemas
-- JSON Schemas / AsyncAPI for events, callbacks, and streaming messages
-- standard envelopes (errors, jobs, pagination)
-- cross-repo identifiers (error codes, job types, permission codes, feature flags)
-- golden fixtures (known-good payloads) used by tests and mocks
+- machine-readable endpoint inventory / API Registry (recommended): `contracts/api/` (HTTP/RPC surfaces)
+- payload schemas (JSON Schema / Protobuf / GraphQL SDL / AsyncAPI as applicable) and canonical envelopes (errors, jobs, pagination)
+- contract semantics notes (field meaning, invariants, defaults, error mapping, redaction rules), preferably under `contracts/semantics/` (or embedded in schema descriptions with stable refs)
+- cross-repo identifier sets (error codes, job types, permission codes, feature flags)
+- golden fixtures (known-good and known-bad payloads) used by tests, mocks, and compatibility runners
 - evaluation/scoring contract artifacts (rubrics, metric definitions, thresholds) when shared across repos
-- code generation templates/config (and optionally generated packages)
+- executable contract checks (schema + fixture validation, drift detection) and compatibility runners
+- publishing artifacts (optional, read-only): generated **OpenAPI 3.x** snapshots for REST (SDK/docs), generated SDKs/clients
 
 **MUST:** `contracts` contains **representations and executable checks only** (schemas/types/constants/fixtures/validators/tests), not product/business runtime logic.
 
@@ -3270,14 +3350,30 @@ At least one of the following MUST exist per boundary:
 
 #### 7. Contract representation and tooling
 
-##### 7.1 Canonical formats
+##### 7.1 Canonical formats (and SSOT discipline)
 
-Pick formats that support tooling and code generation:
+Pick formats that support tooling and mechanical enforcement — but **avoid dual-authoring**.
 
-- **OpenAPI 3.x** for REST
-- **Protobuf** for gRPC (if used)
-- **JSON Schema / AsyncAPI** for events/callbacks/streams
-- typed enums/constants for identifiers
+**MUST:** For any boundary surface, the project MUST designate exactly one **authoring SSOT** (single source of truth). If multiple representations exist, one MUST be declared SSOT and the others MUST be treated as **generated/publishing artifacts** with drift checks.
+
+**Recommended format split (authoring vs publishing):**
+
+- **HTTP/REST**
+  - **Authoring (recommended):** `contracts/api` (machine-readable endpoint inventory) + payload schemas (JSON Schema / Protobuf) + identifiers + fixtures/tests.
+  - **Publishing/interchange:** **OpenAPI 3.x** generated from code or from the contract hub (SDK/docs), kept as a read-only artifact.
+  - **Exception (OpenAPI-first):** OpenAPI MAY be the authoring SSOT, but only if you enforce linting, breaking-change checks, and code/schema consistency gates.
+
+- **gRPC**
+  - **Authoring:** Protobuf (`.proto`) + fixtures + compatibility runners.
+  - **Publishing:** generated SDKs + docs.
+
+- **Events / callbacks / streams**
+  - **Authoring:** JSON Schema / Protobuf / AsyncAPI (choose one) + fixtures + replay/compat runners.
+  - **Publishing:** generated docs and consumer SDKs (optional).
+
+- **Identifiers**
+  - **Authoring:** typed enums/constants (format is language-agnostic; TS/JSON/etc are acceptable).
+  - **Publishing:** derived JSON/Markdown tables if needed.
 
 **SHOULD:** Avoid “schema in prose only.” If it cannot be validated, it will drift.
 
@@ -3722,7 +3818,7 @@ If model outputs affect users, you SHOULD add at least one of:
 - latency budget checks for critical pipelines
 - regression detection for “repair rate”
 
-> Note: In the source document, the following sections were labeled “Appendix A-D”. In the unified standard, they are labeled “Annex E-A-E-D” to avoid collisions with the standard’s top-level Appendices.
+> Note: In the source document, the following sections were labeled “Appendix A-D”. In the unified standard, they are labeled “Annex E-A through E-D” to avoid collisions with the standard’s top-level Appendices.
 
 #### Annex E-A - “Split into a new repo?” checklist
 
@@ -3762,13 +3858,17 @@ A practical `contracts` repo layout:
 
 ```
 contracts/
-  openapi/
-    public-api.yaml
-    algo-api.yaml
+  api/                    # (recommended) machine-readable endpoint inventory (method/path/auth/status codes)
+    public.(ts|json)
+    algo.(ts|json)
   schemas/
-    errors.schema.json
-    job-envelope.schema.json
-    stream-message.schema.json
+    error_envelope.schema.json
+    job_envelope.schema.json
+    stream_frame.schema.json
+  semantics/
+    error_envelope.md
+    job_envelope.md
+    stream_frame.md
   fixtures/
     public-api/
       entity.create.request.json
@@ -3777,16 +3877,23 @@ contracts/
     algo/
       outline.request.json
       outline.response.json
-      stream.chunk.json
+      stream.frame.json
+  identifiers/
+    error_codes.(json|ts)
+    permission_codes.(json|ts)
+    job_types.(json|ts)
+  openapi/                # (optional) generated snapshots for publishing/SDKs (DO NOT EDIT by hand)
+    public-api.yaml
+    algo-api.yaml
   codegen/
-    openapi-generator.json
-    ts/
-    java/
-    python/
+    generators/
+      openapi-generator.json   # optional: client generation config
   scripts/
-    validate.sh
-    generate.sh
-    test-fixtures.sh
+    verify
+    compatibility_runner
+    codegen
+  CHANGELOG.md
+  README.md
 ```
 
 **SHOULD:** Keep `contracts` dependency-light. It should be a “lowest layer” repo that is safe for every other repo to consume.
@@ -3969,7 +4076,7 @@ This addendum complements (and does not replace) the unified standard’s core r
 - **System of record (SoR)**: the backend component that owns authoritative state and persistence.
 - **Orchestrator**: backend logic that coordinates workflows across modules/services (including long-running AI jobs), enforcing canonical rules, budgets, retries, and state transitions.
 - **Contract hub**: canonical storage for cross-repo contract artifacts, including:
-  - schemas/specs (OpenAPI/JSON Schema/etc.),
+  - schemas (JSON Schema / Protobuf; OpenAPI snapshots when OpenAPI-first or as generated artifacts),
   - non-schema semantics (documented invariants and rules),
   - fixtures/examples (happy-path and representative failures),
   - executable checks (producer validation and/or consumer decoding tests),
@@ -4695,7 +4802,7 @@ This chapter combines release/ops and security/privacy because they are operatio
 - **SHOULD:** Perform post-incident reviews with timeline, contributing factors, and corrective actions with owners/due dates.
 - **MUST:** Corrective actions that change contracts MUST follow contract evolution rules.
 
-> Note: In the source addendum, the following sections were labeled “Appendix A-E”. In the unified standard, they are labeled “Annex G-A-G-E” to avoid collisions with the standard’s top-level Appendices.
+> Note: In the source addendum, the following sections were labeled “Appendix A-E”. In the unified standard, they are labeled “Annex G-A through G-E” to avoid collisions with the standard’s top-level Appendices.
 
 #### Annex G-A - Lightweight checklists
 
@@ -4896,7 +5003,7 @@ If the product ships a user-facing UI, maintain a UI spec artifact that makes wo
 
 Recommended options:
 
-- **Master Doc Annex D - UI Spec Appendix (reference)** + repo-local `docs/ui_spec_appendix.md` copied from the **Standard’s Appendix D template**
+- **Master Doc Annex C-D - UI Spec Appendix (reference)** + repo-local `docs/ui_spec_appendix.md` copied from the **Standard’s Appendix D template**
 - a standalone `UI_SPEC.md` / `docs/ui_spec_appendix.md` based on the same template
 
 Minimum required content:
@@ -5036,11 +5143,11 @@ backend/
         application/     # use cases; orchestration; transaction scripts
         adapters/        # HTTP handlers, job handlers, event consumers
         infrastructure/  # db implementations, messaging clients
-        contracts/       # generated types + mapping helpers
+        contracts/       # generated/imported types + mapping helpers (NOT the SSOT Contract Hub)
       identity/
         ...
     shared/
-      contracts/         # shared low-level contracts only (not domain coupling)
+      contracts/         # shared low-level contract types only (NOT the SSOT Contract Hub; avoid domain coupling)
 ```
 
 **Rules**
@@ -5108,7 +5215,7 @@ Feature: {{FEATURE_NAME}}  # maps to F-### and/or W#
   # Traceability:
   # - Workflows: W1
   # - Requirements: FR-001, FR-007
-  # - Contracts: api.public.v1/CreateJob, job-envelope.schema.json@1.0.0
+  # - Contracts: api.public.v1/CreateJob, job_envelope.schema.json@1.0.0
   # - Gate: backend.verify (smoke), integration.verify (e2e)
 
   Scenario: SCN-001 {{SCENARIO_TITLE}}

@@ -1,7 +1,7 @@
 # Docs as Software (DAS) Standard | 文码合一标准
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Standard Version](https://img.shields.io/badge/DAS-v1.0.0-blue)](SPECIFICATION.md)
+[![Standard Version](https://img.shields.io/badge/DAS-v1.1.0-blue)](SPECIFICATION.md)
 
 Managed by **AzzCraft Inc.** (Chongqing AzzCraft Technology Co., Ltd.).
 

@@ -14,7 +14,7 @@
     "floating": false
   },
   "bundleDigestAlgorithm": "sha256",
-  "bundleDigest": "25f36b61c549b0aed8f8401f46ef08ccba603938b1e308e7b6a994c56a464765",
+  "bundleDigest": "ee07996a77d12d398f7898e1607c09499ae8dde7877341d04ec667fd03de393a",
   "artifacts": [
     {
       "path": ".github/workflows/verify.yml",
@@ -48,7 +48,7 @@
     },
     {
       "path": "SPECIFICATION.md",
-      "sha256": "a58a79b9d54bacfc9921c076afa3adc297498d93fcf1e0a9fa0d49fcd58f7852",
+      "sha256": "d962cab8908064422f99011f9406de6e30602889fe9198d7a62c2491c90ffc2d",
       "artifactClass": "normative",
       "required": true
     },
@@ -60,7 +60,7 @@
     },
     {
       "path": "appendices/appendix-c-project-master-doc-template.md",
-      "sha256": "86af68a5964a268aff046b1158ecfc9350d35d2cfec75220a848c09d2b92475a",
+      "sha256": "43465c9f7145b068e3069aa1760eb027b644463460ea4f15bf30611c2595c459",
       "artifactClass": "normative",
       "required": true
     },
@@ -72,7 +72,7 @@
     },
     {
       "path": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
-      "sha256": "4457e682aaf3e92016c9bb97578c63efc429e4c4b65b0faf7f1dc5e8febb5abd",
+      "sha256": "0b094bf72ebf5881c0cc5ae0957c3bf2226710ca6038af05188a0be6e622a08e",
       "artifactClass": "normative",
       "required": true
     },
@@ -84,7 +84,7 @@
     },
     {
       "path": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
-      "sha256": "9751e5ba763339a2129cdedc57f9fa7db376a93955e5277b7e16b338848cc6e0",
+      "sha256": "1ff54a421fb7c0a311e3e9a3ea12bb4a8e276643ce2e1c0aafa0cb6b73a38765",
       "artifactClass": "normative",
       "required": true
     },
@@ -96,7 +96,7 @@
     },
     {
       "path": "appendices/appendix-i-ddd-playbook.md",
-      "sha256": "48fd494857f5fddfa50faf5abfbed92a4c6f97489b31fcf944697ab5f9f49f04",
+      "sha256": "6e60b06f14f52e054dfb9799185919212f7edb6d870eda66f2342d9b485d6d05",
       "artifactClass": "normative",
       "required": true
     },
@@ -108,25 +108,25 @@
     },
     {
       "path": "appendices/appendix-k-hfvi-vis-template.md",
-      "sha256": "716be48e2d91c6e862d03f446aeba68347fef6c10c2dd05de1b6278c945ce2d2",
+      "sha256": "c184d42790ac882be868add0b3cd21d848e5567106c270346defa51bb454fef3",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "appendices/appendix-l-tooling-standard.md",
-      "sha256": "ae9bd5ce8248ec140d5f472b11f104eb24afdfa1c1298fdf0d8e123d568f510a",
+      "sha256": "ed54539b573babbb0e5a3152ed86aef6d809ddf1585c8a1eae7ea6ad67565f26",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
-      "sha256": "41482a6b28be8b34656399563bddbdc4a3206983079bbad052d0febbe756577e",
+      "sha256": "3c749d493e71afc2815611f13274219f1bf2dc86cdf5fe11fa6b3618bbdcb5f7",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md",
-      "sha256": "29dd609ac4ae9168f665782eeb92249afa1b6995bdfac9875a860569d2cfbb79",
+      "sha256": "65944ca6840fb67bb927b4a5c118a33162f55cec40f9d7ebab6cc133049f84d6",
       "artifactClass": "normative",
       "required": true
     },

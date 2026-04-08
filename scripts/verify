@@ -1,0 +1,216 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+export ROOT
+GATE="all"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --gate)
+      if [ $# -lt 2 ]; then
+        echo "missing value for --gate" >&2
+        exit 2
+      fi
+      GATE="$2"
+      shift 2
+      ;;
+    *)
+      echo "unknown argument: $1" >&2
+      exit 2
+      ;;
+  esac
+done
+export GATE
+
+if [ -n "${PYTHON:-}" ]; then
+  PYTHON_BIN="$PYTHON"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN="python3"
+elif command -v python >/dev/null 2>&1; then
+  PYTHON_BIN="python"
+else
+  echo "python3 or python is required" >&2
+  exit 127
+fi
+
+"$PYTHON_BIN" - <<'PY'
+import hashlib
+import json
+import os
+import re
+from pathlib import Path
+
+try:
+    from jsonschema import Draft202012Validator
+except ModuleNotFoundError as exc:
+    raise SystemExit(
+        "jsonschema is required; install it with 'python3 -m pip install jsonschema'"
+    ) from exc
+
+root = Path(os.environ['ROOT'])
+gate = os.environ.get('GATE', 'all')
+valid_gates = {'all', 'bundle-files', 'schemas', 'release-snapshot'}
+if gate not in valid_gates:
+    raise SystemExit(f"unknown gate: {gate}")
+
+
+def load_json(path: Path):
+    return json.loads(path.read_text())
+
+
+def validate_json(data_path: Path, schema_path: Path):
+    data = load_json(data_path)
+    schema = load_json(schema_path)
+    Draft202012Validator(schema).validate(data)
+
+
+def strip_fenced_code(text: str) -> str:
+    return re.sub(r"```.*?```", "", text, flags=re.S)
+
+
+def check_markdown_links(paths):
+    pattern = re.compile(r"\[[^\]]+\]\(([^)#]+)(?:#[^)]+)?\)")
+    for path in paths:
+        text = strip_fenced_code(path.read_text())
+        for match in pattern.finditer(text):
+            target = match.group(1).strip()
+            if (
+                not target
+                or target == "..."
+                or target.startswith(("http://", "https://", "mailto:"))
+                or target.startswith("<")
+                or "{" in target
+            ):
+                continue
+            resolved = (path.parent / target).resolve()
+            try:
+                resolved.relative_to(root.resolve())
+            except ValueError:
+                continue
+            if not resolved.exists():
+                raise AssertionError(f"Broken link in {path.relative_to(root)} -> {target}")
+
+
+def compute_bundle_digest(artifacts):
+    payload = "\n".join(
+        f"{artifact['path']}:{artifact['sha256']}"
+        for artifact in sorted(artifacts, key=lambda item: item['path'])
+    )
+    return hashlib.sha256(payload.encode()).hexdigest()
+
+
+def assert_manifest_aliases(manifest_data):
+    interaction_profiles = manifest_data.get('interactionProfiles')
+    gate_cadences = manifest_data.get('gateCadences')
+    enum_interaction_profiles = manifest_data['enums']['interactionProfiles']
+    enum_gate_cadences = manifest_data['enums']['gateCadences']
+
+    assert interaction_profiles == enum_interaction_profiles, (
+        "standard_manifest.interactionProfiles must match "
+        "standard_manifest.enums.interactionProfiles"
+    )
+    assert gate_cadences == enum_gate_cadences, (
+        "standard_manifest.gateCadences must match "
+        "standard_manifest.enums.gateCadences"
+    )
+
+
+version = (root / 'VERSION').read_text().strip()
+manifest = load_json(root / 'standard_manifest.json')
+verify_registry = load_json(root / 'verify_registry.json')
+release_snapshot = load_json(root / 'release_snapshot_manifest.json')
+
+
+def run_bundle_files():
+    assert version == manifest['standardVersion'], (
+        f"VERSION ({version}) != standard_manifest.standardVersion ({manifest['standardVersion']})"
+    )
+    assert_manifest_aliases(manifest)
+
+    required = manifest['requiredArtifacts']
+    missing = [p for p in required if not (root / p).exists()]
+    assert not missing, f"Missing requiredArtifacts: {missing}"
+
+    for group in ('normativeArtifactRefs', 'supportingArtifactRefs'):
+        for name, rel in manifest[group].items():
+            assert (root / rel).exists(), f"Missing {group}.{name}: {rel}"
+
+    governed_markdown = [
+        root / rel
+        for rel in manifest['requiredArtifacts']
+        if rel.endswith('.md') and (root / rel).exists()
+    ]
+    check_markdown_links(governed_markdown)
+
+
+def run_schemas():
+    validate_json(root / 'standard_manifest.json', root / 'standard_manifest.schema.json')
+    assert_manifest_aliases(manifest)
+
+    pairs = [
+        ('suite_version_closure.example.json', 'suite_version_closure.schema.json'),
+        ('suite_lock.example.json', 'suite_lock.schema.json'),
+        ('tooling_lock.example.json', 'tooling_lock.schema.json'),
+        ('local_extension_manifest.example.json', 'local_extension_manifest.schema.json'),
+        ('verify_registry.json', 'verify_registry.schema.json'),
+        ('verify_registry.example.json', 'verify_registry.schema.json'),
+        ('verify_report.example.json', 'verify_report.schema.json'),
+        ('release_snapshot_manifest.json', 'release_snapshot_manifest.schema.json'),
+        ('release_snapshot_manifest.example.json', 'release_snapshot_manifest.schema.json'),
+        ('template_catalog.json', 'template_catalog.schema.json'),
+    ]
+    for data_file, schema_file in pairs:
+        validate_json(root / data_file, root / schema_file)
+
+
+def run_release_snapshot():
+    validate_json(root / 'verify_registry.json', root / 'verify_registry.schema.json')
+    validate_json(
+        root / 'release_snapshot_manifest.json',
+        root / 'release_snapshot_manifest.schema.json',
+    )
+
+    artifact_paths = {artifact['path'] for artifact in release_snapshot['artifacts']}
+    expected_artifacts = set(manifest['requiredArtifacts']) - {'release_snapshot_manifest.json'}
+    missing = sorted(expected_artifacts - artifact_paths)
+    assert not missing, f"release snapshot missing requiredArtifacts: {missing}"
+
+    implemented_gates = {'bundle-files', 'schemas', 'release-snapshot'}
+    default_command = verify_registry['defaultVerifyCommand']
+    assert (root / default_command.removeprefix('./')).exists(), (
+        f"default verify command does not resolve: {default_command}"
+    )
+
+    for item in verify_registry['gates']:
+        command = item['command']
+        assert command == default_command or command.startswith(f"{default_command} --gate "), (
+            f"verify registry command is not backed by {default_command}: {command}"
+        )
+        if command.startswith(f"{default_command} --gate "):
+            declared_gate = command.split()[-1]
+            assert declared_gate in implemented_gates, (
+                f"verify registry references unsupported gate: {declared_gate}"
+            )
+
+    for artifact in release_snapshot['artifacts']:
+        path = root / artifact['path']
+        assert path.exists(), f"release snapshot artifact missing: {artifact['path']}"
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        assert digest == artifact['sha256'], (
+            f"release snapshot hash mismatch for {artifact['path']}: {digest}"
+        )
+
+    expected_bundle_digest = compute_bundle_digest(release_snapshot['artifacts'])
+    assert expected_bundle_digest == release_snapshot['bundleDigest'], (
+        f"bundleDigest mismatch: {expected_bundle_digest}"
+    )
+
+
+if gate in ('all', 'bundle-files'):
+    run_bundle_files()
+if gate in ('all', 'schemas'):
+    run_schemas()
+if gate in ('all', 'release-snapshot'):
+    run_release_snapshot()
+
+print('DAS v1.4.6 release bundle verify: PASS')
+PY

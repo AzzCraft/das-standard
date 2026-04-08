@@ -1,22 +1,23 @@
-## Appendix C - Project Master Doc Template
+# Appendix C - Project Master Doc Template
 
-### Master Doc (PRD + Architecture + Execution Plan) - Template
+<a id="appendix-c-master-doc-template"></a>
 
+### Master Doc (PRD + Architecture + Execution Plan) — Template
 > **Purpose**: Single source of truth for **product definition**, **system/code architecture**, and an **execution-ready plan** that humans and AI can implement **without ambiguity**.
-
-
+>
 > **Non-goal**: This document does **not** contain code-level implementation details (no concrete function bodies, SQL queries, UI component internals, or algorithm pseudocode beyond stage contracts). It **must** be sufficient for implementation planning, task decomposition, and verification.
-
-
+>
 > **Audience**: Product Managers, Engineering Architect(s), Tech Leads, AI coding agents, QA/Release, Security/Privacy/Compliance reviewers.
+
+---
 
 #### Placeholder and formatting rules
 
 This template uses explicit placeholder syntax to avoid Markdown/HTML rendering issues and to make “unfilled” content machine-detectable.
 
-- `{{REQUIRED_PLACEHOLDER}}` - **must** be filled before the doc can be marked `active`.
-- `[[OPTIONAL_PLACEHOLDER]]` - optional; fill if applicable.
-- `TBD:` - decision not made yet. If it blocks implementation, record it in **§10.2 Open Questions**.
+- `{{REQUIRED_PLACEHOLDER}}` — **must** be filled before the doc can be marked `active`.
+- `[[OPTIONAL_PLACEHOLDER]]` — optional; fill if applicable.
+- `TBD:` — decision not made yet. If it blocks implementation, record it in **§10.2 Open Questions**.
 - IDs like `FR-001`, `API-001` are **stable identifiers**. Once released, do not reuse IDs for different meanings.
 
 Placeholder replacement rules apply **only** to template prose and tables. Content inside fenced code blocks is literal example text and MUST NOT be treated as placeholders.
@@ -25,44 +26,50 @@ In particular, double-bracket constructs inside code blocks (e.g., `[[importlint
 
 **Do not** use angle-bracket placeholders like `<...>` in this doc; many Markdown renderers treat them as HTML.
 
+---
+
 #### Authority and precedence
 
 **Authority scope**: This Master Doc is authoritative for **project-specific** decisions (requirements, workflows, contracts, architecture choices, rollout plan) within this repo/branch.
 
 **Precedence order (highest → lowest)**
 
-1. **Applicable law/regulation** + **organizational security/compliance policies**
-1. **Project-wide / organization-wide engineering standards** (referenced in §0.5)
-1. **This Master Doc** (branch source of truth)
-1. **Input documents** (PRDs, prototype notes, meeting notes, older architecture docs)
-1. **Team conventions**
+1) **Applicable law/regulation** + **organizational security/compliance policies**
+2) **Project-wide / organization-wide engineering standards** (referenced in §0.5)
+3) **This Master Doc** (branch source of truth)
+4) **Input documents** (PRDs, prototype notes, meeting notes, older architecture docs)
+5) **Team conventions**
 
 If a conflict is found:
 
-1. Record it in **§10.2 Open Questions** (or as an ADR if already decided).
-1. Resolve it via the **Decision Log (ADR)** with the correct decision owner(s).
-1. Update this Master Doc, bump its version, and update branch copies per **Annex C-C**.
+1) Record it in **§10.2 Open Questions** (or as an ADR if already decided).
+2) Resolve it via the **Decision Log (ADR)** with the correct decision owner(s).
+3) Update this Master Doc, bump its version, and update branch copies per **Annex C**.
+
+---
 
 #### Table of Contents
 
-1. Document Control (#0-document-control)
-1. Product Definition (#1-product-definition-pm-owned)
-1. Domain Model (#2-domain-model-architect--pm)
-1. System Overview (#3-system-overview-architect-owned-pm-must-understand)
-1. Repo and Runtime Topology (#4-repo--runtime-topology-architect-owned)
-1. Contracts (#5-contracts-schematized-testable-versioned)
-1. Data, Privacy, and Compliance (#6-data-privacy-and-compliance-architect--pm)
-1. AI and Algorithm Design (#7-ai--algorithm-design-architect-owned-pm-reviewed)
-1. Observability, Operations, and Cost (#8-observability-operations-and-cost)
-1. Release Plan (#9-release-plan-pm--architect--qa)
-1. Risks, Open Questions, and Assumptions (#10-risks-open-questions-and-assumptions)
-1. AI Execution Plan (#11-ai-execution-plan-no-code-unambiguous)
+0. [Document Control](#0-document-control)
+1. [Product Definition](#1-product-definition-pm-owned)
+2. [Domain Model](#2-domain-model-architect--pm)
+3. [System Overview](#3-system-overview-architect-owned-pm-must-understand)
+4. [Repo and Runtime Topology](#4-repo--runtime-topology-architect-owned)
+5. [Contracts](#5-contracts-schematized-testable-versioned)
+6. [Data, Privacy, and Compliance](#6-data-privacy-and-compliance-architect--pm)
+7. [AI and Algorithm Design](#7-ai--algorithm-design-architect-owned-pm-reviewed)
+8. [Observability, Operations, and Cost](#8-observability-operations-and-cost)
+9. [Release Plan](#9-release-plan-pm--architect--qa)
+10. [Risks, Open Questions, and Assumptions](#10-risks-open-questions-and-assumptions)
+11. [AI Execution Plan](#11-ai-execution-plan-no-code-unambiguous)
 
-Annexes:
-- Annex C-A - AI Guide: Converting a PRD into this Master Doc (#annex-c-a---ai-guide-converting-a-prd-into-this-master-doc)
-- Annex C-B - Template Snippets (copy/paste) (#annex-c-b---template-snippets-copypaste)
-- Annex C-C - Branch Copies and Sync Policy (#annex-c-c---branch-copies-and-sync-policy)
-- Annex C-D - UI Spec Appendix (reference) (#annex-c-d---ui-spec-appendix-reference)
+A. [Annex A — AI Guide: Converting a PRD into this Master Doc](#annex-a--ai-guide-converting-a-prd-into-this-master-doc)
+B. [Annex B — Template Snippets](#annex-b--template-snippets-copypaste)
+C. [Annex C — Branch Copies and Sync Policy](#annex-c--branch-copies-and-sync-policy)
+
+D. [Annex D — UI Spec Appendix (reference)](#annex-d--ui-spec-appendix-reference)
+
+---
 
 #### 0. Document Control
 
@@ -78,15 +85,17 @@ Annexes:
 - **Supersedes** (optional): `[[DOC_ID@VERSION]]` (previous master doc if this doc replaces another)
 - **Superseded by** (optional): `[[DOC_ID@VERSION]]` (fill when deprecating this doc)
 - **Migration mapping** (optional): `[[PATH_OR_URL]]` (ID remap table / migration notes)
-
+- **Owner** (canonical machine-check field): `{{OWNER}}`
+- **Governing standard**: `{{ENGINEERING_STANDARD_PATH_OR_URL}}`
+- **Scope**: Canonical Master Doc for `{{PROJECT_NAME}}`, covering product definition, architecture, contracts, verification, and execution plan.
+- **Doc family role**: `canonical_entrypoint`
 - **Repo / Branch**: `{{REPO}}@{{BRANCH}}`
 - **Doc revision commit SHA** (recommended): `{{DOC_COMMIT_SHA}}`
 - **Code baseline commit SHA** (recommended): `[[CODE_BASELINE_SHA]]` (the code state this doc currently describes)
 - **Status**: `{{STATUS}}` (`draft | active | frozen | deprecated`)
 - **Version**: `{{VERSION}}` (SemVer recommended)
-- **Conformance profile**: `{{CONFORMANCE_PROFILE}}` (`L0 | L1 | L2`; default `L1`)
-- **Interaction profile**: `[[INTERACTION_PROFILE]]` (`standard_ui | hfvi_canvas_webgl_game`; default `standard_ui`)
-
+- **Conformance profile**: `{{CONFORMANCE_PROFILE}}` (`L0 | L1 | L2`)
+- **Interaction profile**: `{{INTERACTION_PROFILE}}` (`standard_ui | headless | hfvi_canvas_webgl_game`)
 - **Last updated (date)**: `{{LAST_UPDATED_YYYY_MM_DD}}`
 - **Owners**
   - Product owner: `{{OWNER_PM}}`
@@ -100,7 +109,7 @@ Annexes:
 A branch copy of this Master Doc **MUST NOT** be marked `active` unless:
 
 - All `{{REQUIRED_PLACEHOLDER}}` fields are filled.
-- If `[[INTERACTION_PROFILE]] = hfvi_canvas_webgl_game`, Appendix K (VIS) exists and is populated for each HFVI surface.
+- If `{{INTERACTION_PROFILE}} = hfvi_canvas_webgl_game`, Appendix K (VIS) exists and is populated for each HFVI surface.
 - If `{{CONFORMANCE_PROFILE}} = L2`, the Context Pack (`[[CONTEXT_PACK_PATH]]`) exists and is updated for this revision (scope, invariants, contracts summary, `verify`, and current tasks).
 - All **Blocker? = Y** items in **§10.2 Open Questions** are resolved or explicitly deferred via ADR.
 - §5 Contracts contains a complete **Contract Inventory Index** for all cross-boundary flows.
@@ -116,14 +125,13 @@ The keywords **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY** indicat
 ##### 0.4 How to use this doc (roles and ownership)
 
 - **PMs** own Sections **1**, **9**, **10**; co-own Sections **2**, **6**, **8** (requirements must be testable/measurable).
-- **Architects/Tech Leads** own Sections **3-8**, **11**; ensure boundaries/contracts are complete and enforceable.
+- **Architects/Tech Leads** own Sections **3–8**, **11**; ensure boundaries/contracts are complete and enforceable.
 - **AI agents** execute **§11**. If required information is missing, record it in **§10.2 Open Questions** and do not guess.
 - **Everyone**: a code change that modifies requirements, behavior, contract surfaces, data handling, security posture, or user flows without updating this Master Doc (or explicitly marking “no doc change required”) is incomplete.
 
 ##### 0.5 Source inputs and referenced standards (append-only)
 
 > This Master Doc is the compiled truth. The items below are inputs and references.
-
 > Do not delete entries; supersede via changelog/ADR.
 
 **Input PRDs / requirements**
@@ -144,7 +152,9 @@ The keywords **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY** indicat
 
 **Engineering standards (higher precedence than this doc)**
 
-- Docs as Software (DAS) Standard `{{ENGINEERING_STANDARD_VERSION}}` : `{{ENGINEERING_STANDARD_PATH_OR_URL}}`
+- Docs as Software (DAS) Standard `{{ENGINEERING_STANDARD_VERSION}}`: `{{ENGINEERING_STANDARD_PATH_OR_URL}}`
+  - SDMM principles: §6 of the unified standard
+  - Algorithm principles: §7 of the unified standard
 - `[[SECURITY_STANDARD_PATH]]`
 
 **ADR directory**
@@ -178,14 +188,16 @@ The keywords **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY** indicat
 ##### 0.7 Change log (append-only)
 
 | Date | Version | Author | Summary | Links (PR/ADR) |
-| --- | --- | --- | --- | --- |
+|---|---:|---|---|---|
+| `{{YYYY_MM_DD}}` | `{{VERSION}}` | `{{AUTHOR}}` | `Initial adoption` | `[[LINK]]` |
 
 ##### 0.8 Decision log (ADR index, append-only)
 
 > Record any decision that affects behavior, data, contracts, architecture, or policy.
 
 | ADR ID | Date | Decision | Owner | Status | Rationale | Consequences |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+|---|---|---|---|---|---|---|
+| `ADR-0001` | `{{YYYY_MM_DD}}` | `{{DECISION}}` | `{{OWNER}}` | `proposed/accepted/superseded` | `{{WHY}}` | `{{TRADEOFFS}}` |
 
 ##### 0.9 Branch progress tracking (required; branch-aware)
 
@@ -218,13 +230,14 @@ The keywords **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY** indicat
 > Any term that appears in contracts, UI labels, logs, dashboards, or acceptance criteria SHOULD be defined here.
 
 | Term | Canonical definition | Synonyms (if any) | Notes |
-| --- | --- | --- | --- |
-| ConfigId | Immutable identifier for a specific configuration snapshot used by a run/job. | Config snapshot id | Required for reproducibility and rollback. Prefer registry/URI or content-addressed id. |
-| Run Manifest | Immutable, replayable record of a single pipeline run (inputs, config, budgets, determinism, side-effects mode, artifact refs). | Run log | Stored and referenced by runId. |
-| Job Envelope | Backend wrapper that tracks job orchestration status and contains the algorithm Pipeline Result. | Job record | Carries jobId and (once started) runId. |
-| Pipeline Result | Algorithm execution envelope (status, output, stage summaries, errors, diagnostics). | Run result | status ∈ {ok,degraded,error}. |
-| NormalizedError | A normalized error object with stable code, kind, and retryable. | Error code | Used across services and persisted in envelopes. |
-| {{TERM_1}} | {{DEFINITION}} | [[SYNONYMS]] | [[NOTES]] |
+|---|---|---|---|
+| `ProfileId` | Identifier for a configuration profile (named runtime context selecting defaults). | `Profile`, `Config profile` | May be a pointer (e.g., `prod`) or pinned label (e.g., `prod@4`). MUST be accompanied by `configId` or `configHash` for reproducibility. |
+| `ConfigId` | Immutable identifier for a specific configuration snapshot used by a run/job. | `Config snapshot id` | Required for reproducibility and rollback. Prefer registry/URI or content-addressed id. |
+| `Run Manifest` | Immutable, replayable record of a single pipeline run (inputs, config, budgets, determinism, side-effects mode, artifact refs). | `Run log` | Stored and referenced by `runId`. |
+| `Job Envelope` | Backend wrapper that tracks job orchestration status and contains the algorithm `Pipeline Result`. | `Job record` | Carries `jobId` and (once started) `runId`. |
+| `Pipeline Result` | Algorithm execution envelope (`status`, `output`, stage summaries, errors, diagnostics). | `Run result` | `status ∈ {ok,degraded,error}`. |
+| `NormalizedError` | A normalized error object with stable `code`, `kind`, and `retryable`. | `Error code` | Used across services and persisted in envelopes. |
+| `{{TERM_1}}` | `{{DEFINITION}}` | `[[SYNONYMS]]` | `[[NOTES]]` |
 
 ##### 0.11 Traceability index (required; keep current)
 
@@ -240,7 +253,10 @@ The keywords **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY** indicat
 Optional traceability table:
 
 | Workflow | Feature(s) | FR(s) | Contract(s) | Test(s) | Task(s) |
-| --- | --- | --- | --- | --- | --- |
+|---|---|---|---|---|---|
+| `W1` | `F-001` | `FR-001` | `API-001` | `smoke-01` | `T-001` |
+
+---
 
 #### 1. Product Definition (PM-owned)
 
@@ -268,7 +284,8 @@ Optional traceability table:
 > MUST list roles and their permission boundaries. If multi-tenant: include tenant boundary.
 
 | Role | Primary jobs-to-be-done | Key permissions | Data scope |
-| --- | --- | --- | --- |
+|---|---|---|---|
+| `{{ROLE_1}}` | `{{JTBD}}` | `{{PERMISSIONS}}` | `{{DATA_SCOPE}}` |
 
 **Permission model notes (required)**
 
@@ -278,21 +295,21 @@ Optional traceability table:
 
 ##### 1.4 Primary user journeys (canonical workflows)
 
-> Provide 3-7 “happy path” workflows. Each workflow MUST be testable end-to-end.
+> Provide 3–7 “happy path” workflows. Each workflow MUST be testable end-to-end.
 
-###### Workflow W1 - `{{WORKFLOW_NAME}}`
+###### Workflow W1 — `{{WORKFLOW_NAME}}`
 
 - **Actor**: `{{ROLE}}`
 - **Trigger**: `{{TRIGGER}}`
 - **Preconditions**: `{{PRECONDITIONS}}`
 - **Steps**:
   1. `{{STEP_1}}`
-  1. `{{STEP_2}}`
+  2. `{{STEP_2}}`
 - **Success outcome**: `{{OBSERVABLE_RESULT}}`
 - **Failure modes**: `{{EXPECTED_USER_VISIBLE_FAILURES}}`
 - **Telemetry**: `{{EVENTS_METRICS_LOGS}}`
 
-###### Workflow W2 - `[[WORKFLOW_NAME]]`
+###### Workflow W2 — `[[WORKFLOW_NAME]]`
 
 (Repeat)
 
@@ -301,7 +318,8 @@ Optional traceability table:
 > Maintain as a stable, prioritized list. Link to designs and contracts.
 
 | Feature ID | Name | Description | Priority | Status | Owner | Dependencies |
-| --- | --- | --- | --- | --- | --- | --- |
+|---|---|---|---|---|---|---|
+| `F-001` | `{{NAME}}` | `{{DESCRIPTION}}` | `P0/P1/P2` | `planned/in-dev/done` | `{{OWNER}}` | `[[F-...]]` |
 
 ##### 1.6 Functional requirements (testable)
 
@@ -330,11 +348,12 @@ _Add FRs below:_
 ##### 1.7 Non-functional requirements (NFRs)
 
 | NFR ID | Category | Requirement | Measurement / Test |
-| --- | --- | --- | --- |
-| NFR-002 | Availability | {{SLO}} | {{MONITORING_ALERTING}} |
-| NFR-003 | Security | {{BASELINE_SECURITY_REQUIREMENT}} | {{SECURITY_TESTS}} |
-| NFR-004 | Privacy | {{RETENTION_DELETION_REQUIREMENT}} | {{AUDIT}} |
-| NFR-005 | Cost | {{COST_BUDGET}} | {{COST_DASHBOARD_GATES}} |
+|---|---|---|---|
+| `NFR-001` | Performance | `{{P95_LATENCY_TARGET}}` | `{{LOAD_TEST_PLAN}}` |
+| `NFR-002` | Availability | `{{SLO}}` | `{{MONITORING_ALERTING}}` |
+| `NFR-003` | Security | `{{BASELINE_SECURITY_REQUIREMENT}}` | `{{SECURITY_TESTS}}` |
+| `NFR-004` | Privacy | `{{RETENTION_DELETION_REQUIREMENT}}` | `{{AUDIT}}` |
+| `NFR-005` | Cost | `{{COST_BUDGET}}` | `{{COST_DASHBOARD_GATES}}` |
 
 ##### 1.8 UX/UI requirements and design assets
 
@@ -347,9 +366,8 @@ _Add FRs below:_
 - **UI Spec Appendix** (required if UX is non-trivial): `[[UI_SPEC_APPENDIX_PATH_OR_URL]]` (use Appendix D template)
 
 **If the UI has non-trivial interactions or ambiguous edge cases**, you MUST either:
-
-1. fill out **Appendix D** in this Master Doc, or
-1. maintain a standalone UI spec doc based on Appendix D and link it above.
+1) fill out **Appendix D** in this Master Doc, or
+2) maintain a standalone UI spec doc based on Appendix D and link it above.
 
 Each Workflow `W#` in §1.4 SHOULD map to at least one Screen ID `UI-###` in the UI Spec Appendix.
 
@@ -357,7 +375,7 @@ Each Workflow `W#` in §1.4 SHOULD map to at least one Screen ID `UI-###` in the
 
 - Store UI images under: `docs/assets/ui/{{YYYYMMDD}}/{{name}}.png`
 - Reference images using a path relative to this file:
-  - `!alt text (assets/ui/{{YYYYMMDD}}/{{name}}.png)`
+  - ``assets/ui/{{YYYYMMDD}}/{{name}}.png` (example asset path)`
 - Each embedded image MUST include nearby:
   - owner
   - last updated date
@@ -381,6 +399,9 @@ When behavior is better expressed visually (gestures, motion, transitions, compl
 
 - Provide stable UI selectors (data-testid) and a Playwright/Cypress happy-path plan.
 - Add “golden” UI snapshots for key screens (baseline screenshots committed under `docs/assets/`).
+
+---
+
 
 #### 2. Domain Model (Architect + PM)
 
@@ -416,19 +437,18 @@ _Add entity list:_
 > Define domain ownership boundaries and the shared vocabulary. This reduces semantic drift between UI, backend, and contracts.
 
 - **Ubiquitous Language glossary** (recommended; required for non-trivial domains):
-  - Term: `{{TERM}}` - Definition: `{{DEFINITION}}` - Synonyms to avoid: `{{SYNONYMS}}` - Owner: `{{OWNER}}`
+  - Term: `{{TERM}}` — Definition: `{{DEFINITION}}` — Synonyms to avoid: `{{SYNONYMS}}` — Owner: `{{OWNER}}`
 - **Bounded contexts** (map to repos and/or SDMM modules):
   - Context: `{{CONTEXT_NAME}}`
     - Owns (data + rules): `{{WHAT_IT_OWNS}}`
     - Public contracts (APIs/events/schemas): `{{CONTRACT_IDS_OR_LINKS}}`
     - Upstream/downstream: `{{CONTEXT_MAP_RELATIONSHIP}}`
 - **Context map** (optional; diagram/link): `[[CONTEXT_MAP]]`
-- **Anti-corruption layers** (if integrating external/legacy systems): `[[ACL_NOTES]]`
+- **Anti‑corruption layers** (if integrating external/legacy systems): `[[ACL_NOTES]]`
 
 ##### 2.4 Domain events, commands, and invariants (DDD → contracts)
 
 > If the system uses events/commands, list the canonical events/commands and their contract IDs.
-
 > Every event/command that crosses a boundary MUST be a first-class contract (schema + semantics + fixtures + checks).
 
 - Event: `{{EVENT_NAME}}` (`{{SCHEMA_ID}}`)
@@ -438,6 +458,9 @@ _Add entity list:_
 - Command: `{{COMMAND_NAME}}` (`{{SCHEMA_ID}}`)
   - Issuer: `{{COMPONENT}}`
   - Handler: `{{COMPONENT}}`
+
+---
+
 
 #### 3. System Overview (Architect-owned; PM must understand)
 
@@ -452,7 +475,7 @@ _Add entity list:_
 
 > Insert a context diagram image and a short narrative.
 
-!Context diagram (assets/{{YYYYMMDD}}/context-diagram.png)
+`assets/{{YYYYMMDD}}/context-diagram.png` (example asset path)
 
 Narrative:
 
@@ -470,21 +493,23 @@ Narrative:
 - INV-02: `{{INVARIANT_2}}` (example: All cross-boundary payloads validate against schemas)
 - INV-03: `{{INVARIANT_3}}` (example: Model outputs are treated as untrusted inputs)
 
+---
+
 #### 4. Repo & Runtime Topology (Architect-owned)
 
 ##### 4.1 Repositories / packages (development boundaries)
 
 > Support both multi-repo and monorepo patterns.
-
 > List repos/modules and what each owns. Include boundary enforcement and canonical `verify` commands.
 
-| Repo/Module | Purpose | Owner | Primary language | Canonical verify command |
-| --- | --- | --- | --- | --- |
-| {{FRONTEND_REPO_OR_PKG}} | UI/UX | {{TEAM}} | {{LANG}} | {{CMD}} |
-| {{BACKEND_REPO_OR_PKG}} | SoR + orchestrator | {{TEAM}} | {{LANG}} | {{CMD}} |
-| [[ALGO_REPO_OR_PKG]] | AI compute | [[TEAM]] | [[LANG]] | [[CMD]] |
-| [[DATA_EVALS_REPO_OR_PKG]] | Offline datasets + evals + benchmarks (optional; recommended for AI products) | [[TEAM]] | [[LANG]] | [[CMD]] |
-| {{INTEGRATION_REPO_OR_PKG}} | compose + smoke + compat | {{TEAM}} | {{LANG}} | {{CMD}} |
+| Repo/Module | Purpose | Owner | Primary language | Canonical `verify` command |
+|---|---|---|---|---|
+| `{{CONTRACTS_REPO_OR_PKG}}` | Schemas, fixtures, identifiers | `{{TEAM}}` | `{{LANG}}` | `{{CMD}}` |
+| `{{FRONTEND_REPO_OR_PKG}}` | UI/UX | `{{TEAM}}` | `{{LANG}}` | `{{CMD}}` |
+| `{{BACKEND_REPO_OR_PKG}}` | SoR + orchestrator | `{{TEAM}}` | `{{LANG}}` | `{{CMD}}` |
+| `[[ALGO_REPO_OR_PKG]]` | AI compute | `[[TEAM]]` | `[[LANG]]` | `[[CMD]]` |
+| `[[DATA_EVALS_REPO_OR_PKG]]` | Offline datasets + evals + benchmarks (optional; recommended for AI products) | `[[TEAM]]` | `[[LANG]]` | `[[CMD]]` |
+| `{{INTEGRATION_REPO_OR_PKG}}` | compose + smoke + compat | `{{TEAM}}` | `{{LANG}}` | `{{CMD}}` |
 
 **Verification rules (required)**
 
@@ -502,12 +527,12 @@ Narrative:
 > Keep runtime services minimal. List what runs in production and why.
 
 | Service | Purpose | Scaling | Data stores | Notes |
-| --- | --- | --- | --- | --- |
+|---|---|---|---|---|
+| `{{SERVICE_NAME}}` | `{{PURPOSE}}` | `{{SCALING}}` | `{{STORES}}` | `[[NOTES]]` |
 
 ##### 4.3 Boundary classification (build/deploy/trust)
 
 > For each boundary, state whether it is a build, deploy, and/or trust boundary.
-
 > Use `Y/N` (no icons) to keep the doc tool-friendly.
 
 Definitions:
@@ -519,9 +544,10 @@ Definitions:
 **If this project does not have an `algo` repo/service**, remove any `backend -> algo` boundary row(s).
 
 | Boundary | Build (Y/N) | Deploy (Y/N) | Trust (Y/N) | Contracts | Evolution mode | Notes |
-| --- | --- | --- | --- | --- | --- | --- |
-| backend -> algo | N | Y | Y | {{API/JOB_IDS}} | compat | {{NOTES}} |
-| backend <-> db | N | Y | Y | {{SCHEMA_IDS}} | expand/contract | {{NOTES}} |
+|---|---:|---:|---:|---|---|---|
+| `frontend -> backend` | `N` | `Y` | `Y` | `{{API_IDS}}` | `compat` | `{{NOTES}}` |
+| `backend -> algo` | `N` | `Y` | `Y` | `{{API/JOB_IDS}}` | `compat` | `{{NOTES}}` |
+| `backend <-> db` | `N` | `Y` | `Y` | `{{SCHEMA_IDS}}` | `expand/contract` | `{{NOTES}}` |
 
 ##### 4.4 Environments & deployment pipeline (required for L1/L2; recommended for L0)
 
@@ -536,15 +562,15 @@ Rules:
 **Environment matrix (required for L1/L2)**
 
 | Environment | Purpose | Data class allowed | External deps mode | Deployment method | Rollback plan | Notes |
-| --- | --- | --- | --- | --- | --- | --- |
-| local | developer machine | synthetic only | stubbed | `docker compose up` | `git reset` | |
-| dev | feature testing | masked/synthetic | mixed | CI deploy | redeploy | |
-| staging | release candidate | prod-like (masked) | prod-like | promotion | rollback + runbook | |
-| prod | real users | production | production | promotion | rollback + incident | |
+|---|---|---|---|---|---|---|
+| `local` | developer machine | `synthetic only` | `stubbed` | `docker compose up` | `git reset` | `[[NOTES]]` |
+| `dev` | feature testing | `masked/synthetic` | `mixed` | `CI deploy` | `redeploy` | `[[NOTES]]` |
+| `staging` | release candidate | `prod-like (masked)` | `prod-like` | `promotion` | `rollback + runbook` | `[[NOTES]]` |
+| `prod` | real users | `production` | `production` | `promotion` | `rollback + incident` | `[[NOTES]]` |
 
 **Deployment pipeline (required for L1/L2)**
 
-- Build artifact(s): `{{IMAGE/ARTIFACT}}`
+- Build artifact(s): `{{IMAGE_OR_ARTIFACT}}`
 - Promotion rule: `{{SAME_ARTIFACT_OR_REBUILD}}`
 - DB migrations: `{{EXPAND_CONTRACT_STRATEGY}}`
 - Queue/event compatibility: `{{STRATEGY}}`
@@ -556,35 +582,35 @@ Rules:
 > Treat vendors (cloud managed services, AI APIs, third-party systems) as explicit dependencies with contracts and failure modes.
 
 | Dependency/Vendor | Purpose | Contract surface | Auth | Rate limits | Data policy | SLA/SLO | Fallback / degraded mode | Owner |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| {{VENDOR}} | {{PURPOSE}} | {{API/SCHEMA/WEBHOOK}} | {{METHOD}} | {{LIMITS}} | {{PII/RETENTION}} | {{SLA}} | {{FALLBACK}} | {{TEAM}} |
+|---|---|---|---|---|---|---|---|---|
+| `{{VENDOR}}` | `{{PURPOSE}}` | `{{API_OR_SCHEMA_OR_WEBHOOK}}` | `{{METHOD}}` | `{{LIMITS}}` | `{{PII_OR_RETENTION}}` | `{{SLA}}` | `{{FALLBACK}}` | `{{TEAM}}` |
 
 Required notes:
 
-- **Test strategy:** `{{STUB/SNAPSHOT/LIVE}}` (CI SHOULD avoid live vendor calls).
+- **Test strategy:** `{{STUB_OR_SNAPSHOT_OR_LIVE}}` (CI SHOULD avoid live vendor calls).
 - **Cost controls:** budgets, quotas, and alerting.
 - **Operational ownership:** on-call and escalation path.
 
+---
 
 #### 5. Contracts (Schematized, testable, versioned)
 
 > **Rule**: Every cross-boundary interface MUST have:
-
 > 1) schema, 2) semantics, 3) fixtures, 4) executable checks.
 
 ##### 5.1 Contract naming, casing, and versioning policy
 
-This project MUST follow the governing engineering standard’s contract rules (Docs as Software (DAS) Standard {{ENGINEERING_STANDARD_VERSION}}, §4). Reference (fill in for repo-local copies): `{{ENGINEERING_STANDARD_PATH_OR_URL}}`.
+This project MUST follow the governing engineering standard’s contract rules (Docs as Software (DAS) Standard — Unified {{ENGINEERING_STANDARD_VERSION}}, §4). Reference (fill in for repo-local copies): `{{ENGINEERING_STANDARD_PATH_OR_URL}}`.
 
 - **Naming:** each contract MUST have a stable `CONTRACT_ID` (e.g., `run.manifest.v1`) and a schema version (e.g., `1.0.0`).
 - **Casing (serialized contracts):** all JSON/YAML surfaces that cross a module/repo boundary **or are persisted** MUST use `camelCase`.
-  - Internal code MAY use language-idiomatic casing (e.g., Python `snake_case`), but MUST adapt at the boundary.
+  - Internal code MAY use language‑idiomatic casing (e.g., Python `snake_case`), but MUST adapt at the boundary.
 - **Evolution:** contracts MUST follow Compatibility Mode (expand/contract; tolerant readers).
 - **Documentation:** every contract used by this project MUST be listed in §5.2.
 
 Casing examples (serialized):
 
-```
+```json
 {
   "jobId": "job_123",
   "runId": "2026-01-10T18:00:01Z/9b1d…",
@@ -592,26 +618,27 @@ Casing examples (serialized):
   "inputRef": { "rawInputId": "raw_01HZ…", "inputHash": "sha256:…" }
 }
 ```
-
 ##### 5.2 Contract inventory index (required)
 
 | Contract ID | Type | Purpose | Owner | Schema ref | Semantics ref | Fixtures ref | Checks ref |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+|---|---|---|---|---|---|---|---|
+| `API-001` | API | `{{...}}` | `{{TEAM}}` | `{{PATH_OR_ID}}` | `{{PATH}}` | `{{PATH}}` | `{{COMMAND_OR_PATH}}` |
 
 **Semantics ref guidance (recommended):** Use a stable pointer.
+
 - For payload/interface invariants (defaults, validation rules, redaction, status-code mapping), prefer `contracts/semantics/<contract_id>.md`.
 - For end-to-end behavioral semantics (workflows, acceptance criteria), reference the relevant scenario/spec section (e.g., `specs/<spec_id>#<anchor>` or an equivalent BDD artifact).
 - Avoid duplicating the endpoint inventory in freeform specs when `contracts/api` is the SSOT.
 
-##### 5.3 API contracts (HTTP / RPC / Webhooks)
+##### 5.3 API contracts (OpenAPI / RPC)
 
 **Recommended:** Treat `contracts/api/` as the machine-readable **API Registry** (preferred authoring SSOT). This table SHOULD act as a human-readable index: list stable API IDs and reference the canonical registry entry or OpenAPI artifact to avoid dual-authoring drift.
 
 | API ID | Canonical ref | Endpoint / Method | Auth | Status codes | Purpose | Request schema | Response schema | Error codes | Owner |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|---|---|---|---|---|---|---|---|---|---|
+| `API-001` | `{{PATH_OR_URL}}` | `POST /v1/...` | `{{AUTH_SCHEME}}` | `200, 400, 401` | `{{...}}` | `SCHEMA-...` | `SCHEMA-...` | `ERR-...` | `{{TEAM}}` |
 
 > **SSOT rule:** If multiple representations exist (e.g., `contracts/api` registry, OpenAPI, and/or separate request/response schemas), you MUST declare exactly one as the authoring SSOT. All others MUST be generated (or mechanically checked) to prevent drift.
-
 
 ##### 5.4 Async/job contracts
 
@@ -659,28 +686,33 @@ Casing examples (serialized):
 > Identifiers that appear in UI, logs, dashboards, run manifests, or cross-boundary payloads are contracts.
 
 | ID Contract | What it contains | Owner | Stability | Path |
-| --- | --- | --- | --- | --- |
-| ID-ROUTES | route ids | {{TEAM}} | stable | {{PATH}} |
-| ID-FEATURE-FLAGS | feature flags | {{TEAM}} | {{STABILITY}} | {{PATH}} |
-| ID-JOB-TYPES | job type ids | {{TEAM}} | stable | {{PATH}} |
-| ID-METRICS | metric ids | {{TEAM}} | {{STABILITY}} | {{PATH}} |
-| ID-PROMPTS | prompt ids + versions | {{TEAM}} | {{STABILITY}} | {{PATH}} |
-| ID-MODELS | model ids + versions | {{TEAM}} | {{STABILITY}} | {{PATH}} |
+|---|---|---|---|---|
+| `ID-PERMISSIONS` | permission codes | `{{TEAM}}` | `stable` | `{{PATH}}` |
+| `ID-ROUTES` | route ids | `{{TEAM}}` | `stable` | `{{PATH}}` |
+| `ID-FEATURE-FLAGS` | feature flags | `{{TEAM}}` | `{{STABILITY}}` | `{{PATH}}` |
+| `ID-JOB-TYPES` | job type ids | `{{TEAM}}` | `stable` | `{{PATH}}` |
+| `ID-METRICS` | metric ids | `{{TEAM}}` | `{{STABILITY}}` | `{{PATH}}` |
+| `ID-PROMPTS` | prompt ids + versions | `{{TEAM}}` | `{{STABILITY}}` | `{{PATH}}` |
+| `ID-MODELS` | model ids + versions | `{{TEAM}}` | `{{STABILITY}}` | `{{PATH}}` |
 
 ##### 5.8 Golden fixtures (examples)
 
 | Fixture ID | Contract | Purpose | Path | Used by checks |
-| --- | --- | --- | --- | --- |
-| FX-002 | JOB-001 | representative failure | {{PATH}} | {{CHECKS}} |
+|---|---|---|---|---|
+| `FX-001` | `API-001` | happy path request/response | `{{PATH}}` | `{{CHECKS}}` |
+| `FX-002` | `JOB-001` | representative failure | `{{PATH}}` | `{{CHECKS}}` |
+
+---
 
 #### 6. Data, Privacy, and Compliance (Architect + PM)
 
 ##### 6.1 Data classification
 
 | Data type | Examples | Sensitivity | Retention | Access |
-| --- | --- | --- | --- | --- |
-| Raw user content | {{audio/text/images}} | high | {{DAYS}} | {{ROLES}} |
-| Derived artifacts | {{embeddings/indexes/caches}} | inherits | {{DAYS}} | {{ROLES}} |
+|---|---|---|---|---|
+| PII | `{{...}}` | `high` | `{{DAYS}}` | `{{ROLES}}` |
+| Raw user content | `{{audio/text/images}}` | `high` | `{{DAYS}}` | `{{ROLES}}` |
+| Derived artifacts | `{{embeddings/indexes/caches}}` | `inherits` | `{{DAYS}}` | `{{ROLES}}` |
 
 ##### 6.2 Storage design
 
@@ -691,8 +723,6 @@ Casing examples (serialized):
 - Vector database: `[[TYPE]]`
 - Object storage: `[[TYPE]]`
 - Caching: `[[TYPE]]` with key/version policy (cache keys are contracts)
-
-> Note: DB rows are persisted contract surfaces; schema changes MUST follow Compatibility Mode rules (expand/contract with a window).
 
 ##### 6.3 Deletion and retention
 
@@ -712,6 +742,8 @@ Casing examples (serialized):
 - Threat model doc/link: `[[LINK_OR_PATH]]`
 - Trust boundaries covered: `[[LIST]]`
 - Top threats and mitigations: `[[SUMMARY]]`
+
+---
 
 #### 7. AI / Algorithm Design (Architect-owned; PM reviewed)
 
@@ -735,8 +767,8 @@ Casing examples (serialized):
   - `max_tokens`: `{{VALUE}}` (`hard|soft`)
   - `max_cost_units`: `{{VALUE}}` (`hard|soft`)
 - Stages:
-  1. `{{stage_id}}`: input `SCHEMA-...`, output `SCHEMA-...`, diagnostics `{{CODES}}`, budget ledger `SCHEMA-BUDGET-...`
-  1. `[[stage_id]]`: ...
+  1) `{{stage_id}}`: input `SCHEMA-...`, output `SCHEMA-...`, diagnostics `{{CODES}}`, budget ledger `SCHEMA-BUDGET-...`
+  2) `[[stage_id]]`: ...
 
 **Run manifest & replay (required for production-visible outputs)**
 
@@ -764,10 +796,10 @@ Casing examples (serialized):
 
 - Output schema validation: `{{STRICT_OR_LENIENT}}`
 - Repair steps:
-  1. normalize/coerce
-  1. retry with constraints
-  1. fallback
-  1. escalate (manual review / typed error)
+  1) normalize/coerce
+  2) retry with constraints
+  3) fallback
+  4) escalate (manual review / typed error)
 
 ##### 7.6 Evaluation as a contract
 
@@ -776,6 +808,8 @@ Casing examples (serialized):
 - CI eval set: `{{WHERE_AND_SIZE}}`
 - Offline benchmark: `[[WHERE_AND_SIZE]]`
 - Report schema: `{{SCHEMA_EVAL_REPORT_ID}}`
+
+---
 
 #### 8. Observability, Operations, and Cost
 
@@ -795,7 +829,8 @@ Casing examples (serialized):
 ##### 8.3 Alerting and SLOs
 
 | Operation | SLO | Alert condition | Owner |
-| --- | --- | --- | --- |
+|---|---|---|---|
+| `{{OPERATION}}` | `{{SLO}}` | `{{CONDITION}}` | `{{OWNER}}` |
 
 ##### 8.4 Runbooks and operational readiness (recommended)
 
@@ -803,13 +838,16 @@ Casing examples (serialized):
 - Runbook links: `[[PATHS]]`
 - On-call / escalation: `[[POLICY]]`
 
+---
+
 #### 9. Release Plan (PM + Architect + QA)
 
 ##### 9.1 Milestones and phases
 
 | Phase | Duration | Scope | Exit criteria |
-| --- | --- | --- | --- |
-| Phase 2 | [[...]] | [[...]] | [[...]] |
+|---|---|---|---|
+| Phase 1 | `{{...}}` | `{{...}}` | `{{verify + smoke + key FRs}}` |
+| Phase 2 | `[[...]]` | `[[...]]` | `[[...]]` |
 
 ##### 9.2 Rollout strategy
 
@@ -823,26 +861,31 @@ Casing examples (serialized):
 - Expand/contract steps: `{{...}}`
 - Consumer upgrade plan: `{{...}}`
 
+---
+
 #### 10. Risks, Open Questions, and Assumptions
 
 ##### 10.1 Top risks
 
 | Risk | Impact | Likelihood | Mitigation | Owner |
-| --- | --- | --- | --- | --- |
+|---|---|---|---|---|
+| `{{...}}` | `{{...}}` | `{{...}}` | `{{...}}` | `{{...}}` |
 
 ##### 10.2 Open questions (must be resolved before implementation)
 
 | Question | Blocker? (Y/N) | Owner | Target date | Notes |
-| --- | --- | --- | --- | --- |
+|---|---:|---|---|---|
+| `{{...}}` | `Y` | `{{...}}` | `{{...}}` | `{{...}}` |
 
 ##### 10.3 Assumptions (explicit)
 
 - A1: `{{...}}`
 
+---
+
 #### 11. AI Execution Plan (No-code, unambiguous)
 
 > This section is what AI agents execute. It MUST be precise, scoped, and verifiable.
-
 > It SHOULD NOT include code-level details, but MUST include contracts, tasks, and gates.
 
 ##### 11.1 AI rules of engagement (copy/paste into AI tasks)
@@ -870,9 +913,9 @@ Casing examples (serialized):
 
 > Keep tasks small, independently verifiable, and ordered by dependencies.
 
-| Task ID | Description | Scope (paths) | Contracts touched | Tests/verify | Owner | Status | Evidence |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| T-001 | `[[TASK_DESCRIPTION]]` | `[[PATHS]]` | `[[CONTRACT_IDS]]` | `[[VERIFY_COMMANDS]]` | `[[OWNER]]` | planned | `[[PR_OR_COMMIT_OR_TEST_REPORT]]` |
+| Task ID | Description | Scope (paths) | Contracts touched | Tests/verify | Owner | Status |
+|---|---|---|---|---|---|---|
+| `T-001` | `{{...}}` | `{{PATHS}}` | `{{CONTRACT_IDS}}` | `{{COMMANDS}}` | `{{OWNER}}` | `planned` |
 
 **Status vocabulary (recommended):** `planned | in_progress | blocked | partial | done`
 
@@ -890,30 +933,9 @@ Casing examples (serialized):
 - [ ] Release notes / change log updated
 - [ ] Master Doc updated **if required** (requirements/workflows/contracts/topology/gates changed), or explicitly marked as “no doc change required”.
 
-##### 11.4 Multi-worker implementation protocol (recommended when parallelizing)
+---
 
-If implementation is split across multiple workers (human or AI), the project MUST pick one of the following models and follow its rules to avoid contract drift and merge conflicts.
-
-**Model A — Central coordinator (recommended):**
-
-- A single coordinator (human or AI) owns **contract changes** (`contracts/*`) and integration sequencing.
-- Workers implement in parallel **only on non-overlapping scopes** (module- or folder-level slices).
-- Contract changes MUST be serialized (one active PR touching `contracts/` at a time), or guarded by explicit locks (see below).
-
-**Model B — Federated (allowed only with mechanical locks):**
-
-- Any worker MAY propose contract changes, but MUST acquire an explicit lock before editing SSOT files (e.g., `contracts/LOCKS/<path>.lock` or an equivalent repo policy).
-- Locks MUST be released in the same PR that merges the change.
-
-**Rules (apply to both models):**
-
-- **MUST:** Each worker works on a separate branch/PR. Direct commits to shared branches are forbidden.
-- **MUST:** No two concurrent tasks may edit the same SSOT file (schema/identifier/api registry) unless they are in the same PR.
-- **MUST:** Every PR that changes boundary behavior MUST update the relevant contracts and fixtures, and MUST pass `verify` (per §11.1) before merge.
-- **SHOULD:** Use the integration harness as the final arbiter for cross-repo drift (see §3.6).
-
-
-#### Annex C-A - AI Guide: Converting a PRD into this Master Doc
+#### Annex A — AI Guide: Converting a PRD into this Master Doc
 
 > Use this when you have a “normal PRD” (narrative + screenshots) and need to produce an execution-ready Master Doc.
 
@@ -921,59 +943,59 @@ If implementation is split across multiple workers (human or AI), the project MU
 
 A converted Master Doc must:
 
-1. eliminate ambiguity (precise requirements + acceptance criteria),
-1. define end-to-end workflows,
-1. define contracts and boundaries (APIs, jobs, schemas, identifiers),
-1. define verification gates and an executable plan for implementation.
+1) eliminate ambiguity (precise requirements + acceptance criteria),
+2) define end-to-end workflows,
+3) define contracts and boundaries (APIs, jobs, schemas, identifiers),
+4) define verification gates and an executable plan for implementation.
 
 ##### A.2 Step-by-step conversion procedure
 
-1. **Ingest and index the PRD**
-  - Extract: goals, non-goals, roles, workflows, screens, features, constraints, edge cases.
-  - Create a PRD coverage checklist: every PRD requirement must map to a Master Doc section (Workflows, FRs, NFRs, Contracts).
+1) **Ingest and index the PRD**
+   - Extract: goals, non-goals, roles, workflows, screens, features, constraints, edge cases.
+   - Create a PRD coverage checklist: every PRD requirement must map to a Master Doc section (Workflows, FRs, NFRs, Contracts).
 
-1. **Normalize terminology**
-  - Populate/update §0.10 Glossary.
-  - Decide casing policy in §5.1.
+2) **Normalize terminology**
+   - Populate/update §0.10 Glossary.
+   - Decide casing policy in §5.1.
 
-1. **Convert narrative into workflows**
-  - For each major journey, write `W1..Wn` with actor, trigger, steps, success, failures, telemetry.
+3) **Convert narrative into workflows**
+   - For each major journey, write `W1..Wn` with actor, trigger, steps, success, failures, telemetry.
 
-1. **Convert features into stable IDs**
-  - Fill §1.5 with `F-###`.
-  - Write §1.6 with `FR-###` using Given/When/Then acceptance criteria.
+4) **Convert features into stable IDs**
+   - Fill §1.5 with `F-###`.
+   - Write §1.6 with `FR-###` using Given/When/Then acceptance criteria.
 
-1. **Identify domain entities and state machines**
-  - Define core entities and invariants (§2.1).
-  - For async operations: define state machines, idempotency, cancellation (§2.2).
+5) **Identify domain entities and state machines**
+   - Define core entities and invariants (§2.1).
+   - For async operations: define state machines, idempotency, cancellation (§2.2).
 
-1. **Derive contracts**
-  - For each workflow step that crosses a boundary, define contract IDs and link:
-    - schema, semantics, fixtures, checks.
-  - For AI outputs: define output schema, validation, and repair ladder.
+6) **Derive contracts**
+   - For each workflow step that crosses a boundary, define contract IDs and link:
+     - schema, semantics, fixtures, checks.
+   - For AI outputs: define output schema, validation, and repair ladder.
 
-1. **Add non-functional requirements**
-  - Performance targets, privacy/security, retention, observability, cost budgets.
+7) **Add non-functional requirements**
+   - Performance targets, privacy/security, retention, observability, cost budgets.
 
-1. **Draft architecture**
-  - Repo topology (§4.1): modules, owners, boundary rules.
-  - Runtime topology (§4.2): services and stores.
-  - Boundary classification (§4.3): mark build/deploy/trust as Y/N.
+8) **Draft architecture**
+   - Repo topology (§4.1): modules, owners, boundary rules.
+   - Runtime topology (§4.2): services and stores.
+   - Boundary classification (§4.3): mark build/deploy/trust as Y/N.
 
-1. **Define verification**
-  - For each repo/module: define canonical `verify` command.
-  - Add integration `smoke` + `compat` gates as required.
+9) **Define verification**
+   - For each repo/module: define canonical `verify` command.
+   - Add integration `smoke` + `compat` gates as required.
 
-1. **Produce the AI execution plan**
-  - Build WBS (§11.2): small tasks with explicit scope and gates.
-  - Order tasks by dependencies and contract evolution rules.
+10) **Produce the AI execution plan**
+   - Build WBS (§11.2): small tasks with explicit scope and gates.
+   - Order tasks by dependencies and contract evolution rules.
 
-1. **Ambiguity checks (must pass)**
-  - Every FR has acceptance criteria.
-  - Every cross-boundary interaction has a contract reference.
-  - Every risky behavior has a fallback/repair rule.
-  - Every contract change has fixtures + executable checks.
-  - Traceability table (§0.11) connects workflows to tasks.
+11) **Ambiguity checks (must pass)**
+   - Every FR has acceptance criteria.
+   - Every cross-boundary interaction has a contract reference.
+   - Every risky behavior has a fallback/repair rule.
+   - Every contract change has fixtures + executable checks.
+   - Traceability table (§0.11) connects workflows to tasks.
 
 ##### A.3 PRD content handling rule
 
@@ -984,13 +1006,15 @@ A converted Master Doc must:
 
 ##### A.4 Output deliverables after conversion
 
-- A completed Master Doc (Sections 0-11)
+- A completed Master Doc (Sections 0–11)
 - A list of Open Questions that block implementation
 - A complete contract inventory (API/job/schema/identifier lists)
 - An initial WBS with verification commands
 - A traceability table mapping workflows -> features -> FRs -> contracts -> tests -> tasks
 
-#### Annex C-B - Template Snippets (copy/paste)
+---
+
+#### Annex B — Template Snippets (copy/paste)
 
 ##### B.1 Requirement snippet
 
@@ -1009,12 +1033,13 @@ A converted Master Doc must:
 
 ##### B.2 Task snippet (AI execution)
 
-| Task ID | Description | Scope (paths) | Contracts touched | Tests/verify | Owner | Status | Evidence |
-| --- | --- | --- | --- | --- | --- | --- |
+| Task ID | Description | Scope (paths) | Contracts touched | Tests/verify | Owner | Status |
+|---|---|---|---|---|---|---|
+| `T-XXX` | `{{...}}` | `{{allowed dirs}}` | `{{contract IDs}}` | `{{commands}}` | `{{name}}` | `planned` |
 
 ##### B.3 AI prompt snippet (optional)
 
-```
+```text
 Task:
 - Goal:
 - Scope (allowed paths):
@@ -1030,10 +1055,11 @@ Task:
 - Non-goals:
 ```
 
-#### Annex C-C - Branch Copies and Sync Policy
+---
+
+#### Annex C — Branch Copies and Sync Policy
 
 > Each Git branch may carry its own Master Doc copy.
-
 > When the overall plan changes, you MUST update all active branch copies or explicitly document divergence.
 
 ##### C.1 When to sync
@@ -1053,13 +1079,13 @@ You SHOULD sync when:
 
 ##### C.2 Minimal sync procedure (human or AI-assisted)
 
-1. Make the change in the baseline branch copy (usually `main`) and bump the Master Doc version.
-1. For each active branch:
-  - cherry-pick or rebase the Master Doc commit(s), OR
-  - manually apply the same changes and record:
-    - the baseline version you synced to (§0.9)
-    - any branch-specific divergence (§0.9)
-1. If a branch cannot adopt the change, add an ADR entry explaining why and define a reconciliation plan.
+1) Make the change in the baseline branch copy (usually `main`) and bump the Master Doc version.
+2) For each active branch:
+   - cherry-pick or rebase the Master Doc commit(s), OR
+   - manually apply the same changes and record:
+     - the baseline version you synced to (§0.9)
+     - any branch-specific divergence (§0.9)
+3) If a branch cannot adopt the change, add an ADR entry explaining why and define a reconciliation plan.
 
 ##### C.3 Practical guardrails (recommended)
 
@@ -1068,18 +1094,23 @@ You SHOULD sync when:
   - the branch copy does not declare its baseline version in §0.9.
 - Add a PR checkbox: “Master Doc updated (or not needed)”.
 
-#### Annex C-D - UI Spec Appendix (reference)
+---
 
-This Master Doc template is designed to be copied into a repo as a standalone `master_doc.md`. To avoid maintaining the **UI Spec Appendix template** in two places, this appendix intentionally contains only a reference.
+#### Annex D — UI Spec Appendix (reference)
 
-If the project has user-facing UI, you MUST maintain a UI Spec Appendix using the template in **Docs as Software (DAS) Standard {{ENGINEERING_STANDARD_VERSION}}, Appendix D**.
+This Master Doc template is designed to be copied into a repo as a standalone `MASTER_DOC.md`. To avoid maintaining the **UI Spec Appendix template** in two places, this appendix intentionally contains only a reference.
+
+If the project has user-facing UI, you MUST maintain a UI Spec Appendix using the template in **Docs as Software (DAS) Standard — Unified {{ENGINEERING_STANDARD_VERSION}}, Appendix D**.
 
 - Repo-local UI Spec Appendix path (fill in): `{{UI_SPEC_APPENDIX_PATH}}` (recommended: `docs/ui_spec_appendix.md`)
 - Standard reference (fill in): `{{ENGINEERING_STANDARD_PATH_OR_URL}}#appendix-d-ui-spec-appendix-template-v1`
-  - If your doc host does not support anchors, search within the standard for `appendix-d-ui-spec-appendix-template-v1` or for the heading `Appendix D - UI Spec Appendix Template`.
+  - If your doc host does not support anchors, search within the standard for `appendix-d-ui-spec-appendix-template-v1` or for the heading `Appendix D — UI Spec Appendix Template (v1)`.
 
 Minimal procedure:
+1) Create `{{UI_SPEC_APPENDIX_PATH}}` in the repo.
+2) Copy the template from the standard’s Appendix D into that file.
+3) Link to it from §1.8 (UI screen inventory & workflows).
 
-1. Create `{{UI_SPEC_APPENDIX_PATH}}` in the repo.
-1. Copy the template from the standard’s Appendix D into that file.
-1. Link to it from §1.8 (UI screen inventory & workflows).
+---
+
+<a id="appendix-d-ui-spec-appendix-template-v1"></a>

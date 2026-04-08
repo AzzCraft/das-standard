@@ -1,13 +1,13 @@
-## Appendix F - SDMM refactoring & migration playbook (safe change patterns)
+# Appendix F - SDMM refactoring & migration playbook
 
-This appendix provides the “how” for large refactors and migrations in SDMM systems. It is intentionally **implementation-oriented** and is meant to be used as a checklist during risky change windows.
+This appendix provides the “how” for large refactors and migrations in SDMM systems. It is intentionally **implementation‑oriented** and is meant to be used as a checklist during risky change windows.
 
 ### F.1 When this playbook is required
 
 Use this playbook for changes that are any of:
 
-- A breaking change to a **persisted** or cross-repo contract (Compatibility Mode).
-- A refactor that touches multiple SDMM modules with non-trivial coupling.
+- A breaking change to a **persisted** or cross‑repo contract (Compatibility Mode).
+- A refactor that touches multiple SDMM modules with non‑trivial coupling.
 - A major algorithm change that can regress quality or cost materially.
 - A migration that replaces an adapter (I/O boundary) or prompt policy in production.
 
@@ -18,28 +18,26 @@ Large migrations fail when multiple seams move simultaneously.
 - **MUST:** Keep at least one stable seam (contract, adapter interface, pipeline entrypoint) unchanged while migrating others.
 - **SHOULD:** Prefer “expand/contract” over “flag day” changes for anything observed externally.
 
-### F.3 Branch-by-abstraction (recommended default)
+### F.3 Branch‑by‑abstraction (recommended default)
 
 Use when replacing an implementation behind a stable interface.
 
-1. Introduce an interface (port) in `core/` (or a stable module).
-1. Keep the existing implementation as `OldImpl`.
-1. Add the new implementation as `NewImpl`.
-1. Switch wiring in the composition root (`pipelines/` or `integration/`) behind a flag/config.
-1. Remove `OldImpl` only after metrics and eval gates pass.
+1) Introduce an interface (port) in `core/` (or a stable module).
+2) Keep the existing implementation as `OldImpl`.
+3) Add the new implementation as `NewImpl`.
+4) Switch wiring in the composition root (`pipelines/` or `integration/`) behind a flag/config.
+5) Remove `OldImpl` only after metrics and eval gates pass.
 
 ### F.4 Expand / Contract (for contract changes)
 
 Use when changing a contract consumed by other modules/repos.
 
 **Expand phase**
-
 - Add new fields as optional (tolerant readers).
-- Dual-write (produce both old + new) if needed.
+- Dual‑write (produce both old + new) if needed.
 - Add compatibility adapters.
 
 **Contract phase**
-
 - After consumers migrate, stop emitting old fields.
 - Then remove parsing/handling of the old fields.
 
@@ -53,7 +51,7 @@ Use when validating a new pipeline without affecting users.
 - Gate promotion on:
   - quality thresholds (EvalReport),
   - budget deltas within policy,
-  - and failure-mode parity.
+  - and failure‑mode parity.
 
 ### F.6 Golden fixtures + replay harness (mandatory for Tier 0/Tier 1 pipelines)
 
@@ -77,7 +75,7 @@ Treat prompt changes like code changes:
 
 ### F.8 Adapter migrations (I/O boundary)
 
-Adapters are high-risk because they are where side effects occur.
+Adapters are high‑risk because they are where side effects occur.
 
 - Migrate adapters behind a stable port.
 - Ensure `sideEffectsMode` checks are preserved.

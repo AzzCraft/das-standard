@@ -50,8 +50,6 @@ These alias the richer canonical definitions under:
 
 Consumers that only need a flat list can read the top-level aliases. Consumers that need the full governed shape, compatibility semantics, or cadence metadata should read the richer canonical structures instead.
 
-Exact downstream guidance for the current foundation tranche lives in [CONSUMER_ADOPTION_NOTES.md](CONSUMER_ADOPTION_NOTES.md).
-
 ## Verification
 This repo is self-checking. The canonical verification entrypoint is:
 

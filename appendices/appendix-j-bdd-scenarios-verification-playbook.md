@@ -1,4 +1,4 @@
-## Appendix J - BDD scenarios + verification playbook
+# Appendix J - BDD scenarios + verification playbook
 
 This appendix defines how to treat **Given/When/Then** scenarios as living documentation and as automated gates.
 
@@ -12,27 +12,25 @@ BDD here is not a specific framework. It is the practice of:
 
 ### J.2 Scenario conventions (IDs, structure, traceability)
 
-**Scenario IDs (recommended)**
-
+**Scenario IDs (recommended)**  
 - Use stable IDs to preserve traceability across refactors:
   - `SCN-001`, `SCN-002`, … (global)
   - or `W1.S1`, `W1.S2`, … (workflow-scoped)
 
 Each scenario MUST reference:
-
 - the workflow (`W#`) and/or functional requirement (`FR-###`) it validates,
 - the contract surface(s) it exercises (route IDs, schema IDs, job types),
 - and the gate(s) that run it.
 
 **Gherkin template (example)**
 
-```
+```gherkin
 Feature: {{FEATURE_NAME}}  # maps to F-### and/or W#
 
   # Traceability:
   # - Workflows: W1
   # - Requirements: FR-001, FR-007
-  # - Contracts: api.public.v1/CreateJob, job_envelope.schema.json@1.0.0
+  # - Contracts: api.public.v1/CreateJob, job-envelope.schema.json@1.0.0
   # - Gate: backend.verify (smoke), integration.verify (e2e)
 
   Scenario: SCN-001 {{SCENARIO_TITLE}}
@@ -80,7 +78,7 @@ A practical mapping:
 
 ### J.6 Example: Job orchestration scenario (end-to-end)
 
-```
+```gherkin
 Feature: Summarization job orchestration
 
   # Workflows: W1

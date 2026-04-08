@@ -1,4 +1,4 @@
-## Appendix I - DDD playbook for SDMM + contract-driven systems
+# Appendix I - DDD playbook for SDMM + contract-driven systems
 
 This appendix is a practical guide for applying **DDD** inside the constraints of this unified standard (multi-repo + SDMM + canonical contracts).
 
@@ -21,26 +21,22 @@ You SHOULD apply this playbook when any of the following are true:
 - **Domain Event**: something that happened in the domain language (not a technical log).
 - **Domain Service**: domain logic that doesn’t belong on an entity/value object.
 - **Application Service / Use Case**: orchestration logic (calls repositories, emits events, calls other contexts).
-- **Anti-corruption Layer (ACL)**: translation layer protecting the domain model from external semantics.
+- **Anti‑corruption Layer (ACL)**: translation layer protecting the domain model from external semantics.
 
 ### I.3 Mapping DDD to this standard
 
-**Bounded Context ↔ SDMM module (preferred) or repo boundary**
-
+**Bounded Context ↔ SDMM module (preferred) or repo boundary**  
 - In a modular monolith, each bounded context SHOULD be implemented as an SDMM module with a public entrypoint (no deep imports).
 - In multi-repo, a repo SHOULD contain one primary bounded context; multiple contexts in one repo MUST still be separated by SDMM boundaries.
 
-**Ubiquitous Language ↔ canonical contracts + docs**
-
+**Ubiquitous Language ↔ canonical contracts + docs**  
 - Contract field names, enums, and diagnostic codes MUST match the ubiquitous language.
 - A “rename-only” change MUST be treated as a contract change (it is almost always semantically breaking).
 
-**Domain Events / Commands ↔ contract surfaces**
-
+**Domain Events / Commands ↔ contract surfaces**  
 - Events and commands that cross boundaries MUST live in the contract hub with fixtures and checks.
 
-**Context Map ↔ integration harness**
-
+**Context Map ↔ integration harness**  
 - The integration harness is the natural home for:
   - cross-context end-to-end flows,
   - compatibility runners,
@@ -59,7 +55,7 @@ backend/
         application/     # use cases; orchestration; transaction scripts
         adapters/        # HTTP handlers, job handlers, event consumers
         infrastructure/  # db implementations, messaging clients
-        contracts/       # generated/imported types + mapping helpers (NOT the SSOT Contract Hub)
+        contracts/       # generated types + mapping helpers
       identity/
         ...
     shared/
@@ -67,7 +63,6 @@ backend/
 ```
 
 **Rules**
-
 - `domain/` MUST NOT depend on infrastructure (DB/network). Keep it testable and deterministic.
 - Cross-context calls MUST go through `adapters/` (API) or explicit event/command contracts.
 - “Shared” code MUST be carefully scoped. Sharing domain logic across contexts SHOULD be avoided; share via contracts and adapters instead.
@@ -76,7 +71,7 @@ backend/
 
 DDD does not require OOP, but many teams implement domain models with classes. Use these rules to keep changes AI-safe:
 
-- **Prefer composition over inheritance**. Inheritance SHOULD be shallow (0-1 levels) and SHOULD NOT be used as a code reuse hack.
+- **Prefer composition over inheritance**. Inheritance SHOULD be shallow (0–1 levels) and SHOULD NOT be used as a code reuse hack.
 - Inheritance MAY be used when:
   - the “is-a” relationship is stable in the ubiquitous language,
   - and the hierarchy is closed (sealed) with explicit exhaustiveness checks.

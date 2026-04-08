@@ -1,0 +1,796 @@
+{
+  "$schema": "./standard_manifest.schema.json",
+  "standardId": "das-standard",
+  "standardVersion": "1.4.6",
+  "releasedAt": "2026-04-06",
+  "docTypes": [
+    "master_doc",
+    "prd",
+    "ui_spec",
+    "headless_surface_note",
+    "module_doc",
+    "runbook",
+    "deployment_doc",
+    "context_pack",
+    "support_note",
+    "normative_addendum"
+  ],
+  "enums": {
+    "conformanceProfiles": [
+      "L0",
+      "L1",
+      "L2"
+    ],
+    "interactionProfiles": [
+      "standard_ui",
+      "headless",
+      "hfvi_canvas_webgl_game"
+    ],
+    "docStatuses": [
+      "draft",
+      "active",
+      "frozen",
+      "deprecated"
+    ],
+    "gateCadences": [
+      "pr_blocking",
+      "merge_to_main",
+      "nightly",
+      "pre_release",
+      "adoption_migration"
+    ],
+    "gateEnforcementClasses": [
+      "report_only",
+      "blocking",
+      "source_of_truth"
+    ],
+    "docFamilyRoles": [
+      "canonical_entrypoint",
+      "subordinate_doc",
+      "module_doc"
+    ],
+    "moduleKinds": [
+      "package",
+      "library",
+      "worker",
+      "service",
+      "infra_module",
+      "tooling_module",
+      "generator",
+      "policy_pack",
+      "other"
+    ],
+    "addendumKinds": [
+      "deployment",
+      "governance",
+      "security",
+      "other"
+    ],
+    "determinismValues": [
+      "tier0",
+      "tier1",
+      "tier2",
+      "not_applicable"
+    ],
+    "repoRoles": [
+      "standard_repo",
+      "suite_repo",
+      "factory_repo",
+      "verify_runtime_repo",
+      "policy_pack_repo",
+      "control_plane_repo",
+      "enterprise_subtree_repo",
+      "product_repo",
+      "monorepo_local_tooling"
+    ],
+    "toolClasses": [
+      "repo_audit",
+      "repo_mutation",
+      "contract_validation",
+      "verify_runtime",
+      "policy_pack",
+      "suite_orchestration",
+      "control_plane",
+      "enterprise_modelops",
+      "monorepo_local_guard",
+      "migration_upgrade",
+      "other"
+    ],
+    "toolPlacementTargets": [
+      "standard_repo",
+      "suite_repo",
+      "factory_repo",
+      "verify_runtime_repo",
+      "policy_pack_repo",
+      "control_plane_repo",
+      "enterprise_subtree_repo",
+      "product_repo",
+      "monorepo_local_tooling",
+      "repo_local_only"
+    ],
+    "verifyGateKinds": [
+      "docs_meta",
+      "contracts",
+      "unit",
+      "assembly",
+      "integration",
+      "api_e2e",
+      "ui_e2e",
+      "replay",
+      "eval",
+      "drift_audit",
+      "migration_adoption",
+      "other"
+    ],
+    "moduleStates": [
+      "missing",
+      "present_locked_match",
+      "present_locked_mismatch",
+      "present_local_override",
+      "dirty"
+    ],
+    "releaseSnapshotKinds": [
+      "standard_release_bundle",
+      "factory_seed_snapshot",
+      "policy_pack_snapshot",
+      "suite_snapshot",
+      "repo_local_mirror"
+    ],
+    "verifyReportOutcomes": [
+      "pass",
+      "fail",
+      "error",
+      "skipped",
+      "not_run"
+    ]
+  },
+  "interactionProfiles": [
+    "standard_ui",
+    "headless",
+    "hfvi_canvas_webgl_game"
+  ],
+  "gateCadences": [
+    "pr_blocking",
+    "merge_to_main",
+    "nightly",
+    "pre_release",
+    "adoption_migration"
+  ],
+  "requiredDocMetadata": {
+    "master_doc": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Conformance profile",
+      "Interaction profile",
+      "Last updated",
+      "Scope",
+      "Doc family role"
+    ],
+    "prd": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent Master Doc"
+    ],
+    "ui_spec": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent Master Doc",
+      "Interaction profile"
+    ],
+    "headless_surface_note": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent Master Doc",
+      "Interaction profile"
+    ],
+    "module_doc": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent Master Doc",
+      "Doc family role",
+      "Module kind"
+    ],
+    "runbook": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent Master Doc"
+    ],
+    "deployment_doc": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent Master Doc"
+    ],
+    "context_pack": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent Master Doc"
+    ],
+    "support_note": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent Master Doc"
+    ],
+    "normative_addendum": [
+      "Doc ID",
+      "Owner",
+      "Status",
+      "Governing standard",
+      "Last updated",
+      "Scope",
+      "Parent standard",
+      "Doc family role",
+      "Addendum kind"
+    ]
+  },
+  "requiredSections": {
+    "master_doc": [
+      "Document Control",
+      "Contracts",
+      "Contract inventory index",
+      "Traceability index",
+      "AI Execution Plan"
+    ],
+    "prd": [
+      "Goals and non-goals",
+      "Workflows",
+      "Acceptance criteria"
+    ],
+    "ui_spec": [
+      "0. Purpose and scope",
+      "2. Screen inventory",
+      "3. Workflow-to-screen maps",
+      "4. Per-screen specification",
+      "7. Test plan mapping"
+    ],
+    "headless_surface_note": [
+      "Why there is no screen inventory",
+      "Operator surface",
+      "API / machine-facing surfaces",
+      "Runtime surfaces",
+      "Verification"
+    ],
+    "module_doc": [
+      "Public entrypoints",
+      "Contracts owned / consumed",
+      "Verify",
+      "Determinism"
+    ],
+    "runbook": [
+      "Trigger / when to use",
+      "Preconditions",
+      "Steps",
+      "Rollback / escalation"
+    ],
+    "deployment_doc": [
+      "Environments",
+      "Artifact identity",
+      "Rollout",
+      "Rollback / migrations"
+    ],
+    "context_pack": [
+      "Glossary",
+      "Invariants",
+      "Verify",
+      "Current tasks / focus"
+    ],
+    "support_note": [
+      "Audience / handoff",
+      "Evidence scope",
+      "Redaction / export behavior",
+      "Steps / next actions"
+    ],
+    "normative_addendum": [
+      "Normative language",
+      "Purpose and scope",
+      "Relationship to the main standard"
+    ]
+  },
+  "normativeArtifactRefs": {
+    "specification": "SPECIFICATION.md",
+    "changelog": "CHANGELOG.md",
+    "appendixC": "appendices/appendix-c-project-master-doc-template.md",
+    "appendixD": "appendices/appendix-d-ui-spec-appendix-template.md",
+    "appendixL": "appendices/appendix-l-tooling-standard.md",
+    "appendixM": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
+    "standardManifestSchema": "standard_manifest.schema.json",
+    "suiteVersionClosureSchema": "suite_version_closure.schema.json",
+    "toolingLockSchema": "tooling_lock.schema.json",
+    "localExtensionManifestSchema": "local_extension_manifest.schema.json",
+    "appendixE": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+    "appendixF": "appendices/appendix-f-sdmm-refactoring-migration-playbook.md",
+    "appendixG": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+    "appendixH": "appendices/appendix-h-ui-design-review-checklist.md",
+    "appendixI": "appendices/appendix-i-ddd-playbook.md",
+    "appendixJ": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+    "appendixK": "appendices/appendix-k-hfvi-vis-template.md",
+    "deploymentAddendum": "DAS_DEPLOYMENT_ADDENDUM.md",
+    "governanceAddendum": "DAS_GOVERNANCE_COLLABORATION.md",
+    "standardContextPack": "DAS_STANDARD_CONTEXT_PACK.md",
+    "templateCatalog": "template_catalog.json",
+    "templateCatalogSchema": "template_catalog.schema.json",
+    "suiteLockSchema": "suite_lock.schema.json",
+    "verifyRegistrySchema": "verify_registry.schema.json",
+    "verifyReportSchema": "verify_report.schema.json",
+    "releaseSnapshotManifestSchema": "release_snapshot_manifest.schema.json",
+    "verifyRegistry": "verify_registry.json",
+    "releaseSnapshotManifest": "release_snapshot_manifest.json",
+    "appendixN": "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md",
+    "versionFile": "VERSION",
+    "rootVerifyScript": "scripts/verify",
+    "rootCIWorkflow": ".github/workflows/verify.yml"
+  },
+  "requiredArtifacts": [
+    "SPECIFICATION.md",
+    "CHANGELOG.md",
+    "DAS_DEPLOYMENT_ADDENDUM.md",
+    "DAS_GOVERNANCE_COLLABORATION.md",
+    "DAS_STANDARD_CONTEXT_PACK.md",
+    "standard_manifest.json",
+    "standard_manifest.schema.json",
+    "suite_version_closure.schema.json",
+    "tooling_lock.schema.json",
+    "local_extension_manifest.schema.json",
+    "appendices/appendix-c-project-master-doc-template.md",
+    "appendices/appendix-d-ui-spec-appendix-template.md",
+    "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+    "appendices/appendix-f-sdmm-refactoring-migration-playbook.md",
+    "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+    "appendices/appendix-h-ui-design-review-checklist.md",
+    "appendices/appendix-i-ddd-playbook.md",
+    "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+    "appendices/appendix-k-hfvi-vis-template.md",
+    "appendices/appendix-l-tooling-standard.md",
+    "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
+    "suite_version_closure.example.json",
+    "tooling_lock.example.json",
+    "local_extension_manifest.example.json",
+    "template_catalog.json",
+    "template_catalog.schema.json",
+    "VERSION",
+    "scripts/verify",
+    ".github/workflows/verify.yml",
+    "suite_lock.schema.json",
+    "verify_registry.schema.json",
+    "verify_report.schema.json",
+    "release_snapshot_manifest.schema.json",
+    "verify_registry.json",
+    "release_snapshot_manifest.json",
+    "suite_lock.example.json",
+    "verify_registry.example.json",
+    "verify_report.example.json",
+    "release_snapshot_manifest.example.json",
+    "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md"
+  ],
+  "tooling": {
+    "requiredLockFields": [
+      "schemaVersion",
+      "standardManifestVersion",
+      "sourceOfTruth",
+      "verifyRuntime",
+      "toolchain"
+    ],
+    "recommendedLockFields": [
+      "generatorTemplateVersion",
+      "policyPackVersion",
+      "standardSnapshotRef",
+      "suiteVersionClosureRef",
+      "suiteLockRef",
+      "verifyRegistryRef",
+      "mirrors"
+    ],
+    "lockSchema": "./tooling_lock.schema.json",
+    "suiteLockSchema": "./suite_lock.schema.json",
+    "verifyRegistrySchema": "./verify_registry.schema.json",
+    "verifyReportSchema": "./verify_report.schema.json",
+    "releaseSnapshotManifestSchema": "./release_snapshot_manifest.schema.json",
+    "verifyReportRequiredFields": [
+      "mode",
+      "buildRef",
+      "repoSha",
+      "standardManifestVersion",
+      "toolchain",
+      "gates",
+      "startedAt",
+      "endedAt",
+      "overallOutcome"
+    ]
+  },
+  "extensions": {
+    "allowedNamespacePrefixes": [
+      "x-",
+      "org."
+    ],
+    "requiredFields": [
+      "name",
+      "namespace",
+      "kind",
+      "extensionPoint",
+      "owner",
+      "scope",
+      "compatibilityNote"
+    ],
+    "schemaRef": "./local_extension_manifest.schema.json",
+    "recommendedFields": [
+      "mapsToCoreDocType",
+      "values",
+      "placementTarget"
+    ],
+    "allowedExtensionPoints": [
+      "conformanceProfiles",
+      "interactionProfiles",
+      "docTypes",
+      "docFamilyRoles",
+      "moduleKinds",
+      "gateCadences",
+      "gateEnforcementClasses",
+      "metadataFields",
+      "gatePacks",
+      "repoRoles",
+      "toolClasses",
+      "toolPlacementTargets",
+      "verifyGateKinds",
+      "moduleStates",
+      "releaseSnapshotKinds",
+      "other"
+    ],
+    "alternativeRequiredFields": [
+      "upstreamingTrigger",
+      "reviewDate"
+    ]
+  },
+  "conditionalRequirements": [
+    {
+      "ruleId": "l2_master_doc_requires_context_pack",
+      "appliesTo": {
+        "docType": "master_doc",
+        "conformanceProfiles": [
+          "L2"
+        ]
+      },
+      "requires": {
+        "linkedDocTypes": [
+          "context_pack"
+        ],
+        "notes": "L2 projects keep a current Context Pack linked from the canonical Master Doc."
+      }
+    },
+    {
+      "ruleId": "headless_master_doc_requires_headless_surface_note",
+      "appliesTo": {
+        "docType": "master_doc",
+        "interactionProfiles": [
+          "headless"
+        ]
+      },
+      "requires": {
+        "linkedDocTypes": [
+          "headless_surface_note"
+        ],
+        "notes": "A local-extension-declared equivalent is allowed only when it maps back to core doc type `headless_surface_note` in `local_extension_manifest.json`. A thin `UI_SPEC = N/A` pointer doc does not satisfy this requirement by itself."
+      }
+    },
+    {
+      "ruleId": "ui_projects_require_ui_spec",
+      "appliesTo": {
+        "docType": "master_doc",
+        "interactionProfiles": [
+          "standard_ui",
+          "hfvi_canvas_webgl_game"
+        ]
+      },
+      "requires": {
+        "linkedDocTypes": [
+          "ui_spec"
+        ],
+        "notes": "A local-extension-declared equivalent is allowed only when it maps back to core doc type `ui_spec` in `local_extension_manifest.json`."
+      }
+    },
+    {
+      "ruleId": "hfvi_projects_require_vis_appendix",
+      "appliesTo": {
+        "docType": "master_doc",
+        "interactionProfiles": [
+          "hfvi_canvas_webgl_game"
+        ]
+      },
+      "requires": {
+        "artifactRefs": [
+          "appendixK"
+        ],
+        "notes": "HFVI projects adopt the VIS template and HFVI verification model."
+      }
+    },
+    {
+      "ruleId": "worker_service_module_docs_require_interaction_profile",
+      "appliesTo": {
+        "docType": "module_doc",
+        "moduleKinds": [
+          "worker",
+          "service"
+        ]
+      },
+      "requires": {
+        "metadataFields": [
+          "Interaction profile"
+        ],
+        "notes": "Worker/service module docs declare the applicable interaction profile explicitly; use `headless` when there is no primary end-user UI."
+      }
+    },
+    {
+      "ruleId": "master_doc_requires_canonical_entrypoint_role",
+      "appliesTo": {
+        "docType": "master_doc"
+      },
+      "requires": {
+        "metadataValues": {
+          "Doc family role": [
+            "canonical_entrypoint"
+          ]
+        },
+        "notes": "Canonical Master Docs use doc-family role `canonical_entrypoint`."
+      }
+    },
+    {
+      "ruleId": "module_doc_requires_module_doc_role",
+      "appliesTo": {
+        "docType": "module_doc"
+      },
+      "requires": {
+        "metadataValues": {
+          "Doc family role": [
+            "module_doc"
+          ]
+        },
+        "notes": "Module docs use doc-family role `module_doc`."
+      }
+    },
+    {
+      "ruleId": "ui_spec_requires_non_headless_interaction_profile",
+      "appliesTo": {
+        "docType": "ui_spec"
+      },
+      "requires": {
+        "metadataValues": {
+          "Interaction profile": [
+            "standard_ui",
+            "hfvi_canvas_webgl_game"
+          ]
+        },
+        "notes": "UI Spec docs are only for UI-bearing interaction profiles."
+      }
+    },
+    {
+      "ruleId": "headless_surface_note_requires_headless_interaction_profile",
+      "appliesTo": {
+        "docType": "headless_surface_note"
+      },
+      "requires": {
+        "metadataValues": {
+          "Interaction profile": [
+            "headless"
+          ]
+        },
+        "notes": "Headless Surface Notes use interaction profile `headless`."
+      }
+    },
+    {
+      "ruleId": "normative_addendum_requires_subordinate_role",
+      "appliesTo": {
+        "docType": "normative_addendum"
+      },
+      "requires": {
+        "metadataValues": {
+          "Doc family role": [
+            "subordinate_doc"
+          ]
+        },
+        "notes": "Normative addenda are governed subordinate companion docs to the main standard."
+      }
+    }
+  ],
+  "supportingArtifactRefs": {
+    "suiteVersionClosureExample": "suite_version_closure.example.json",
+    "toolingLockExample": "tooling_lock.example.json",
+    "localExtensionManifestExample": "local_extension_manifest.example.json",
+    "suiteLockExample": "suite_lock.example.json",
+    "verifyRegistryExample": "verify_registry.example.json",
+    "verifyReportExample": "verify_report.example.json",
+    "releaseSnapshotManifestExample": "release_snapshot_manifest.example.json"
+  },
+  "metadataFieldEnumBindings": {
+    "Status": "docStatuses",
+    "Conformance profile": "conformanceProfiles",
+    "Interaction profile": "interactionProfiles",
+    "Doc family role": "docFamilyRoles",
+    "Module kind": "moduleKinds",
+    "Addendum kind": "addendumKinds"
+  },
+  "gateCadenceDefinitions": {
+    "pr_blocking": {
+      "summary": "Explicit correctness failures that must not merge.",
+      "typicalUse": [
+        "placeholder residue",
+        "invalid status enum",
+        "missing governing standard",
+        "contract validation",
+        "workflow fail-open lint",
+        "tooling lock validation"
+      ]
+    },
+    "merge_to_main": {
+      "summary": "Continuous aggregate audits that may be too wide for every PR but still need regular enforcement.",
+      "typicalUse": [
+        "inventory sync reports",
+        "package-doc completeness audits",
+        "route/build/release drift summaries"
+      ]
+    },
+    "nightly": {
+      "summary": "Slow, deep, or trend-oriented checks.",
+      "typicalUse": [
+        "full trace graph builds",
+        "deep contract completeness audits",
+        "full AI eval suites",
+        "broken-link scans",
+        "regression dashboards"
+      ]
+    },
+    "pre_release": {
+      "summary": "Release-surface parity and closure checks required before promotion.",
+      "typicalUse": [
+        "docker/build-context parity",
+        "release-lane status checks",
+        "full contract mirror sync",
+        "suite version closure",
+        "release-pack verification"
+      ]
+    },
+    "adoption_migration": {
+      "summary": "Migration-only checks used when onboarding legacy repos or upgrading standards/tooling.",
+      "typicalUse": [
+        "adopt-existing-repo",
+        "repo-normalize",
+        "upgrade-standard",
+        "contract-slice"
+      ]
+    }
+  },
+  "gateEnforcementDefinitions": {
+    "report_only": {
+      "summary": "Emits diagnostics but does not block merge/release."
+    },
+    "blocking": {
+      "summary": "Blocks the cadence it is assigned to when failing."
+    },
+    "source_of_truth": {
+      "summary": "Produces authoritative artifacts/inventories that other checks consume as trusted inputs."
+    }
+  },
+  "sectionValueEnumBindings": {
+    "module_doc": {
+      "Determinism": "determinismValues"
+    }
+  },
+  "requiredSubsections": {
+    "master_doc": {
+      "Document Control": [
+        "Metadata",
+        "Doc readiness gate",
+        "Versioning and change control",
+        "Glossary and canonical terminology",
+        "Traceability index"
+      ]
+    },
+    "module_doc": {
+      "Verify": [
+        "Commands",
+        "Expected outcomes"
+      ]
+    }
+  },
+  "repoRoleDefinitions": {
+    "standard_repo": "Owns the standard text, shipped appendices, machine-readable standard artifacts, release snapshots, and adoption/migration maps.",
+    "suite_repo": "Owns the multi-repo module graph, suite lock, locked sync, module-state reporting, and suite-level upgrade orchestration.",
+    "factory_repo": "Owns scaffolds, repo mutation/adoption tooling, standard-diff, trace helpers, and repo-shape normalization.",
+    "verify_runtime_repo": "Owns analyzers, policy runtime, report/scan/lock/doctor executors, replay/eval bridges, and verify-report emitters.",
+    "policy_pack_repo": "Owns reusable policy packs consumed by a verify runtime.",
+    "control_plane_repo": "Owns org-wide waivers, dashboards, approvals, and governance UI.",
+    "enterprise_subtree_repo": "Owns proprietary enterprise-only datasets, eval assets, or modelops/training chains.",
+    "product_repo": "Owns product code, product docs, product contracts, and product-local verify flows.",
+    "monorepo_local_tooling": "Owns topology-specific repo-local guards that are not yet generic enough to upstream."
+  },
+  "toolClassDefinitions": {
+    "repo_audit": "Audits repo shape, docs, contracts, and topology for conformance.",
+    "repo_mutation": "Changes repo state: create/init/adopt/repair/normalize.",
+    "contract_validation": "Validates schemas, fixtures, IDs, references, and compatibility.",
+    "verify_runtime": "Executes governed checks and emits machine-readable reports.",
+    "policy_pack": "Supplies policy packs interpreted by a verify runtime.",
+    "suite_orchestration": "Locks and orchestrates multi-repo suites/modules.",
+    "control_plane": "Provides approvals, waivers, dashboards, or governance UX.",
+    "enterprise_modelops": "Owns enterprise-only datasets/training/evals/modelops flows.",
+    "monorepo_local_guard": "A topology-specific guard that should remain repo-local until generalized.",
+    "migration_upgrade": "Upgrades standards, migrates repos, or slices contracts during adoption.",
+    "other": "Other governed tooling class not covered above."
+  },
+  "toolPlacementDefinitions": {
+    "standard_repo": "Standard manifests, release snapshots, adoption maps, migration maps.",
+    "suite_repo": "Suite lock, module graph closure, locked sync, stale-pin detection, module-state reporting.",
+    "factory_repo": "create/init/adopt/repair/standard-diff/contract-slice/repo-mutation tooling.",
+    "verify_runtime_repo": "Analyzers, policy runtime, report/scan/lock/doctor executors, replay/eval bridges.",
+    "policy_pack_repo": "Reusable policy packs and pack metadata.",
+    "control_plane_repo": "Org-wide approvals, waivers, rollout dashboards, governance UI.",
+    "enterprise_subtree_repo": "Enterprise-only datasets/evals/training/modelops assets.",
+    "product_repo": "Product-specific code, contracts, docs, and local verify flows.",
+    "monorepo_local_tooling": "Topology-specific parity/drift/scaffold guards for a given monorepo.",
+    "repo_local_only": "Should remain local until at least two real consumers or a generalized abstraction exists."
+  },
+  "verifyGateKindDefinitions": {
+    "docs_meta": "Doc metadata, required sections/subsections, placeholders, governing-standard presence.",
+    "contracts": "Schema/fixture/identifier/OpenAPI compatibility and reference checks.",
+    "unit": "Repo-local deterministic unit tests.",
+    "assembly": "Boot/wiring/fail-fast checks.",
+    "integration": "Cross-module integration tests inside a repo or service.",
+    "api_e2e": "Mounted-host or public API end-to-end journeys.",
+    "ui_e2e": "Browser/UI end-to-end smoke/staging flows.",
+    "replay": "Replay, compare, restore, or deterministic evidence checks.",
+    "eval": "AI/quality/eval thresholds and governed reports.",
+    "drift_audit": "Topology or inventory drift scans typically run post-merge or nightly.",
+    "migration_adoption": "Adoption, upgrade, standard-diff, or repo-normalization flows.",
+    "other": "Other governed gate kind."
+  },
+  "moduleStateDefinitions": {
+    "missing": "Expected by suite lock but not present locally.",
+    "present_locked_match": "Present and matches the locked ref.",
+    "present_locked_mismatch": "Present but does not match the locked ref.",
+    "present_local_override": "Present under an explicit, governed local override.",
+    "dirty": "Present with uncommitted or otherwise dirty local state."
+  },
+  "releaseSnapshotKindDefinitions": {
+    "standard_release_bundle": "Canonical released snapshot of the DAS standard repo/bundle.",
+    "factory_seed_snapshot": "Immutable snapshot used by a repo factory/template seed.",
+    "policy_pack_snapshot": "Immutable snapshot of a policy-pack release.",
+    "suite_snapshot": "Immutable snapshot of a suite-level lock/closure state.",
+    "repo_local_mirror": "A governed local mirror/copy that points back to an immutable source snapshot."
+  },
+  "gateOutcomeDefinitions": {
+    "pass": "The gate executed and passed.",
+    "fail": "The gate executed and failed.",
+    "error": "The gate or report itself errored.",
+    "skipped": "The gate was intentionally skipped by policy.",
+    "not_run": "The gate was expected but did not execute."
+  }
+}

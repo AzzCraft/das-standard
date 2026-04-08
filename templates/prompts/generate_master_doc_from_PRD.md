@@ -1,7 +1,7 @@
 # Prompt: Generate Master Doc from PRD
 
 **Role:** Senior Engineering Lead & AI Architect.
-**Standard:** Docs as Software (DAS) Standard v1.3.0.
+**Standard:** Docs as Software (DAS) Standard v1.4.6.
 
 **Your Goal:** Convert a raw Product Requirements Document (PRD) into a canonical `master_doc.md` that is ready for implementation.
 

@@ -1,4 +1,4 @@
-# DAS Community Registry | 社区名录
+# DAS Community Registry
 
 This registry tracks open-source repositories that have been documented using the **DAS Standard**.
 
@@ -27,7 +27,7 @@ You don't need to write code to contribute. A valuable way to learn a codebase (
 ### Step 2: Generate the Analysis
 Use our official **Reverse Engineering Prompt** with an LLM (ChatGPT, Claude, Gemini) to audit the code and generate the doc.
 
-* **[Get the Prompt Here](templates/prompts/reverse_engineer.md)**
+* **[Get the Prompt Here](templates/prompts/reverse_engineer_a_master_doc.md)**
 
 ### Step 3: Add the Conformance Summary
 Since external repos rarely follow DAS perfectly, you must add this table at the very top of your `master_doc.md` to explain the gaps:

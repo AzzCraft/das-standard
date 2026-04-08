@@ -1,0 +1,52 @@
+{
+  "$schema": "./verify_report.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardManifestVersion": "1.4.6",
+  "repoId": "example-product-repo",
+  "mode": "fast",
+  "buildRef": "ci:12345",
+  "repoSha": "abc123def456",
+  "verifyRegistryRef": {
+    "kind": "file",
+    "uri": "./verify_registry.example.json",
+    "pinType": "manifest",
+    "pinValue": "verify_registry.example.json",
+    "floating": false
+  },
+  "toolchain": [
+    {
+      "name": "python",
+      "version": "3.11.8"
+    },
+    {
+      "name": "jsonschema",
+      "version": "4.x"
+    }
+  ],
+  "startedAt": "2026-04-06T00:00:00Z",
+  "endedAt": "2026-04-06T00:01:00Z",
+  "overallOutcome": "fail",
+  "gates": [
+    {
+      "gateId": "docs.meta",
+      "cadence": "pr_blocking",
+      "enforcementClass": "blocking",
+      "expected": true,
+      "executed": true,
+      "outcome": "pass",
+      "artifactCount": 0,
+      "failureOnNoResults": false
+    },
+    {
+      "gateId": "contracts.compat",
+      "cadence": "merge_to_main",
+      "enforcementClass": "blocking",
+      "expected": true,
+      "executed": false,
+      "outcome": "not_run",
+      "artifactCount": 0,
+      "failureOnNoResults": true,
+      "notes": "Runner was misconfigured; explicit not_run prevents a silent PASS."
+    }
+  ]
+}

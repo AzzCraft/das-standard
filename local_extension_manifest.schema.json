@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/local_extension_manifest.schema.json",
+  "title": "DAS Local Extension Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "standardManifestVersion",
+    "extensions"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "standardManifestVersion": {
+      "type": "string"
+    },
+    "extensions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ext"
+      },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "ext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "namespace",
+        "kind",
+        "extensionPoint",
+        "owner",
+        "scope",
+        "compatibilityNote"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string",
+          "pattern": "^(x-|org\\.)",
+          "description": "Namespace prefix must start with x- or org."
+        },
+        "kind": {
+          "enum": [
+            "profile",
+            "doc_type",
+            "gate_pack",
+            "metadata_field",
+            "repo_role",
+            "tool_class",
+            "tool_placement",
+            "verify_gate_kind",
+            "module_state",
+            "release_snapshot_kind",
+            "other"
+          ]
+        },
+        "extensionPoint": {
+          "enum": [
+            "conformanceProfiles",
+            "interactionProfiles",
+            "docTypes",
+            "docFamilyRoles",
+            "moduleKinds",
+            "gateCadences",
+            "gateEnforcementClasses",
+            "metadataFields",
+            "gatePacks",
+            "repoRoles",
+            "toolClasses",
+            "toolPlacementTargets",
+            "verifyGateKinds",
+            "moduleStates",
+            "releaseSnapshotKinds",
+            "other"
+          ]
+        },
+        "owner": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "compatibilityNote": {
+          "type": "string"
+        },
+        "upstreamingTrigger": {
+          "type": "string"
+        },
+        "reviewDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "values": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "object"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "placementTarget": {
+          "enum": [
+            "standard_repo",
+            "suite_repo",
+            "factory_repo",
+            "verify_runtime_repo",
+            "policy_pack_repo",
+            "control_plane_repo",
+            "enterprise_subtree_repo",
+            "product_repo",
+            "monorepo_local_tooling",
+            "repo_local_only"
+          ]
+        },
+        "mapsToCoreDocType": {
+          "enum": [
+            "master_doc",
+            "prd",
+            "ui_spec",
+            "headless_surface_note",
+            "module_doc",
+            "runbook",
+            "deployment_doc",
+            "context_pack",
+            "support_note",
+            "normative_addendum"
+          ]
+        },
+        "satisfiesCoreRequirement": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {
+              "required": [
+                "upstreamingTrigger"
+              ]
+            },
+            {
+              "required": [
+                "reviewDate"
+              ]
+            }
+          ]
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "doc_type"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "satisfiesCoreRequirement"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "satisfiesCoreRequirement": {
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "satisfiesCoreRequirement"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "mapsToCoreDocType"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "required": [
+                    "mapsToCoreDocType"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "satisfiesCoreRequirement": {
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "satisfiesCoreRequirement"
+                  ]
+                }
+              }
+            ]
+          },
+          "else": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "mapsToCoreDocType"
+                  ]
+                },
+                {
+                  "required": [
+                    "satisfiesCoreRequirement"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

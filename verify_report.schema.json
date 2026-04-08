@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/verify_report.schema.json",
+  "title": "DAS Verify Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "standardManifestVersion",
+    "repoId",
+    "mode",
+    "buildRef",
+    "repoSha",
+    "startedAt",
+    "endedAt",
+    "overallOutcome",
+    "gates"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "standardManifestVersion": {
+      "type": "string"
+    },
+    "repoId": {
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "fast",
+        "full",
+        "custom"
+      ]
+    },
+    "buildRef": {
+      "type": "string"
+    },
+    "repoSha": {
+      "type": "string"
+    },
+    "verifyRegistryRef": {
+      "$ref": "#/$defs/fileRef"
+    },
+    "toolchain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "version"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "overallOutcome": {
+      "enum": [
+        "pass",
+        "fail",
+        "error"
+      ]
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/gateResult"
+      }
+    }
+  },
+  "$defs": {
+    "fileRef": {
+      "allOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "uri",
+            "pinType",
+            "pinValue"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "git",
+                "container_image",
+                "package",
+                "file",
+                "ci_workflow",
+                "custom"
+              ]
+            },
+            "uri": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pinType": {
+              "enum": [
+                "commit",
+                "tag",
+                "digest",
+                "version",
+                "path",
+                "manifest"
+              ]
+            },
+            "pinValue": {
+              "type": "string",
+              "minLength": 1
+            },
+            "floating": {
+              "type": "boolean",
+              "const": false
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "git"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "pinType": {
+                    "enum": [
+                      "commit",
+                      "tag"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "container_image"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "pinType": {
+                    "const": "digest"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "package"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "pinType": {
+                    "const": "version"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "file"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "pinType": {
+                    "enum": [
+                      "path",
+                      "manifest"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "kind": {
+                    "const": "ci_workflow"
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "pinType": {
+                    "enum": [
+                      "path",
+                      "manifest"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "file"
+            },
+            "pinType": {
+              "enum": [
+                "path",
+                "manifest"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "pinType"
+          ]
+        }
+      ]
+    },
+    "gateResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gateId",
+        "cadence",
+        "enforcementClass",
+        "expected",
+        "executed",
+        "outcome",
+        "artifactCount"
+      ],
+      "properties": {
+        "gateId": {
+          "type": "string"
+        },
+        "cadence": {
+          "enum": [
+            "pr_blocking",
+            "merge_to_main",
+            "nightly",
+            "pre_release",
+            "adoption_migration"
+          ]
+        },
+        "enforcementClass": {
+          "enum": [
+            "report_only",
+            "blocking",
+            "source_of_truth"
+          ]
+        },
+        "expected": {
+          "type": "boolean"
+        },
+        "executed": {
+          "type": "boolean"
+        },
+        "outcome": {
+          "enum": [
+            "pass",
+            "fail",
+            "error",
+            "skipped",
+            "not_run"
+          ]
+        },
+        "artifactCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "artifactRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "failureOnNoResults": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "expected": {
+                "const": true
+              },
+              "executed": {
+                "const": false
+              }
+            },
+            "required": [
+              "expected",
+              "executed"
+            ]
+          },
+          "then": {
+            "properties": {
+              "outcome": {
+                "enum": [
+                  "not_run",
+                  "error"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -2,12 +2,12 @@
 > **The Unified Engineering Methodology for AI-Enabled Products**
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Version: v1.3.0](https://img.shields.io/badge/Version-v1.3.0-blue.svg)](CHANGELOG.md)
+[![Version: v1.4.6](https://img.shields.io/badge/Version-v1.4.6-blue.svg)](CHANGELOG.md)
 
 **Name:** Docs as Software (DAS) Standard (中文：**文码合一标准**)
 **Maintained by:** AzzCraft Inc. 
 **Copyright:** © 2026 AzzCraft Inc. (重庆艾之舟科技有限公司)
-**Last updated:** 2026-02-07
+**Last updated:** 2026-04-06
 
 ---
 
@@ -95,18 +95,21 @@ Critical workflows are specified as Given/When/Then scenarios and enforced via a
 
 ### 2.3 Conformance profiles and cost controls (scalable adoption)
 
-This standard is intended to work for both small, fast-moving teams and large, multi-team organizations. To avoid accidental over-engineering (or accidental under-governance), every project MUST declare a **conformance profile** in the Master Doc header (Document Control):
+This standard is intended to work for both small, fast-moving teams and large, multi-team organizations. To avoid accidental over-engineering (or accidental under-governance), every project MUST declare a **conformance profile** in the canonical Master Doc header (Document Control):
 
 - **L0 - Prototype**: exploration or pre-product; prioritize speed while still protecting users and data.
-- **L1 - Product (default)**: a shipped product with regular iteration; balance speed with reliability.
+- **L1 - Product**: a shipped product with regular iteration; balance speed with reliability.
 - **L2 - Platform/Enterprise**: multi-team, high-trust, or regulated; maximize stability, compatibility, and auditability.
 
 Rules:
 
-- **MUST:** Declare exactly one profile (`L0|L1|L2`) in the Master Doc.
-- **MUST:** The default is **L1** if no profile is declared.
+- **MUST:** Declare exactly one profile (`L0|L1|L2`) in the canonical Master Doc.
+- **MUST:** The declaration MUST be explicit in merged documentation. Missing profile declarations are a **verify failure**, not an implicit pass.
+- **MUST NOT:** Repos and suites MUST NOT rely on “default if missing” semantics once a document has entered version control. Scaffolding MAY materialize an initial value during generation, but the generated document MUST write the explicit value before first merge.
 - **MUST:** Regardless of profile, externally observed or persisted surfaces (public APIs, stored artifacts, identifiers) MUST use **Compatibility Mode** and MUST be fixture-backed.
 - **SHOULD:** Teams SHOULD evolve profiles over time (typical path: `L0 → L1 → L2`).
+- **SHOULD:** Tooling SHOULD source the allowed enum from `standard_manifest.json` rather than hard-coding local copies.
+
 Terminology note: this document uses **P0/P1/P2** in checklists to mean priority/severity; conformance profiles are **L0/L1/L2**.
 
 Practical profile guidance (non-exhaustive):
@@ -125,21 +128,119 @@ Profiles are cost controls, not loopholes.
 
 ### 2.4 Interaction profiles (HFVI extension)
 
-Conformance profiles (L0/L1/L2) control engineering cost and gate strictness. Some products also have a distinct risk: high-fidelity, spatial, continuous interaction surfaces (canvas/WebGL/game-like UI). For these products, textual UI specs tend to be under-specified, and naive AI generation frequently drifts (hit-testing, z-order, easing, coordinate transforms).
-
-To keep HFVI work implementable and testable, each project MUST additionally declare an interaction profile in its Master Doc (in addition to its conformance profile).
+Conformance profiles (L0/L1/L2) control engineering cost and gate strictness. Some products also have materially different interaction risk: classic workflow UIs, **headless** services/workers, and high-fidelity visual interaction surfaces (canvas/WebGL/game-like UI). To keep these products implementable and testable, each project MUST additionally declare an interaction profile in its canonical Master Doc.
 
 Interaction profiles:
 
 - `standard_ui`: form/workflow-centric UI where Appendix D is typically sufficient.
+- `headless`: no primary end-user screen inventory; the governed interaction surfaces are operator commands, APIs, jobs, packets, runtime surfaces, or machine-to-machine integrations.
 - `hfvi_canvas_webgl_game`: high-fidelity visual interaction (canvas/WebGL/game-like interaction surfaces).
 
 Rules:
 
-- MUST: Declare exactly one interaction profile (`standard_ui|hfvi_canvas_webgl_game`) in the Master Doc.
-- MUST: The default is `standard_ui` if no interaction profile is declared.
-- MUST: If `hfvi_canvas_webgl_game` is declared, the project MUST adopt the HFVI requirements in §6.8 and Appendix K.
-- SHOULD: HFVI projects SHOULD treat interaction surfaces as contract surfaces for the purposes of fixtures, replayability, and verification gates.
+- **MUST:** Declare exactly one interaction profile (`standard_ui|headless|hfvi_canvas_webgl_game`) in the canonical Master Doc.
+- **MUST:** The declaration MUST be explicit in merged documentation. Missing interaction profile declarations are a **verify failure**, not an implicit pass.
+- **MUST NOT:** Repos and suites MUST NOT rely on “default if missing” semantics for interaction profiles once a document has entered version control.
+- **MUST:** If `headless` is declared, the project MUST provide a **Headless Surface Note** (see Appendix M) or a local-extension-declared equivalent that maps back to core doc type `headless_surface_note` for machine checks.
+- **MAY:** A repo MAY keep a thin `UI_SPEC = N/A` pointer doc for navigation or legacy compatibility, but that pointer doc MUST link to the governing Headless Surface Note (or extension-mapped equivalent) and is **not sufficient by itself**.
+- **MUST:** The governing screenless-surface doc MUST identify the operator surface, CLI/API surfaces, job/runtime surfaces, packet/export surfaces, and why no screen inventory exists.
+- **MUST:** If `standard_ui` or `hfvi_canvas_webgl_game` is declared, the project MUST maintain a UI Spec Appendix or a local-extension-declared equivalent that maps back to core doc type `ui_spec` for machine checks.
+- **MUST:** If `hfvi_canvas_webgl_game` is declared, the project MUST adopt the HFVI requirements in §6.8 and Appendix K.
+- **SHOULD:** Tooling SHOULD source the allowed enum from `standard_manifest.json` rather than hard-coding local copies.
+- **SHOULD:** HFVI projects SHOULD treat interaction surfaces as contract surfaces for the purposes of fixtures, replayability, and verification gates.
+
+### 2.5 Machine-readable standard manifest, repo-canonical release artifacts, and extension mechanism
+
+Human-readable prose is not enough for suites, factories, verify runtimes, or released standard bundles. Each governed release of this standard MUST ship machine-readable artifacts that tools can consume without scraping Markdown, and the **standard repo/bundle itself** MUST be self-describing enough to be locked, mirrored, and verified.
+
+Required artifacts for a governed **repo-canonical release** of the standard:
+
+- `VERSION`
+- `CHANGELOG.md`
+- `SPECIFICATION.md`
+- `scripts/verify`
+- `.github/workflows/verify.yml`
+- `standard_manifest.json`
+- `standard_manifest.schema.json`
+- `suite_version_closure.schema.json`
+- `suite_lock.schema.json`
+- `tooling_lock.schema.json`
+- `local_extension_manifest.schema.json`
+- `verify_registry.schema.json`
+- `verify_report.schema.json`
+- `release_snapshot_manifest.schema.json`
+- `template_catalog.json`
+- `template_catalog.schema.json`
+- `verify_registry.json`
+- `release_snapshot_manifest.json`
+
+Release-package completeness rules:
+
+- **MUST:** Every path listed in `requiredArtifacts` for a governed release MUST physically exist in the published release bundle at the declared relative path.
+- **MUST:** Repo-canonical release bundles MUST ship an actual `release_snapshot_manifest.json` and an actual `verify_registry.json` for the standard repo/bundle itself.
+- **MUST:** Internal links from `SPECIFICATION.md` to externalized appendices, companion addenda, examples, and machine-readable artifacts MUST resolve inside the release bundle; broken release-bundle links are a release failure.
+- **SHOULD:** Release CI SHOULD run a package-completeness self-check that validates `requiredArtifacts`, `normativeArtifactRefs`, and `supportingArtifactRefs` against the actual bundle contents before publication.
+
+`standard_manifest.json` MUST include, at minimum:
+
+- `standardVersion`
+- normative enums for:
+  - conformance profiles,
+  - interaction profiles,
+  - document status values,
+  - gate cadences,
+  - gate enforcement classes,
+  - doc-family roles used by the templates,
+  - module kinds used by module docs,
+  - addendum kinds used by governed release companions,
+  - determinism values used by module docs,
+  - repo roles,
+  - tool classes,
+  - tool placement targets,
+  - verify gate kinds,
+  - suite module states,
+  - release snapshot kinds,
+  - and verify-report outcomes,
+- machine-readable **metadata-field -> enum bindings** for canonical governed metadata fields (for example `Status -> docStatuses`, `Interaction profile -> interactionProfiles`, `Addendum kind -> addendumKinds`) so verify runtimes do not need repo-local hard-coded mappings,
+- machine-readable **section-value -> enum bindings** where a governed section uses normative enum values (for example `module_doc -> Determinism -> determinismValues`),
+- required metadata fields by doc type,
+- required sections and, where applicable, required **subsections** by doc type/profile,
+- machine-readable **conditional requirements** when a rule depends on profile, interaction profile, or module kind (for example `L2` requiring a Context Pack, or `headless` requiring a Headless Surface Note),
+- machine-readable cadence / enforcement definitions sufficient for suites, factories, and dashboards to display gate meaning without scraping prose,
+- machine-readable definitions for repo roles, tool classes, tool placement targets, verify gate kinds, suite module states, and release snapshot kinds,
+- references to appendix files and other normative machine-readable artifacts,
+- tooling expectations required by Appendix L,
+- any shipped **normative addenda** that are part of the governed release package,
+- the machine-readable **template catalog** mapping core doc types to official shipped templates,
+- and schema refs for `suite_lock`, `verify_registry`, `verify_report`, and `release_snapshot_manifest` when those mechanisms are part of the governed release.
+
+Release manifests MAY additionally expose **supporting example artifact refs** separately from normative artifact refs so tools can discover shipped examples without misclassifying them as normative inputs.
+
+Status metadata rules:
+
+- **MUST:** The document status enum is normative: `draft | active | frozen | deprecated`.
+- **MUST:** Docs that declare a status MUST use only the normative enum values from `standard_manifest.json`.
+- **SHOULD:** Verify tooling SHOULD fail on unknown status values rather than silently normalizing them.
+
+Machine-readable conditional rules MAY require not only the presence of metadata fields, but also specific **metadata values** when a doc type has a fixed semantic role (for example `Doc family role = canonical_entrypoint`, or `Interaction profile = headless` for a Headless Surface Note).
+
+- **MUST:** If the release package uses governed companion docs of type `normative_addendum`, the machine-readable manifest/schema pair MUST require those entries explicitly rather than leaving them optional in schema validation.
+- **MUST:** `Addendum kind` MUST be governed by a normative enum in the machine-readable manifest/schema pair rather than existing only as free-text template metadata.
+- **MUST:** Repo-canonical standard bundles MUST declare a `VERSION` file, a self-verify command, and CI metadata in `requiredArtifacts`; a bundle that lacks those repo-canonical artifacts MUST NOT be presented as the canonical governed release.
+- **SHOULD:** Suites and verify runtimes SHOULD consume metadata-field enum bindings from `standard_manifest.json` instead of inferring them from prose or hard-coded field-name heuristics.
+
+Standard-release companion docs such as deployment/governance companions SHOULD be represented as governed doc type `normative_addendum` in the release manifest rather than sitting outside the machine-readable doc-family model.
+
+Extension mechanism:
+
+- **MAY:** Repos MAY define local extensions to profiles, doc families, gate packs, repo roles, tool classes, tool placement targets, verify gate kinds, release snapshot kinds, metadata fields, or other governed registries, but only through an explicit **local extension manifest** referenced from the project Master Doc.
+- **MUST:** Extension identifiers MUST be namespaced (for example `x-...` or `org.example....`) so they cannot be mistaken for core DAS enums.
+- **MUST:** Each extension MUST declare: `name`, `namespace`, `kind`, `extensionPoint`, `owner`, `scope`, and `compatibilityNote`.
+- **MUST:** Each extension MUST also declare at least one review/normalization trigger: `upstreamingTrigger` **or** `reviewDate`.
+- **MUST:** If an extension defines a repo-local **doc type** intended to satisfy a core DAS doc-type requirement, it MUST declare `mapsToCoreDocType` so tooling can treat the alias as satisfying the core requirement.
+- **SHOULD:** Local extension manifests SHOULD validate against `local_extension_manifest.schema.json` shipped with this release of the standard.
+- **MUST NOT:** Repos MUST NOT silently widen normative DAS enums in code or docs without declaring the extension in machine-readable form.
+
 
 ## 3. System topology and repo boundaries (monorepo vs multi-repo)
 
@@ -1347,13 +1448,18 @@ Key requirements (summary):
 
 For full detail, see **Appendix G (AI Product Engineering Principles Addendum)**.
 
-## 9. Project documentation requirements (Master Doc + UI Spec)
+## 9. Project documentation requirements (Master Doc + doc families + UI Spec)
 
 ### 9.1 Project Master Doc (required)
 
 Every project MUST maintain a canonical Master Doc that is versioned with code and reviewed like code (Docs as Software). The Master Doc MUST:
 
-- declare the project’s **conformance profile** (`L0|L1|L2`, §2.3),
+- include an explicit **Doc readiness gate** in its `Document Control` section (or an extension-mapped equivalent subsection) so tooling and reviewers know what blocks the doc from becoming canonical,
+- declare the project’s **conformance profile** (`L0|L1|L2`, §2.3) explicitly,
+- declare the project’s **interaction profile** (`standard_ui|headless|hfvi_canvas_webgl_game`, §2.4) explicitly,
+- declare `Doc family role = canonical_entrypoint` explicitly,
+- declare document status using the normative enum from `standard_manifest.json`,
+- declare the governing standard reference used by the project,
 - define product scope and constraints,
 - define system topology (monorepo vs multi-repo) and the contract hub location,
 - enumerate contract surfaces and owners (APIs, events, persisted artifacts),
@@ -1364,13 +1470,53 @@ Every project MUST maintain a canonical Master Doc that is versioned with code a
 - define verification gates and exact `verify` commands (per repo and system-level),
 - include an execution plan (tasks with acceptance criteria and test evidence).
 
+For machine-readable checks, the Master Doc required-section model SHOULD explicitly cover at least `Document Control`, `Contracts`, `Contract Inventory Index`, `Traceability Index`, and `AI Execution Plan`, and the required-subsection model SHOULD explicitly cover `Document Control -> Doc readiness gate`, so tools do not mistake a broad top-level `Contracts` heading for full doc completeness.
+
 Doc update policy (to control cost and avoid “checkbox docs”):
 
 - **MUST:** If a change modifies requirements, workflows, contract surfaces, budgets, determinism tiering, security posture, or verification gates, the same PR MUST update the Master Doc (or include a documented waiver with owner + expiry).
 - **MAY:** Pure refactors that do not change behavior/contracts/workflows MAY omit Master Doc edits.
 - **SHOULD:** For L0 projects, the Master Doc SHOULD remain short and focus on critical flows and risks; expand as the product stabilizes.
 
-### 9.2 UI Spec Appendix (required for UI products)
+### 9.2 Doc-family governance and subordinate docs (required)
+
+Real repos rarely stop at a single Master Doc. Typical doc families include PRDs, UI specs, package/module docs, runbooks, deployment docs, context packs, and support notes. These subordinate docs MUST be governed consistently enough that tooling and reviewers can trust them.
+
+The same metadata discipline also applies to **release-companion docs bundled with the standard itself**; those are classified in the release manifest as `normative_addendum` rather than being treated as out-of-band Markdown.
+
+Minimum rules:
+
+- **MUST:** Every subordinate doc that is part of the governed doc set MUST have a small **Document Control** header including, at minimum:
+  - `Doc ID`,
+  - `Owner`,
+  - `Status`,
+  - `Governing standard`,
+  - `Last updated`,
+  - `Scope` (what the doc covers / does not cover).
+- **MUST:** `Owner` is the canonical minimum metadata key for machine checks. Repos MAY add richer `Owners` / RACI detail, but they SHOULD NOT omit the canonical `Owner` field.
+- **MUST:** Subordinate docs that define executable or reviewable behavior (PRD, UI Spec, module MASTER_DOC, Headless Surface Note, deployment/runbook docs used for release decisions) MUST point back to the canonical Master Doc.
+- **MUST:** Subordinate docs MUST use the normative status enum from `standard_manifest.json`.
+- **MUST:** If a subordinate doc is intentionally `N/A`, it MUST say **why** it is not applicable and where the governing truth lives instead.
+- **SHOULD:** Subordinate docs SHOULD be structurally minimal when possible; small docs with valid metadata are better than large docs that rot.
+- **SHOULD:** Teams SHOULD use Appendix M for doc-family matrices and minimal subordinate-doc templates instead of inventing repo-local conventions from scratch.
+- **MUST:** Official templates shipped with this standard MUST themselves satisfy the metadata and section rules of the doc types they are meant to instantiate; otherwise the standard would emit non-compliant scaffolds.
+
+Recommended minimum by doc type:
+
+| Doc type | Must declare status | Must declare governing standard | Must link to Master Doc | Special rule |
+| --- | --- | --- | --- | --- |
+| Master Doc | Yes | Yes | N/A | Canonical entrypoint |
+| PRD | Yes | Yes | Yes | Requirements-only docs still need scope + owner |
+| UI Spec | Yes | Yes | Yes | Use Appendix D unless `headless` |
+| Headless Surface Note | Yes | Yes | Yes | Required when `interactionProfile = headless` and no UI screen inventory exists |
+| Package / module MASTER_DOC | Yes | Yes | Yes | Required when the module is shipped, shared, or verify-critical |
+| Runbook | Yes | Yes | Yes | Must declare operational owner |
+| Deployment doc used for release | Yes | Yes | Yes | Must declare rollout / rollback ownership and environment scope |
+| Context Pack | Yes | Yes | Yes | May be short, but must stay current |
+| Support note / incident-support doc | Yes | Yes | Yes | Must declare audience, evidence scope, and redaction/export behavior |
+| Normative addendum / release companion doc | Yes | Yes | Links to parent standard | Use governed metadata even when shipped with the standard release itself |
+
+### 9.3 UI Spec Appendix (required for UI products, explicitly handled for headless)
 
 If the project has a user-facing UI (web/mobile/admin), it MUST maintain a UI Spec Appendix (Appendix D) that defines:
 
@@ -1381,12 +1527,47 @@ If the project has a user-facing UI (web/mobile/admin), it MUST maintain a UI Sp
 - AI interaction mode per screen (static/streaming/async_job) and the referenced contracts when applicable (citations §4.4.9; streaming §4.4.10),
 - design system contract references (tokens/components) for shared UI surfaces (see §4.5).
 
+Headless exception:
+
+- **MUST:** If the project declares `interactionProfile = headless`, it MAY omit a screen-based UI Spec, but it MUST provide a Headless Surface Note (Appendix M) or an extension-declared equivalent that maps back to core doc type `headless_surface_note` for machine checks.
+- **MAY:** A thin `UI_SPEC = N/A` pointer doc MAY exist for navigation or legacy compatibility, but it MUST point to the governing Headless Surface Note (or extension-mapped equivalent) and MUST NOT be treated as the substantive headless interaction spec.
+- **MUST NOT:** Headless projects MUST NOT silently skip UI-spec governance; they still need an explicit doc-family member covering operator and machine-facing interaction surfaces.
+
 Design review (recommended):
 
 - Use **Appendix H - UI Design Review Checklist** as the cross-functional UI review checklist (Design + PM + Eng).
 - Items marked **automatable** SHOULD be enforced in the frontend `verify` gate; other items must be reviewed by a human (LLM assistance is optional, not authoritative).
 
-### 9.3 Traceability automation (strongly recommended)
+### 9.4 Package / library / worker / infra module docs model
+
+Monorepos and hybrid repos often contain more than deployable apps: packages, SDKs, workers, shared generators, policy packs, and infra modules. The standard MUST say when these modules need docs and when they need determinism metadata.
+
+Rules:
+
+- **MUST:** A package/library/module MUST have its own module-level MASTER_DOC (or an equivalent doc-family member) if it is:
+  - published outside its local module boundary,
+  - shared across repos or teams,
+  - consumed by code generation or verify gates,
+  - responsible for persisted artifacts, contracts, policy packs, or runtime-critical behavior.
+- **MUST:** Module docs MUST declare a `Module kind` using the normative machine-readable enum (`package|library|worker|service|infra_module|tooling_module|generator|policy_pack|other`).
+- **MUST:** Module docs MUST declare `Doc family role = module_doc` explicitly.
+- **MUST:** A worker or service module doc MUST declare an explicit `Interaction profile`.
+- **MUST:** If a worker or service module has no primary end-user UI, its module-doc interaction profile MUST be `headless` and the doc MUST describe its operator/API/job/runtime surfaces.
+- **MAY:** If a worker or service module participates in a UI-bearing product surface, the module doc MAY declare the applicable project interaction profile (`standard_ui` or `hfvi_canvas_webgl_game`) instead of `headless`.
+- **MUST NOT:** Pure package/library/tooling modules MUST NOT be forced to invent a fake interaction profile; if interaction profile is not applicable, the doc MUST say so explicitly outside the project-level interaction-profile enum.
+- **MUST:** Module docs MUST declare whether determinism is applicable.
+- **MUST:** A `Determinism` section is required when the module contains:
+  - algorithmic logic,
+  - generators,
+  - validators,
+  - scoring/eval logic,
+  - replay or fixture-based checks,
+  - or any logic whose outputs are used as release/verify evidence.
+- **MAY:** Pure static asset packages, style/token packages, or trivial type-only packages MAY declare `Determinism: not_applicable`, but they MUST provide a one-line reason.
+- **MUST NOT:** Repos MUST NOT place packages into a “half-governed” state where package docs are metadata-checked but structurally exempt from the rules they are expected to satisfy.
+- **SHOULD:** Appendix M SHOULD be used for the minimal package/library/worker template and the determinism applicability table.
+
+### 9.5 Traceability automation (strongly recommended)
 
 Manual traceability tables rot quickly unless the maintenance cost is near-zero. Projects SHOULD automate where feasible:
 
@@ -1398,7 +1579,7 @@ If a project does not automate traceability:
 - **MUST:** Keep the Traceability Index minimal and focused on critical workflows and externally observed/persisted surfaces.
 - **MUST:** Assign an owner for the Traceability Index and review it at least once per release milestone.
 
-### 9.4 Master Doc modularization and Context Packs (token-cost control)
+### 9.6 Master Doc modularization and Context Packs (token-cost control)
 
 Long, monolithic documents are expensive for both humans and LLMs. This standard explicitly supports **doc sets** (§2.2) so teams can keep a small canonical index while moving detail into scoped sub-docs.
 
@@ -1434,7 +1615,7 @@ Automation (strongly recommended):
   - missing required Document Control fields,
   - duplicate IDs (Route IDs, Screen IDs, Contract IDs) referenced from docs.
 
-### 9.5 Doc drift and inconsistency handling (code ↔ Master Doc)
+### 9.7 Doc drift and inconsistency handling (code ↔ Master Doc)
 
 Even with Docs-as-Software discipline, teams will sometimes discover mismatches between **current code behavior** and the **Master Doc** (or other docs). This is “doc drift” (§2.2).
 
@@ -1459,7 +1640,7 @@ Drift-prevention controls (recommended):
 - **SHOULD:** Treat contract fixtures + contract tests as the primary executable source of truth for cross-boundary behavior.
 - **MUST (L2):** L2 projects MUST have at least one automated drift check (API registry diff, schema/fixture validation, or traceability script) that runs in CI.
 
-### 9.6 Multi-party / multi-company documentation governance (humans + tools)
+### 9.8 Multi-party / multi-company documentation governance (humans + tools)
 
 Large programs often require multiple teams or companies to co-author the Master Doc set. The goal is to keep a single canonical intent while allowing parallel work.
 
@@ -1487,7 +1668,7 @@ To control cost while keeping discipline, `verify` MUST support **two standard m
 1. **Fast mode (review-loop gate)**  
    The default `./scripts/verify` behavior MUST correspond to “fast mode”.
    - It SHOULD complete in **< 5 minutes** on a standard developer machine for typical PRs.
-   - It MUST include: formatting/lint/type checks, boundary checks, contract validation (changed surfaces), and a minimal smoke test set.
+   - It MUST include: formatting/lint/type checks, boundary checks, contract validation (changed surfaces), document metadata gates, and a minimal smoke test set.
    - It MUST NOT require external, non-hermetic dependencies unless explicitly documented and stubbed.
 
 2. **Full mode (coverage gate)**  
@@ -1499,7 +1680,7 @@ Interface rules:
 
 - `./scripts/verify` MAY accept flags (e.g., `--full`, `--ci`), but the default behavior MUST be well-defined and documented in the Master Doc.
 - Repos SHOULD provide convenience wrappers `./scripts/verify-fast` and `./scripts/verify-full` (or make targets) to reduce ambiguity, while keeping `./scripts/verify` as the canonical entrypoint.
-- `verify` output MUST print: mode, git SHA/build ID, and pinned tool versions (see §10.5).
+- `verify` output MUST print: mode, git SHA/build ID, pinned tool versions, and the `standardManifestVersion` used by the repo.
 
 ### 10.2 Minimum per-repo gates
 
@@ -1508,30 +1689,168 @@ Interface rules:
 - `backend`: unit + integration + contract tests + idempotency/retry tests for job flows.
 - `frontend`: boundary checks + unit + minimal E2E smoke for critical flows.
 - `integration`: end-to-end smoke + compatibility runner (old/new fixtures) + system verify.
+- `docs/meta` (whenever a repo carries a governed doc set): status enum validation, governing-standard presence/correctness, required-section checks for canonical docs, and placeholder-residue checks.
 
-### 10.3 Gate tiers and scheduling (to control cost)
+### 10.3 Gate cadence taxonomy (required)
 
-- **PR gate (default):** run `verify` in its fast mode. This gate SHOULD provide feedback quickly and avoid flakiness.
-- **Full gate (recommended):** run `verify --full` (or equivalent) nightly and/or before releases. This is where slow visual/E2E suites can live.
-- **L0 projects:** MAY move some heavy gates to nightly/pre-release while the product is exploratory, but MUST document the tradeoff in the Master Doc and MUST keep at least a minimal smoke path for critical flows.
+Not every check belongs in the same execution lane. Every governed gate or report SHOULD declare exactly one **gate cadence** from the machine-readable standard manifest:
+
+- `pr_blocking`
+- `merge_to_main`
+- `nightly`
+- `pre_release`
+- `adoption_migration`
+
+Cadence semantics:
+
+1. **PR blocking**
+   - **MUST:** Catch explicit correctness failures that should never merge.
+   - Typical examples: placeholder residue, invalid status enum, missing governing standard, contract validation for changed surfaces, fail-open workflow lint, tooling-lock validation.
+
+2. **Merge to main / post-merge**
+   - **SHOULD:** Run aggregate audits that may be too wide for every PR but still need continuous enforcement.
+   - Typical examples: inventory sync reports, package-doc completeness audits, route/build/release drift summaries.
+
+3. **Nightly**
+   - **SHOULD:** Run slow, deep, or trend-oriented checks.
+   - Typical examples: full trace graph builds, deep contract completeness audits, full AI eval suites, broken-link scans, regression dashboards.
+
+4. **Pre-release**
+   - **MUST:** Validate release-surface parity and closure before promotion.
+   - Typical examples: Docker/build-context parity, release-lane status checks, full contract mirror sync, suite-level version closure, release pack verification.
+
+5. **Adoption / migration**
+   - **MAY:** Run only when onboarding legacy repos, upgrading the standard, slicing contracts, or migrating policy packs.
+   - Typical examples: `adopt-existing-repo`, `repo-normalize`, `upgrade-standard`, `contract-slice`.
+
+Rules:
+
+- **MUST:** Repos MUST document which cadences they implement in the Master Doc, a repo-local verify registry, or an equivalent governed artifact.
+- **MUST NOT:** Report-only or migration-only tools MUST NOT be presented as equivalent to PR-blocking conformance gates.
+- **SHOULD:** Suites SHOULD aggregate cadence metadata from multiple repos rather than inferring it from CI job names.
+- **SHOULD:** Machine-readable manifests SHOULD publish cadence and enforcement definitions, not only enum names, so dashboards and upgrade tools can explain gate intent without scraping Markdown.
+
+### 10.3.1 Verify registry (required when a repo has multiple governed gates)
+
+A repo with more than one governed gate, or with gates that differ by cadence, enforcement class, or artifact expectations, MUST publish a machine-readable **verify registry** validated against `verify_registry.schema.json`.
+
+Each governed gate entry MUST declare, at minimum:
+
+- `gateId`
+- `kind`
+- `cadence`
+- `enforcementClass`
+- `command`
+- owner/maintainer information
+- scope / touched-surface expectations
+- whether `failureOnNoResults` is true
+- and the expected artifact classes or refs when the gate is meant to produce governed output
+
+Rules:
+
+- **MUST:** Suites and dashboards SHOULD read verify-registry metadata rather than inferring gate semantics from CI job names.
+- **MUST:** A repo MUST NOT claim that a gate is governed if it is omitted from the verify registry while other governed gates are registry-backed.
+- **SHOULD:** Repos SHOULD keep a committed `verify_registry.json` (or schema-equivalent serialization) alongside `scripts/verify` so review and automation consume the same truth.
+
+### 10.3.2 Verify report (governed output)
+
+Governed verify runs SHOULD emit a machine-readable **verify report** validated against `verify_report.schema.json`.
+
+Rules:
+
+- **MUST:** A governed verify report MUST record: mode, build ref / repo SHA, `standardManifestVersion`, toolchain pins, start/end time, and per-gate outcomes.
+- **MUST:** Expected-but-not-executed gates MUST be represented explicitly as `not_run` or `error`; they MUST NOT disappear from the report.
+- **MUST:** When `failureOnNoResults = true` for a blocking or `source_of_truth` gate, “no result artifacts found” MUST produce an explicit failing outcome rather than a synthetic PASS summary.
+- **MUST NOT:** A verify report MUST NOT summarize overall PASS when every expected gate is skipped / not-run, or when required source-of-truth artifacts are missing.
+- **SHOULD:** Verify reports SHOULD link to artifact refs (logs, packets, replay reports, screenshots, traces) rather than embedding large blobs inline.
 
 ### 10.4 Flakiness policy
 
 - **MUST:** Tests that gate merges MUST be stable. Flaky tests MUST be quarantined with an owner and a plan (do not “retry forever”).
 - **SHOULD:** Prefer deterministic substitutes (record/replay, contract fixtures, stubs) over live external dependencies in CI.
+- **MUST:** “No results found” or “suite did not run” MUST be treated as an explicit failure for gates that are expected to produce governed output.
 
-### 10.5 Tooling reproducibility (to keep `verify` meaningful over time)
+### 10.5 Tooling reproducibility, enforcement classes, and source-of-truth rules
 
-`verify` only provides durable guarantees if the toolchain is reproducible.
+`verify` only provides durable guarantees if the toolchain is reproducible, the output semantics are explicit, and local mirrors of canonical artifacts remain traceable back to a released snapshot.
+
+Rules:
 
 - **MUST:** `verify` MUST be runnable in a hermetic environment (container or equivalent) that pins tool versions.
 - **MUST:** The repo MUST define a **tooling lock** mechanism (e.g., `tooling.lock`, `tool-versions`, or an image digest) that can be used to reproduce the exact toolchain used by CI.
+- **SHOULD:** When a repo uses a standalone `tooling.lock` manifest, that manifest SHOULD validate against `tooling_lock.schema.json` shipped with this release of the standard.
 - **MUST NOT:** CI pipelines MUST NOT depend on floating tool tags (e.g., `latest`) for the `verify` environment.
-- **SHOULD:** `verify` SHOULD emit a machine-readable summary (`verify-report.json`) including: mode, toolchain pins, gate results, and links to key artifacts (logs, manifests, snapshots).
+- **MUST:** Each governed gate/check MUST declare an **enforcement class**:
+  - `report_only`
+  - `blocking`
+  - `source_of_truth`
+- **MUST:** Repos and suites MUST distinguish “metadata collection” from “enforcement”. A check that only reports state MUST NOT be counted as a passing enforcement gate unless it is explicitly classified as `blocking` or `source_of_truth`.
+- **MUST:** If a repo keeps a local copy/mirror of the canonical standard, policy pack, or another governed artifact, that mirror MUST be declared as a **mirror** in tooling lock / release snapshot metadata, with a source-of-truth ref, mirror purpose, and `localModificationsAllowed=false` unless the divergence is governed as an explicit extension.
+- **SHOULD:** `verify` SHOULD emit a machine-readable summary (`verify_report.json`) including: mode, toolchain pins, gate results, gate cadence, enforcement class, and links to key artifacts (logs, manifests, snapshots).
 - **SHOULD (regulated / high-stakes):** verification tooling itself SHOULD have self-tests (pass-case + fail-case) to avoid “who validates the validator?” failures.
 
-See Appendix L for a concrete, copy-pasteable tooling standard.
+### 10.6 Suite lock (required when standard, factory, and verify runtime are split)
+
+When the standard, suite orchestration, repo factory, verify runtime, policy packs, or control-plane-adjacent tooling live in separate repos/modules, a suite-level **lock artifact** is required in addition to repo-local tooling locks.
+
+Rules:
+
+- **MUST:** A suite that governs multiple separately versioned modules MUST maintain a machine-readable **suite lock** (`suite.lock` or equivalent) validated against `suite_lock.schema.json`.
+- **MUST:** The suite lock MUST pin, at minimum:
+  - the governed modules,
+  - each module’s primary repo role,
+  - locked refs,
+  - override policy,
+  - and the allowed local state model (`missing`, `present_locked_match`, `present_locked_mismatch`, `present_local_override`, `dirty`).
+- **MUST:** Locked sync MUST be the default for release-critical/adoption-critical flows; suites MUST NOT use clone-tip / floating HEAD as their effective source of truth.
+- **SHOULD:** Suites SHOULD publish a module-state report derived from the suite lock rather than inferring state ad hoc from git output.
+
+### 10.7 Suite-level version closure (required when standard, factory, and verify runtime are split)
+
+When the standard, repo factory, verify runtime, policy packs, and multi-repo orchestration live in separate repos/modules, local tooling locks are not enough. The system also needs a **suite-level version closure**.
+
+Rules:
+
+- **MUST:** If a governed workflow depends on separately versioned components such as:
+  - the DAS standard,
+  - a repo factory / scaffold layer,
+  - a verify runtime,
+  - policy packs,
+  - or multi-repo orchestration tooling,
+  then the suite MUST maintain a machine-readable **version closure manifest** validated against `suite_version_closure.schema.json`.
+- **MUST:** The version closure manifest MUST pin, at minimum:
+  - `standardVersion`,
+  - `standardManifestVersion`,
+  - `suiteVersion`,
+  - `factoryVersion`,
+  - `verifyRuntimeVersion`,
+  - `policyPackVersion` (if applicable),
+  - `generatorTemplateVersion` (if applicable),
+  - `suiteLockRef`,
+  - and the exact refs/digests used by CI/release-critical flows.
+- **MUST NOT:** Release-critical tooling flows MUST NOT clone “latest tip” / unpinned HEAD as their effective source of truth.
+- **MUST:** Closure manifests for governed release/adoption flows MUST use **structured pinned refs** (`kind`, `uri`, `pinType`, `pinValue`, and `floating=false`) so “no clone-tip / no floating tags” can be machine-checked. Governed schemas MUST NOT accept legacy bare string refs in place of structured refs.
+- **MUST:** Machine-readable ref schemas MUST reject nonsensical `kind × pinType` pairs (for example `container_image + path`, `git + digest`) in governed closure/lock artifacts.
+- **SHOULD:** Pre-release gates SHOULD validate suite lock + suite version closure before promotion.
+- **SHOULD:** Adoption/migration tools SHOULD update the closure manifest as part of the same change rather than leaving it to a later manual step.
+
+### 10.8 Standard release snapshots and local mirror provenance
+
+Canonical standard releases MUST be consumable as immutable snapshots, not only as ad-hoc document drops.
+
+Rules:
+
+- **MUST:** A governed standard release bundle MUST ship a machine-readable `release_snapshot_manifest.json` validated against `release_snapshot_manifest.schema.json`.
+- **MUST:** The release snapshot manifest MUST record: `standardVersion`, `standardManifestVersion`, snapshot kind, build ref, source repo ref, bundle digest, and per-artifact digests (or an equivalent immutable artifact inventory).
+- **MUST:** Repo-local mirrors/copies of the standard, policy packs, or other governed release artifacts MUST reference the originating release snapshot via tooling-lock or equivalent pinned metadata.
+- **MUST NOT:** Factories or product repos MUST NOT treat mutable, template-seeded local copies of the standard as canonical unless they are explicitly governed mirrors with snapshot provenance.
+- **SHOULD:** Adoption and `standard-diff` tools SHOULD compare repo-local mirrors against the release snapshot manifest before mutation or upgrade.
+- **SHOULD:** Appendix N and Appendix L be used together: Appendix N for placement/ownership, Appendix L for lock/report/snapshot mechanics.
+
+See Appendix L plus the machine-readable schemas shipped with this version of the standard.
+
 ## 11. AI-assisted development workflow (minimum)
+
 
 ### 11.1 AI task template (MUST)
 
@@ -1835,7 +2154,7 @@ For any change to a **Compatibility Mode** contract surface (cross-repo, runtime
 
 ---
 
-## Appendix C–K (Externalized)
+## Appendix C–N (Externalized)
 
 > The following appendices are intentionally **externalized into separate files** to keep `SPECIFICATION.md` shorter (LLM context window/token efficiency) and to reduce Markdown rendering drift in long documents.
 > This section preserves the original appendix headings/anchors for backward compatibility.
@@ -1850,6 +2169,9 @@ Index:
 - **Appendix I - DDD playbook for SDMM + contract-driven systems** → [`appendices/appendix-i-ddd-playbook.md`](appendices/appendix-i-ddd-playbook.md)
 - **Appendix J - BDD scenarios + verification playbook** → [`appendices/appendix-j-bdd-scenarios-verification-playbook.md`](appendices/appendix-j-bdd-scenarios-verification-playbook.md)
 - **Appendix K - High-Fidelity Visual Interaction (HFVI) Extension: Visual Interaction Spec Appendix (VIS) Template** → [`appendices/appendix-k-hfvi-vis-template.md`](appendices/appendix-k-hfvi-vis-template.md)
+- **Appendix L - DAS Tooling Standard (Reproducible Verify + Version Closure)** → [`appendices/appendix-l-tooling-standard.md`](appendices/appendix-l-tooling-standard.md)
+- **Appendix M - Doc-family governance and subordinate-doc templates** → [`appendices/appendix-m-doc-family-governance-and-module-doc-templates.md`](appendices/appendix-m-doc-family-governance-and-module-doc-templates.md)
+- **Appendix N - Repo-role taxonomy, tool placement, and execution matrix** → [`appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md`](appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md)
 
 ## Appendix C - Project Master Doc Template
 
@@ -1907,4 +2229,20 @@ Index:
 > 
 > Rationale: keep the main standard within a smaller context window for LLMs, reduce token cost, and avoid long-document rendering/layout drift.
 
+## Appendix L - DAS Tooling Standard (Reproducible Verify + Version Closure)
 
+> **Moved out of the main spec.** See [`appendices/appendix-l-tooling-standard.md`](appendices/appendix-l-tooling-standard.md).
+> 
+> Rationale: keep the main standard within a smaller context window for LLMs, reduce token cost, and make tooling-lock / version-closure guidance consumable by both humans and automation.
+
+## Appendix M - Doc-family governance and subordinate-doc templates
+
+> **Moved out of the main spec.** See [`appendices/appendix-m-doc-family-governance-and-module-doc-templates.md`](appendices/appendix-m-doc-family-governance-and-module-doc-templates.md).
+> 
+> Rationale: keep the main standard within a smaller context window for LLMs, reduce token cost, and make subordinate-doc / headless / package governance reusable across repos. The machine-readable template catalog in `template_catalog.json` maps core doc types to their shipped templates.
+
+## Appendix N - Repo-role taxonomy, tool placement, and execution matrix
+
+> **Moved out of the main spec.** See [`appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md`](appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md).
+> 
+> Rationale: keep the main standard within a smaller context window for LLMs, reduce token cost, and make repo-role / tool-placement / execution-lane rules reusable without hard-coding monorepo-specific tooling assumptions into every section of the core spec.

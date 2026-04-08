@@ -1,0 +1,54 @@
+{
+  "$schema": "./verify_registry.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardManifestVersion": "1.4.6",
+  "repoId": "example-product-repo",
+  "repoRole": "product_repo",
+  "defaultVerifyCommand": "./scripts/verify",
+  "gates": [
+    {
+      "gateId": "docs.meta",
+      "kind": "docs_meta",
+      "cadence": "pr_blocking",
+      "enforcementClass": "blocking",
+      "command": "./scripts/verify --gate docs",
+      "owners": [
+        "docs-owner"
+      ],
+      "scope": "touched docs",
+      "failureOnNoResults": false,
+      "requiredOnTouchedSurfaces": [
+        "docs"
+      ]
+    },
+    {
+      "gateId": "contracts.compat",
+      "kind": "contracts",
+      "cadence": "merge_to_main",
+      "enforcementClass": "blocking",
+      "command": "./scripts/verify --gate contracts",
+      "owners": [
+        "api-owner"
+      ],
+      "scope": "changed contract surfaces",
+      "failureOnNoResults": true,
+      "expectedArtifactCount": 1
+    },
+    {
+      "gateId": "nightly.replay",
+      "kind": "replay",
+      "cadence": "nightly",
+      "enforcementClass": "report_only",
+      "command": "./scripts/verify --full --gate replay",
+      "owners": [
+        "qa-owner"
+      ],
+      "scope": "replay suite",
+      "failureOnNoResults": true,
+      "producesArtifacts": [
+        "reports/replay-report.json"
+      ],
+      "expectedArtifactCount": 1
+    }
+  ]
+}

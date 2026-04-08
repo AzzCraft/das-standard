@@ -1,0 +1,43 @@
+{
+  "$schema": "./release_snapshot_manifest.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.4.6",
+  "standardManifestVersion": "1.4.6",
+  "snapshotKind": "standard_release_bundle",
+  "createdAt": "2026-04-06T00:00:00Z",
+  "buildRef": "release:v1.4.6",
+  "sourceRepoRef": {
+    "kind": "git",
+    "uri": "git@example.com:das-standard.git",
+    "pinType": "tag",
+    "pinValue": "v1.4.6",
+    "floating": false
+  },
+  "bundleDigestAlgorithm": "sha256",
+  "bundleDigest": "sha256:examplebundle",
+  "artifacts": [
+    {
+      "path": "SPECIFICATION.md",
+      "sha256": "sha256:spec",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "standard_manifest.json",
+      "sha256": "sha256:manifest",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "scripts/verify",
+      "sha256": "sha256:verify",
+      "artifactClass": "script",
+      "required": true
+    }
+  ],
+  "mirrorRules": {
+    "localMirrorAllowed": true,
+    "requireSnapshotRefForMirror": true,
+    "allowLocalModifications": false
+  }
+}

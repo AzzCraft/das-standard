@@ -1,0 +1,62 @@
+{
+  "$schema": "./suite_lock.schema.json",
+  "schemaVersion": "1.0.0",
+  "suiteId": "example-suite",
+  "suiteVersion": "2.3.0",
+  "standardManifestVersion": "1.4.6",
+  "syncMode": "locked",
+  "allowCloneTip": false,
+  "defaultOverridePolicy": "explicit_ticket_required",
+  "modules": {
+    "das-standard": {
+      "role": "standard_repo",
+      "lockedRef": {
+        "kind": "git",
+        "uri": "git@example.com:das-standard.git",
+        "pinType": "tag",
+        "pinValue": "v1.4.6",
+        "floating": false
+      },
+      "required": true,
+      "overridePolicy": "forbidden",
+      "allowedLocalState": [
+        "present_locked_match"
+      ]
+    },
+    "das-suite": {
+      "role": "suite_repo",
+      "lockedRef": {
+        "kind": "git",
+        "uri": "git@example.com:das-suite.git",
+        "pinType": "tag",
+        "pinValue": "v2.3.0",
+        "floating": false
+      },
+      "required": true,
+      "overridePolicy": "explicit_ticket_required",
+      "allowedLocalState": [
+        "present_locked_match",
+        "present_local_override"
+      ]
+    },
+    "cadence-oss": {
+      "role": "verify_runtime_repo",
+      "lockedRef": {
+        "kind": "git",
+        "uri": "git@example.com:cadence-oss.git",
+        "pinType": "commit",
+        "pinValue": "deadbeef",
+        "floating": false
+      },
+      "required": true,
+      "overridePolicy": "explicit_ticket_required",
+      "allowedLocalState": [
+        "present_locked_match",
+        "present_local_override"
+      ],
+      "dependsOn": [
+        "das-standard"
+      ]
+    }
+  }
+}

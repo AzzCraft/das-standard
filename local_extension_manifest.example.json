@@ -1,0 +1,36 @@
+{
+  "$schema": "./local_extension_manifest.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardManifestVersion": "1.4.6",
+  "extensions": [
+    {
+      "name": "org.example.repoRole.platform_subsuite",
+      "namespace": "org.example.repoRole",
+      "kind": "repo_role",
+      "extensionPoint": "repoRoles",
+      "owner": "platform-architecture",
+      "scope": "suite only",
+      "compatibilityNote": "Acts like a specialized suite repo for a single business line.",
+      "reviewDate": "2026-07-01",
+      "values": [
+        "platform_subsuite"
+      ],
+      "placementTarget": "suite_repo"
+    },
+    {
+      "name": "org.example.docs.service_profile_note",
+      "namespace": "org.example.docs",
+      "kind": "doc_type",
+      "extensionPoint": "docTypes",
+      "owner": "platform-docs",
+      "scope": "service repos only",
+      "compatibilityNote": "Alias doc used by legacy repos while migrating to headless_surface_note.",
+      "upstreamingTrigger": "Retire once all service repos adopt the core headless_surface_note doc type.",
+      "values": [
+        "service_profile_note"
+      ],
+      "mapsToCoreDocType": "headless_surface_note",
+      "satisfiesCoreRequirement": true
+    }
+  ]
+}

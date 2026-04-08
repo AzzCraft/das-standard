@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/verify_registry.schema.json",
+  "title": "DAS Verify Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "standardManifestVersion",
+    "repoId",
+    "repoRole",
+    "defaultVerifyCommand",
+    "gates"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "standardManifestVersion": {
+      "type": "string"
+    },
+    "repoId": {
+      "type": "string"
+    },
+    "repoRole": {
+      "enum": [
+        "standard_repo",
+        "suite_repo",
+        "factory_repo",
+        "verify_runtime_repo",
+        "policy_pack_repo",
+        "control_plane_repo",
+        "enterprise_subtree_repo",
+        "product_repo",
+        "monorepo_local_tooling"
+      ]
+    },
+    "defaultVerifyCommand": {
+      "type": "string"
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/gate"
+      }
+    }
+  },
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gateId",
+        "kind",
+        "cadence",
+        "enforcementClass",
+        "command",
+        "failureOnNoResults"
+      ],
+      "properties": {
+        "gateId": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "docs_meta",
+            "contracts",
+            "unit",
+            "assembly",
+            "integration",
+            "api_e2e",
+            "ui_e2e",
+            "replay",
+            "eval",
+            "drift_audit",
+            "migration_adoption",
+            "other"
+          ]
+        },
+        "cadence": {
+          "enum": [
+            "pr_blocking",
+            "merge_to_main",
+            "nightly",
+            "pre_release",
+            "adoption_migration"
+          ]
+        },
+        "enforcementClass": {
+          "enum": [
+            "report_only",
+            "blocking",
+            "source_of_truth"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "owners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "scope": {
+          "type": "string"
+        },
+        "failureOnNoResults": {
+          "type": "boolean"
+        },
+        "producesArtifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expectedArtifactCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "requiredOnTouchedSurfaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

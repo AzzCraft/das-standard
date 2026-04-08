@@ -1,0 +1,367 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/tooling_lock.schema.json",
+  "title": "DAS Tooling Lock",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "standardManifestVersion",
+    "sourceOfTruth",
+    "verifyRuntime",
+    "toolchain"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "standardManifestVersion": {
+      "type": "string"
+    },
+    "sourceOfTruth": {
+      "$ref": "#/$defs/pinnedRef"
+    },
+    "verifyRuntime": {
+      "$ref": "#/$defs/pinnedRef"
+    },
+    "standardSnapshotRef": {
+      "$ref": "#/$defs/pinnedRef"
+    },
+    "suiteVersionClosureRef": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/pinnedRef"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "file"
+            },
+            "pinType": {
+              "enum": [
+                "path",
+                "manifest"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "pinType"
+          ]
+        }
+      ]
+    },
+    "suiteLockRef": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/pinnedRef"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "file"
+            },
+            "pinType": {
+              "enum": [
+                "path",
+                "manifest"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "pinType"
+          ]
+        }
+      ]
+    },
+    "verifyRegistryRef": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/pinnedRef"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "file"
+            },
+            "pinType": {
+              "enum": [
+                "path",
+                "manifest"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "pinType"
+          ]
+        }
+      ]
+    },
+    "generatorTemplateVersion": {
+      "type": "string"
+    },
+    "policyPackVersion": {
+      "type": "string"
+    },
+    "toolchain": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "version"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "manager": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mirrors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/mirrorEntry"
+      }
+    }
+  },
+  "$defs": {
+    "pinnedRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "uri",
+        "pinType",
+        "pinValue"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "git",
+            "container_image",
+            "package",
+            "file",
+            "ci_workflow",
+            "custom"
+          ]
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pinType": {
+          "enum": [
+            "commit",
+            "tag",
+            "digest",
+            "version",
+            "path",
+            "manifest"
+          ]
+        },
+        "pinValue": {
+          "type": "string",
+          "minLength": 1
+        },
+        "floating": {
+          "type": "boolean",
+          "const": false
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "git"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "commit",
+                  "tag"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "container_image"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "const": "digest"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "package"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "const": "version"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "file"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "path",
+                  "manifest"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "ci_workflow"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "path",
+                  "manifest"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "mirrorEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "path",
+        "sourceOfTruth",
+        "mirrorPurpose",
+        "localModificationsAllowed"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "generated_contracts",
+            "generated_clients",
+            "generated_docs",
+            "standard_local_copy",
+            "policy_pack_copy",
+            "other"
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "sourceOfTruth": {
+          "type": "string"
+        },
+        "mirrorPurpose": {
+          "type": "string"
+        },
+        "localModificationsAllowed": {
+          "type": "boolean"
+        },
+        "snapshotRef": {
+          "$ref": "#/$defs/pinnedRef"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "standard_local_copy",
+                  "policy_pack_copy"
+                ]
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "snapshotRef"
+            ],
+            "properties": {
+              "localModificationsAllowed": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,474 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/standard_manifest.schema.json",
+  "title": "DAS Standard Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "standardId",
+    "standardVersion",
+    "releasedAt",
+    "docTypes",
+    "enums",
+    "interactionProfiles",
+    "gateCadences",
+    "requiredDocMetadata",
+    "requiredSections",
+    "normativeArtifactRefs",
+    "requiredArtifacts",
+    "tooling",
+    "extensions",
+    "conditionalRequirements",
+    "supportingArtifactRefs"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "standardId": {
+      "type": "string"
+    },
+    "standardVersion": {
+      "type": "string"
+    },
+    "releasedAt": {
+      "type": "string"
+    },
+    "docTypes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "master_doc",
+          "prd",
+          "ui_spec",
+          "headless_surface_note",
+          "module_doc",
+          "runbook",
+          "deployment_doc",
+          "context_pack",
+          "support_note",
+          "normative_addendum"
+        ]
+      },
+      "minItems": 10,
+      "uniqueItems": true
+    },
+    "enums": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conformanceProfiles",
+        "interactionProfiles",
+        "docStatuses",
+        "gateCadences",
+        "gateEnforcementClasses",
+        "docFamilyRoles",
+        "moduleKinds",
+        "addendumKinds",
+        "determinismValues",
+        "repoRoles",
+        "toolClasses",
+        "toolPlacementTargets",
+        "verifyGateKinds",
+        "moduleStates",
+        "releaseSnapshotKinds",
+        "verifyReportOutcomes"
+      ],
+      "properties": {
+        "conformanceProfiles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "L0",
+              "L1",
+              "L2"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "interactionProfiles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "standard_ui",
+              "headless",
+              "hfvi_canvas_webgl_game"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "docStatuses": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "draft",
+              "active",
+              "frozen",
+              "deprecated"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "gateCadences": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "pr_blocking",
+              "merge_to_main",
+              "nightly",
+              "pre_release",
+              "adoption_migration"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "gateEnforcementClasses": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "report_only",
+              "blocking",
+              "source_of_truth"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "docFamilyRoles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "canonical_entrypoint",
+              "subordinate_doc",
+              "module_doc"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "moduleKinds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "package",
+              "library",
+              "worker",
+              "service",
+              "infra_module",
+              "tooling_module",
+              "generator",
+              "policy_pack",
+              "other"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "addendumKinds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "deployment",
+              "governance",
+              "security",
+              "other"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "determinismValues": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "tier0",
+              "tier1",
+              "tier2",
+              "not_applicable"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "repoRoles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "standard_repo",
+              "suite_repo",
+              "factory_repo",
+              "verify_runtime_repo",
+              "policy_pack_repo",
+              "control_plane_repo",
+              "enterprise_subtree_repo",
+              "product_repo",
+              "monorepo_local_tooling"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "toolClasses": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "repo_audit",
+              "repo_mutation",
+              "contract_validation",
+              "verify_runtime",
+              "policy_pack",
+              "suite_orchestration",
+              "control_plane",
+              "enterprise_modelops",
+              "monorepo_local_guard",
+              "migration_upgrade",
+              "other"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "toolPlacementTargets": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "standard_repo",
+              "suite_repo",
+              "factory_repo",
+              "verify_runtime_repo",
+              "policy_pack_repo",
+              "control_plane_repo",
+              "enterprise_subtree_repo",
+              "product_repo",
+              "monorepo_local_tooling",
+              "repo_local_only"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "verifyGateKinds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "docs_meta",
+              "contracts",
+              "unit",
+              "assembly",
+              "integration",
+              "api_e2e",
+              "ui_e2e",
+              "replay",
+              "eval",
+              "drift_audit",
+              "migration_adoption",
+              "other"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "moduleStates": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "missing",
+              "present_locked_match",
+              "present_locked_mismatch",
+              "present_local_override",
+              "dirty"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "releaseSnapshotKinds": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "standard_release_bundle",
+              "factory_seed_snapshot",
+              "policy_pack_snapshot",
+              "suite_snapshot",
+              "repo_local_mirror"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "verifyReportOutcomes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "pass",
+              "fail",
+              "error",
+              "skipped",
+              "not_run"
+            ]
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "interactionProfiles": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "standard_ui",
+          "headless",
+          "hfvi_canvas_webgl_game"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "gateCadences": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "pr_blocking",
+          "merge_to_main",
+          "nightly",
+          "pre_release",
+          "adoption_migration"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "requiredDocMetadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "requiredSections": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "requiredSubsections": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "normativeArtifactRefs": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "requiredArtifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "tooling": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "conditionalRequirements": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "supportingArtifactRefs": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "metadataFieldEnumBindings": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "gateCadenceDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object"
+          }
+        ]
+      }
+    },
+    "gateEnforcementDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object"
+          }
+        ]
+      }
+    },
+    "sectionValueEnumBindings": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "repoRoleDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "toolClassDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "toolPlacementDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "verifyGateKindDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "moduleStateDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "releaseSnapshotKindDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "gateOutcomeDefinitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

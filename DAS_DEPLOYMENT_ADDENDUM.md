@@ -1,14 +1,15 @@
 # DAS Deployment & Environment Addendum (DAS-Deploy)
-> **Normative companion to the Docs as Software (DAS) Standard v1.3.0**
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-
-**Name:** DAS Deployment & Environment Addendum (中文：文码合一部署与环境附录)
-**Maintained by:** AzzCraft Inc.
-**Last updated:** 2026-01-29
-**Status:** Normative
-
----
+## Document Control
+- Doc ID: DAS-ADDENDUM-DEPLOYMENT
+- Owner: DAS Maintainers
+- Status: active
+- Governing standard: SPECIFICATION.md
+- Last updated: 2026-04-06
+- Scope: Deployment, environment strategy, release artifact identity, supply-chain controls, migrations, and rollback guidance shipped with the DAS v1.4.6 release.
+- Parent standard: SPECIFICATION.md
+- Doc family role: subordinate_doc
+- Addendum kind: deployment
 
 ## Normative language
 

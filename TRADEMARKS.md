@@ -21,7 +21,7 @@ AzzCraft Inc.  may (now or in the future) register one or more marks for these n
 ## Allowed uses (nominative / descriptive)
 
 You may use the names above to:
-- refer to the standard in documentation or presentations, for example, “implements DAS Standard v1.0.0”,
+- refer to the standard in documentation or presentations, for example, “implements DAS Standard v1.4.6”,
 - link to this repository,
 - compare DAS to other approaches,
 - state that your project is “compatible with” or “based on” DAS (see the compliance rules below).
@@ -29,12 +29,12 @@ You may use the names above to:
 ## “DAS-compliant” and compliance claims
 
 You may claim **“DAS-compliant”** (or similar language such as “DAS-compatible”) only if:
-1. You clearly state *which* DAS version you target (e.g., “DAS Standard v1.0.0”), and
+1. You clearly state *which* DAS version you target (e.g., “DAS Standard v1.4.6”), and
 2. Your project passes the **Official Reference Validator** (`das-cli`) for that version without errors, and
 3. You do not imply endorsement by AzzCraft unless you have written permission.
 
 Recommended compliance phrasing:
-- “DAS Standard v1.0.0 — validated by `das-cli` (v1.2.0)”
+- “DAS Standard v1.4.6 — validated by the reference validator for that version”
 
 ## Restricted uses
 

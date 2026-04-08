@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/suite_version_closure.schema.json",
+  "title": "DAS Suite Version Closure",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "standardVersion",
+    "standardManifestVersion",
+    "suiteVersion",
+    "factoryVersion",
+    "verifyRuntimeVersion",
+    "closureUpdatedAt",
+    "suiteLockRef",
+    "refs"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "standardVersion": {
+      "type": "string"
+    },
+    "standardManifestVersion": {
+      "type": "string"
+    },
+    "suiteVersion": {
+      "type": "string"
+    },
+    "factoryVersion": {
+      "type": "string"
+    },
+    "verifyRuntimeVersion": {
+      "type": "string"
+    },
+    "policyPackVersion": {
+      "type": "string"
+    },
+    "generatorTemplateVersion": {
+      "type": "string"
+    },
+    "closureUpdatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "suiteLockRef": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/structuredRef"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "file"
+            },
+            "pinType": {
+              "enum": [
+                "path",
+                "manifest"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "pinType"
+          ]
+        }
+      ]
+    },
+    "lockRefs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "suiteToolingLock": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "repoToolingLock": {
+          "$ref": "#/$defs/structuredRef"
+        }
+      }
+    },
+    "refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standard",
+        "suite",
+        "factory",
+        "verifyRuntime"
+      ],
+      "properties": {
+        "standard": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "suite": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "factory": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "verifyRuntime": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "policyPack": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "generatorTemplate": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "standardSnapshot": {
+          "$ref": "#/$defs/structuredRef"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "structuredRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "uri",
+        "pinType",
+        "pinValue"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "git",
+            "container_image",
+            "package",
+            "file",
+            "ci_workflow",
+            "custom"
+          ]
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pinType": {
+          "enum": [
+            "commit",
+            "tag",
+            "digest",
+            "version",
+            "path",
+            "manifest"
+          ]
+        },
+        "pinValue": {
+          "type": "string",
+          "minLength": 1
+        },
+        "floating": {
+          "type": "boolean",
+          "const": false
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "git"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "commit",
+                  "tag"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "container_image"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "const": "digest"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "package"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "const": "version"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "file"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "path",
+                  "manifest"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "ci_workflow"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "path",
+                  "manifest"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

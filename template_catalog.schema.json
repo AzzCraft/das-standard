@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/template_catalog.schema.json",
+  "title": "DAS Template Catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "standardVersion",
+    "templates"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "standardVersion": {
+      "type": "string"
+    },
+    "templates": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "docType",
+          "artifactPath",
+          "sectionAnchor",
+          "templateKind"
+        ],
+        "properties": {
+          "docType": {
+            "enum": [
+              "master_doc",
+              "prd",
+              "ui_spec",
+              "headless_surface_note",
+              "module_doc",
+              "runbook",
+              "deployment_doc",
+              "context_pack",
+              "support_note",
+              "normative_addendum"
+            ]
+          },
+          "artifactPath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sectionAnchor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "templateKind": {
+            "enum": [
+              "canonical_full",
+              "minimal_governed"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

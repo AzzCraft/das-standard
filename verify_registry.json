@@ -1,0 +1,58 @@
+{
+  "$schema": "./verify_registry.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardManifestVersion": "1.4.6",
+  "repoId": "das-standard",
+  "repoRole": "standard_repo",
+  "defaultVerifyCommand": "./scripts/verify",
+  "gates": [
+    {
+      "gateId": "std.bundle.files",
+      "kind": "docs_meta",
+      "cadence": "pr_blocking",
+      "enforcementClass": "blocking",
+      "description": "Checks requiredArtifacts existence, VERSION consistency, and appendix/link closure for the standard release bundle.",
+      "command": "./scripts/verify --gate bundle-files",
+      "owners": [
+        "das-standard-maintainers"
+      ],
+      "scope": "release bundle",
+      "failureOnNoResults": false,
+      "producesArtifacts": [
+        "release_snapshot_manifest.json"
+      ],
+      "expectedArtifactCount": 1
+    },
+    {
+      "gateId": "std.schemas.validate",
+      "kind": "contracts",
+      "cadence": "pr_blocking",
+      "enforcementClass": "blocking",
+      "description": "Validates machine-readable schemas, manifest, registry, and examples shipped by the standard.",
+      "command": "./scripts/verify --gate schemas",
+      "owners": [
+        "das-standard-maintainers"
+      ],
+      "scope": "schemas + examples + manifest",
+      "failureOnNoResults": true,
+      "expectedArtifactCount": 1
+    },
+    {
+      "gateId": "std.release.snapshot",
+      "kind": "migration_adoption",
+      "cadence": "pre_release",
+      "enforcementClass": "source_of_truth",
+      "description": "Checks release snapshot manifest coherence and the repo-canonical verify registry before publication.",
+      "command": "./scripts/verify --gate release-snapshot",
+      "owners": [
+        "das-standard-maintainers"
+      ],
+      "scope": "release snapshot",
+      "failureOnNoResults": true,
+      "producesArtifacts": [
+        "release_snapshot_manifest.json"
+      ],
+      "expectedArtifactCount": 1
+    }
+  ]
+}

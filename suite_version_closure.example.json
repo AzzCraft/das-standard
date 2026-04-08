@@ -1,0 +1,79 @@
+{
+  "$schema": "./suite_version_closure.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.4.6",
+  "standardManifestVersion": "1.4.6",
+  "suiteVersion": "2.3.0",
+  "factoryVersion": "1.9.0",
+  "verifyRuntimeVersion": "3.4.1",
+  "policyPackVersion": "2026.04",
+  "generatorTemplateVersion": "2026.04.06",
+  "closureUpdatedAt": "2026-04-06T00:00:00Z",
+  "suiteLockRef": {
+    "kind": "file",
+    "uri": "./suite_lock.example.json",
+    "pinType": "manifest",
+    "pinValue": "suite_lock.example.json",
+    "floating": false
+  },
+  "lockRefs": {
+    "suiteToolingLock": {
+      "kind": "file",
+      "uri": "./tooling_lock.example.json",
+      "pinType": "manifest",
+      "pinValue": "tooling_lock.example.json",
+      "floating": false
+    }
+  },
+  "refs": {
+    "standard": {
+      "kind": "git",
+      "uri": "git@example.com:das-standard.git",
+      "pinType": "tag",
+      "pinValue": "v1.4.6",
+      "floating": false
+    },
+    "suite": {
+      "kind": "git",
+      "uri": "git@example.com:das-suite.git",
+      "pinType": "tag",
+      "pinValue": "v2.3.0",
+      "floating": false
+    },
+    "factory": {
+      "kind": "package",
+      "uri": "pkg://dasops",
+      "pinType": "version",
+      "pinValue": "1.9.0",
+      "floating": false
+    },
+    "verifyRuntime": {
+      "kind": "git",
+      "uri": "git@example.com:cadence-oss.git",
+      "pinType": "commit",
+      "pinValue": "deadbeef",
+      "floating": false
+    },
+    "policyPack": {
+      "kind": "package",
+      "uri": "pkg://policy-pack/unified-v146-baseline",
+      "pinType": "version",
+      "pinValue": "2026.04",
+      "floating": false
+    },
+    "generatorTemplate": {
+      "kind": "package",
+      "uri": "pkg://das-leafer/templates",
+      "pinType": "version",
+      "pinValue": "2026.04.06",
+      "floating": false
+    },
+    "standardSnapshot": {
+      "kind": "file",
+      "uri": "./release_snapshot_manifest.example.json",
+      "pinType": "manifest",
+      "pinValue": "release_snapshot_manifest.example.json",
+      "floating": false
+    }
+  }
+}

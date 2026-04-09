@@ -1,0 +1,84 @@
+{
+  "$schema": "https://das-standard.dev/schemas/clause_index.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.4.6",
+  "clauses": [
+    {
+      "id": "cl-2.1",
+      "chapter": "ch-2",
+      "title": "Precedence and conflict resolution",
+      "keywords": ["precedence", "conflict", "override"],
+      "gateLabels": ["adoption_migration"]
+    },
+    {
+      "id": "cl-2.3",
+      "chapter": "ch-2",
+      "title": "Conformance profiles and cost controls",
+      "keywords": ["L0", "L1", "L2", "conformance", "profile", "cost"],
+      "gateLabels": ["adoption_migration", "pr_blocking"]
+    },
+    {
+      "id": "cl-2.4",
+      "chapter": "ch-2",
+      "title": "Interaction profiles (HFVI extension)",
+      "keywords": ["standard_ui", "headless", "hfvi", "canvas", "webgl", "game"],
+      "gateLabels": ["pr_blocking"]
+    },
+    {
+      "id": "cl-2.5",
+      "chapter": "ch-2",
+      "title": "Machine-readable standard manifest and release artifacts",
+      "keywords": ["standard_manifest", "suite_version_closure", "tooling_lock", "local_extension_manifest"],
+      "gateLabels": ["pr_blocking", "merge_to_main"]
+    },
+    {
+      "id": "cl-3.1",
+      "chapter": "ch-3",
+      "title": "Repo boundaries vs runtime boundaries",
+      "keywords": ["repo", "boundary", "runtime", "topology"],
+      "gateLabels": ["adoption_migration"]
+    },
+    {
+      "id": "cl-3.5",
+      "chapter": "ch-3",
+      "title": "Contract hub requirements",
+      "keywords": ["contract_hub", "fixtures", "openapi", "schemas", "semantics"],
+      "gateLabels": ["pr_blocking", "merge_to_main"]
+    },
+    {
+      "id": "cl-4.1",
+      "chapter": "ch-4",
+      "title": "Casing policy",
+      "keywords": ["camelCase", "snake_case", "casing", "naming"],
+      "gateLabels": ["pr_blocking"]
+    },
+    {
+      "id": "cl-4.4",
+      "chapter": "ch-4",
+      "title": "Canonical envelope shapes",
+      "keywords": ["ErrorEnvelope", "Diagnostics", "Budget", "envelope"],
+      "gateLabels": ["pr_blocking", "merge_to_main"]
+    },
+    {
+      "id": "cl-5.1",
+      "chapter": "ch-5",
+      "title": "Documentation family governance",
+      "keywords": ["master_doc", "prd", "ui_spec", "module_doc", "runbook", "context_pack"],
+      "gateLabels": ["merge_to_main"]
+    },
+    {
+      "id": "cl-6.1",
+      "chapter": "ch-6",
+      "title": "Verification and evidence chain",
+      "keywords": ["cadence", "evidence", "verify", "deterministic", "replay", "audit"],
+      "gateLabels": ["merge_to_main", "pre_release"]
+    },
+    {
+      "id": "cl-7.1",
+      "chapter": "ch-7",
+      "title": "Deployment and delivery model",
+      "keywords": ["release", "rollback", "deployment", "air-gap", "support"],
+      "gateLabels": ["pre_release"]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://das-standard.dev/schemas/chapter_index.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.4.6",
+  "chapters": [
+    {
+      "id": "ch-intro",
+      "title": "Introduction",
+      "file": "SPECIFICATION.md#introduction",
+      "summary": "Purpose, audience, and reading guidance for the DAS standard.",
+      "roles": ["all"]
+    },
+    {
+      "id": "ch-1",
+      "title": "What this standard optimizes for",
+      "file": "SPECIFICATION.md#1-what-this-standard-optimizes-for",
+      "summary": "Core optimization goals: predictability, offline-first, deterministic verification.",
+      "roles": ["all"]
+    },
+    {
+      "id": "ch-2",
+      "title": "Scope, precedence, and core definitions",
+      "file": "SPECIFICATION.md#2-scope-precedence-and-core-definitions",
+      "summary": "Conformance profiles (L0/L1/L2), interaction profiles, machine-readable artifacts, extension mechanism.",
+      "roles": ["all"]
+    },
+    {
+      "id": "ch-3",
+      "title": "System topology and repo boundaries",
+      "file": "SPECIFICATION.md#3-system-topology-and-repo-boundaries-monorepo-vs-multi-repo",
+      "summary": "Monorepo vs multi-repo topology choices, contract hub requirements, integration harness.",
+      "roles": ["architect", "tech-lead"]
+    },
+    {
+      "id": "ch-4",
+      "title": "Canonical contracts and naming",
+      "file": "SPECIFICATION.md#4-canonical-contracts-and-naming-cross-boundary--persisted",
+      "summary": "Casing policy, contract surfaces, evolution modes, envelope shapes, identifiers.",
+      "roles": ["backend", "frontend", "architect"]
+    },
+    {
+      "id": "ch-5",
+      "title": "Documentation family and artifact governance",
+      "file": "SPECIFICATION.md#5-documentation-family",
+      "summary": "Document types (master_doc, prd, ui_spec, module_doc, runbook, etc.), lifecycle rules.",
+      "roles": ["all"]
+    },
+    {
+      "id": "ch-6",
+      "title": "Verification and evidence",
+      "file": "SPECIFICATION.md#6-verification-and-evidence",
+      "summary": "Cadence integration, evidence chain, audit trail, offline verification.",
+      "roles": ["devops", "tech-lead", "qa"]
+    },
+    {
+      "id": "ch-7",
+      "title": "Deployment, delivery, and operations",
+      "file": "SPECIFICATION.md#7-deployment-delivery-and-operations",
+      "summary": "Release process, rollback, support model, air-gap deployment.",
+      "roles": ["devops", "sre", "tech-lead"]
+    }
+  ],
+  "appendices": [
+    {"id": "appendix-c", "title": "Project master doc template", "file": "appendices/appendix-c-project-master-doc-template.md"},
+    {"id": "appendix-d", "title": "UI spec appendix template", "file": "appendices/appendix-d-ui-spec-appendix-template.md"},
+    {"id": "appendix-e", "title": "Multi-repo contract-driven standard", "file": "appendices/appendix-e-multi-repo-contract-driven-standard.md"},
+    {"id": "appendix-f", "title": "SDMM refactoring migration playbook", "file": "appendices/appendix-f-sdmm-refactoring-migration-playbook.md"},
+    {"id": "appendix-g", "title": "AI product engineering principles addendum", "file": "appendices/appendix-g-ai-product-engineering-principles-addendum.md"},
+    {"id": "appendix-h", "title": "UI design review checklist", "file": "appendices/appendix-h-ui-design-review-checklist.md"},
+    {"id": "appendix-i", "title": "DDD playbook", "file": "appendices/appendix-i-ddd-playbook.md"},
+    {"id": "appendix-j", "title": "BDD scenarios verification playbook", "file": "appendices/appendix-j-bdd-scenarios-verification-playbook.md"},
+    {"id": "appendix-k", "title": "HFVI vis template", "file": "appendices/appendix-k-hfvi-vis-template.md"},
+    {"id": "appendix-l", "title": "Tooling standard", "file": "appendices/appendix-l-tooling-standard.md"},
+    {"id": "appendix-m", "title": "Doc family governance and module doc templates", "file": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md"},
+    {"id": "appendix-n", "title": "Repo roles, tooling placement, and execution matrix", "file": "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md"}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "packId": "verification-and-evidence",
+  "standardVersion": "1.4.6",
+  "chapters": ["ch-6"],
+  "clauses": ["cl-6.1"],
+  "summary": "All verification must be offline-first and deterministic. Evidence is produced as run_manifest, pipeline_result, and job_envelope artifacts. Replay packages allow forensic re-verification. Signing provides tamper evidence.",
+  "keywords": ["verify", "evidence", "deterministic", "offline", "replay", "cadence", "audit"]
+}

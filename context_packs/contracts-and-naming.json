@@ -1,0 +1,8 @@
+{
+  "packId": "contracts-and-naming",
+  "standardVersion": "1.4.6",
+  "chapters": ["ch-4"],
+  "clauses": ["cl-4.1", "cl-4.4"],
+  "summary": "Canonical contracts use camelCase for serialized fields. ErrorEnvelope, Diagnostics, and Budget are the three normative envelope shapes. All contract surfaces must declare evolution mode (strict or tolerant).",
+  "keywords": ["camelCase", "ErrorEnvelope", "Diagnostics", "Budget", "contract", "envelope"]
+}

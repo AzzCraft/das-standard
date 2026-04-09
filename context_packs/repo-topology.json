@@ -1,0 +1,8 @@
+{
+  "packId": "repo-topology",
+  "standardVersion": "1.4.6",
+  "chapters": ["ch-3"],
+  "clauses": ["cl-3.1", "cl-3.5"],
+  "summary": "System topology can be monorepo, multi-repo, or hybrid. Multi-repo requires a contract hub with fixtures, schemas, and semantic validators. Each repo owns specific boundary responsibilities. Integration harness is the system truth source.",
+  "keywords": ["topology", "monorepo", "multi-repo", "contract_hub", "integration", "boundary"]
+}

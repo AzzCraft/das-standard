@@ -50,6 +50,15 @@ These alias the richer canonical definitions under:
 
 Consumers that only need a flat list can read the top-level aliases. Consumers that need the full governed shape, compatibility semantics, or cadence metadata should read the richer canonical structures instead.
 
+Current downstream consumers in this program:
+
+- `das-suite` consumes the governed bundle as the suite-wide standard reference and closure anchor.
+- `dasops` seeds governed references and machine-readable examples into generated product repos.
+- `das-leafer` consumes the same governed artifacts through the `dasops` factory boundary plus Leafer-owned HFVI overlays.
+- `cadence-core` aligns its policy/runtime surfaces to the canonical profile and cadence definitions.
+
+See [CONSUMER_ADOPTION_NOTES.md](CONSUMER_ADOPTION_NOTES.md) for the exact canonical-vs-alias guidance used by these repos.
+
 ## Verification
 This repo is self-checking. The canonical verification entrypoint is:
 

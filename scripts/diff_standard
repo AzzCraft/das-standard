@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# diff_standard — compare two versions of the DAS standard
+set -euo pipefail
+
+usage() {
+  echo "Usage: $0 <old-version-tag> [new-version-tag]"
+  echo ""
+  echo "Compare the DAS standard specification between two versions."
+  echo "If new-version-tag is omitted, compares against HEAD."
+  echo ""
+  echo "Examples:"
+  echo "  $0 v1.3.0 v1.4.6"
+  echo "  $0 v1.3.0          # compare v1.3.0 against current HEAD"
+  exit 1
+}
+
+if [[ $# -lt 1 ]]; then
+  usage
+fi
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+OLD_REF="$1"
+NEW_REF="${2:-HEAD}"
+
+SPEC_FILE="SPECIFICATION.md"
+
+echo "DAS Standard diff: $OLD_REF → $NEW_REF"
+echo "File: $SPEC_FILE"
+echo "---"
+
+# Check if we're in a git repo
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "Error: not a git repository. diff_standard requires git history."
+  exit 1
+fi
+
+# Check if old ref exists
+if ! git cat-file -e "$OLD_REF" 2>/dev/null; then
+  echo "Error: ref '$OLD_REF' not found"
+  exit 1
+fi
+
+# Perform the diff
+git diff "$OLD_REF" "$NEW_REF" -- "$SPEC_FILE" appendices/ || true
+
+echo ""
+echo "---"
+echo "Tip: pipe to 'less' for large diffs, or add --stat for summary"

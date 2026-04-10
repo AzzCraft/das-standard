@@ -114,6 +114,49 @@
         },
         "standardSnapshot": {
           "$ref": "#/$defs/structuredRef"
+        },
+        "collaborationEnhancement": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "controlPlane": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "enterpriseBundle": {
+          "$ref": "#/$defs/structuredRef"
+        }
+      }
+    },
+    "closureProfiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "description",
+          "requiredModules"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "requiredModules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "optionalModules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       }
     }
@@ -265,6 +308,28 @@
                 "enum": [
                   "path",
                   "manifest"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "custom"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "path",
+                  "version"
                 ]
               }
             }

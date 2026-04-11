@@ -214,3 +214,10 @@ if gate in ('all', 'release-snapshot'):
 
 print('DAS v1.4.6 release bundle verify: PASS')
 PY
+
+mapfile -t RESIDUE < <(find "$ROOT" -path '*/.git' -prune -o \( -type d -name '__pycache__' -o -type f \( -name '*.pyc' -o -name '.DS_Store' \) \) -print)
+if ((${#RESIDUE[@]})); then
+  printf 'forbidden generated residue found:\n' >&2
+  printf '%s\n' "${RESIDUE[@]}" >&2
+  exit 1
+fi

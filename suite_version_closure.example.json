@@ -68,6 +68,27 @@
       "pinValue": "2026.04.06",
       "floating": false
     },
+    "collaborationEnhancement": {
+      "kind": "custom",
+      "uri": "../dasops-pro",
+      "pinType": "version",
+      "pinValue": "1.0.0",
+      "floating": false
+    },
+    "controlPlane": {
+      "kind": "custom",
+      "uri": "../cadence-pro",
+      "pinType": "version",
+      "pinValue": "1.0.0",
+      "floating": false
+    },
+    "enterpriseBundle": {
+      "kind": "custom",
+      "uri": "../cadence-enterprise",
+      "pinType": "version",
+      "pinValue": "1.0.0",
+      "floating": false
+    },
     "standardSnapshot": {
       "kind": "file",
       "uri": "./release_snapshot_manifest.example.json",

@@ -131,6 +131,7 @@
       "dirty"
     ],
     "releaseSnapshotKinds": [
+      "standard_content_bundle",
       "standard_release_bundle",
       "factory_seed_snapshot",
       "policy_pack_snapshot",
@@ -322,6 +323,8 @@
   },
   "normativeArtifactRefs": {
     "specification": "SPECIFICATION.md",
+    "chapterIndex": "chapter_index.json",
+    "clauseIndex": "clause_index.json",
     "changelog": "CHANGELOG.md",
     "appendixC": "appendices/appendix-c-project-master-doc-template.md",
     "appendixD": "appendices/appendix-d-ui-spec-appendix-template.md",
@@ -356,6 +359,12 @@
   },
   "requiredArtifacts": [
     "SPECIFICATION.md",
+    "LICENSE",
+    "LICENSE_MAP.md",
+    "LICENSES/CC-BY-4.0.txt",
+    "LICENSES/Apache-2.0.txt",
+    "chapter_index.json",
+    "clause_index.json",
     "CHANGELOG.md",
     "DAS_DEPLOYMENT_ADDENDUM.md",
     "DAS_GOVERNANCE_COLLABORATION.md",
@@ -394,7 +403,15 @@
     "verify_registry.example.json",
     "verify_report.example.json",
     "release_snapshot_manifest.example.json",
-    "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md"
+    "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md",
+    "chapter_index.schema.json",
+    "clause_index.schema.json",
+    "ids/standard_ids.json",
+    "standard_ids.schema.json",
+    "context_packs/contracts-and-naming.json",
+    "context_packs/verification-and-evidence.json",
+    "context_packs/repo-topology.json",
+    "tools/validate_release_contract.py"
   ],
   "tooling": {
     "requiredLockFields": [
@@ -630,7 +647,15 @@
     "suiteLockExample": "suite_lock.example.json",
     "verifyRegistryExample": "verify_registry.example.json",
     "verifyReportExample": "verify_report.example.json",
-    "releaseSnapshotManifestExample": "release_snapshot_manifest.example.json"
+    "releaseSnapshotManifestExample": "release_snapshot_manifest.example.json",
+    "chapterIndexSchema": "chapter_index.schema.json",
+    "clauseIndexSchema": "clause_index.schema.json",
+    "standardIds": "ids/standard_ids.json",
+    "standardIdsSchema": "standard_ids.schema.json",
+    "contractsAndNamingContextPack": "context_packs/contracts-and-naming.json",
+    "verificationAndEvidenceContextPack": "context_packs/verification-and-evidence.json",
+    "repoTopologyContextPack": "context_packs/repo-topology.json",
+    "releaseContractVerifier": "tools/validate_release_contract.py"
   },
   "metadataFieldEnumBindings": {
     "Status": "docStatuses",
@@ -732,7 +757,8 @@
     "control_plane_repo": "Owns org-wide waivers, dashboards, approvals, and governance UI.",
     "enterprise_subtree_repo": "Owns proprietary enterprise-only datasets, eval assets, or modelops/training chains.",
     "product_repo": "Owns product code, product docs, product contracts, and product-local verify flows.",
-    "monorepo_local_tooling": "Owns topology-specific repo-local guards that are not yet generic enough to upstream."
+    "monorepo_local_tooling": "Owns topology-specific repo-local guards that are not yet generic enough to upstream.",
+    "collaboration_enhancement_repo": "Owns reusable collaboration-oriented enhancements that extend a DAS adoption without changing the standard's standalone requirements."
   },
   "toolClassDefinitions": {
     "repo_audit": "Audits repo shape, docs, contracts, and topology for conformance.",
@@ -785,7 +811,8 @@
     "factory_seed_snapshot": "Immutable snapshot used by a repo factory/template seed.",
     "policy_pack_snapshot": "Immutable snapshot of a policy-pack release.",
     "suite_snapshot": "Immutable snapshot of a suite-level lock/closure state.",
-    "repo_local_mirror": "A governed local mirror/copy that points back to an immutable source snapshot."
+    "repo_local_mirror": "A governed local mirror/copy that points back to an immutable source snapshot.",
+    "standard_content_bundle": "Reproducible content-addressed bundle of the standard's governed release artifacts."
   },
   "gateOutcomeDefinitions": {
     "pass": "The gate executed and passed.",

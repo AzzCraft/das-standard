@@ -53,6 +53,20 @@
         "release_snapshot_manifest.json"
       ],
       "expectedArtifactCount": 1
+    },
+    {
+      "gateId": "std.compat.release",
+      "kind": "migration_adoption",
+      "cadence": "pre_release",
+      "enforcementClass": "blocking",
+      "description": "Checks historical compatibility fixtures and exact current-manifest compatibility metadata.",
+      "command": "./scripts/verify --gate compat-release",
+      "owners": [
+        "das-standard-maintainers"
+      ],
+      "scope": "compatibility release evidence",
+      "failureOnNoResults": true,
+      "expectedArtifactCount": 1
     }
   ]
 }

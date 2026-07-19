@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/standard_ids.schema.json",
+  "title": "DAS Stable ID Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "standardVersion",
+    "description",
+    "clauseIds",
+    "appendixIds",
+    "templateIds",
+    "errorCodes",
+    "checkIds",
+    "deprecatedIds"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "../standard_ids.schema.json"
+    },
+    "standardVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "clauseIds": {
+      "$ref": "#/$defs/stringMap"
+    },
+    "appendixIds": {
+      "$ref": "#/$defs/stringMap"
+    },
+    "templateIds": {
+      "$ref": "#/$defs/stringMap"
+    },
+    "errorCodes": {
+      "$ref": "#/$defs/stringMap"
+    },
+    "checkIds": {
+      "$ref": "#/$defs/stringMap"
+    },
+    "deprecatedIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "stringMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "$schema": "https://azzcraft.com/schemas/standard_ids.schema.json",
-  "standardVersion": "v1.4.0",
-  "description": "DAS-03-002 stable ID registry. Every ID listed here MUST never be reused; deprecated IDs are retired with replacement pointers.",
+  "$schema": "../standard_ids.schema.json",
+  "standardVersion": "1.4.0",
+  "description": "DAS stable ID registry. Every ID listed here MUST never be reused; deprecated IDs are retired with replacement pointers.",
   "clauseIds": {
     "C-001": "Standard purpose and scope",
     "C-010": "Document type taxonomy",
@@ -12,9 +12,18 @@
     "C-500": "Profile / tier compatibility"
   },
   "appendixIds": {
-    "A-K": "VIS / HFVI visualization annex",
-    "A-L": "DAS Tools commercial implementation annex",
-    "A-M": "Cadence runtime contracts annex"
+    "A-C": "Project Master Doc Template",
+    "A-D": "UI Spec Appendix Template",
+    "A-E": "Multi-Repo Contract-Driven Standard",
+    "A-F": "SDMM Refactoring & Migration Playbook",
+    "A-G": "AI Product Engineering Principles Addendum",
+    "A-H": "UI Design Review Checklist",
+    "A-I": "DDD Playbook",
+    "A-J": "BDD Scenarios and Verification Playbook",
+    "A-K": "High-Fidelity Visual Interaction Extension and Visual Interaction Spec Template",
+    "A-L": "DAS Tooling Standard",
+    "A-M": "Doc-Family Governance and Module Doc Templates",
+    "A-N": "Repository Roles, Tooling Placement, and Execution Matrix"
   },
   "templateIds": {
     "T-PRODUCT-PY": "Python product repo template",

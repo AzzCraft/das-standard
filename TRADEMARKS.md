@@ -29,12 +29,14 @@ You may use the names above to:
 ## “DAS-compliant” and compliance claims
 
 You may claim **“DAS-compliant”** (or similar language such as “DAS-compatible”) only if:
-1. You clearly state *which* DAS version you target (e.g., “DAS Standard v1.4.0”), and
-2. Your project passes the **Official Reference Validator** (`das-cli`) for that version without errors, and
+1. You clearly state the DAS version and conformance profile you target (for example, “DAS Standard v1.4.0, L1”), and
+2. You publish a conformance-evidence set from your repository, such as the canonical Master Doc and applicable verification output, and
 3. You do not imply endorsement by AzzCraft Inc. (重庆艾之舟科技有限公司) unless you have written permission.
 
+No official certification program or reference validator is currently published. Do not describe a project as “certified” or “officially validated” by DAS.
+
 Recommended compliance phrasing:
-- “DAS Standard v1.4.0 — validated by the reference validator for that version”
+- “DAS Standard v1.4.0 — conformance evidence available at <link>”
 
 ## Restricted uses
 

@@ -81,11 +81,11 @@ D. [Annex D — UI Spec Appendix (reference)](#annex-d--ui-spec-appendix-referen
 - **Canonical doc path** (MUST be stable across branches): `{{DOC_PATH}}` (recommended: `docs/master_doc.md`)
 - **Context Pack path** (recommended): `[[CONTEXT_PACK_PATH]]` (recommended: `docs/context-pack.md`)
 - **Doc set / sub-doc registry path** (optional): `[[DOC_SET_REGISTRY_PATH]]` (recommended: `docs/docs_index.md`)
-- **Doc ID** (stable identifier): `{{DOC_ID}}` (recommended: `MASTER-{{PROJECT_SLUG}}`)
+- **Doc ID**: `{{DOC_ID}}` (stable identifier; recommended: `MASTER-{{PROJECT_SLUG}}`)
 - **Supersedes** (optional): `[[DOC_ID@VERSION]]` (previous master doc if this doc replaces another)
 - **Superseded by** (optional): `[[DOC_ID@VERSION]]` (fill when deprecating this doc)
 - **Migration mapping** (optional): `[[PATH_OR_URL]]` (ID remap table / migration notes)
-- **Owner** (canonical machine-check field): `{{OWNER}}`
+- **Owner**: `{{OWNER}}` (canonical machine-check field)
 - **Governing standard**: `{{ENGINEERING_STANDARD_PATH_OR_URL}}`
 - **Scope**: Canonical Master Doc for `{{PROJECT_NAME}}`, covering product definition, architecture, contracts, verification, and execution plan.
 - **Doc family role**: `canonical_entrypoint`
@@ -96,7 +96,7 @@ D. [Annex D — UI Spec Appendix (reference)](#annex-d--ui-spec-appendix-referen
 - **Version**: `{{VERSION}}` (SemVer recommended)
 - **Conformance profile**: `{{CONFORMANCE_PROFILE}}` (`L0 | L1 | L2`)
 - **Interaction profile**: `{{INTERACTION_PROFILE}}` (`standard_ui | headless | hfvi_canvas_webgl_game`)
-- **Last updated (date)**: `{{LAST_UPDATED_YYYY_MM_DD}}`
+- **Last updated**: `{{LAST_UPDATED_YYYY_MM_DD}}`
 - **Owners**
   - Product owner: `{{OWNER_PM}}`
   - Engineering architect: `{{OWNER_ARCH}}`

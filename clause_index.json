@@ -1,7 +1,7 @@
 {
-  "$schema": "https://das-standard.dev/schemas/clause_index.schema.json",
   "schemaVersion": "1.0.0",
   "standardVersion": "1.4.0",
+  "$schema": "./clause_index.schema.json",
   "clauses": [
     {
       "id": "cl-2.1",

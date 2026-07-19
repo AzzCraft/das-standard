@@ -14,7 +14,7 @@
     "floating": false
   },
   "bundleDigestAlgorithm": "sha256",
-  "bundleDigest": "0e14fcfd5918450f4d278e022299c82697ca5fbf985cff854b6a8711d6b2b6fe",
+  "bundleDigest": "abaa7cea5439ad2bfbf752a79ccb7c5d73d22d0625a4c5bb6e6d15e63858b38c",
   "artifacts": [
     {
       "path": ".github/workflows/verify.yml",
@@ -24,19 +24,19 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "678a070e9756fc8f4430e5e334169f2e8e88693def873f2c10dd5e31594d4425",
+      "sha256": "1dd99999040d0c5fb77ea8705de3a59b8c2ba5bfc8c90f83dbe20277d87a4bd1",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "DAS_DEPLOYMENT_ADDENDUM.md",
-      "sha256": "e0ba15f37b707f853d8f5af415023ce6325c999d19c0a411c46e05d9a17dcda3",
+      "sha256": "ba39121d97debbbe5d1c427903af814cf5de6b300659f32e3bb237cfb4b1af3a",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "DAS_GOVERNANCE_COLLABORATION.md",
-      "sha256": "d2bba10aaa9c87e308a5a2b678edb1e944518f6b9653b7abf5c7ac5a368fb487",
+      "sha256": "49bd8815ab6017f0561d4f9afa5ddcb66178b701dba0d49c441c51be9b036a3a",
       "artifactClass": "normative",
       "required": true
     },
@@ -72,7 +72,7 @@
     },
     {
       "path": "SPECIFICATION.md",
-      "sha256": "01a6cc0cea76a583dd5467f3d57110a78d9ff0ed0fc478e55e45cf0628dbcd5f",
+      "sha256": "9d8170f669fcd7f15312183e985a336d7ce82937a76e41883fa0a8a994e41d2d",
       "artifactClass": "normative",
       "required": true
     },
@@ -84,19 +84,19 @@
     },
     {
       "path": "appendices/appendix-c-project-master-doc-template.md",
-      "sha256": "43465c9f7145b068e3069aa1760eb027b644463460ea4f15bf30611c2595c459",
+      "sha256": "2ea034e4091b8b0ae52497526f1078dea324625f37c2d9ac1d284046118880f3",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "appendices/appendix-d-ui-spec-appendix-template.md",
-      "sha256": "0fea7570a62b2b8eb9578b87db3bb6baa6bb756c6cd11298d24b91672198ab41",
+      "sha256": "f4c7a497968c3db446d27e2a84322b3cfef203235b0c22620382da7cf99d3189",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
-      "sha256": "62c3de692a0de32ae954ae4cd5db415994f586b8914aa202c114b9cebdf86d10",
+      "sha256": "454edb5c34e45903b6e80d7c67952f69867be2a69f0e71254b043e39509baa3e",
       "artifactClass": "normative",
       "required": true
     },
@@ -108,7 +108,7 @@
     },
     {
       "path": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
-      "sha256": "3a9cc2531dd1e15346b478108c879e51d32617efd7cbbb2fdaa813ac7a6396d3",
+      "sha256": "ebd8d774047414c4dfaeac2e935bbbc82e3225b5563778a3b2064501a3dcbc87",
       "artifactClass": "normative",
       "required": true
     },
@@ -144,25 +144,61 @@
     },
     {
       "path": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
-      "sha256": "3c749d493e71afc2815611f13274219f1bf2dc86cdf5fe11fa6b3618bbdcb5f7",
+      "sha256": "752d1c30dd525f0e592a6d8dee17020ecdf6f8b348dced71803c2c42ee6b06c6",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md",
-      "sha256": "c425ef311226632f5197779b53f6aa93b87e55da5499f22ac0bc6c85f44144b0",
+      "sha256": "b2ff32dc7c2152d1afa29058764b09c1e69bbd95bec9910f5dc694ae302e1131",
       "artifactClass": "normative",
       "required": true
     },
     {
       "path": "chapter_index.json",
-      "sha256": "dd578b55e907daf4475747b9fce4661d61eb6866fad174c4378edea2a22dd3f8",
+      "sha256": "0c50bb67f4e9916e69eab4fc60914fb0b4a01ef62cf9af91509ea475741938ae",
       "artifactClass": "supporting",
       "required": true
     },
     {
+      "path": "chapter_index.schema.json",
+      "sha256": "f8815b9e15c5b1a619bad03442e4c0859b1224c2d470fa7d56f7d9c7f094fd33",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
       "path": "clause_index.json",
-      "sha256": "4de9248dd687040cfe0d7c8a8b07a021a1e817f0e87c824cd6adb8eb2f2aeccd",
+      "sha256": "ead3dea9adb991161c9bc16903196e41fd8dd0d8fa496d99775f401df4c09d92",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "clause_index.schema.json",
+      "sha256": "e1e5e9c1efbfddb0ff0953b2f62e28152e330145fafd3bf38286f555449a8c03",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "context_packs/contracts-and-naming.json",
+      "sha256": "673ee014a98c4fc67ae5e784241bb427a7e0ae0023b3c2e3eb200d501720ffd4",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "context_packs/repo-topology.json",
+      "sha256": "6ff6367ca8af15878ffab9d5dde387e4140b5aa8026e3f261be148d18fbb0dfb",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "context_packs/verification-and-evidence.json",
+      "sha256": "db2b638affa8b94be6c9b18938596873a24c61bb35db9c991a61435374333c05",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "ids/standard_ids.json",
+      "sha256": "cc6b8dcca96f01169251ad22066ea04a597f9c7b8984d8f00d20920b06d46578",
       "artifactClass": "supporting",
       "required": true
     },
@@ -192,19 +228,25 @@
     },
     {
       "path": "scripts/verify",
-      "sha256": "e365b0e39116861ed72b80003f0f72aa8d4039818c883c18b16d6b9daa48a4f0",
+      "sha256": "5ed685d71e856f0c5f51c37fbbe47f26f83476248f38709d338a99df0a951d4d",
       "artifactClass": "script",
       "required": true
     },
     {
+      "path": "standard_ids.schema.json",
+      "sha256": "cf420f32df3bcabd19575433c571b17f77810d422e4260f6148b8eae7dcf6ef1",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
       "path": "standard_manifest.json",
-      "sha256": "a928a400273bb49daac653692190e411f9a9f937d5ab7bdb1cd903ca3e3df7c2",
+      "sha256": "64c16351258c9f34624197062e054f0e1441c29ac41959d3f5fbd5e7a72cf2a2",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "standard_manifest.schema.json",
-      "sha256": "9987fa4f9a7f2987b9a6861cefc6b32c7a2defdd77e109c1d608399d6a7c2a78",
+      "sha256": "602cd82491de7b1a49e1e13c75e8c6f706845ed1be5f1103758e1ba1c725ddb4",
       "artifactClass": "schema",
       "required": true
     },
@@ -257,6 +299,12 @@
       "required": true
     },
     {
+      "path": "tools/validate_release_contract.py",
+      "sha256": "0f934753a2672cc805fdbb782ed24f423f1c61e4890dc6e006ea86ec80d47209",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
       "path": "verify_registry.example.json",
       "sha256": "0ce95949588e2e38cf250a1eb98e229204d8c8fc7d15509c4531315c8cc12388",
       "artifactClass": "example",
@@ -264,7 +312,7 @@
     },
     {
       "path": "verify_registry.json",
-      "sha256": "7f6b1994b6a128cb2803587922bcd7c18849187334241e6bdb76c5e0ec0f6ca8",
+      "sha256": "a1d0492d608006ba2b45ac3293a2782e301959c818e10b4eec377dbd82881f7d",
       "artifactClass": "supporting",
       "required": true
     },

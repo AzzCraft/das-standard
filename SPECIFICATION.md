@@ -104,8 +104,8 @@ This standard is intended to work for both small, fast-moving teams and large, m
 Rules:
 
 - **MUST:** Declare exactly one profile (`L0|L1|L2`) in the canonical Master Doc.
-- **MUST:** The declaration MUST be explicit in merged documentation. Missing profile declarations are a **verify failure**, not an implicit pass.
-- **MUST NOT:** Repos and suites MUST NOT rely on “default if missing” semantics once a document has entered version control. Scaffolding MAY materialize an initial value during generation, but the generated document MUST write the explicit value before first merge.
+- **MUST:** Documents newly created or adopted under v1.4.0 MUST state the declaration explicitly in merged documentation.
+- **SHOULD:** Legacy documents that conformed to v1.3.x SHOULD materialize an explicit profile before adopting v2.0.0. During the v1 compatibility period, tooling MAY report a missing legacy declaration as a migration warning and use the historical `L1` value; v2.0.0 MAY make omission a verify failure.
 - **MUST:** Regardless of profile, externally observed or persisted surfaces (public APIs, stored artifacts, identifiers) MUST use **Compatibility Mode** and MUST be fixture-backed.
 - **SHOULD:** Teams SHOULD evolve profiles over time (typical path: `L0 → L1 → L2`).
 - **SHOULD:** Tooling SHOULD source the allowed enum from `standard_manifest.json` rather than hard-coding local copies.
@@ -139,8 +139,8 @@ Interaction profiles:
 Rules:
 
 - **MUST:** Declare exactly one interaction profile (`standard_ui|headless|hfvi_canvas_webgl_game`) in the canonical Master Doc.
-- **MUST:** The declaration MUST be explicit in merged documentation. Missing interaction profile declarations are a **verify failure**, not an implicit pass.
-- **MUST NOT:** Repos and suites MUST NOT rely on “default if missing” semantics for interaction profiles once a document has entered version control.
+- **MUST:** Documents newly created or adopted under v1.4.0 MUST state the declaration explicitly in merged documentation.
+- **SHOULD:** Legacy documents that conformed to v1.3.x SHOULD materialize an explicit interaction profile before adopting v2.0.0. During the v1 compatibility period, tooling MAY report a missing legacy declaration as a migration warning and use the historical `standard_ui` value; v2.0.0 MAY make omission a verify failure.
 - **MUST:** If `headless` is declared, the project MUST provide a **Headless Surface Note** (see Appendix M) or a local-extension-declared equivalent that maps back to core doc type `headless_surface_note` for machine checks.
 - **MAY:** A repo MAY keep a thin `UI_SPEC = N/A` pointer doc for navigation or legacy compatibility, but that pointer doc MUST link to the governing Headless Surface Note (or extension-mapped equivalent) and is **not sufficient by itself**.
 - **MUST:** The governing screenless-surface doc MUST identify the operator surface, CLI/API surfaces, job/runtime surfaces, packet/export surfaces, and why no screen inventory exists.
@@ -1748,7 +1748,7 @@ Each governed gate entry MUST declare, at minimum:
 
 Rules:
 
-- **MUST:** Suites and dashboards SHOULD read verify-registry metadata rather than inferring gate semantics from CI job names.
+- **SHOULD:** Suites and dashboards SHOULD read verify-registry metadata rather than inferring gate semantics from CI job names.
 - **MUST:** A repo MUST NOT claim that a gate is governed if it is omitted from the verify registry while other governed gates are registry-backed.
 - **SHOULD:** Repos SHOULD keep a committed `verify_registry.json` (or schema-equivalent serialization) alongside `scripts/verify` so review and automation consume the same truth.
 

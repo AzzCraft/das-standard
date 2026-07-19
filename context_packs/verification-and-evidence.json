@@ -2,19 +2,21 @@
   "packId": "verification-and-evidence",
   "standardVersion": "1.4.0",
   "chapters": [
-    "ch-6"
+    "ch-10"
   ],
   "clauses": [
-    "cl-6.1"
+    "cl-10.1",
+    "cl-10.3",
+    "cl-10.3.1",
+    "cl-10.3.2"
   ],
-  "summary": "All verification must be offline-first and deterministic. Evidence is produced as run_manifest, pipeline_result, and job_envelope artifacts. Replay packages allow forensic re-verification. Signing provides tamper evidence.",
+  "summary": "Verification is governed by a canonical verify entrypoint, registry-backed gate metadata, and machine-readable reports. Release verification records version closure, compatibility evidence, and a reproducible content snapshot.",
   "keywords": [
     "verify",
-    "evidence",
-    "deterministic",
-    "offline",
-    "replay",
-    "cadence",
-    "audit"
+    "registry",
+    "report",
+    "compatibility",
+    "release_snapshot",
+    "evidence"
   ]
 }

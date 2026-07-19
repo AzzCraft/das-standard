@@ -8,7 +8,7 @@
     "cl-4.1",
     "cl-4.4"
   ],
-  "summary": "Canonical contracts use camelCase for serialized fields. ErrorEnvelope, Diagnostics, and Budget are the three normative envelope shapes. All contract surfaces must declare evolution mode (strict or tolerant).",
+  "summary": "Canonical contracts use camelCase for serialized fields. ErrorEnvelope, Diagnostics, and Budget are the three normative envelope shapes. Every contract surface declares an evolution mode: Compatibility Mode by default; Refactor Mode only when atomicity is enforceable.",
   "keywords": [
     "camelCase",
     "ErrorEnvelope",

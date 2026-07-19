@@ -6,7 +6,7 @@
 
 #### Document Control
 - **Doc ID**: `{{DOC_ID}}`
-- **Owner** (canonical machine-check field): `{{OWNER}}`
+- **Owner**: `{{OWNER}}` (canonical machine-check field)
 - **Status**: `{{STATUS}}` (`draft | active | frozen | deprecated`)
 - **Version**: `{{VERSION}}` (SemVer recommended)
 - **Governing standard**: `{{ENGINEERING_STANDARD_PATH_OR_URL}}`

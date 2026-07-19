@@ -1,0 +1,35 @@
+name: Proposal (DIP)
+description: Propose a non-trivial change to the standard
+title: "[PROPOSAL] "
+labels: [proposal]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+      description: Explain the change in normative terms.
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Compatibility impact
+      options:
+        - Patch
+        - Minor
+        - Major
+    validations:
+      required: true
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration / adoption guidance
+      description: If Minor/Major, describe how adopters should migrate.
+    validations:
+      required: false

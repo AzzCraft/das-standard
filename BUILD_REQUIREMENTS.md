@@ -17,5 +17,6 @@ verification:
 python3 -m pip install -r requirements-verify.txt
 ```
 
-`requirements-verify.txt` pins `jsonschema`, which is required by
+`requirements-verify.txt` pins `jsonschema` for schema validation and
+`pytest` for the repository's self-conformance tests. Both are required by
 `scripts/verify`.

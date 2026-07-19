@@ -7,7 +7,7 @@
   "creationInfo": {
     "created": "2026-05-01T00:00:00Z",
     "creators": [
-      "Organization: AzzCraft Inc. (\u91cd\u5e86\u827e\u4e4b\u821f\u79d1\u6280\u6709\u9650\u516c\u53f8)"
+      "Organization: AzzCraft Inc. (重庆艾之舟科技有限公司)"
     ]
   },
   "packages": [
@@ -19,6 +19,36 @@
       "licenseConcluded": "CC-BY-4.0 AND Apache-2.0",
       "licenseDeclared": "CC-BY-4.0 AND Apache-2.0",
       "versionInfo": "1.4.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-jsonschema",
+      "name": "jsonschema",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "versionInfo": "4.17.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-pytest",
+      "name": "pytest",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "versionInfo": "8.4.2"
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-Package-das-standard",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-jsonschema"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-das-standard",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-pytest"
     }
   ]
 }

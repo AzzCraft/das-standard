@@ -12,11 +12,11 @@
   "artifacts": {
     "sbom": {
       "path": "SBOM.spdx.json",
-      "sha256": "ee22cb89c7ad8f9da4070ce6499022aee60b808a16d996d9e82e97a651caffe5"
+      "sha256": "07f7a4034fd5ed76a72a63334cc1076a577aa238486aa852f2fc0788737d45e4"
     },
     "changelog": {
       "path": "CHANGELOG.md",
-      "sha256": "678a070e9756fc8f4430e5e334169f2e8e88693def873f2c10dd5e31594d4425"
+      "sha256": "1dd99999040d0c5fb77ea8705de3a59b8c2ba5bfc8c90f83dbe20277d87a4bd1"
     },
     "historicalFixture": {
       "path": "tests/compat/v1.1.0/standard_manifest.json",

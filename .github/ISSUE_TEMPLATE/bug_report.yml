@@ -1,0 +1,26 @@
+name: Bug report
+description: Report an error in the spec, templates, or reference tooling
+title: "[BUG] "
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Describe the issue and where it occurs.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: DAS version
+      description: Which spec version/tag are you using?
+      placeholder: v1.0.0
+    validations:
+      required: false

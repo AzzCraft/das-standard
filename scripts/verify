@@ -2,10 +2,16 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 export ROOT
+cd "$ROOT"
 export PYTHONDONTWRITEBYTECODE=1
 GATE="all"
+MODE="fast"
 while [ $# -gt 0 ]; do
   case "$1" in
+    --full)
+      MODE="full"
+      shift
+      ;;
     --gate)
       if [ $# -lt 2 ]; then
         echo "missing value for --gate" >&2
@@ -20,7 +26,7 @@ while [ $# -gt 0 ]; do
       ;;
   esac
 done
-export GATE
+export GATE MODE
 
 if [ -n "${PYTHON:-}" ]; then
   PYTHON_BIN="$PYTHON"
@@ -32,6 +38,27 @@ else
   echo "python3 or python is required" >&2
   exit 127
 fi
+
+VERSION="$(tr -d '[:space:]' < "$ROOT/VERSION")"
+if BUILD_SHA="$(git -C "$ROOT" rev-parse --verify HEAD 2>/dev/null)"; then
+  BUILD_REF="git:$BUILD_SHA"
+else
+  BUILD_REF="content:v$VERSION"
+fi
+TOOLCHAIN="$("$PYTHON_BIN" - <<'PY'
+import importlib.metadata
+import sys
+try:
+    print(
+        f"python={sys.version.split()[0]};"
+        f"jsonschema={importlib.metadata.version('jsonschema')};"
+        f"pytest={importlib.metadata.version('pytest')}"
+    )
+except importlib.metadata.PackageNotFoundError as exc:
+    raise SystemExit("install verification dependencies with python3 -m pip install -r requirements-verify.txt") from exc
+PY
+)"
+printf 'verify: mode=%s\nverify: buildRef=%s\nverify: standardManifestVersion=%s\nverify: toolchain=%s\n' "$MODE" "$BUILD_REF" "$VERSION" "$TOOLCHAIN"
 
 "$PYTHON_BIN" - <<'PY'
 import hashlib
@@ -177,7 +204,7 @@ def run_release_snapshot():
     missing = sorted(expected_artifacts - artifact_paths)
     assert not missing, f"release snapshot missing requiredArtifacts: {missing}"
 
-    implemented_gates = {'bundle-files', 'schemas', 'release-snapshot'}
+    implemented_gates = {'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}
     default_command = verify_registry['defaultVerifyCommand']
     assert (root / default_command.removeprefix('./')).exists(), (
         f"default verify command does not resolve: {default_command}"
@@ -276,9 +303,13 @@ PY
 
 "$PYTHON_BIN" tools/generate_spec_indexes.py --check
 "$PYTHON_BIN" tools/generate_content_snapshot.py --check
+"$PYTHON_BIN" tools/validate_release_contract.py --gate "$GATE"
 
 if [[ "$GATE" != "compat-release" ]]; then
-  mapfile -t RESIDUE < <(find "$ROOT" -path '*/.git' -prune -o \( -type d -name '__pycache__' -o -type f \( -name '*.pyc' -o -name '.DS_Store' \) \) -print)
+  RESIDUE=()
+  while IFS= read -r path; do
+    RESIDUE+=("$path")
+  done < <(find "$ROOT" -path '*/.git' -prune -o \( -type d -name '__pycache__' -o -type f \( -name '*.pyc' -o -name '.DS_Store' \) \) -print)
   if ((${#RESIDUE[@]})); then
     printf 'forbidden generated residue found:\n' >&2
     printf '%s\n' "${RESIDUE[@]}" >&2

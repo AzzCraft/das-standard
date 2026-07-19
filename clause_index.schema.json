@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/clause_index.schema.json",
+  "title": "DAS Clause Index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "standardVersion",
+    "clauses"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./clause_index.schema.json"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "standardVersion": {
+      "type": "string"
+    },
+    "clauses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "chapter",
+          "title",
+          "file",
+          "keywords",
+          "gateLabels"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^cl-[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"
+          },
+          "chapter": {
+            "type": "string",
+            "pattern": "^ch-[0-9]+$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "file": {
+            "type": "string",
+            "pattern": "^SPECIFICATION\\.md#"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gateLabels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

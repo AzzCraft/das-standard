@@ -2,7 +2,8 @@
 
 ### AI‑Optimized Contract‑Driven Multi‑Repo Engineering Standard
 Included in DAS Standard: v1.4.0 (2026-04-06)
-Status: General‑purpose reference for AI‑assisted development of full‑stack AI products
+Status: active
+Applicability: General‑purpose reference for AI‑assisted development of full‑stack AI products
 Scope: End‑to‑end systems that commonly include **Frontend**, **Business Backend (System of Record / Orchestrator)**, and an **Algorithm/Model Service** (plus optional Admin/Backoffice, Integration Harness, and Data/Evals). This standard focuses on **repo boundaries**, **contracts**, **contract evolution**, and **AI‑friendly execution workflows**.
 
 ---

@@ -278,6 +278,7 @@
           "type": "array",
           "items": {
             "enum": [
+              "standard_content_bundle",
               "standard_release_bundle",
               "factory_seed_snapshot",
               "policy_pack_snapshot",

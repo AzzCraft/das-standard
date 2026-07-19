@@ -49,9 +49,9 @@ def payloads() -> tuple[dict, dict]:
                 "id": f"appendix-{appendix_id}", "title": name.replace("-", " ").title(),
                 "file": path.relative_to(ROOT).as_posix(),
             })
-    common = {"$schema": "https://das-standard.dev/schemas/{name}", "schemaVersion": "1.0.0", "standardVersion": "1.4.0"}
-    chapter_payload = {**common, "$schema": common["$schema"].format(name="chapter_index.schema.json"), "chapters": chapters, "appendices": appendices}
-    clause_payload = {**common, "$schema": common["$schema"].format(name="clause_index.schema.json"), "clauses": clauses}
+    common = {"schemaVersion": "1.0.0", "standardVersion": "1.4.0"}
+    chapter_payload = {**common, "$schema": "./chapter_index.schema.json", "chapters": chapters, "appendices": appendices}
+    clause_payload = {**common, "$schema": "./clause_index.schema.json", "clauses": clauses}
     return chapter_payload, clause_payload
 
 

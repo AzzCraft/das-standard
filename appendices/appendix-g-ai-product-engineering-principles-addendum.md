@@ -1,7 +1,8 @@
 # Appendix G - AI Product Engineering Principles Addendum
 
 ### AI Product Engineering Principles Addendum
-Status: Recommended baseline  
+Status: active
+Applicability: Recommended baseline
 Included in DAS Standard: v1.4.0 (2026-04-06)
 Scope: Addendum to the unified standard, especially §4 (contracts), §6 (SDMM frontend), and §7 (SDMM algorithm). This document defines additional principles for:
 - Backend / System of Record (SoR) & Orchestrator engineering
@@ -37,14 +38,14 @@ This addendum is **supplemental**. It does not override higher-priority standard
 
 Unless explicitly stated otherwise, use this precedence order:
 
-1) **Security/compliance policies and applicable law/regulation**  
-2) **Project-wide engineering standard** (repo boundaries, contracts, evolution modes, contract hub governance)  
-3) **Component and surface-specific principles** (where applicable)  
-   - SDMM frontend principles (frontend internal modularization)  
-   - Algorithm project principles (algo/model service)  
-   - This addendum (backend/orchestration, integration harness and system testing, data & evals governance, platform/release + security/privacy operationalization)  
-4) **Repo- and service-specific standards**  
-   - they MAY be stricter than this addendum, but MUST NOT weaken higher-priority requirements  
+1) **Security/compliance policies and applicable law/regulation**
+2) **Project-wide engineering standard** (repo boundaries, contracts, evolution modes, contract hub governance)
+3) **Component and surface-specific principles** (where applicable)
+   - SDMM frontend principles (frontend internal modularization)
+   - Algorithm project principles (algo/model service)
+   - This addendum (backend/orchestration, integration harness and system testing, data & evals governance, platform/release + security/privacy operationalization)
+4) **Repo- and service-specific standards**
+   - they MAY be stricter than this addendum, but MUST NOT weaken higher-priority requirements
 5) **Team conventions** (lowest priority)
 
 Scope clarification:
@@ -95,7 +96,7 @@ This addendum complements (and does not replace) the unified standard’s core r
 - **Determinism tier**: a declared reproducibility level used to set expectations for tests and comparisons.
 - **PII**: personally identifiable information; treat as sensitive by default.
 - **Raw user content**: unredacted end-user-provided or end-user-generated content (text, files, images, audio), including prompts and model outputs. Treat as sensitive by default.
-- **Sensitive data**: any data that requires heightened handling (including PII, credentials/secrets, regulated data, proprietary business data, and raw user content).  
+- **Sensitive data**: any data that requires heightened handling (including PII, credentials/secrets, regulated data, proprietary business data, and raw user content).
   Treat as sensitive by default unless classified otherwise.
 - **Derived data / derived artifacts**: outputs computed from other data (embeddings, indexes, cached generations, logs, analytics events). Derived artifacts may inherit sensitivity; retention/deletion obligations apply to derived artifacts as well.
 - **Secret**: authentication or encryption material (API keys, tokens, passwords, private keys, signing material).
@@ -130,7 +131,7 @@ The backend is the system of record and primary orchestrator. Its role is to:
 ##### 1.2 Architectural posture
 
 **B1 — Prefer a modular monolith for the backend**
-- **SHOULD:** Ship the backend as a single deployable artifact unless a runtime split is operationally justified.  
+- **SHOULD:** Ship the backend as a single deployable artifact unless a runtime split is operationally justified.
   Acceptable justification examples include security isolation, independent scaling, independent deploy/rollback, and regulatory partitioning.
 - **MUST NOT:** Split runtime services purely to make code “AI-sized” or to avoid enforcing internal boundaries. Prefer internal modularization and contract discipline; only introduce new runtime services when there is a clear operational justification.
 - **MUST:** Modularity MUST be enforced via real module boundaries (not “folders only”).
@@ -143,9 +144,9 @@ The backend is the system of record and primary orchestrator. Its role is to:
 - **MUST NOT:** Promote ad-hoc helper functions across modules without ownership; cross-cutting concerns MUST have a single owner module.
 
 **B3 — Backend owns canonical state transitions**
-- **MUST:** State-changing operations MUST be validated and applied in the backend (the SoR).  
+- **MUST:** State-changing operations MUST be validated and applied in the backend (the SoR).
   Frontend and algo services MAY perform optimistic/local validation, but MUST NOT be the authority for canonical state.
-- **MUST:** Canonical state transitions MUST be committed transactionally with invariant checks before any external side effects are emitted (events, callbacks, emails, third-party calls).  
+- **MUST:** Canonical state transitions MUST be committed transactionally with invariant checks before any external side effects are emitted (events, callbacks, emails, third-party calls).
   When side effects are driven from persisted state, use a transactional pattern (e.g., outbox) to avoid “write succeeded, publish failed” inconsistencies.
 - **SHOULD:** Invariants that span entities/modules SHOULD be enforced in one place (the SoR boundary), not duplicated across consumers.
 
@@ -154,7 +155,7 @@ The backend is the system of record and primary orchestrator. Its role is to:
 **B4 — Canonical validation and canonical error mapping live in the backend**
 - **MUST:** Validate and normalize all untrusted inputs at boundaries (HTTP requests, webhooks, files, events, callbacks).
 - **MUST:** Publish contract artifacts for externally consumed surfaces via the contract hub (or equivalent). At minimum, each contract MUST include schema + semantics + fixtures + executable checks.
-- **SHOULD:** Contract artifacts SHOULD include machine-readable metadata (decision owner, stability tier, evolution mode, version/changelog pointer).  
+- **SHOULD:** Contract artifacts SHOULD include machine-readable metadata (decision owner, stability tier, evolution mode, version/changelog pointer).
   This supports automated governance and safe cross-repo evolution.
 - **MUST:** Provide canonical error mapping (stable error envelope + stable error codes); MUST NOT leak raw infrastructure/library errors as a public contract.
 - **MUST:** Error codes MUST be centrally governed as stable identifier contracts (enums/constants) and versioned in the contract hub.
@@ -178,7 +179,7 @@ For any externally consumed endpoint/event:
   - response replay semantics (return original outcome vs safe recompute that cannot duplicate side effects),
   - storage policy (what is stored to enable replay; retention window; sensitivity classification and encryption requirements).
 - **MUST:** If retries are possible and there is no safe implicit idempotency (for example, a `POST` that creates a new resource with a server-generated ID or triggers an external side effect), the backend MUST require an explicit idempotency key and MUST reject missing/invalid keys with a stable, documented error code.
-- **MUST:** Idempotency MUST cover externally visible side effects. If an operation triggers third-party calls, emails, payments, or event emissions that cannot duplicate, the idempotency strategy MUST include an external deduplication mechanism (e.g., propagate the idempotency key downstream, persist third-party request IDs, or drive side effects from an outbox/worker keyed by the idempotency record).  
+- **MUST:** Idempotency MUST cover externally visible side effects. If an operation triggers third-party calls, emails, payments, or event emissions that cannot duplicate, the idempotency strategy MUST include an external deduplication mechanism (e.g., propagate the idempotency key downstream, persist third-party request IDs, or drive side effects from an outbox/worker keyed by the idempotency record).
   If no safe deduplication is possible, the operation MUST be classified as **non-retryable** and automatic retries MUST be prevented at every layer (client, gateway, queue, and worker).
 - **MUST:** Conflict behavior MUST be deterministic and documented (including the error envelope/code returned on conflict).
 - **SHOULD:** Prefer storing a hash of the normalized request (and minimal replay metadata) instead of raw request bodies; if raw bodies are stored, treat them as sensitive artifacts (access controlled, retained minimally, encrypted at rest where required).
@@ -192,7 +193,7 @@ For any externally consumed endpoint/event:
 - **MUST:** Any AI/model output used for state changes MUST be validated against a schema and normalized before persistence or side effects.
 - **MUST:** Repair steps (re-prompt, constrained decode, fallback, manual review) MUST be budgeted, observable, and safely bounded.
 - **MUST:** Model/prompt/config identifiers used for debugging and rollout MUST be stable and treated as identifier contracts.
-- **SHOULD:** Persist or emit sufficient diagnostics to reproduce failures without storing raw sensitive content by default.  
+- **SHOULD:** Persist or emit sufficient diagnostics to reproduce failures without storing raw sensitive content by default.
   Minimum recommended fields: requestId/traceId, modelId, prompt/config IDs, schema/contract version, budget outcomes.
 
 ##### 1.4 Orchestration and long-running jobs
@@ -495,7 +496,7 @@ At minimum, support these tiers (use the canonical definitions in §7.3):
 - **MUST:** Evaluation logic used for gating MUST be runnable locally with pinned versions.
 
 **D8 — Scoring logic belongs to a shared contract surface**
-- **SHOULD:** If multiple repos/pipelines need the same “definition of success,” the scoring implementation SHOULD be distributed as a version-pinned scoring artifact.  
+- **SHOULD:** If multiple repos/pipelines need the same “definition of success,” the scoring implementation SHOULD be distributed as a version-pinned scoring artifact.
   The artifact SHOULD be small and dependency-light (package or equivalent) and referenced from the contract hub.
 - **MUST:** Scoring artifacts used for CI/release gating MUST be version-pinned (no implicit `latest`), and the version used MUST be recorded in eval run manifests.
 - **MUST:** Success criteria MUST NOT exist only as private scripts in a single repo that other producers/consumers cannot run.

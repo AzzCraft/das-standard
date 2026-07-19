@@ -1,16 +1,13 @@
-# DAS Community Registry | 社区名录
+# DAS Community Registry
 
 This registry tracks open-source repositories that have been documented using the **DAS Standard**.
 
 These Master Docs are community contributions. They provide an architectural "X-Ray" of complex software versions, making them easier to understand and contribute to.
 
-## Featured Projects
+## Published Community Entries
 
-| Project | Version | Master Doc Link | Author | Conformance |
-| :--- | :--- | :--- | :--- | :--- |
-| **Example App** | v1.0.0 | [Link](https://github.com/example/repo/blob/main/docs/master_doc.md) | [@yourname](https://github.com/yourname) | ✅ Full |
-| **LangChain** | v0.1.0 | [Link](...) | [@contributor](...) | ⚠️ Partial |
-| **React** | v18.2.0 | [Link](...) | [@contributor](...) | ⚠️ Gap Analysis |
+There are no verified community entries yet. Entries are added only after the
+contributor confirms the linked revision and the conformance level.
 
 ---
 
@@ -27,7 +24,7 @@ You don't need to write code to contribute. A valuable way to learn a codebase (
 ### Step 2: Generate the Analysis
 Use our official **Reverse Engineering Prompt** with an LLM (ChatGPT, Claude, Gemini) to audit the code and generate the doc.
 
-* **[Get the Prompt Here](templates/prompts/reverse_engineer.md)**
+* **[Get the Prompt Here](templates/prompts/reverse_engineer_a_master_doc.md)**
 
 ### Step 3: Add the Conformance Summary
 Since external repos rarely follow DAS perfectly, you must add this table at the very top of your `master_doc.md` to explain the gaps:
@@ -53,3 +50,4 @@ If your repository follows the DAS Standard, you can add this badge
 
 ```markdown
 [![Architecture: DAS Standard](https://img.shields.io/badge/Architecture-DAS_Standard-blue)](https://github.com/azzcraft/das-standard)
+```

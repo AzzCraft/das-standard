@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "taskId": "DAS-03-003",
+  "profiles": ["L1", "L2"],
+  "checks": [
+    {"name": "standard-manifest-loads", "command": "python3 -m json.tool das-standard/standard_manifest.json"},
+    {"name": "schema-loads", "command": "python3 -m json.tool das-standard/schemas/standard_manifest.schema.json"}
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "$schema": "https://das-standard.dev/schemas/chapter_index.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.4.0",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "What this standard optimizes for",
+      "file": "SPECIFICATION.md#1-what-this-standard-optimizes-for",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-2",
+      "title": "Scope, precedence, and core definitions",
+      "file": "SPECIFICATION.md#2-scope-precedence-and-core-definitions",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-3",
+      "title": "System topology and repo boundaries (monorepo vs multi-repo)",
+      "file": "SPECIFICATION.md#3-system-topology-and-repo-boundaries-monorepo-vs-multi-repo",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-4",
+      "title": "Canonical contracts and naming (cross-boundary + persisted)",
+      "file": "SPECIFICATION.md#4-canonical-contracts-and-naming-cross-boundary-persisted",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-5",
+      "title": "SDMM core principles (Single-Deploy Modular Engineering)",
+      "file": "SPECIFICATION.md#5-sdmm-core-principles-single-deploy-modular-engineering",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-6",
+      "title": "SDMM Frontend Track (UI applications)",
+      "file": "SPECIFICATION.md#6-sdmm-frontend-track-ui-applications",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-7",
+      "title": "SDMM Algorithm Track (pipelines, libraries, services)",
+      "file": "SPECIFICATION.md#7-sdmm-algorithm-track-pipelines-libraries-services",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-8",
+      "title": "Backend / Orchestrator Engineering (AI Product Engineering Principles)",
+      "file": "SPECIFICATION.md#8-backend-orchestrator-engineering-ai-product-engineering-principles",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-9",
+      "title": "Project documentation requirements (Master Doc + doc families + UI Spec)",
+      "file": "SPECIFICATION.md#9-project-documentation-requirements-master-doc-doc-families-ui-spec",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-10",
+      "title": "Verification and CI gates (minimum)",
+      "file": "SPECIFICATION.md#10-verification-and-ci-gates-minimum",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-11",
+      "title": "AI-assisted development workflow (minimum)",
+      "file": "SPECIFICATION.md#11-ai-assisted-development-workflow-minimum",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-12",
+      "title": "DDD + BDD integration (domain + behavior as first-class artifacts)",
+      "file": "SPECIFICATION.md#12-ddd-bdd-integration-domain-behavior-as-first-class-artifacts",
+      "roles": [
+        "all"
+      ]
+    }
+  ],
+  "appendices": [
+    {
+      "id": "appendix-c",
+      "title": "Project Master Doc Template",
+      "file": "appendices/appendix-c-project-master-doc-template.md"
+    },
+    {
+      "id": "appendix-d",
+      "title": "Ui Spec Appendix Template",
+      "file": "appendices/appendix-d-ui-spec-appendix-template.md"
+    },
+    {
+      "id": "appendix-e",
+      "title": "Multi Repo Contract Driven Standard",
+      "file": "appendices/appendix-e-multi-repo-contract-driven-standard.md"
+    },
+    {
+      "id": "appendix-f",
+      "title": "Sdmm Refactoring Migration Playbook",
+      "file": "appendices/appendix-f-sdmm-refactoring-migration-playbook.md"
+    },
+    {
+      "id": "appendix-g",
+      "title": "Ai Product Engineering Principles Addendum",
+      "file": "appendices/appendix-g-ai-product-engineering-principles-addendum.md"
+    },
+    {
+      "id": "appendix-h",
+      "title": "Ui Design Review Checklist",
+      "file": "appendices/appendix-h-ui-design-review-checklist.md"
+    },
+    {
+      "id": "appendix-i",
+      "title": "Ddd Playbook",
+      "file": "appendices/appendix-i-ddd-playbook.md"
+    },
+    {
+      "id": "appendix-j",
+      "title": "Bdd Scenarios Verification Playbook",
+      "file": "appendices/appendix-j-bdd-scenarios-verification-playbook.md"
+    },
+    {
+      "id": "appendix-k",
+      "title": "Hfvi Vis Template",
+      "file": "appendices/appendix-k-hfvi-vis-template.md"
+    },
+    {
+      "id": "appendix-l",
+      "title": "Tooling Standard",
+      "file": "appendices/appendix-l-tooling-standard.md"
+    },
+    {
+      "id": "appendix-m",
+      "title": "Doc Family Governance And Module Doc Templates",
+      "file": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md"
+    },
+    {
+      "id": "appendix-n",
+      "title": "Repo Roles Tooling Placement And Execution Matrix",
+      "file": "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md"
+    }
+  ]
+}

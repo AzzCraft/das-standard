@@ -16,12 +16,12 @@ The following names are used to identify the standard and the canonical specific
 - **Docs as Software**
 - **DAS Standard**
 
-AzzCraft Inc.  may (now or in the future) register one or more marks for these names or related logos.
+AzzCraft Inc. (重庆艾之舟科技有限公司) may (now or in the future) register one or more marks for these names or related logos.
 
 ## Allowed uses (nominative / descriptive)
 
 You may use the names above to:
-- refer to the standard in documentation or presentations, for example, “implements DAS Standard v1.0.0”,
+- refer to the standard in documentation or presentations, for example, “implements DAS Standard v1.4.0”,
 - link to this repository,
 - compare DAS to other approaches,
 - state that your project is “compatible with” or “based on” DAS (see the compliance rules below).
@@ -29,18 +29,18 @@ You may use the names above to:
 ## “DAS-compliant” and compliance claims
 
 You may claim **“DAS-compliant”** (or similar language such as “DAS-compatible”) only if:
-1. You clearly state *which* DAS version you target (e.g., “DAS Standard v1.0.0”), and
+1. You clearly state *which* DAS version you target (e.g., “DAS Standard v1.4.0”), and
 2. Your project passes the **Official Reference Validator** (`das-cli`) for that version without errors, and
-3. You do not imply endorsement by AzzCraft unless you have written permission.
+3. You do not imply endorsement by AzzCraft Inc. (重庆艾之舟科技有限公司) unless you have written permission.
 
 Recommended compliance phrasing:
-- “DAS Standard v1.0.0 — validated by `das-cli` (v1.2.0)”
+- “DAS Standard v1.4.0 — validated by the reference validator for that version”
 
 ## Restricted uses
 
 Without prior written permission, you may not:
 - use “DAS” or “Docs as Software” as the primary brand for a competing standard or commercial product (e.g., you cannot name your product "The DAS Server"),
-- Use the name in a way that implies official endorsement, certification, or affiliation with AzzCraft Inc.
+- Use the name in a way that implies official endorsement, certification, or affiliation with AzzCraft Inc. (重庆艾之舟科技有限公司).
 - use a confusingly similar name or logo for a product/service that is unrelated to the standard.
 
 ## Logos

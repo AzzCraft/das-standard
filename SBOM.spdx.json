@@ -1,0 +1,24 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "das-standard source SBOM",
+  "documentNamespace": "https://github.com/AzzCraft/das-standard/sbom/v1.4.0/source",
+  "creationInfo": {
+    "created": "2026-05-01T00:00:00Z",
+    "creators": [
+      "Organization: AzzCraft Inc. (\u91cd\u5e86\u827e\u4e4b\u821f\u79d1\u6280\u6709\u9650\u516c\u53f8)"
+    ]
+  },
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-das-standard",
+      "name": "das-standard",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "CC-BY-4.0 AND Apache-2.0",
+      "licenseDeclared": "CC-BY-4.0 AND Apache-2.0",
+      "versionInfo": "1.4.0"
+    }
+  ]
+}

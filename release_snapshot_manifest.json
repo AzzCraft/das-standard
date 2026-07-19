@@ -1,0 +1,295 @@
+{
+  "$schema": "./release_snapshot_manifest.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.4.0",
+  "standardManifestVersion": "1.4.0",
+  "snapshotKind": "standard_content_bundle",
+  "createdAt": "2026-07-19T00:00:00Z",
+  "buildRef": "content:v1.4.0",
+  "sourceRepoRef": {
+    "kind": "custom",
+    "uri": "content-manifest://das-standard",
+    "pinType": "version",
+    "pinValue": "1.4.0",
+    "floating": false
+  },
+  "bundleDigestAlgorithm": "sha256",
+  "bundleDigest": "0e14fcfd5918450f4d278e022299c82697ca5fbf985cff854b6a8711d6b2b6fe",
+  "artifacts": [
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "e8cfa44e3ca51e1a23d7092559ef7e1c8a3c18b13aa17ab8e8ff44ebb65a7a19",
+      "artifactClass": "ci",
+      "required": true
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "678a070e9756fc8f4430e5e334169f2e8e88693def873f2c10dd5e31594d4425",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "sha256": "e0ba15f37b707f853d8f5af415023ce6325c999d19c0a411c46e05d9a17dcda3",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "DAS_GOVERNANCE_COLLABORATION.md",
+      "sha256": "d2bba10aaa9c87e308a5a2b678edb1e944518f6b9653b7abf5c7ac5a368fb487",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "DAS_STANDARD_CONTEXT_PACK.md",
+      "sha256": "f40a063807585bcd808735185d581ddf9851d6f01b667b57b8db37fe9d349cd2",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "76cf701250852a192da421ff39ed1a963a342c2e873c815d33599adaa731133e",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "LICENSES/CC-BY-4.0.txt",
+      "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "LICENSE_MAP.md",
+      "sha256": "0e432a4b78f5e70de44644f7446505d3f1bad48e738df13af01353f441b3f974",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "SPECIFICATION.md",
+      "sha256": "01a6cc0cea76a583dd5467f3d57110a78d9ff0ed0fc478e55e45cf0628dbcd5f",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "VERSION",
+      "sha256": "78b591400c56b7b67b8cb3b2b8a8e65e9093897f02ce0878e6b5405c68620fa7",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-c-project-master-doc-template.md",
+      "sha256": "43465c9f7145b068e3069aa1760eb027b644463460ea4f15bf30611c2595c459",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "sha256": "0fea7570a62b2b8eb9578b87db3bb6baa6bb756c6cd11298d24b91672198ab41",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "sha256": "62c3de692a0de32ae954ae4cd5db415994f586b8914aa202c114b9cebdf86d10",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-f-sdmm-refactoring-migration-playbook.md",
+      "sha256": "06b589ca899fa89a14d9ac8c942d66e5958c6790f033920d4b112b5c81974c10",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "sha256": "3a9cc2531dd1e15346b478108c879e51d32617efd7cbbb2fdaa813ac7a6396d3",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-h-ui-design-review-checklist.md",
+      "sha256": "8a0625fb9e228e7583be609eff4d4dc5978dc76208f3a6e37ee0ed91c238add1",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-i-ddd-playbook.md",
+      "sha256": "6e60b06f14f52e054dfb9799185919212f7edb6d870eda66f2342d9b485d6d05",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+      "sha256": "c3bfab6cf5b4b9ab3a74a3699e184d21818c5ec38166793aa3b09ef3efd99d6c",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-k-hfvi-vis-template.md",
+      "sha256": "c184d42790ac882be868add0b3cd21d848e5567106c270346defa51bb454fef3",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-l-tooling-standard.md",
+      "sha256": "ed54539b573babbb0e5a3152ed86aef6d809ddf1585c8a1eae7ea6ad67565f26",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
+      "sha256": "3c749d493e71afc2815611f13274219f1bf2dc86cdf5fe11fa6b3618bbdcb5f7",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md",
+      "sha256": "c425ef311226632f5197779b53f6aa93b87e55da5499f22ac0bc6c85f44144b0",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "chapter_index.json",
+      "sha256": "dd578b55e907daf4475747b9fce4661d61eb6866fad174c4378edea2a22dd3f8",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "clause_index.json",
+      "sha256": "4de9248dd687040cfe0d7c8a8b07a021a1e817f0e87c824cd6adb8eb2f2aeccd",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "local_extension_manifest.example.json",
+      "sha256": "83ead60b3a415e833e657539c7937c19b6283655bad32ba88a884b381112d796",
+      "artifactClass": "example",
+      "required": true
+    },
+    {
+      "path": "local_extension_manifest.schema.json",
+      "sha256": "3d98f8703a2cd307db7ef7a1005bf2f7e44f037bc510503e59bf57c200c1c575",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "release_snapshot_manifest.example.json",
+      "sha256": "ac2e82c3d761f2fa52ea63f960e397589e323cb09793f482f3a6038185daed9e",
+      "artifactClass": "example",
+      "required": true
+    },
+    {
+      "path": "release_snapshot_manifest.schema.json",
+      "sha256": "70c0c7f4b8ec9d4d39dc0238255609269b38f7bb08a1c7f91d7d01027e0e6ac0",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "scripts/verify",
+      "sha256": "e365b0e39116861ed72b80003f0f72aa8d4039818c883c18b16d6b9daa48a4f0",
+      "artifactClass": "script",
+      "required": true
+    },
+    {
+      "path": "standard_manifest.json",
+      "sha256": "a928a400273bb49daac653692190e411f9a9f937d5ab7bdb1cd903ca3e3df7c2",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "standard_manifest.schema.json",
+      "sha256": "9987fa4f9a7f2987b9a6861cefc6b32c7a2defdd77e109c1d608399d6a7c2a78",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "suite_lock.example.json",
+      "sha256": "de57bf3e3ad3a3f6f6477d8d5729a6007d5829e4c0e36c3b4341f2d6115080a5",
+      "artifactClass": "example",
+      "required": true
+    },
+    {
+      "path": "suite_lock.schema.json",
+      "sha256": "64532328f53009b64ec71a9461b7da3c4ed8648a6b9d958446c245684e9953d8",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "suite_version_closure.example.json",
+      "sha256": "375c8e29ec5d03f958b06426a3a8b422bd3c2c2139b68de9a6d641924915d8ff",
+      "artifactClass": "example",
+      "required": true
+    },
+    {
+      "path": "suite_version_closure.schema.json",
+      "sha256": "330210438d4fbc0e879d528526c6a7efb4c638ba7f70419efcaf58fd9086e8e8",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "template_catalog.json",
+      "sha256": "323bd900de0c9576c994194518e8f6848cfe58e533375a34be66c9453d201181",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "template_catalog.schema.json",
+      "sha256": "bd9c97cb033775d04bcb15f341e65109412438271b1b07956ec720c0024e5c75",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "tooling_lock.example.json",
+      "sha256": "abe5f0802a8b8dc0a0ee20dca3c5234848a2969dccdfe77b4c94ac29d88ba3fe",
+      "artifactClass": "example",
+      "required": true
+    },
+    {
+      "path": "tooling_lock.schema.json",
+      "sha256": "3ab5e0a50c5e6dd355b3d882eab2a2258b1daf170eb8c9d9541b6cf2ee380cf5",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "verify_registry.example.json",
+      "sha256": "0ce95949588e2e38cf250a1eb98e229204d8c8fc7d15509c4531315c8cc12388",
+      "artifactClass": "example",
+      "required": true
+    },
+    {
+      "path": "verify_registry.json",
+      "sha256": "7f6b1994b6a128cb2803587922bcd7c18849187334241e6bdb76c5e0ec0f6ca8",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "verify_registry.schema.json",
+      "sha256": "6e6f3e5a43103a83e4f617611a73f03b524ee7263ee119b575e731b028382c40",
+      "artifactClass": "schema",
+      "required": true
+    },
+    {
+      "path": "verify_report.example.json",
+      "sha256": "485d1d579491d3399b697e68b86e3fdb5501afec68164794f2ff29e929305448",
+      "artifactClass": "example",
+      "required": true
+    },
+    {
+      "path": "verify_report.schema.json",
+      "sha256": "bdcada888c77ea4de02a4c7f1db82ef11ae5eadb1f35333bed7857c999e48f83",
+      "artifactClass": "schema",
+      "required": true
+    }
+  ],
+  "mirrorRules": {
+    "localMirrorAllowed": true,
+    "requireSnapshotRefForMirror": true,
+    "allowLocalModifications": false
+  }
+}

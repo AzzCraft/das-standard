@@ -1,0 +1,535 @@
+{
+  "$schema": "https://das-standard.dev/schemas/clause_index.schema.json",
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.4.0",
+  "clauses": [
+    {
+      "id": "cl-2.1",
+      "chapter": "ch-2",
+      "title": "Precedence and conflict resolution",
+      "file": "SPECIFICATION.md#21-precedence-and-conflict-resolution",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-2.2",
+      "chapter": "ch-2",
+      "title": "Core definitions",
+      "file": "SPECIFICATION.md#22-core-definitions",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-2.3",
+      "chapter": "ch-2",
+      "title": "Conformance profiles and cost controls (scalable adoption)",
+      "file": "SPECIFICATION.md#23-conformance-profiles-and-cost-controls-scalable-adoption",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-2.4",
+      "chapter": "ch-2",
+      "title": "Interaction profiles (HFVI extension)",
+      "file": "SPECIFICATION.md#24-interaction-profiles-hfvi-extension",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-2.5",
+      "chapter": "ch-2",
+      "title": "Machine-readable standard manifest, repo-canonical release artifacts, and extension mechanism",
+      "file": "SPECIFICATION.md#25-machine-readable-standard-manifest-repo-canonical-release-artifacts-and-extension-mechanism",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-3.1",
+      "chapter": "ch-3",
+      "title": "Critical distinction: repo boundaries vs runtime boundaries",
+      "file": "SPECIFICATION.md#31-critical-distinction-repo-boundaries-vs-runtime-boundaries",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-3.2",
+      "chapter": "ch-3",
+      "title": "Topology choices (choose the smallest topology that works)",
+      "file": "SPECIFICATION.md#32-topology-choices-choose-the-smallest-topology-that-works",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-3.3",
+      "chapter": "ch-3",
+      "title": "Recommended multi-repo baseline (Topology B / Hybrid)",
+      "file": "SPECIFICATION.md#33-recommended-multi-repo-baseline-topology-b-hybrid",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-3.4",
+      "chapter": "ch-3",
+      "title": "What each repo owns (normative)",
+      "file": "SPECIFICATION.md#34-what-each-repo-owns-normative",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-3.5",
+      "chapter": "ch-3",
+      "title": "Contract hub requirements (non-negotiable for multi-repo)",
+      "file": "SPECIFICATION.md#35-contract-hub-requirements-non-negotiable-for-multi-repo",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-3.6",
+      "chapter": "ch-3",
+      "title": "Integration harness requirements (system truth source)",
+      "file": "SPECIFICATION.md#36-integration-harness-requirements-system-truth-source",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.1",
+      "chapter": "ch-4",
+      "title": "Casing policy",
+      "file": "SPECIFICATION.md#41-casing-policy",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.2",
+      "chapter": "ch-4",
+      "title": "Contract surfaces and evolution modes",
+      "file": "SPECIFICATION.md#42-contract-surfaces-and-evolution-modes",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.3",
+      "chapter": "ch-4",
+      "title": "Canonical identifiers (stability requirements)",
+      "file": "SPECIFICATION.md#43-canonical-identifiers-stability-requirements",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4",
+      "chapter": "ch-4",
+      "title": "Canonical envelope shapes (normative)",
+      "file": "SPECIFICATION.md#44-canonical-envelope-shapes-normative",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.5",
+      "chapter": "ch-4",
+      "title": "Design system contracts (tokens + components)",
+      "file": "SPECIFICATION.md#45-design-system-contracts-tokens-components",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-5.1",
+      "chapter": "ch-5",
+      "title": "SDMM goals",
+      "file": "SPECIFICATION.md#51-sdmm-goals",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-5.2",
+      "chapter": "ch-5",
+      "title": "Terms (normative)",
+      "file": "SPECIFICATION.md#52-terms-normative",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-5.3",
+      "chapter": "ch-5",
+      "title": "Boundary rules (non-negotiable)",
+      "file": "SPECIFICATION.md#53-boundary-rules-non-negotiable",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-5.4",
+      "chapter": "ch-5",
+      "title": "Evolution modes (core concept)",
+      "file": "SPECIFICATION.md#54-evolution-modes-core-concept",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-5.5",
+      "chapter": "ch-5",
+      "title": "SDMM structure patterns (recommended)",
+      "file": "SPECIFICATION.md#55-sdmm-structure-patterns-recommended",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-5.6",
+      "chapter": "ch-5",
+      "title": "Anti-patterns (high-impact)",
+      "file": "SPECIFICATION.md#56-anti-patterns-high-impact",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-5.7",
+      "chapter": "ch-5",
+      "title": "Enforcement (minimum)",
+      "file": "SPECIFICATION.md#57-enforcement-minimum",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.1",
+      "chapter": "ch-6",
+      "title": "Frontend module taxonomy (recommended)",
+      "file": "SPECIFICATION.md#61-frontend-module-taxonomy-recommended",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.2",
+      "chapter": "ch-6",
+      "title": "Recommended dependency graph",
+      "file": "SPECIFICATION.md#62-recommended-dependency-graph",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.3",
+      "chapter": "ch-6",
+      "title": "App shell rules (composition root)",
+      "file": "SPECIFICATION.md#63-app-shell-rules-composition-root",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.4",
+      "chapter": "ch-6",
+      "title": "Feature module rules",
+      "file": "SPECIFICATION.md#64-feature-module-rules",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.5",
+      "chapter": "ch-6",
+      "title": "UI kit rules",
+      "file": "SPECIFICATION.md#65-ui-kit-rules",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.6",
+      "chapter": "ch-6",
+      "title": "Frontend testing gates (minimum)",
+      "file": "SPECIFICATION.md#66-frontend-testing-gates-minimum",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.7",
+      "chapter": "ch-6",
+      "title": "AI-Native UX patterns (streaming, thinking, repair, citations)",
+      "file": "SPECIFICATION.md#67-ai-native-ux-patterns-streaming-thinking-repair-citations",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.8",
+      "chapter": "ch-6",
+      "title": "High-fidelity visual interaction (HFVI) extension (canvas/WebGL/game surfaces)",
+      "file": "SPECIFICATION.md#68-high-fidelity-visual-interaction-hfvi-extension-canvaswebglgame-surfaces",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.1",
+      "chapter": "ch-7",
+      "title": "Recommended module layout",
+      "file": "SPECIFICATION.md#71-recommended-module-layout",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.2",
+      "chapter": "ch-7",
+      "title": "Dependency graph (normative)",
+      "file": "SPECIFICATION.md#72-dependency-graph-normative",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.3",
+      "chapter": "ch-7",
+      "title": "Determinism & replay tiers (required)",
+      "file": "SPECIFICATION.md#73-determinism-replay-tiers-required",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.4",
+      "chapter": "ch-7",
+      "title": "Side effects and `sideEffectsMode` (required)",
+      "file": "SPECIFICATION.md#74-side-effects-and-sideeffectsmode-required",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.5",
+      "chapter": "ch-7",
+      "title": "Budgets (required)",
+      "file": "SPECIFICATION.md#75-budgets-required",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.6",
+      "chapter": "ch-7",
+      "title": "Run manifests, pipeline results, and explainability (required)",
+      "file": "SPECIFICATION.md#76-run-manifests-pipeline-results-and-explainability-required",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.7",
+      "chapter": "ch-7",
+      "title": "Evaluations and gating (required for material changes)",
+      "file": "SPECIFICATION.md#77-evaluations-and-gating-required-for-material-changes",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.8",
+      "chapter": "ch-7",
+      "title": "Algorithm testing gates (minimum)",
+      "file": "SPECIFICATION.md#78-algorithm-testing-gates-minimum",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-7.9",
+      "chapter": "ch-7",
+      "title": "Refactoring & migration patterns",
+      "file": "SPECIFICATION.md#79-refactoring-migration-patterns",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-9.1",
+      "chapter": "ch-9",
+      "title": "Project Master Doc (required)",
+      "file": "SPECIFICATION.md#91-project-master-doc-required",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-9.2",
+      "chapter": "ch-9",
+      "title": "Doc-family governance and subordinate docs (required)",
+      "file": "SPECIFICATION.md#92-doc-family-governance-and-subordinate-docs-required",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-9.3",
+      "chapter": "ch-9",
+      "title": "UI Spec Appendix (required for UI products, explicitly handled for headless)",
+      "file": "SPECIFICATION.md#93-ui-spec-appendix-required-for-ui-products-explicitly-handled-for-headless",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-9.4",
+      "chapter": "ch-9",
+      "title": "Package / library / worker / infra module docs model",
+      "file": "SPECIFICATION.md#94-package-library-worker-infra-module-docs-model",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-9.5",
+      "chapter": "ch-9",
+      "title": "Traceability automation (strongly recommended)",
+      "file": "SPECIFICATION.md#95-traceability-automation-strongly-recommended",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-9.6",
+      "chapter": "ch-9",
+      "title": "Master Doc modularization and Context Packs (token-cost control)",
+      "file": "SPECIFICATION.md#96-master-doc-modularization-and-context-packs-token-cost-control",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-9.7",
+      "chapter": "ch-9",
+      "title": "Doc drift and inconsistency handling (code ↔ Master Doc)",
+      "file": "SPECIFICATION.md#97-doc-drift-and-inconsistency-handling-code-master-doc",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-9.8",
+      "chapter": "ch-9",
+      "title": "Multi-party / multi-company documentation governance (humans + tools)",
+      "file": "SPECIFICATION.md#98-multi-party-multi-company-documentation-governance-humans-tools",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.1",
+      "chapter": "ch-10",
+      "title": "One canonical `verify` per repo",
+      "file": "SPECIFICATION.md#101-one-canonical-verify-per-repo",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.2",
+      "chapter": "ch-10",
+      "title": "Minimum per-repo gates",
+      "file": "SPECIFICATION.md#102-minimum-per-repo-gates",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.3",
+      "chapter": "ch-10",
+      "title": "Gate cadence taxonomy (required)",
+      "file": "SPECIFICATION.md#103-gate-cadence-taxonomy-required",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.3.1",
+      "chapter": "ch-10",
+      "title": "Verify registry (required when a repo has multiple governed gates)",
+      "file": "SPECIFICATION.md#1031-verify-registry-required-when-a-repo-has-multiple-governed-gates",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.3.2",
+      "chapter": "ch-10",
+      "title": "Verify report (governed output)",
+      "file": "SPECIFICATION.md#1032-verify-report-governed-output",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.4",
+      "chapter": "ch-10",
+      "title": "Flakiness policy",
+      "file": "SPECIFICATION.md#104-flakiness-policy",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.5",
+      "chapter": "ch-10",
+      "title": "Tooling reproducibility, enforcement classes, and source-of-truth rules",
+      "file": "SPECIFICATION.md#105-tooling-reproducibility-enforcement-classes-and-source-of-truth-rules",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.6",
+      "chapter": "ch-10",
+      "title": "Suite lock (required when standard, factory, and verify runtime are split)",
+      "file": "SPECIFICATION.md#106-suite-lock-required-when-standard-factory-and-verify-runtime-are-split",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.7",
+      "chapter": "ch-10",
+      "title": "Suite-level version closure (required when standard, factory, and verify runtime are split)",
+      "file": "SPECIFICATION.md#107-suite-level-version-closure-required-when-standard-factory-and-verify-runtime-are-split",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-10.8",
+      "chapter": "ch-10",
+      "title": "Standard release snapshots and local mirror provenance",
+      "file": "SPECIFICATION.md#108-standard-release-snapshots-and-local-mirror-provenance",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-11.1",
+      "chapter": "ch-11",
+      "title": "AI task template (MUST)",
+      "file": "SPECIFICATION.md#111-ai-task-template-must",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-11.2",
+      "chapter": "ch-11",
+      "title": "Cross-repo sequencing",
+      "file": "SPECIFICATION.md#112-cross-repo-sequencing",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-12.1",
+      "chapter": "ch-12",
+      "title": "Mapping: this standard ↔ DDD ↔ BDD",
+      "file": "SPECIFICATION.md#121-mapping-this-standard-ddd-bdd",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-12.2",
+      "chapter": "ch-12",
+      "title": "DDD requirements (minimum practical bar)",
+      "file": "SPECIFICATION.md#122-ddd-requirements-minimum-practical-bar",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-12.3",
+      "chapter": "ch-12",
+      "title": "DDD → contracts: commands, events, and state machines",
+      "file": "SPECIFICATION.md#123-ddd-contracts-commands-events-and-state-machines",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-12.4",
+      "chapter": "ch-12",
+      "title": "BDD requirements (minimum practical bar)",
+      "file": "SPECIFICATION.md#124-bdd-requirements-minimum-practical-bar",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-12.5",
+      "chapter": "ch-12",
+      "title": "AI-assisted development: making DDD/BDD cheaper (but still correct)",
+      "file": "SPECIFICATION.md#125-ai-assisted-development-making-dddbdd-cheaper-but-still-correct",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-12.6",
+      "chapter": "ch-12",
+      "title": "Classes, inheritance, and “domain objects” (implementation guidance)",
+      "file": "SPECIFICATION.md#126-classes-inheritance-and-domain-objects-implementation-guidance",
+      "keywords": [],
+      "gateLabels": []
+    }
+  ]
+}

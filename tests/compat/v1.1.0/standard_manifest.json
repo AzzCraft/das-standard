@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureKind": "historical-compatibility-adapter",
+  "standardVersion": "1.1.0",
+  "requiredArtifacts": [
+    "SPECIFICATION.md",
+    "LICENSE"
+  ],
+  "normativeArtifactRefs": {
+    "specification": "SPECIFICATION.md",
+    "license": "LICENSE"
+  },
+  "historicalSource": {
+    "repository": "https://github.com/AzzCraft/das-standard.git",
+    "tag": "v1.1.0",
+    "commit": "6b029e1e23a9cf5a5fa70c726002c49234c83d40",
+    "tree": "d88ec165d0ba4b38cceda8706084789d29320080",
+    "specificationSha256": "3723de5b897fa802ae2c386d475aa88b7ca889f281f3493ce0c5750dd782ccfa",
+    "licenseSha256": "6332927c9e7a7a35e2e166fc29792548d739ddacf0ea6c31f6bde4edcc000e56"
+  }
+}

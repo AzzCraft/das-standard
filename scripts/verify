@@ -1,0 +1,322 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+export ROOT
+cd "$ROOT"
+export PYTHONDONTWRITEBYTECODE=1
+GATE="all"
+MODE="fast"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --full)
+      MODE="full"
+      shift
+      ;;
+    --gate)
+      if [ $# -lt 2 ]; then
+        echo "missing value for --gate" >&2
+        exit 2
+      fi
+      GATE="$2"
+      shift 2
+      ;;
+    *)
+      echo "unknown argument: $1" >&2
+      exit 2
+      ;;
+  esac
+done
+export GATE MODE
+
+if [ -n "${PYTHON:-}" ]; then
+  PYTHON_BIN="$PYTHON"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN="python3"
+elif command -v python >/dev/null 2>&1; then
+  PYTHON_BIN="python"
+else
+  echo "python3 or python is required" >&2
+  exit 127
+fi
+
+VERSION="$(tr -d '[:space:]' < "$ROOT/VERSION")"
+if BUILD_SHA="$(git -C "$ROOT" rev-parse --verify HEAD 2>/dev/null)"; then
+  BUILD_REF="git:$BUILD_SHA"
+else
+  BUILD_REF="content:v$VERSION"
+fi
+TOOLCHAIN="$("$PYTHON_BIN" - <<'PY'
+import importlib.metadata
+import sys
+try:
+    print(
+        f"python={sys.version.split()[0]};"
+        f"jsonschema={importlib.metadata.version('jsonschema')};"
+        f"pytest={importlib.metadata.version('pytest')}"
+    )
+except importlib.metadata.PackageNotFoundError as exc:
+    raise SystemExit("install verification dependencies with python3 -m pip install -r requirements-verify.txt") from exc
+PY
+)"
+printf 'verify: mode=%s\nverify: buildRef=%s\nverify: standardManifestVersion=%s\nverify: toolchain=%s\n' "$MODE" "$BUILD_REF" "$VERSION" "$TOOLCHAIN"
+
+"$PYTHON_BIN" - <<'PY'
+import hashlib
+import json
+import os
+import re
+import sys
+from pathlib import Path
+
+try:
+    from jsonschema import Draft202012Validator
+except (ModuleNotFoundError, ImportError) as exc:
+    raise SystemExit(
+        "jsonschema with Draft202012Validator is required; install verification dependencies with "
+        "'python3 -m pip install -r requirements-verify.txt'"
+    ) from exc
+
+root = Path(os.environ['ROOT'])
+gate = os.environ.get('GATE', 'all')
+valid_gates = {'all', 'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}
+if gate not in valid_gates:
+    raise SystemExit(f"unknown gate: {gate}")
+
+
+def load_json(path: Path):
+    return json.loads(path.read_text())
+
+
+def validate_json(data_path: Path, schema_path: Path):
+    data = load_json(data_path)
+    schema = load_json(schema_path)
+    Draft202012Validator(schema).validate(data)
+
+
+def strip_fenced_code(text: str) -> str:
+    return re.sub(r"```.*?```", "", text, flags=re.S)
+
+
+def check_markdown_links(paths):
+    pattern = re.compile(r"\[[^\]]+\]\(([^)#]+)(?:#[^)]+)?\)")
+    for path in paths:
+        text = strip_fenced_code(path.read_text())
+        for match in pattern.finditer(text):
+            target = match.group(1).strip()
+            if (
+                not target
+                or target == "..."
+                or target.startswith(("http://", "https://", "mailto:"))
+                or target.startswith("<")
+                or "{" in target
+            ):
+                continue
+            resolved = (path.parent / target).resolve()
+            try:
+                resolved.relative_to(root.resolve())
+            except ValueError:
+                continue
+            if not resolved.exists():
+                raise AssertionError(f"Broken link in {path.relative_to(root)} -> {target}")
+
+
+def compute_bundle_digest(artifacts):
+    payload = "\n".join(
+        f"{artifact['path']}:{artifact['sha256']}"
+        for artifact in sorted(artifacts, key=lambda item: item['path'])
+    )
+    return hashlib.sha256(payload.encode()).hexdigest()
+
+
+def assert_manifest_aliases(manifest_data):
+    interaction_profiles = manifest_data.get('interactionProfiles')
+    gate_cadences = manifest_data.get('gateCadences')
+    enum_interaction_profiles = manifest_data['enums']['interactionProfiles']
+    enum_gate_cadences = manifest_data['enums']['gateCadences']
+
+    assert interaction_profiles == enum_interaction_profiles, (
+        "standard_manifest.interactionProfiles must match "
+        "standard_manifest.enums.interactionProfiles"
+    )
+    assert gate_cadences == enum_gate_cadences, (
+        "standard_manifest.gateCadences must match "
+        "standard_manifest.enums.gateCadences"
+    )
+
+
+version = (root / 'VERSION').read_text().strip()
+manifest = load_json(root / 'standard_manifest.json')
+verify_registry = load_json(root / 'verify_registry.json')
+release_snapshot = load_json(root / 'release_snapshot_manifest.json')
+
+
+def run_bundle_files():
+    assert version == manifest['standardVersion'], (
+        f"VERSION ({version}) != standard_manifest.standardVersion ({manifest['standardVersion']})"
+    )
+    assert_manifest_aliases(manifest)
+
+    required = manifest['requiredArtifacts']
+    missing = [p for p in required if not (root / p).exists()]
+    assert not missing, f"Missing requiredArtifacts: {missing}"
+
+    for group in ('normativeArtifactRefs', 'supportingArtifactRefs'):
+        for name, rel in manifest[group].items():
+            assert (root / rel).exists(), f"Missing {group}.{name}: {rel}"
+
+    governed_markdown = [
+        root / rel
+        for rel in manifest['requiredArtifacts']
+        if rel.endswith('.md') and (root / rel).exists()
+    ]
+    check_markdown_links(governed_markdown)
+
+
+def run_schemas():
+    validate_json(root / 'standard_manifest.json', root / 'standard_manifest.schema.json')
+    assert_manifest_aliases(manifest)
+
+    pairs = [
+        ('suite_version_closure.example.json', 'suite_version_closure.schema.json'),
+        ('suite_lock.example.json', 'suite_lock.schema.json'),
+        ('tooling_lock.example.json', 'tooling_lock.schema.json'),
+        ('local_extension_manifest.example.json', 'local_extension_manifest.schema.json'),
+        ('verify_registry.json', 'verify_registry.schema.json'),
+        ('verify_registry.example.json', 'verify_registry.schema.json'),
+        ('verify_report.example.json', 'verify_report.schema.json'),
+        ('release_snapshot_manifest.json', 'release_snapshot_manifest.schema.json'),
+        ('release_snapshot_manifest.example.json', 'release_snapshot_manifest.schema.json'),
+        ('template_catalog.json', 'template_catalog.schema.json'),
+    ]
+    for data_file, schema_file in pairs:
+        validate_json(root / data_file, root / schema_file)
+
+
+def run_release_snapshot():
+    validate_json(root / 'verify_registry.json', root / 'verify_registry.schema.json')
+    validate_json(
+        root / 'release_snapshot_manifest.json',
+        root / 'release_snapshot_manifest.schema.json',
+    )
+
+    artifact_paths = {artifact['path'] for artifact in release_snapshot['artifacts']}
+    expected_artifacts = set(manifest['requiredArtifacts']) - {'release_snapshot_manifest.json'}
+    missing = sorted(expected_artifacts - artifact_paths)
+    assert not missing, f"release snapshot missing requiredArtifacts: {missing}"
+
+    implemented_gates = {'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}
+    default_command = verify_registry['defaultVerifyCommand']
+    assert (root / default_command.removeprefix('./')).exists(), (
+        f"default verify command does not resolve: {default_command}"
+    )
+
+    for item in verify_registry['gates']:
+        command = item['command']
+        assert command == default_command or command.startswith(f"{default_command} --gate "), (
+            f"verify registry command is not backed by {default_command}: {command}"
+        )
+        if command.startswith(f"{default_command} --gate "):
+            declared_gate = command.split()[-1]
+            assert declared_gate in implemented_gates, (
+                f"verify registry references unsupported gate: {declared_gate}"
+            )
+
+    for artifact in release_snapshot['artifacts']:
+        path = root / artifact['path']
+        assert path.exists(), f"release snapshot artifact missing: {artifact['path']}"
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        assert digest == artifact['sha256'], (
+            f"release snapshot hash mismatch for {artifact['path']}: "
+            f"expected {artifact['sha256']} actual {digest}"
+        )
+
+    expected_bundle_digest = compute_bundle_digest(release_snapshot['artifacts'])
+    assert expected_bundle_digest == release_snapshot['bundleDigest'], (
+        f"bundleDigest mismatch: {expected_bundle_digest}"
+    )
+
+
+def run_compat_release():
+    compat_window = load_json(root / 'tests' / 'compat' / 'compat_window.json')
+    release_report = load_json(root / 'release' / 'release_report.json')
+
+    assert compat_window.get('task') == 'STD-001', 'STD-001 compat_window task mismatch'
+    assert release_report.get('task') == 'STD-001', 'STD-001 release_report task mismatch'
+    assert compat_window['currentVersion'] == version, (
+        f"STD-001 compat_window currentVersion mismatch: {compat_window['currentVersion']} != {version}"
+    )
+    assert release_report['standardVersion'] == version, (
+        f"STD-001 release_report standardVersion mismatch: {release_report['standardVersion']} != {version}"
+    )
+
+    fixture_versions = set()
+    for fixture in compat_window['fixtures']:
+        rel = fixture['path']
+        path = root / rel
+        if not path.is_file():
+            raise AssertionError(f"STD-001 missing compatibility artifact: {rel}")
+        payload = load_json(path)
+        fixture_versions.add(fixture['version'])
+        assert payload.get('standardVersion') == fixture['version'], (
+            f"STD-001 fixture version mismatch for {rel}"
+        )
+        for field in ('standardVersion', 'requiredArtifacts', 'normativeArtifactRefs'):
+            assert field in payload, f"STD-001 fixture missing {field}: {rel}"
+
+    supported_versions = set(release_report['compatibilityWindow']['supportedVersions'])
+    assert compat_window['minReadableVersion'] == release_report['compatibilityWindow']['minReadableVersion'], (
+        'STD-001 compatibility window mismatch'
+    )
+    assert fixture_versions <= supported_versions, 'STD-001 release_report omits fixture version'
+    assert version in supported_versions, 'STD-001 release_report omits current version'
+
+    for name, artifact in release_report['artifacts'].items():
+        rel = artifact['path']
+        path = root / rel
+        if not path.is_file():
+            raise AssertionError(f"STD-001 missing compatibility artifact: {rel}")
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        assert digest == artifact['sha256'], (
+            f"STD-001 artifact hash mismatch for {name}: {rel}: {digest}"
+        )
+
+    sbom = load_json(root / release_report['artifacts']['sbom']['path'])
+    assert sbom['packages'][0]['name'] == 'das-standard', 'STD-001 SBOM package mismatch'
+    changelog = (root / release_report['artifacts']['changelog']['path']).read_text()
+    assert version in changelog, f"STD-001 changelog omits current version: {version}"
+
+
+if gate in ('all', 'bundle-files'):
+    run_bundle_files()
+if gate in ('all', 'schemas'):
+    run_schemas()
+if gate in ('all', 'release-snapshot'):
+    run_release_snapshot()
+if gate in ('all', 'compat-release'):
+    run_compat_release()
+
+if gate == 'compat-release':
+    print(f'STD-001 compat-release verify: PASS {version}')
+else:
+    print('DAS v1.4.0 release bundle verify: PASS')
+PY
+
+"$PYTHON_BIN" tools/generate_spec_indexes.py --check
+"$PYTHON_BIN" tools/generate_content_snapshot.py --check
+"$PYTHON_BIN" tools/validate_release_contract.py --gate "$GATE"
+
+if [[ "$GATE" != "compat-release" ]]; then
+  RESIDUE=()
+  while IFS= read -r path; do
+    RESIDUE+=("$path")
+  done < <(find "$ROOT" -path '*/.git' -prune -o \( -type d -name '__pycache__' -o -type f \( -name '*.pyc' -o -name '.DS_Store' \) \) -print)
+  if ((${#RESIDUE[@]})); then
+    printf 'forbidden generated residue found:\n' >&2
+    printf '%s\n' "${RESIDUE[@]}" >&2
+    exit 1
+  fi
+fi
+
+if [[ "$GATE" == "all" ]]; then
+  "$PYTHON_BIN" -m pytest -p no:cacheprovider -q
+fi

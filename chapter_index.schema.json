@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/chapter_index.schema.json",
+  "title": "DAS Chapter Index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "standardVersion",
+    "chapters",
+    "appendices"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./chapter_index.schema.json"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "standardVersion": {
+      "type": "string"
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "file",
+          "roles"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ch-[0-9]+$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "file": {
+            "type": "string",
+            "pattern": "^SPECIFICATION\\.md#"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "appendices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "file"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^appendix-[a-z]+$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "file": {
+            "type": "string",
+            "pattern": "^appendices/appendix-[a-z]+-.*\\.md$"
+          }
+        }
+      }
+    }
+  }
+}

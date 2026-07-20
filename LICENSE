@@ -2,10 +2,12 @@
 
 **SPDX-License-Identifier:** CC-BY-4.0
 
-Except where otherwise noted, the **specification and documentation** in this repository (including `SPECIFICATION.md`, `glossary.md`, and files under `templates/`) are licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.
+Except where otherwise noted, the **specification and documentation** in this repository (including `SPECIFICATION.md`, `glossary.md`, and normative prose files) are licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.
 
-To view a copy of this license, visit:
-- https://creativecommons.org/licenses/by/4.0/
+The full legal texts are included at:
+
+- `LICENSES/CC-BY-4.0.txt`
+- `LICENSES/Apache-2.0.txt`
 
 Attribution requirements (summary):
 - Give appropriate credit to the project and authors.
@@ -13,4 +15,7 @@ Attribution requirements (summary):
 - Indicate if changes were made.
 
 Notes:
-- This file is a human-readable summary. The legal code linked above is authoritative.
+- This file is a human-readable summary. The included legal texts are authoritative.
+
+
+Repository license map: see LICENSE_MAP.md for REUSE-style coverage. Scripts, schemas, examples, templates, tests, indexes, and generated machine-readable metadata are covered by Apache-2.0 unless a file-specific SPDX header says otherwise.

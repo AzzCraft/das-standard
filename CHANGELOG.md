@@ -10,6 +10,22 @@ This project follows a pragmatic versioning approach:
 
 ---
 
+## v1.4.0 — 2026-04-06
+
+### Added
+
+- Explicit **conformance profile** and **interaction model** declarations for documents adopted under v1.4.0, including support for headless and operator-facing systems.
+- Governed document families, a machine-readable standard manifest, template catalog, chapter/clause indexes, and a stable standards-ID registry.
+- A community registry, conformance-report contract, compatibility fixtures, release snapshots, and version-closure checks.
+- Appendix M (document-family governance and minimal templates) and Appendix N (repository roles, tooling placement, and execution matrix).
+
+### Compatibility and migration
+
+- Existing documents that conformed to v1.3.x may continue to use the historical L1 and standard_ui defaults during the v1 compatibility period. Verification tools MAY report these legacy defaults as migration warnings.
+- Documents newly created or adopted under v1.4.0 MUST state those declarations explicitly. Existing adopters SHOULD materialize the fields before adopting v2.0.0, when omission may become a verification failure.
+
+---
+
 ## v1.3.0 — 2026-02-07
 
 ### Added

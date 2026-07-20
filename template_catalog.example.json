@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.4.0",
+  "templates": [
+    {"docType":"master_doc","artifactPath":"templates/master_doc.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
+    {"docType":"prd","artifactPath":"templates/prd.md","sectionAnchor":"#scope","templateKind":"canonical_full"},
+    {"docType":"ui_spec","artifactPath":"templates/ui_spec.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
+    {"docType":"headless_surface_note","artifactPath":"templates/headless.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
+    {"docType":"module_doc","artifactPath":"templates/module_doc.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
+    {"docType":"runbook","artifactPath":"templates/runbook.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
+    {"docType":"deployment_doc","artifactPath":"templates/deployment.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
+    {"docType":"context_pack","artifactPath":"templates/context_pack.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
+    {"docType":"support_note","artifactPath":"templates/support_note.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
+    {"docType":"normative_addendum","artifactPath":"templates/addendum.md","sectionAnchor":"#overview","templateKind":"canonical_full"}
+  ]
+}

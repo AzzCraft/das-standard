@@ -1,0 +1,49 @@
+{
+  "$schema": "../standard_ids.schema.json",
+  "standardVersion": "1.4.0",
+  "description": "DAS stable ID registry. Every ID listed here MUST never be reused; deprecated IDs are retired with replacement pointers.",
+  "clauseIds": {
+    "C-001": "Standard purpose and scope",
+    "C-010": "Document type taxonomy",
+    "C-100": "Repository structure discipline",
+    "C-200": "Task lifecycle and locking",
+    "C-300": "Evidence model",
+    "C-400": "Verification gates",
+    "C-500": "Profile / tier compatibility"
+  },
+  "appendixIds": {
+    "A-C": "Project Master Doc Template",
+    "A-D": "UI Spec Appendix Template",
+    "A-E": "Multi-Repo Contract-Driven Standard",
+    "A-F": "SDMM Refactoring & Migration Playbook",
+    "A-G": "AI Product Engineering Principles Addendum",
+    "A-H": "UI Design Review Checklist",
+    "A-I": "DDD Playbook",
+    "A-J": "BDD Scenarios and Verification Playbook",
+    "A-K": "High-Fidelity Visual Interaction Extension and Visual Interaction Spec Template",
+    "A-L": "DAS Tooling Standard",
+    "A-M": "Doc-Family Governance and Module Doc Templates",
+    "A-N": "Repository Roles, Tooling Placement, and Execution Matrix"
+  },
+  "templateIds": {
+    "T-PRODUCT-PY": "Python product repo template",
+    "T-PRODUCT-NODE": "Node product repo template",
+    "T-PRODUCT-GO": "Go product repo template",
+    "T-CONTRACTS-HUB": "Contracts hub template"
+  },
+  "errorCodes": {
+    "E-DAS-001": "Missing STANDARD_REF in product repo",
+    "E-DAS-002": "task lock acquired without lockToken",
+    "E-DAS-003": "evidence bundle hash mismatch",
+    "E-DAS-004": "tooling lock drift detected",
+    "E-DAS-005": "private module referenced from public closure"
+  },
+  "checkIds": {
+    "CHK-DOC-LINKS": "Documentation link integrity",
+    "CHK-EVIDENCE-BUNDLE": "Evidence bundle structural integrity",
+    "CHK-TOOLING-LOCK": "Tooling lock matches manifest",
+    "CHK-STANDARD-REF": "STANDARD_REF present and resolvable",
+    "CHK-CONTRACT-FIXTURES": "Contract fixtures cover declared schemas"
+  },
+  "deprecatedIds": []
+}

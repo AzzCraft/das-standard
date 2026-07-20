@@ -1,14 +1,16 @@
 # DAS Deployment & Environment Addendum (DAS-Deploy)
-> **Normative companion to the Docs as Software (DAS) Standard v1.3.0**
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+## Document Control
 
-**Name:** DAS Deployment & Environment Addendum (中文：文码合一部署与环境附录)
-**Maintained by:** AzzCraft Inc.
-**Last updated:** 2026-01-29
-**Status:** Normative
-
----
+- **Doc ID:** DAS-DEPLOYMENT-ADDENDUM
+- **Owner:** DAS Standard Maintainers
+- **Status:** active
+- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Last updated:** 2026-04-06
+- **Scope:** Deployment, environments, release operations, and production-readiness guidance
+- **Parent standard:** Docs as Software (DAS) Standard
+- **Doc family role:** subordinate_doc
+- **Addendum kind:** deployment
 
 ## Normative language
 
@@ -28,6 +30,10 @@ The main DAS Standard focuses on **design + implementation + verification**. Thi
 - production readiness (observability, incident response, rollback).
 
 This is required for most real-world L1/L2 products. Pure libraries or research-only repos MAY adopt a reduced subset.
+
+## Relationship to the main standard
+
+This addendum is subordinate to the Docs as Software (DAS) Standard v1.4.0. It extends the standard's deployment and operations guidance without changing the governing conformance, precedence, or verification rules in the main specification.
 
 ---
 

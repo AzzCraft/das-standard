@@ -25,6 +25,7 @@ Because this repository contains a **formal specification**, we try to keep chan
 
 By contributing to this repository, you agree that your contributions are licensed under the repository’s licensing scheme:
 - **Specification & documentation** contributions are under **CC BY 4.0** (see `LICENSE`).
+- **Scripts, schemas, examples, templates, tests, indexes, and machine-readable metadata** contributions are under **Apache-2.0** (see `LICENSE_MAP.md`).
 
 ## Developer Certificate of Origin
 

@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/suite_lock.schema.json",
+  "title": "DAS Suite Lock",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "suiteId",
+    "suiteVersion",
+    "standardManifestVersion",
+    "syncMode",
+    "allowCloneTip",
+    "defaultOverridePolicy",
+    "modules"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "suiteId": {
+      "type": "string"
+    },
+    "suiteVersion": {
+      "type": "string"
+    },
+    "standardManifestVersion": {
+      "type": "string"
+    },
+    "syncMode": {
+      "enum": [
+        "locked",
+        "locked_with_explicit_overrides"
+      ]
+    },
+    "allowCloneTip": {
+      "type": "boolean",
+      "const": false
+    },
+    "defaultOverridePolicy": {
+      "enum": [
+        "forbidden",
+        "explicit_ticket_required",
+        "allowed_for_local_only"
+      ]
+    },
+    "modules": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/moduleLock"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "structuredRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "uri",
+        "pinType",
+        "pinValue"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "git",
+            "container_image",
+            "package",
+            "file",
+            "ci_workflow",
+            "custom"
+          ]
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pinType": {
+          "enum": [
+            "commit",
+            "tag",
+            "digest",
+            "version",
+            "path",
+            "manifest"
+          ]
+        },
+        "pinValue": {
+          "type": "string",
+          "minLength": 1
+        },
+        "floating": {
+          "type": "boolean",
+          "const": false
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "git"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "commit",
+                  "tag"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "container_image"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "const": "digest"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "package"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "const": "version"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "file"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "path",
+                  "manifest"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "ci_workflow"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinType": {
+                "enum": [
+                  "path",
+                  "manifest"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "moduleLock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "lockedRef",
+        "required",
+        "overridePolicy",
+        "allowedLocalState"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "standard_repo",
+            "suite_repo",
+            "factory_repo",
+            "verify_runtime_repo",
+            "policy_pack_repo",
+            "control_plane_repo",
+            "enterprise_subtree_repo",
+            "product_repo",
+            "monorepo_local_tooling"
+          ]
+        },
+        "lockedRef": {
+          "$ref": "#/$defs/structuredRef"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "overridePolicy": {
+          "enum": [
+            "forbidden",
+            "explicit_ticket_required",
+            "allowed_for_local_only"
+          ]
+        },
+        "allowedLocalState": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "missing",
+              "present_locked_match",
+              "present_locked_mismatch",
+              "present_local_override",
+              "dirty"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

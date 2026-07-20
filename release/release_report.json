@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "task": "STD-001",
+  "standardVersion": "1.4.0",
+  "compatibilityWindow": {
+    "minReadableVersion": "1.1.0",
+    "supportedVersions": [
+      "1.1.0",
+      "1.4.0"
+    ]
+  },
+  "artifacts": {
+    "sbom": {
+      "path": "SBOM.spdx.json",
+      "sha256": "07f7a4034fd5ed76a72a63334cc1076a577aa238486aa852f2fc0788737d45e4"
+    },
+    "changelog": {
+      "path": "CHANGELOG.md",
+      "sha256": "1dd99999040d0c5fb77ea8705de3a59b8c2ba5bfc8c90f83dbe20277d87a4bd1"
+    },
+    "historicalFixture": {
+      "path": "tests/compat/v1.1.0/standard_manifest.json",
+      "sha256": "ab00efb655923add9c5ddc1fc24b340d8a1903de013c84ffccdc55f21fe156a1"
+    },
+    "compatWindow": {
+      "path": "tests/compat/compat_window.json",
+      "sha256": "ec4a9396c6de0138681203f8e81c33aa4ceb7e866f7258425218dc1d0ecb7a81"
+    }
+  }
+}

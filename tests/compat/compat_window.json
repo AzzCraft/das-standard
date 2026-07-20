@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "task": "STD-001",
+  "currentVersion": "1.4.0",
+  "minReadableVersion": "1.1.0",
+  "fixtures": [
+    {
+      "version": "1.1.0",
+      "path": "tests/compat/v1.1.0/standard_manifest.json"
+    },
+    {
+      "version": "1.4.0",
+      "path": "tests/compat/v1.4.0/standard_manifest.json"
+    }
+  ]
+}

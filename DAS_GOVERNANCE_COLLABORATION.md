@@ -1,14 +1,15 @@
 # DAS Governance & Collaboration Addendum (DAS-Gov)
-> **Normative companion to the Docs as Software (DAS) Standard v1.3.0**
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-
-**Name:** DAS Governance & Collaboration Addendum (中文：文码合一治理与协作附录)
-**Maintained by:** AzzCraft Inc.
-**Last updated:** 2026-01-29
-**Status:** Normative
-
----
+## Document Control
+- Doc ID: DAS-ADDENDUM-GOVERNANCE
+- Owner: DAS Maintainers
+- Status: active
+- Governing standard: SPECIFICATION.md
+- Last updated: 2026-04-06
+- Scope: Roles, decision rights, review workflow, approval expectations, break-glass protocol, and dispute-resolution guidance shipped with the DAS v1.4.0 release.
+- Parent standard: SPECIFICATION.md
+- Doc family role: subordinate_doc
+- Addendum kind: governance
 
 ## Normative language
 
@@ -29,6 +30,10 @@ It covers:
 - practical templates.
 
 This addendum **does not** replace your organization’s security/compliance policies. If there is a conflict, security/compliance wins.
+
+## Relationship to the main standard
+
+This addendum is subordinate to the Docs as Software (DAS) Standard v1.4.0. It elaborates the governance guidance in §9.1 and §9.6 without changing the main standard's conformance, precedence, or verification rules.
 
 ---
 
@@ -113,7 +118,7 @@ The main DAS Standard allows a Master Doc to be implemented as a **doc set** (ca
 Rules:
 
 - **MUST:** There MUST be exactly one canonical Master Doc entrypoint.
-- **MUST:** The entrypoint MUST contain the minimum required content (§9.4 of the main standard) and MUST link to any delegated content.
+- **MUST:** The entrypoint MUST contain the minimum required content (§9.4 of the main standard) and MUST link to any delegated content; multi-party governance requirements are described in §9.6.
 - **MUST:** All links in the canonical doc set MUST be stable (prefer repo-relative paths).
 - **SHOULD:** Avoid duplicating the same truth in multiple places. If duplication is unavoidable, you MUST declare which one is SSOT.
 
@@ -123,7 +128,7 @@ Multi-company programs often have mixed confidentiality.
 
 Rules:
 
-- **MUST:** Each doc SHOULD declare its confidentiality classification (public/internal/partner/restricted) if applicable.
+- **SHOULD:** Each doc SHOULD declare its confidentiality classification (public/internal/partner/restricted) if applicable.
 - **MUST:** Restricted material MUST NOT be copied into repositories that are accessible to unauthorized parties.
 - **SHOULD:** If the Master Doc must be shared externally, produce a redacted “Partner Pack” with the same IDs but with sensitive details removed.
 
@@ -194,7 +199,7 @@ Example (customize):
 
 ---
 
-## 6.3 Break-glass protocol (emergency changes)
+### 6.3 Break-glass protocol (emergency changes)
 
 Real systems sometimes fail at 03:00. A governance system that cannot handle emergencies will be bypassed informally, creating drift and hidden risk.
 
@@ -296,7 +301,8 @@ Copy/paste:
 Doc ID: DOC-XXX
 Owner: <team or person>
 Decision Owner: <team or person>  # optional if no cross-boundary decisions
-Status: Draft | Active | Deprecated
+Governing standard: Docs as Software (DAS) Standard v1.4.0
+Status: draft | active | frozen | deprecated
 Last updated: YYYY-MM-DD
 Scope: <what this doc covers and what it explicitly does not>
 ---
@@ -307,7 +313,7 @@ Scope: <what this doc covers and what it explicitly does not>
 ```md
 # RFC-YYYY-NNN: <title>
 
-- Status: Draft | Accepted | Rejected | Superseded
+- Status: draft | active | frozen | deprecated
 - Owners: <names/teams>
 - Decision Owner: <name/team>
 - Related repos: <...>
@@ -369,4 +375,3 @@ Scope: <what this doc covers and what it explicitly does not>
 - Expiry: <date or milestone>
 - Compensating controls: <tests, reviews, monitoring>
 ```
-

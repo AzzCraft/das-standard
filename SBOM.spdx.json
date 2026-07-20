@@ -1,0 +1,54 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "das-standard source SBOM",
+  "documentNamespace": "https://github.com/AzzCraft/das-standard/sbom/v1.4.0/source",
+  "creationInfo": {
+    "created": "2026-05-01T00:00:00Z",
+    "creators": [
+      "Organization: AzzCraft Inc. (重庆艾之舟科技有限公司)"
+    ]
+  },
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-das-standard",
+      "name": "das-standard",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "CC-BY-4.0 AND Apache-2.0",
+      "licenseDeclared": "CC-BY-4.0 AND Apache-2.0",
+      "versionInfo": "1.4.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-jsonschema",
+      "name": "jsonschema",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "versionInfo": "4.17.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-pytest",
+      "name": "pytest",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "versionInfo": "8.4.2"
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-Package-das-standard",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-jsonschema"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-das-standard",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-pytest"
+    }
+  ]
+}

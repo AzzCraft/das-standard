@@ -16,7 +16,7 @@ Maintainers are responsible for:
 - acting as the final arbiter when there is disagreement.
 
 Initial maintainer(s):
-- AzzCraft Technology Team
+- AzzCraft Inc. (重庆艾之舟科技有限公司)
 
 ## Versioning
 

@@ -1,0 +1,22 @@
+{
+  "packId": "verification-and-evidence",
+  "standardVersion": "1.4.0",
+  "chapters": [
+    "ch-10"
+  ],
+  "clauses": [
+    "cl-10.1",
+    "cl-10.3",
+    "cl-10.3.1",
+    "cl-10.3.2"
+  ],
+  "summary": "Verification is governed by a canonical verify entrypoint, registry-backed gate metadata, and machine-readable reports. Release verification records version closure, compatibility evidence, and a reproducible content snapshot.",
+  "keywords": [
+    "verify",
+    "registry",
+    "report",
+    "compatibility",
+    "release_snapshot",
+    "evidence"
+  ]
+}

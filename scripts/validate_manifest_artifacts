@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# validate_manifest_artifacts — validate machine-readable standard artifacts
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+problems=()
+
+# Check standard_manifest exists and is valid JSON
+if [[ -f "standard_manifest.json" ]]; then
+  if ! python3 -c "import json; json.load(open('standard_manifest.json'))" 2>/dev/null; then
+    problems+=("standard_manifest.json: invalid JSON")
+  fi
+else
+  problems+=("standard_manifest.json: missing")
+fi
+
+# Check suite_version_closure if present
+if [[ -f "suite_version_closure.json" ]]; then
+  if ! python3 -c "import json; json.load(open('suite_version_closure.json'))" 2>/dev/null; then
+    problems+=("suite_version_closure.json: invalid JSON")
+  fi
+fi
+
+# Check tooling_lock if present
+if [[ -f "tooling_lock.json" ]]; then
+  if ! python3 -c "import json; json.load(open('tooling_lock.json'))" 2>/dev/null; then
+    problems+=("tooling_lock.json: invalid JSON")
+  fi
+fi
+
+# Check local_extension_manifest if present
+if [[ -f "local_extension_manifest.json" ]]; then
+  if ! python3 -c "import json; json.load(open('local_extension_manifest.json'))" 2>/dev/null; then
+    problems+=("local_extension_manifest.json: invalid JSON")
+  fi
+fi
+
+# Validate VERSION exists in standard_manifest
+if [[ -f "VERSION" && -f "standard_manifest.json" ]]; then
+  version=$(cat VERSION | tr -d '[:space:]')
+  if ! grep -q "$version" standard_manifest.json 2>/dev/null; then
+    problems+=("VERSION $version not found in standard_manifest.json")
+  fi
+fi
+
+if [[ ${#problems[@]} -gt 0 ]]; then
+  echo "validate_manifest_artifacts: FAIL"
+  for p in "${problems[@]}"; do
+    echo "  - $p"
+  done
+  exit 1
+fi
+
+echo "validate_manifest_artifacts: PASS"

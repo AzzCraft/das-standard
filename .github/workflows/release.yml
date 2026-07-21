@@ -2,22 +2,207 @@ name: release-validation
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: "Exact annotated v* tag to validate; run this workflow itself from the default branch"
+        required: true
+        type: string
 
+# Standards-publication evidence gate only. It never creates or moves a tag or
+# publishes a GitHub Release. The trusted job does not execute tagged source.
 permissions:
   contents: read
 
 jobs:
   validate:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
+    outputs:
+      version: "${{ steps.release_identity.outputs.version }}"
+      tag: "${{ steps.release_identity.outputs.tag }}"
+      tag_object: "${{ steps.release_identity.outputs.tag_object }}"
+      commit: "${{ steps.release_identity.outputs.commit }}"
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+      - name: Resolve exact release tag
+        id: release_ref
+        shell: bash
+        env:
+          DEFAULT_BRANCH: "${{ github.event.repository.default_branch }}"
+          REQUESTED_TAG: "${{ inputs.ref }}"
+          WORKFLOW_REF: "${{ github.workflow_ref }}"
+        run: |
+          set -euo pipefail
+          [[ "$WORKFLOW_REF" == *"@refs/heads/$DEFAULT_BRANCH" ]] || { echo "manual validation must run the workflow from the default branch" >&2; exit 1; }
+          semver='(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)(\.(0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*))?(\+([0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?'
+          [[ "$REQUESTED_TAG" =~ ^v${semver}$ ]] || { echo "release validation accepts only a SemVer v* tag" >&2; exit 1; }
+          printf 'tag=%s\nref=refs/tags/%s\n' "$REQUESTED_TAG" "$REQUESTED_TAG" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           persist-credentials: false
-      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d
+          fetch-depth: 0
+          ref: "${{ steps.release_ref.outputs.ref }}"
+      - name: Bind annotated tag, VERSION, and default-branch ancestry
+        id: release_identity
+        shell: bash
+        env:
+          DEFAULT_BRANCH: "${{ github.event.repository.default_branch }}"
+          TAG: "${{ steps.release_ref.outputs.tag }}"
+        run: |
+          set -euo pipefail
+          version="$(tr -d '\r\n' < VERSION)"
+          [[ "$TAG" == "v$version" ]] || { echo "tag $TAG does not match VERSION $version" >&2; exit 1; }
+          tag_object="$(git rev-parse "refs/tags/$TAG")"
+          [[ "$(git cat-file -t "$tag_object")" == "tag" ]] || { echo "release tag must be annotated" >&2; exit 1; }
+          commit="$(git rev-parse "$TAG^{commit}")"
+          [[ "$(git rev-parse HEAD^{commit})" == "$commit" ]] || { echo "checkout does not match tag target" >&2; exit 1; }
+          git fetch --no-tags origin "+refs/heads/$DEFAULT_BRANCH:refs/remotes/origin/$DEFAULT_BRANCH"
+          git merge-base --is-ancestor "$commit" "refs/remotes/origin/$DEFAULT_BRANCH" || { echo "release tag target is not reachable from the default branch" >&2; exit 1; }
+          printf 'version=%s\ntag=%s\ntag_object=%s\ncommit=%s\n' "$version" "$TAG" "$tag_object" "$commit" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
         with:
-          python-version: '3.11'
-      - run: python3 -m pip install -r requirements-verify.txt pip-audit==2.10.1 bandit==1.9.4
-      - run: ./scripts/verify
-      - run: pip-audit --progress-spinner off -r requirements-verify.txt
-      - run: bandit -q -lll -r tools
+          python-version: "3.11"
+      - name: Install standards verification environment
+        run: python3 -m pip install -r requirements-verify.txt pip-audit==2.10.1 bandit==1.9.4
+      - name: Verify standard source and supporting tools
+        run: ./scripts/verify
+      - name: Audit supporting Python tooling
+        run: |
+          pip-audit --progress-spinner off --strict -r requirements-verify.txt
+          bandit -q -lll -r tools
+      - name: Build deterministic standards evidence
+        id: release_artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${{ steps.release_identity.outputs.version }}"
+          tag="${{ steps.release_identity.outputs.tag }}"
+          tag_object="${{ steps.release_identity.outputs.tag_object }}"
+          commit="${{ steps.release_identity.outputs.commit }}"
+          dir="$RUNNER_TEMP/das-standard-release-artifacts"
+          archive="das-standard-${version}-source.tar.gz"
+          sbom="das-standard-${version}.spdx.json"
+          mkdir -p "$dir"
+          git archive --format=tar --prefix="das-standard-${version}/" "$commit" | gzip -n > "$dir/$archive"
+          python3 - "$dir/$sbom" "$version" "$commit" <<'PY'
+          import hashlib, json, subprocess, sys
+          from datetime import datetime, timezone
+          from pathlib import Path
+          output, version, commit = sys.argv[1:]
+          git = lambda *args: subprocess.check_output(["git", *args])
+          created = datetime.fromtimestamp(int(git("show", "-s", "--format=%ct", commit)), tz=timezone.utc).isoformat().replace("+00:00", "Z")
+          files, sha1s, relationships = [], [], []
+          for index, entry in enumerate(item for item in git("ls-tree", "-r", "-z", "--full-tree", commit).split(b"\0") if item):
+              metadata, raw_path = entry.split(b"\t", 1); mode, kind, object_id = metadata.decode().split()
+              if kind != "blob": continue
+              content = git("cat-file", "blob", object_id); sha1 = hashlib.sha1(content).hexdigest(); sha1s.append(sha1)
+              file_id = f"SPDXRef-File-{index:06d}"
+              files.append({"SPDXID": file_id, "checksums": [{"algorithm": "SHA1", "checksumValue": sha1}, {"algorithm": "SHA256", "checksumValue": hashlib.sha256(content).hexdigest()}], "copyrightText": "NOASSERTION", "fileName": "./" + raw_path.decode("utf-8", "surrogateescape"), "licenseConcluded": "NOASSERTION", "licenseInfoInFiles": ["NOASSERTION"], "noticeText": f"git mode {mode}"})
+              relationships.append({"spdxElementId": "SPDXRef-Package-Source", "relationshipType": "CONTAINS", "relatedSpdxElement": file_id})
+          payload = {"SPDXID": "SPDXRef-DOCUMENT", "creationInfo": {"created": created, "creators": ["Tool: DAS deterministic source SBOM generator"]}, "dataLicense": "CC0-1.0", "documentNamespace": f"https://github.com/AzzCraft/das-standard/sbom/{version}/{commit}", "files": files, "name": f"das-standard-{version}-source-inventory", "packages": [{"SPDXID": "SPDXRef-Package-Source", "copyrightText": "NOASSERTION", "downloadLocation": "NOASSERTION", "filesAnalyzed": True, "licenseConcluded": "NOASSERTION", "licenseDeclared": "CC-BY-4.0", "name": "das-standard", "packageVerificationCode": {"packageVerificationCodeValue": hashlib.sha1("".join(sorted(sha1s)).encode()).hexdigest()}, "supplier": "NOASSERTION", "versionInfo": version}], "relationships": [{"spdxElementId": "SPDXRef-DOCUMENT", "relationshipType": "DESCRIBES", "relatedSpdxElement": "SPDXRef-Package-Source"}, *relationships], "spdxVersion": "SPDX-2.3"}
+          Path(output).write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+          PY
+          python3 - "$dir/release-manifest.json" "$version" "$tag" "$tag_object" "$commit" "$archive" "$sbom" <<'PY'
+          import json, sys
+          from pathlib import Path
+          path, version, tag, tag_object, commit, archive, sbom = sys.argv[1:]
+          Path(path).write_text(json.dumps({"commit": commit, "repository": "das-standard", "sbom": sbom, "sbomKind": "SPDX-2.3 deterministic source inventory from the exact commit", "sourceArchive": archive, "tag": tag, "tagObject": tag_object, "version": version}, indent=2, sort_keys=True) + "\n")
+          PY
+          test -f "$dir/$archive" && test -f "$dir/$sbom" && test -f LICENSE && test -f NOTICE
+          (cd "$dir" && while IFS= read -r file; do sha256sum "$file"; done < <(printf '%s\n' "$archive" "$sbom" release-manifest.json | LC_ALL=C sort) > SHA256SUMS && sha256sum --check SHA256SUMS)
+          printf 'path=%s\nversion=%s\ntag=%s\ntag_object=%s\ncommit=%s\n' "$dir" "$version" "$tag" "$tag_object" "$commit" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: "das-standard-release-validation-${{ steps.release_artifacts.outputs.version }}-${{ steps.release_artifacts.outputs.commit }}"
+          path: "${{ steps.release_artifacts.outputs.path }}"
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
+
+  attest:
+    name: attest trusted standards evidence bundle
+    needs: validate
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: "${{ needs.validate.outputs.tag }}"
+      - name: Independently bind tag identity and ancestry
+        shell: bash
+        env:
+          DEFAULT_BRANCH: "${{ github.event.repository.default_branch }}"
+          TAG: "${{ needs.validate.outputs.tag }}"
+          VERSION: "${{ needs.validate.outputs.version }}"
+          TAG_OBJECT: "${{ needs.validate.outputs.tag_object }}"
+          COMMIT: "${{ needs.validate.outputs.commit }}"
+        run: |
+          set -euo pipefail
+          [[ "$(tr -d '\r\n' < VERSION)" == "$VERSION" ]]
+          [[ "$(git cat-file -t "$TAG_OBJECT")" == "tag" ]]
+          [[ "$(git rev-parse "refs/tags/$TAG")" == "$TAG_OBJECT" ]]
+          [[ "$(git rev-parse "$TAG^{commit}")" == "$COMMIT" ]]
+          git fetch --no-tags origin "+refs/heads/$DEFAULT_BRANCH:refs/remotes/origin/$DEFAULT_BRANCH"
+          git merge-base --is-ancestor "$COMMIT" "refs/remotes/origin/$DEFAULT_BRANCH"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: "das-standard-release-validation-${{ needs.validate.outputs.version }}-${{ needs.validate.outputs.commit }}"
+          path: "${{ runner.temp }}/release-artifacts"
+      - name: Independently rebuild archive, inventory, manifest, and checksums
+        id: trusted_artifact
+        shell: bash
+        env:
+          VERSION: "${{ needs.validate.outputs.version }}"
+          TAG: "${{ needs.validate.outputs.tag }}"
+          TAG_OBJECT: "${{ needs.validate.outputs.tag_object }}"
+          COMMIT: "${{ needs.validate.outputs.commit }}"
+          UNTRUSTED: "${{ runner.temp }}/release-artifacts"
+        run: |
+          set -euo pipefail
+          trusted="$RUNNER_TEMP/trusted-evidence"; mkdir -p "$trusted"
+          archive="das-standard-${VERSION}-source.tar.gz"; sbom="das-standard-${VERSION}.spdx.json"
+          git archive --format=tar --prefix="das-standard-${VERSION}/" "$COMMIT" | gzip -n > "$trusted/$archive"
+          # Reconstruct the complete inventory only from Git objects; no
+          # tagged program or script is executed in this privileged job.
+          python3 - "$trusted/$sbom" "$VERSION" "$COMMIT" <<'PY'
+          import hashlib, json, subprocess, sys
+          from datetime import datetime, timezone
+          from pathlib import Path
+          output, version, commit = sys.argv[1:]
+          git=lambda *args: subprocess.check_output(["git",*args])
+          created=datetime.fromtimestamp(int(git("show","-s","--format=%ct",commit)),tz=timezone.utc).isoformat().replace("+00:00","Z")
+          files=[]; sha1s=[]; relationships=[]
+          for index,entry in enumerate(x for x in git("ls-tree","-r","-z","--full-tree",commit).split(b"\0") if x):
+              meta,path=entry.split(b"\t",1); mode,kind,oid=meta.decode().split()
+              if kind!="blob": continue
+              content=git("cat-file","blob",oid); sha1=hashlib.sha1(content).hexdigest(); sha1s.append(sha1); file_id=f"SPDXRef-File-{index:06d}"
+              files.append({"SPDXID":file_id,"checksums":[{"algorithm":"SHA1","checksumValue":sha1},{"algorithm":"SHA256","checksumValue":hashlib.sha256(content).hexdigest()}],"copyrightText":"NOASSERTION","fileName":"./"+path.decode("utf-8","surrogateescape"),"licenseConcluded":"NOASSERTION","licenseInfoInFiles":["NOASSERTION"],"noticeText":f"git mode {mode}"})
+              relationships.append({"spdxElementId":"SPDXRef-Package-Source","relationshipType":"CONTAINS","relatedSpdxElement":file_id})
+          payload={"SPDXID":"SPDXRef-DOCUMENT","creationInfo":{"created":created,"creators":["Tool: DAS deterministic source SBOM generator"]},"dataLicense":"CC0-1.0","documentNamespace":f"https://github.com/AzzCraft/das-standard/sbom/{version}/{commit}","files":files,"name":f"das-standard-{version}-source-inventory","packages":[{"SPDXID":"SPDXRef-Package-Source","copyrightText":"NOASSERTION","downloadLocation":"NOASSERTION","filesAnalyzed":True,"licenseConcluded":"NOASSERTION","licenseDeclared":"CC-BY-4.0","name":"das-standard","packageVerificationCode":{"packageVerificationCodeValue":hashlib.sha1("".join(sorted(sha1s)).encode()).hexdigest()},"supplier":"NOASSERTION","versionInfo":version}],"relationships":[{"spdxElementId":"SPDXRef-DOCUMENT","relationshipType":"DESCRIBES","relatedSpdxElement":"SPDXRef-Package-Source"},*relationships],"spdxVersion":"SPDX-2.3"}
+          Path(output).write_text(json.dumps(payload,indent=2,sort_keys=True)+"\n",encoding="utf-8")
+          PY
+          cmp "$UNTRUSTED/$archive" "$trusted/$archive"
+          cmp "$UNTRUSTED/$sbom" "$trusted/$sbom"
+          python3 - "$trusted/release-manifest.json" "$VERSION" "$TAG" "$TAG_OBJECT" "$COMMIT" "$archive" "$sbom" <<'PY'
+          import json,sys
+          from pathlib import Path
+          path,version,tag,tag_object,commit,archive,sbom=sys.argv[1:]
+          Path(path).write_text(json.dumps({"commit":commit,"repository":"das-standard","sbom":sbom,"sbomKind":"SPDX-2.3 deterministic source inventory from the exact commit","sourceArchive":archive,"tag":tag,"tagObject":tag_object,"version":version},indent=2,sort_keys=True)+"\n",encoding="utf-8")
+          PY
+          cmp "$UNTRUSTED/release-manifest.json" "$trusted/release-manifest.json"
+          (cd "$trusted" && while IFS= read -r file; do sha256sum "$file"; done < <(printf '%s\n' "$archive" "$sbom" release-manifest.json | LC_ALL=C sort) > SHA256SUMS)
+          cmp "$UNTRUSTED/SHA256SUMS" "$trusted/SHA256SUMS"
+          bundle="$RUNNER_TEMP/das-standard-${VERSION}-evidence.tar"
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner -cf "$bundle" -C "$trusted" "$archive" "$sbom" release-manifest.json SHA256SUMS
+          printf 'bundle=%s\n' "$bundle" >> "$GITHUB_OUTPUT"
+      - name: Attest trusted standards evidence bundle
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        with:
+          subject-path: "${{ steps.trusted_artifact.outputs.bundle }}"

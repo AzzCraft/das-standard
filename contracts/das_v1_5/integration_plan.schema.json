@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "das-integration-plan/v1",
+  "title": "DAS exact protected integration plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "taskKey",
+    "taskRevision",
+    "taskCycle",
+    "resourceId",
+    "resourceInstance",
+    "expectedGeneration",
+    "beforeCandidateDigest",
+    "afterCandidateDigest",
+    "policyDigest",
+    "toolDigest",
+    "rollbackOf",
+    "changes",
+    "sourceCandidateDigest",
+    "verificationPlanDigest",
+    "verificationEvidenceDigest",
+    "decisionDigest",
+    "obligationDigest"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-integration-plan/v1"
+    },
+    "taskKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorityDomain",
+        "projectId",
+        "changeId",
+        "taskId"
+      ],
+      "properties": {
+        "authorityDomain": {
+          "$ref": "#/$defs/id"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "changeId": {
+          "$ref": "#/$defs/id"
+        },
+        "taskId": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "taskRevision": {
+      "$ref": "#/$defs/positive"
+    },
+    "taskCycle": {
+      "$ref": "#/$defs/positive"
+    },
+    "resourceId": {
+      "$ref": "#/$defs/id"
+    },
+    "resourceInstance": {
+      "$ref": "#/$defs/id"
+    },
+    "expectedGeneration": {
+      "$ref": "#/$defs/positive"
+    },
+    "beforeCandidateDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "afterCandidateDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "policyDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "toolDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "rollbackOf": {
+      "const": null
+    },
+    "changes": {
+      "type": "array",
+      "maxItems": 4224,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "owner",
+          "originDigest",
+          "preimage",
+          "postimage",
+          "deletionReason"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "owner": {
+            "$ref": "#/$defs/id"
+          },
+          "originDigest": {
+            "$ref": "#/$defs/digest"
+          },
+          "preimage": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/$defs/image"
+              }
+            ]
+          },
+          "postimage": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/$defs/image"
+              }
+            ]
+          },
+          "deletionReason": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            ]
+          }
+        }
+      }
+    },
+    "sourceCandidateDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "verificationPlanDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "verificationEvidenceDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "decisionDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "obligationDigest": {
+      "$ref": "#/$defs/digest"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[^\u0000]+$"
+    },
+    "positive": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "minLength": 71,
+      "maxLength": 71
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "size",
+        "contentSha256"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "100644",
+            "100755",
+            "data"
+          ]
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16777216
+        },
+        "contentSha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    }
+  }
+}

@@ -9,12 +9,11 @@ STANDARD_ROOT = repository_root_for_test_file(__file__)
 
 
 class TestManifest(unittest.TestCase):
-    """Validate standard_manifest.json if present."""
+    """Validate the required standard manifest."""
 
     def test_manifest_loads(self):
         path = STANDARD_ROOT / "standard_manifest.json"
-        if not path.exists():
-            self.skipTest("standard_manifest.json not found")
+        self.assertTrue(path.is_file(), "standard_manifest.json not found")
         data = json.loads(path.read_text(encoding="utf-8"))
         self.assertIn("standardId", data)
 
@@ -25,8 +24,7 @@ class TestVersionTrace(unittest.TestCase):
     def test_version_in_changelog(self):
         version_path = STANDARD_ROOT / "VERSION"
         changelog_path = STANDARD_ROOT / "CHANGELOG.md"
-        if not version_path.exists() or not changelog_path.exists():
-            self.skipTest("VERSION or CHANGELOG.md not found")
+        self.assertTrue(version_path.is_file() and changelog_path.is_file(), "VERSION or CHANGELOG.md not found")
         version = version_path.read_text().strip()
         changelog = changelog_path.read_text()
         self.assertIn(version, changelog)

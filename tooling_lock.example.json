@@ -1,7 +1,7 @@
 {
   "$schema": "./tooling_lock.schema.json",
   "schemaVersion": "1.0.0",
-  "standardManifestVersion": "1.4.0",
+  "standardManifestVersion": "1.5.0-beta.1",
   "sourceOfTruth": {
     "kind": "git",
     "uri": "git@example.com:example-product-repo.git",
@@ -62,7 +62,7 @@
     {
       "kind": "standard_local_copy",
       "path": "docs/standards/DAS_STANDARD.md",
-      "sourceOfTruth": "git@example.com:das-standard.git@v1.4.0",
+      "sourceOfTruth": "git@example.com:das-standard.git@v1.5.0-beta.1",
       "mirrorPurpose": "read-only local navigation copy for product repo contributors",
       "localModificationsAllowed": false,
       "snapshotRef": {

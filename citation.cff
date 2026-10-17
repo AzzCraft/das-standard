@@ -4,7 +4,6 @@ title: "DAS: The Docs as Software Standard (文码合一标准)"
 authors:
   - name: "AzzCraft Inc. (重庆艾之舟科技有限公司)"
     website: "https://azzcraft.com"
-version: 1.4.0
-date-released: "2026-04-06"
+version: 1.5.0-beta.1
 url: "https://github.com/azzcraft/das-standard"
 license: CC-BY-4.0

@@ -49,7 +49,14 @@ def payloads() -> tuple[dict, dict]:
                 "id": f"appendix-{appendix_id}", "title": name.replace("-", " ").title(),
                 "file": path.relative_to(ROOT).as_posix(),
             })
-    common = {"schemaVersion": "1.0.0", "standardVersion": "1.4.0"}
+    version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+    identifier = r'(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)'
+    pattern = (r'(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)'
+               + r'(?:-' + identifier + r'(?:\.' + identifier + r')*)?'
+               + r'(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?')
+    if not re.fullmatch(pattern, version):
+        raise ValueError("invalid authoritative Standard VERSION")
+    common = {"schemaVersion": "1.0.0", "standardVersion": version}
     chapter_payload = {**common, "$schema": "./chapter_index.schema.json", "chapters": chapters, "appendices": appendices}
     clause_payload = {**common, "$schema": "./clause_index.schema.json", "clauses": clauses}
     return chapter_payload, clause_payload

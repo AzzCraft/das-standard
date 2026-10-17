@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/das-analysis-task-binding/v1",
+  "title": "DAS immutable preapproved analysis task binding v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "taskKey",
+    "taskRevision",
+    "taskCycle",
+    "obligationDigest",
+    "policyDigest",
+    "completionMode",
+    "verificationScopeDigest"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-analysis-task-binding/v1"
+    },
+    "taskKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorityDomain",
+        "projectId",
+        "changeId",
+        "taskId"
+      ],
+      "properties": {
+        "authorityDomain": {
+          "$ref": "#/$defs/id"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "changeId": {
+          "$ref": "#/$defs/id"
+        },
+        "taskId": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "taskRevision": {
+      "$ref": "#/$defs/positive"
+    },
+    "taskCycle": {
+      "$ref": "#/$defs/positive"
+    },
+    "obligationDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "policyDigest": {
+      "$ref": "#/$defs/digest"
+    },
+    "completionMode": {
+      "const": "analysis"
+    },
+    "verificationScopeDigest": {
+      "$ref": "#/$defs/digest"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[^\u0000]+$"
+    },
+    "positive": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "minLength": 71,
+      "maxLength": 71
+    }
+  }
+}

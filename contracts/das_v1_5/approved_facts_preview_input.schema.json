@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/approved-facts-preview-input/v1",
+  "title": "DAS signature and binding probe under supplied control context; output remains unapproved preview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "factsEnvelope",
+    "controlContext",
+    "catalog",
+    "requirementsCatalog"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-approved-facts-preview-input/v1"
+    },
+    "factsEnvelope": {
+      "type": "object"
+    },
+    "controlContext": {
+      "$ref": "#/$defs/control"
+    },
+    "catalog": {
+      "type": "object"
+    },
+    "requirementsCatalog": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issuer",
+        "audience",
+        "scope",
+        "callerPrincipal",
+        "factsId",
+        "factsGeneration",
+        "factsRevoked",
+        "policyRevoked",
+        "policyRef",
+        "target",
+        "earliest",
+        "latest",
+        "observedAt",
+        "maxStalenessSeconds",
+        "keys",
+        "threshold"
+      ],
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "callerPrincipal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "factsId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "factsGeneration": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "factsRevoked": {
+          "type": "boolean"
+        },
+        "policyRevoked": {
+          "type": "boolean"
+        },
+        "policyRef": {
+          "$ref": "#/$defs/policyRef"
+        },
+        "target": {
+          "$ref": "#/$defs/target"
+        },
+        "earliest": {
+          "type": "string",
+          "format": "date-time",
+          "maxLength": 64
+        },
+        "latest": {
+          "type": "string",
+          "format": "date-time",
+          "maxLength": 64
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time",
+          "maxLength": 64
+        },
+        "maxStalenessSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "keys": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/key"
+          }
+        },
+        "threshold": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        }
+      }
+    },
+    "key": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "publicKeyBase64",
+        "principal",
+        "issuer",
+        "roles"
+      ],
+      "properties": {
+        "publicKeyBase64": {
+          "type": "string",
+          "minLength": 44,
+          "maxLength": 44,
+          "pattern": "^[A-Za-z0-9+/]{43}=$"
+        },
+        "principal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "issuer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^\\x00-\\x20\\x7f]+$",
+            "not": {
+              "pattern": "[\\x00-\\x20\\x7f]"
+            }
+          }
+        }
+      }
+    },
+    "policyRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyId",
+        "policyDigest",
+        "policyGeneration",
+        "authorityEpoch"
+      ],
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "policyDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "policyGeneration": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "authorityEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateDigest",
+        "deploymentBaselineDigest"
+      ],
+      "properties": {
+        "candidateDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "deploymentBaselineDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

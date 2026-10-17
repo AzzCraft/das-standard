@@ -1,8 +1,8 @@
 {
   "$schema": "./suite_version_closure.schema.json",
   "schemaVersion": "1.0.0",
-  "standardVersion": "1.4.0",
-  "standardManifestVersion": "1.4.0",
+  "standardVersion": "1.5.0-beta.1",
+  "standardManifestVersion": "1.5.0-beta.1",
   "suiteVersion": "2.3.0",
   "factoryVersion": "1.9.0",
   "verifyRuntimeVersion": "3.4.1",
@@ -30,7 +30,7 @@
       "kind": "git",
       "uri": "git@example.com:das-standard.git",
       "pinType": "tag",
-      "pinValue": "v1.4.0",
+      "pinValue": "v1.5.0-beta.1",
       "floating": false
     },
     "suite": {

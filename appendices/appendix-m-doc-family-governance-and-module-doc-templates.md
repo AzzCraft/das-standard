@@ -9,7 +9,7 @@ This appendix defines minimal, machine-checkable templates for the governed docu
 - **Doc ID:** <stable-prd-id>
 - **Owner:** <owner>
 - **Status:** draft
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
 - **Last updated:** <YYYY-MM-DD>
 - **Scope:** <product or capability scope>
 - **Parent Master Doc:** <repo-relative canonical Master Doc path>
@@ -34,7 +34,7 @@ This appendix defines minimal, machine-checkable templates for the governed docu
 - **Doc ID:** <stable-headless-surface-id>
 - **Owner:** <owner>
 - **Status:** draft
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
 - **Last updated:** <YYYY-MM-DD>
 - **Scope:** <screenless system scope>
 - **Parent Master Doc:** <repo-relative canonical Master Doc path>
@@ -67,7 +67,7 @@ This appendix defines minimal, machine-checkable templates for the governed docu
 - **Doc ID:** <stable-module-doc-id>
 - **Owner:** <owner>
 - **Status:** draft
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
 - **Last updated:** <YYYY-MM-DD>
 - **Scope:** <module responsibility boundary>
 - **Parent Master Doc:** <repo-relative canonical Master Doc path>
@@ -103,7 +103,7 @@ This appendix defines minimal, machine-checkable templates for the governed docu
 - **Doc ID:** <stable-runbook-id>
 - **Owner:** <owner>
 - **Status:** draft
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
 - **Last updated:** <YYYY-MM-DD>
 - **Scope:** <operational procedure>
 - **Parent Master Doc:** <repo-relative canonical Master Doc path>
@@ -131,7 +131,7 @@ This appendix defines minimal, machine-checkable templates for the governed docu
 - **Doc ID:** <stable-deployment-doc-id>
 - **Owner:** <owner>
 - **Status:** draft
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
 - **Last updated:** <YYYY-MM-DD>
 - **Scope:** <deployment or environment scope>
 - **Parent Master Doc:** <repo-relative canonical Master Doc path>
@@ -159,7 +159,7 @@ This appendix defines minimal, machine-checkable templates for the governed docu
 - **Doc ID:** <stable-context-pack-id>
 - **Owner:** <owner>
 - **Status:** draft
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
 - **Last updated:** <YYYY-MM-DD>
 - **Scope:** <bounded execution context>
 - **Parent Master Doc:** <repo-relative canonical Master Doc path>
@@ -187,7 +187,7 @@ This appendix defines minimal, machine-checkable templates for the governed docu
 - **Doc ID:** <stable-support-note-id>
 - **Owner:** <owner>
 - **Status:** draft
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
 - **Last updated:** <YYYY-MM-DD>
 - **Scope:** <support or handoff boundary>
 - **Parent Master Doc:** <repo-relative canonical Master Doc path>
@@ -215,7 +215,7 @@ This appendix defines minimal, machine-checkable templates for the governed docu
 - **Doc ID:** <stable-addendum-id>
 - **Owner:** <owner>
 - **Status:** draft
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
 - **Last updated:** <YYYY-MM-DD>
 - **Scope:** <normative extension scope>
 - **Parent standard:** Docs as Software (DAS) Standard

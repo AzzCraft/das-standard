@@ -5,7 +5,7 @@
 - Owner: DAS Maintainers
 - Status: active
 - Governing standard: SPECIFICATION.md
-- Last updated: 2026-04-06
+- Last updated: 2026-10-06
 - Scope: Roles, decision rights, review workflow, approval expectations, break-glass protocol, and dispute-resolution guidance shipped with the DAS v1.4.0 release.
 - Parent standard: SPECIFICATION.md
 - Doc family role: subordinate_doc
@@ -33,7 +33,7 @@ This addendum **does not** replace your organization’s security/compliance pol
 
 ## Relationship to the main standard
 
-This addendum is subordinate to the Docs as Software (DAS) Standard v1.4.0. It elaborates the governance guidance in §9.1 and §9.6 without changing the main standard's conformance, precedence, or verification rules.
+This addendum is subordinate to the Docs as Software (DAS) Standard v1.5.0-beta.1. It elaborates the governance guidance in §9.1 and §9.6 without changing the main standard's conformance, precedence, or verification rules.
 
 ---
 
@@ -301,7 +301,7 @@ Copy/paste:
 Doc ID: DOC-XXX
 Owner: <team or person>
 Decision Owner: <team or person>  # optional if no cross-boundary decisions
-Governing standard: Docs as Software (DAS) Standard v1.4.0
+Governing standard: Docs as Software (DAS) Standard v1.5.0-beta.1
 Status: draft | active | frozen | deprecated
 Last updated: YYYY-MM-DD
 Scope: <what this doc covers and what it explicitly does not>

@@ -1,8 +1,8 @@
 {
   "$schema": "./standard_manifest.schema.json",
   "standardId": "das-standard",
-  "standardVersion": "1.4.0",
-  "releasedAt": "2026-04-06",
+  "standardVersion": "1.5.0-beta.1",
+  "releasedAt": "2026-10-06",
   "docTypes": [
     "master_doc",
     "prd",
@@ -355,25 +355,30 @@
     "appendixN": "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md",
     "versionFile": "VERSION",
     "rootVerifyScript": "scripts/verify",
-    "rootCIWorkflow": ".github/workflows/verify.yml"
+    "rootCIWorkflow": ".github/workflows/verify.yml",
+    "standardModules": "standard_modules.json",
+    "standardModulesSchema": "standard_modules.schema.json",
+    "standardRequirements": "standard_requirements.json",
+    "standardRequirementsSchema": "standard_requirements.schema.json",
+    "editionAdditions": "modules/edition-1.5.md",
+    "editionAcceptance": "modules/acceptance-1.5.md",
+    "legacyNormativeBaseline": "migration/legacy_normative_baseline.json"
   },
   "requiredArtifacts": [
-    "SPECIFICATION.md",
-    "LICENSE",
-    "LICENSE_MAP.md",
-    "LICENSES/CC-BY-4.0.txt",
-    "LICENSES/Apache-2.0.txt",
-    "chapter_index.json",
-    "clause_index.json",
+    ".github/workflows/verify.yml",
+    "BUILD_REQUIREMENTS.md",
     "CHANGELOG.md",
     "DAS_DEPLOYMENT_ADDENDUM.md",
     "DAS_GOVERNANCE_COLLABORATION.md",
     "DAS_STANDARD_CONTEXT_PACK.md",
-    "standard_manifest.json",
-    "standard_manifest.schema.json",
-    "suite_version_closure.schema.json",
-    "tooling_lock.schema.json",
-    "local_extension_manifest.schema.json",
+    "LICENSE",
+    "LICENSES/Apache-2.0.txt",
+    "LICENSES/CC-BY-4.0.txt",
+    "LICENSE_MAP.md",
+    "README.md",
+    "SBOM.spdx.json",
+    "SPECIFICATION.md",
+    "VERSION",
     "appendices/appendix-c-project-master-doc-template.md",
     "appendices/appendix-d-ui-spec-appendix-template.md",
     "appendices/appendix-e-multi-repo-contract-driven-standard.md",
@@ -385,33 +390,97 @@
     "appendices/appendix-k-hfvi-vis-template.md",
     "appendices/appendix-l-tooling-standard.md",
     "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
-    "suite_version_closure.example.json",
-    "tooling_lock.example.json",
+    "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md",
+    "chapter_index.json",
+    "chapter_index.schema.json",
+    "clause_index.json",
+    "clause_index.schema.json",
+    "context_packs/contracts-and-naming.json",
+    "context_packs/repo-topology.json",
+    "context_packs/verification-and-evidence.json",
+    "contracts/das_v1_5/README.md",
+    "contracts/das_v1_5/action_authorization.schema.json",
+    "contracts/das_v1_5/action_decision.schema.json",
+    "contracts/das_v1_5/analysis_action_decision.schema.json",
+    "contracts/das_v1_5/analysis_completion.schema.json",
+    "contracts/das_v1_5/analysis_task_binding.schema.json",
+    "contracts/das_v1_5/analysis_verification_evidence.schema.json",
+    "contracts/das_v1_5/analysis_verification_plan.schema.json",
+    "contracts/das_v1_5/approved_facts.schema.json",
+    "contracts/das_v1_5/approved_facts_check.schema.json",
+    "contracts/das_v1_5/approved_facts_check_v2.schema.json",
+    "contracts/das_v1_5/approved_facts_preview_input.schema.json",
+    "contracts/das_v1_5/bundle_preview.schema.json",
+    "contracts/das_v1_5/bundle_preview_input.schema.json",
+    "contracts/das_v1_5/bundle_preview_input_v2.schema.json",
+    "contracts/das_v1_5/bundle_preview_input_v3.schema.json",
+    "contracts/das_v1_5/bundle_preview_v2.schema.json",
+    "contracts/das_v1_5/bundle_preview_v3.schema.json",
+    "contracts/das_v1_5/bundle_resolution.schema.json",
+    "contracts/das_v1_5/bundle_resolution_v2.schema.json",
+    "contracts/das_v1_5/candidate_binding.schema.json",
+    "contracts/das_v1_5/completion.schema.json",
+    "contracts/das_v1_5/context_pack.schema.json",
+    "contracts/das_v1_5/context_pack_v2.schema.json",
+    "contracts/das_v1_5/http_declaration.schema.json",
+    "contracts/das_v1_5/http_inventory.schema.json",
+    "contracts/das_v1_5/integration_plan.schema.json",
+    "contracts/das_v1_5/integration_receipt.schema.json",
+    "contracts/das_v1_5/resource_action_intent.schema.json",
+    "contracts/das_v1_5/text_delta.schema.json",
+    "contracts/das_v1_5/text_delta_end.schema.json",
+    "contracts/das_v1_5/verification_evidence.schema.json",
+    "contracts/das_v1_5/verification_plan.schema.json",
+    "contracts/das_v1_5/version_action_decision.schema.json",
+    "contracts/das_v1_5/version_switch_receipt.schema.json",
+    "contracts/das_v1_5/version_tree_plan.schema.json",
+    "contracts/das_v1_5/version_verification_evidence.schema.json",
+    "contracts/das_v1_5/version_verification_plan.schema.json",
+    "ids/standard_ids.json",
     "local_extension_manifest.example.json",
+    "local_extension_manifest.schema.json",
+    "migration/legacy_normative_baseline.json",
+    "modules/README.md",
+    "modules/acceptance-1.5.md",
+    "modules/edition-1.5.md",
+    "modules/navigation.json",
+    "modules/requirements.md",
+    "release/release_report.json",
+    "release_snapshot_manifest.example.json",
+    "release_snapshot_manifest.json",
+    "release_snapshot_manifest.schema.json",
+    "requirements-verify.txt",
+    "scripts/verify",
+    "standard_ids.schema.json",
+    "standard_manifest.example.json",
+    "standard_manifest.json",
+    "standard_manifest.schema.json",
+    "standard_modules.json",
+    "standard_modules.schema.json",
+    "standard_requirements.json",
+    "standard_requirements.schema.json",
+    "suite_lock.example.json",
+    "suite_lock.schema.json",
+    "suite_version_closure.example.json",
+    "suite_version_closure.schema.json",
     "template_catalog.json",
     "template_catalog.schema.json",
-    "VERSION",
-    "scripts/verify",
-    ".github/workflows/verify.yml",
-    "suite_lock.schema.json",
-    "verify_registry.schema.json",
-    "verify_report.schema.json",
-    "release_snapshot_manifest.schema.json",
-    "verify_registry.json",
-    "release_snapshot_manifest.json",
-    "suite_lock.example.json",
+    "templates/prompts/generate_master_doc_from_PRD.md",
+    "tests/compat/compat_window.json",
+    "tests/compat/v1.1.0/standard_manifest.json",
+    "tests/compat/v1.4.0/standard_manifest.json",
+    "tests/compat/v1.5.0-beta.1/standard_manifest.json",
+    "tooling_lock.example.json",
+    "tooling_lock.schema.json",
+    "tools/generate_content_snapshot.py",
+    "tools/generate_spec_indexes.py",
+    "tools/validate_modules.py",
+    "tools/validate_release_contract.py",
     "verify_registry.example.json",
+    "verify_registry.json",
+    "verify_registry.schema.json",
     "verify_report.example.json",
-    "release_snapshot_manifest.example.json",
-    "appendices/appendix-n-repo-roles-tooling-placement-and-execution-matrix.md",
-    "chapter_index.schema.json",
-    "clause_index.schema.json",
-    "ids/standard_ids.json",
-    "standard_ids.schema.json",
-    "context_packs/contracts-and-naming.json",
-    "context_packs/verification-and-evidence.json",
-    "context_packs/repo-topology.json",
-    "tools/validate_release_contract.py"
+    "verify_report.schema.json"
   ],
   "tooling": {
     "requiredLockFields": [
@@ -488,7 +557,208 @@
     "alternativeRequiredFields": [
       "upstreamingTrigger",
       "reviewDate"
-    ]
+    ],
+    "contentCandidate": {
+      "lifecycle": "draft",
+      "publicationStatus": "unpublished",
+      "qualificationEligible": false,
+      "compatibilityDecision": "pending",
+      "declaredDateMeaning": "content-edition-date-not-publication-event"
+    },
+    "qualificationEligible": false,
+    "referenceContracts": {
+      "authorRepo": "cadence-oss/cadence-protocol",
+      "authorPath": "schemas/das_v1_5",
+      "use": "reference_only",
+      "qualificationEligible": false,
+      "schemas": [
+        {
+          "contractIdentity": "das-action-authorization/v1",
+          "path": "contracts/das_v1_5/action_authorization.schema.json",
+          "sha256": "cd00bfa2be06568c9cfa7d22cd710a201f886e422643766f60429e3421d1b8a9"
+        },
+        {
+          "contractIdentity": "das-action-decision/v1",
+          "path": "contracts/das_v1_5/action_decision.schema.json",
+          "sha256": "27b9bd5ed6568e8cd000aa567df73069f361167e1d7ce196599f8bdf8b09e3b3"
+        },
+        {
+          "contractIdentity": "das-analysis-action-decision/v1",
+          "path": "contracts/das_v1_5/analysis_action_decision.schema.json",
+          "sha256": "bcf8a420cfd0b5f93093dbc42ff0f3ad31d8660fc2188cfff6ddca44eaddd4cd"
+        },
+        {
+          "contractIdentity": "das-analysis-completion/v1",
+          "path": "contracts/das_v1_5/analysis_completion.schema.json",
+          "sha256": "14d4aa77fa242502581e53f39b810f9ffe1e0548fc7d6628ffaef992816cdab6"
+        },
+        {
+          "contractIdentity": "das-analysis-task-binding/v1",
+          "path": "contracts/das_v1_5/analysis_task_binding.schema.json",
+          "sha256": "bc95aaae1b64963c0874aacfc275a646667491773ef2d9d93a5446e60349f698"
+        },
+        {
+          "contractIdentity": "das-analysis-verification-evidence/v1",
+          "path": "contracts/das_v1_5/analysis_verification_evidence.schema.json",
+          "sha256": "a07c5437c3a3bfe4d04437553f4366d488574f779821ab0187ba9e420e126b8e"
+        },
+        {
+          "contractIdentity": "das-analysis-verification-plan/v1",
+          "path": "contracts/das_v1_5/analysis_verification_plan.schema.json",
+          "sha256": "7420c958ec4446921789bc6b678eb21186dba956afd064b2ea81f4e95ab820c8"
+        },
+        {
+          "contractIdentity": "das-approved-facts/v1",
+          "path": "contracts/das_v1_5/approved_facts.schema.json",
+          "sha256": "d688c4f4ee5395fcd9be073d016e70c3b7f387e267908855004e8155d83006b7"
+        },
+        {
+          "contractIdentity": "das-approved-facts-check/v1",
+          "path": "contracts/das_v1_5/approved_facts_check.schema.json",
+          "sha256": "8908caed5208941f84ac2cf637ad4f20f57aa9c650ff374a150f5ef3aca71b2e"
+        },
+        {
+          "contractIdentity": "das-approved-facts-check/v2",
+          "path": "contracts/das_v1_5/approved_facts_check_v2.schema.json",
+          "sha256": "807174080ce287cd51240bfa673aa05d7a20452d97af297effb8e29b5154f324"
+        },
+        {
+          "contractIdentity": "das-approved-facts-preview-input/v1",
+          "path": "contracts/das_v1_5/approved_facts_preview_input.schema.json",
+          "sha256": "c9333dc24327023ab7999b930bcf698d217127bcad967e9b85a1eb3938b74bae"
+        },
+        {
+          "contractIdentity": "das-bundle-preview/v1",
+          "path": "contracts/das_v1_5/bundle_preview.schema.json",
+          "sha256": "a4575904cbb60eee1f0af384426fe5ae7338615a104c20f8452f256acc85200c"
+        },
+        {
+          "contractIdentity": "das-bundle-preview-input/v1",
+          "path": "contracts/das_v1_5/bundle_preview_input.schema.json",
+          "sha256": "c47880fd710fa7e3d100894b3dbe337d300a79962a4162450e526dea87f96fcb"
+        },
+        {
+          "contractIdentity": "das-bundle-preview-input/v2",
+          "path": "contracts/das_v1_5/bundle_preview_input_v2.schema.json",
+          "sha256": "1674a532bbb20cac4235a929d3140edfa98694c2119b3645c127bc858432aead"
+        },
+        {
+          "contractIdentity": "das-bundle-preview-input/v3",
+          "path": "contracts/das_v1_5/bundle_preview_input_v3.schema.json",
+          "sha256": "dcafdebd2ec985797ca3078dd41ff1647d67b89577140718025186ed8626b991"
+        },
+        {
+          "contractIdentity": "das-bundle-preview/v2",
+          "path": "contracts/das_v1_5/bundle_preview_v2.schema.json",
+          "sha256": "ca9f214d62b122a0fe3fe124a80e4639a64be3f57700c8d4bc1d43c3f4635b6d"
+        },
+        {
+          "contractIdentity": "das-bundle-preview/v3",
+          "path": "contracts/das_v1_5/bundle_preview_v3.schema.json",
+          "sha256": "e9e815b81b4c35743702070f47650ac1fa46bf21a6189ab3d3dc8b65ea4f33db"
+        },
+        {
+          "contractIdentity": "das-bundle-resolution/v1",
+          "path": "contracts/das_v1_5/bundle_resolution.schema.json",
+          "sha256": "6e9785d92d29e4f595dc2e26092d232305f4636f5f6704a8cfc499f4cda95b37"
+        },
+        {
+          "contractIdentity": "das-bundle-resolution/v2",
+          "path": "contracts/das_v1_5/bundle_resolution_v2.schema.json",
+          "sha256": "ea512d237ce3129eccb2369636f3868e313b3ae102d3d02b9d7eaafbc35484f4"
+        },
+        {
+          "contractIdentity": "das-candidate-binding/v1",
+          "path": "contracts/das_v1_5/candidate_binding.schema.json",
+          "sha256": "a12ca3752359905f85c9106556ac6d7ca4e01840ea09d7947da37f19ce7219ca"
+        },
+        {
+          "contractIdentity": "das-completion/v1",
+          "path": "contracts/das_v1_5/completion.schema.json",
+          "sha256": "a08bb8caf377aa82da1c6e7149ef24dbbf5666a6843e31c0dadeb24638cdc4ce"
+        },
+        {
+          "contractIdentity": "das-context-pack/v1",
+          "path": "contracts/das_v1_5/context_pack.schema.json",
+          "sha256": "907c79380bf6843ed847567518d24f7da21d89a18fe4ecac9206d318240a60b2"
+        },
+        {
+          "contractIdentity": "das-context-pack/v2",
+          "path": "contracts/das_v1_5/context_pack_v2.schema.json",
+          "sha256": "00f444c8c2d7572fde507e9ef0f9ce9a11c541ddd515ff52cbba33dd8caf2894"
+        },
+        {
+          "contractIdentity": "das-http-declaration/v1",
+          "path": "contracts/das_v1_5/http_declaration.schema.json",
+          "sha256": "e4d2df0f42fb23bc73f7720b184a81a0fefd80fa71baf24b51a9d929144fcbda"
+        },
+        {
+          "contractIdentity": "das-http-inventory/v1",
+          "path": "contracts/das_v1_5/http_inventory.schema.json",
+          "sha256": "9be6b7959e4f207715ce502ed5db19da3d21bfb20ba10812b3634f7b352a22c8"
+        },
+        {
+          "contractIdentity": "das-integration-plan/v1",
+          "path": "contracts/das_v1_5/integration_plan.schema.json",
+          "sha256": "7a560cc7ac1b8688474239ab07730b8497262f20f763a267119ec78be6be3ebd"
+        },
+        {
+          "contractIdentity": "das-integration-receipt/v1",
+          "path": "contracts/das_v1_5/integration_receipt.schema.json",
+          "sha256": "eda261c6506e67bf947cc6122077ac69e8c8fc29f4ee624bd7fa5c14c6bfe52e"
+        },
+        {
+          "contractIdentity": "das-resource-action-intent/v1",
+          "path": "contracts/das_v1_5/resource_action_intent.schema.json",
+          "sha256": "5904b489dc34366d11e07d3c4ccc5cc521fe9e59fd6d1c8e8ac077a7ebfefbd4"
+        },
+        {
+          "contractIdentity": "das-text-delta/v1",
+          "path": "contracts/das_v1_5/text_delta.schema.json",
+          "sha256": "ecd73a908ff2b69dbf2fa24c234e5d9bc4a31fdccb783a23949e8f081ef7e8a4"
+        },
+        {
+          "contractIdentity": "das-text-delta-end/v1",
+          "path": "contracts/das_v1_5/text_delta_end.schema.json",
+          "sha256": "c323078eb13bd12560c3149fcee2826ff82279fc037840653b8565407cb0da4e"
+        },
+        {
+          "contractIdentity": "das-verification-evidence/v1",
+          "path": "contracts/das_v1_5/verification_evidence.schema.json",
+          "sha256": "cb6a6c92ba3f73b329c578894457672316244af2d37b92c61795379e72f9bdcd"
+        },
+        {
+          "contractIdentity": "das-verification-plan/v1",
+          "path": "contracts/das_v1_5/verification_plan.schema.json",
+          "sha256": "d82ca23e88fda049aca3b23ee4f85aa79d5c124c22b9ac3dfb179c18f9940847"
+        },
+        {
+          "contractIdentity": "das-version-action-decision/v1",
+          "path": "contracts/das_v1_5/version_action_decision.schema.json",
+          "sha256": "c0b743ce0e9a2a6f7e2d32caa7bd2dc5ed37194ba0bcfc4ffa05d74ee468c975"
+        },
+        {
+          "contractIdentity": "das-version-switch-receipt/v1",
+          "path": "contracts/das_v1_5/version_switch_receipt.schema.json",
+          "sha256": "83d51d5b1d2dc90de5cb4afe546cd9b180703b21e8030ac196068953f903882b"
+        },
+        {
+          "contractIdentity": "das-version-tree-plan/v1",
+          "path": "contracts/das_v1_5/version_tree_plan.schema.json",
+          "sha256": "8282f0e2315dd7835fe14c43580115a569eb371f8882b73ef129f6f9f0e0707e"
+        },
+        {
+          "contractIdentity": "das-version-verification-evidence/v1",
+          "path": "contracts/das_v1_5/version_verification_evidence.schema.json",
+          "sha256": "0b527eef16136d5948de720f50c8f815c370491a24840dd6c3ab819780b601f4"
+        },
+        {
+          "contractIdentity": "das-version-verification-plan/v1",
+          "path": "contracts/das_v1_5/version_verification_plan.schema.json",
+          "sha256": "366138928f11b0324e199a061abe3b5a811ed0d314ae70dc01ae3b17cfb2f823"
+        }
+      ]
+    }
   },
   "conditionalRequirements": [
     {
@@ -655,7 +925,10 @@
     "contractsAndNamingContextPack": "context_packs/contracts-and-naming.json",
     "verificationAndEvidenceContextPack": "context_packs/verification-and-evidence.json",
     "repoTopologyContextPack": "context_packs/repo-topology.json",
-    "releaseContractVerifier": "tools/validate_release_contract.py"
+    "releaseContractVerifier": "tools/validate_release_contract.py",
+    "editionReferenceContracts": "contracts/das_v1_5/README.md",
+    "masterDocumentGenerationPrompt": "templates/prompts/generate_master_doc_from_PRD.md",
+    "standardManifestExample": "standard_manifest.example.json"
   },
   "metadataFieldEnumBindings": {
     "Status": "docStatuses",

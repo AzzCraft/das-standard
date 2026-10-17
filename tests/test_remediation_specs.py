@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import unittest
+from jsonschema import Draft202012Validator
 from pathlib import Path
 from tests._root_contract import repository_root_for_test_file
 
@@ -104,7 +105,7 @@ class StandardRemediationSpecTests(unittest.TestCase):
 
     def test_v9_01_version_at_least_140(self) -> None:
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
-        parts = tuple(int(x) for x in version.split("."))
+        parts = tuple(int(x) for x in version.split('-', 1)[0].split("."))
         self.assertGreaterEqual(parts, (1, 4, 0), f"VERSION is too old: {version}")
 
     def test_indexes_cover_every_numbered_spec_heading(self) -> None:
@@ -172,14 +173,13 @@ class StandardRemediationSpecTests(unittest.TestCase):
         self.assertEqual(manifest["standardVersion"], version)
 
     def test_v9_01_schema_files_are_valid_json_schema(self) -> None:
-        for f in ROOT.glob("*.schema.json"):
+        schemas = list(ROOT.glob("*.schema.json"))
+        self.assertTrue(schemas, "no schema files")
+        for f in schemas:
             with self.subTest(schema=f.name):
                 data = json.loads(f.read_text(encoding="utf-8"))
                 self.assertIsInstance(data, dict)
-                self.assertTrue(
-                    "$schema" in data or "type" in data or "properties" in data,
-                    f"{f.name} does not look like a JSON Schema",
-                )
+                Draft202012Validator.check_schema(data)
 
     def test_v9_01_example_validates_against_schema(self) -> None:
         pairs = [
@@ -190,13 +190,13 @@ class StandardRemediationSpecTests(unittest.TestCase):
         for example_name, schema_name in pairs:
             example_path = ROOT / example_name
             schema_path = ROOT / schema_name
-            if not example_path.exists() or not schema_path.exists():
-                continue
+            self.assertTrue(example_path.is_file(), f"missing: {example_name}")
+            self.assertTrue(schema_path.is_file(), f"missing: {schema_name}")
             with self.subTest(example=example_name):
                 example = json.loads(example_path.read_text(encoding="utf-8"))
                 schema = json.loads(schema_path.read_text(encoding="utf-8"))
-                for req in schema.get("required", []):
-                    self.assertIn(req, example, f"{example_name} missing required field: {req}")
+                Draft202012Validator.check_schema(schema)
+                Draft202012Validator(schema).validate(example)
 
     def test_v9_01_changelog_mentions_current_version(self) -> None:
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()

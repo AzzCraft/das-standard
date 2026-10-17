@@ -1,12 +1,12 @@
-# DAS Standard Context Pack (v1.4.0)
+# DAS Standard Context Pack (v1.5.0-beta.1)
 
 ## Document Control
 - Doc ID: DAS-STANDARD-CONTEXT-PACK
 - Owner: DAS Maintainers
 - Status: active
 - Governing standard: SPECIFICATION.md
-- Last updated: 2026-04-06
-- Scope: Read-optimized quick reference for humans and AI agents working from the DAS v1.4.0 release bundle.
+- Last updated: 2026-10-06
+- Scope: Read-optimized quick reference for humans and AI agents working from the DAS v1.5.0-beta.1 content candidate.
 - Parent Master Doc: SPECIFICATION.md
 
 ## 1. What DAS is (in one paragraph)
@@ -89,3 +89,13 @@ See: `DAS_GOVERNANCE_COLLABORATION.md`.
 - Preserve machine-readable compatibility for tooling locks, suite version closure, verify registry/report, release snapshots, and template discovery.
 - Keep official templates aligned with the metadata and section rules declared by `standard_manifest.json`.
 - Keep the human-readable companion docs substantive enough to match the guarantees and references made by the main spec and changelog.
+
+<!-- DAS-GENERATED-CONTEXT-1.5: tools/validate_modules.py -->
+
+## 10. Edition 1.5 adoption and limitations
+
+The normative additions are authored in [modules/edition-1.5.md](modules/edition-1.5.md), with a generated Chapter 13 in [SPECIFICATION.md](SPECIFICATION.md#edition-1-5).
+
+Approved facts, three-valued applicability, bounded exact contracts, current resource authorization, isolated verification, immutable candidates, actual integration and evidence-backed completion govern the applicable paths. HTTP, UI and sealed evaluation obligations follow actual capabilities, including mixed surfaces.
+
+This is an unpublished content candidate with complete legacy and edition leaf mapping. Mapping and source checks do not qualify beta, activate protected tools or authorize publication. The 136 product cases remain not_run until protected execution evidence is available. Final compatibility decisions, complete applicable exchange and consumer evidence, and installed deployment qualification remain required.

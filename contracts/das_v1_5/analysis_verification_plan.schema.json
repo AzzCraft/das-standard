@@ -1,0 +1,318 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/das-analysis-verification-plan/v1",
+  "title": "DAS preapproved analysis verification plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "planId",
+    "bindings",
+    "actions",
+    "slots",
+    "aggregation",
+    "requireOverallSuccessForActions"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-analysis-verification-plan/v1"
+    },
+    "planId": {
+      "$ref": "#/$defs/id"
+    },
+    "bindings": {
+      "$ref": "#/$defs/bindings"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      },
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true
+    },
+    "slots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/slot"
+      },
+      "minItems": 1,
+      "maxItems": 64
+    },
+    "aggregation": {
+      "const": "all-attempts-pass-no-reuse/v1"
+    },
+    "requireOverallSuccessForActions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      },
+      "minItems": 0,
+      "maxItems": 2,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\u0000]+$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "minLength": 71,
+      "maxLength": 71
+    },
+    "integer": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "action": {
+      "enum": [
+        "complete",
+        "audit"
+      ]
+    },
+    "taskKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorityDomain",
+        "projectId",
+        "changeId",
+        "taskId"
+      ],
+      "properties": {
+        "authorityDomain": {
+          "$ref": "#/$defs/id"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "changeId": {
+          "$ref": "#/$defs/id"
+        },
+        "taskId": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "taskKey",
+        "taskRevision",
+        "taskCycle",
+        "resourceId",
+        "resourceInstance",
+        "targetGeneration",
+        "obligationDigest",
+        "sourceCandidateDigest",
+        "baselineCandidateDigest",
+        "policyDigest",
+        "toolDigest",
+        "standardDigest",
+        "bundleDigest",
+        "factsDigest",
+        "acceptanceDigest",
+        "environmentDigest",
+        "lineageDigest",
+        "completionMode",
+        "taskBindingDigest"
+      ],
+      "properties": {
+        "taskKey": {
+          "$ref": "#/$defs/taskKey"
+        },
+        "taskRevision": {
+          "$ref": "#/$defs/integer"
+        },
+        "taskCycle": {
+          "$ref": "#/$defs/integer"
+        },
+        "resourceId": {
+          "$ref": "#/$defs/id"
+        },
+        "resourceInstance": {
+          "$ref": "#/$defs/id"
+        },
+        "targetGeneration": {
+          "$ref": "#/$defs/integer"
+        },
+        "obligationDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "sourceCandidateDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "baselineCandidateDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "policyDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "toolDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "standardDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "bundleDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "factsDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "acceptanceDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "environmentDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "lineageDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "completionMode": {
+          "const": "analysis"
+        },
+        "taskBindingDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "completionDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "verificationScopeDigest": {
+          "$ref": "#/$defs/digest"
+        }
+      },
+      "dependentRequired": {
+        "completionDigest": [
+          "verificationScopeDigest"
+        ],
+        "verificationScopeDigest": [
+          "completionDigest"
+        ]
+      }
+    },
+    "slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slotId",
+        "gateId",
+        "assertionIds",
+        "configDigest",
+        "shard",
+        "requiredForActions",
+        "artifactIds",
+        "minIndependentRuns",
+        "maxAttempts",
+        "observationSafeForActions"
+      ],
+      "properties": {
+        "slotId": {
+          "$ref": "#/$defs/id"
+        },
+        "gateId": {
+          "$ref": "#/$defs/id"
+        },
+        "assertionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "configDigest": {
+          "$ref": "#/$defs/digest"
+        },
+        "shard": {
+          "$ref": "#/$defs/id"
+        },
+        "requiredForActions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          },
+          "minItems": 0,
+          "maxItems": 2,
+          "uniqueItems": true
+        },
+        "artifactIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "minIndependentRuns": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "observationSafeForActions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          },
+          "minItems": 0,
+          "maxItems": 2,
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "actions": {
+            "contains": {
+              "const": "audit"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "actions": {
+            "const": [
+              "audit"
+            ]
+          },
+          "bindings": {
+            "required": [
+              "completionDigest",
+              "verificationScopeDigest"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "bindings": {
+            "not": {
+              "required": [
+                "completionDigest"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

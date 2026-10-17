@@ -1,0 +1,562 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/context-pack/v1",
+  "title": "Read-only Bundle view; full trace denominator retained; no exemption or action authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "scope",
+    "standardVersion",
+    "bundleDigest",
+    "policyRef",
+    "target",
+    "catalogDigest",
+    "requirementsCatalogDigest",
+    "resolvedModules",
+    "requirementTrace",
+    "obligations",
+    "status",
+    "authorityVerified",
+    "qualificationEligible",
+    "digestMethod",
+    "contextPackDigest"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-context-pack/v1"
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x20\\x7f]+$",
+      "not": {
+        "pattern": "[\\x00-\\x20\\x7f]"
+      }
+    },
+    "standardVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x20\\x7f]+$",
+      "not": {
+        "pattern": "[\\x00-\\x20\\x7f]"
+      }
+    },
+    "bundleDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "minLength": 71,
+      "maxLength": 71
+    },
+    "policyRef": {
+      "$ref": "#/$defs/policyRef"
+    },
+    "target": {
+      "$ref": "#/$defs/target"
+    },
+    "catalogDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "minLength": 71,
+      "maxLength": 71
+    },
+    "requirementsCatalogDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "minLength": 71,
+      "maxLength": 71
+    },
+    "resolvedModules": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256,
+        "pattern": "^[^\\x00-\\x20\\x7f]+$",
+        "not": {
+          "pattern": "[\\x00-\\x20\\x7f]"
+        }
+      }
+    },
+    "requirementTrace": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4096,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirementId",
+          "ownerModule",
+          "parentClause",
+          "state"
+        ],
+        "properties": {
+          "requirementId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "ownerModule": {
+            "enum": [
+              "das.ai-runtime-evaluation",
+              "das.architecture-modularity",
+              "das.contracts-compatibility",
+              "das.core",
+              "das.governance.documentation",
+              "das.governance.verification-release",
+              "das.interaction.headless",
+              "das.interaction.hfvi",
+              "das.interaction.standard-ui",
+              "das.security-agent"
+            ]
+          },
+          "parentClause": {
+            "enum": [
+              "A-E",
+              "A-G",
+              "cl-10.1",
+              "cl-10.2",
+              "cl-10.3",
+              "cl-10.3.1",
+              "cl-10.3.2",
+              "cl-10.4",
+              "cl-10.5",
+              "cl-10.6",
+              "cl-10.7",
+              "cl-10.8",
+              "cl-11.1",
+              "cl-11.2",
+              "cl-12.1",
+              "cl-12.2",
+              "cl-12.3",
+              "cl-12.4",
+              "cl-12.5",
+              "cl-12.6",
+              "cl-13.13",
+              "cl-2.3",
+              "cl-2.4",
+              "cl-2.5",
+              "cl-3.1",
+              "cl-3.3",
+              "cl-3.4",
+              "cl-3.5",
+              "cl-3.6",
+              "cl-4.1",
+              "cl-4.2",
+              "cl-4.3",
+              "cl-4.4",
+              "cl-4.5",
+              "cl-5.2",
+              "cl-5.3",
+              "cl-5.4",
+              "cl-5.7",
+              "cl-6.2",
+              "cl-6.3",
+              "cl-6.4",
+              "cl-6.5",
+              "cl-6.6",
+              "cl-6.7",
+              "cl-6.8",
+              "cl-7.3",
+              "cl-7.4",
+              "cl-7.5",
+              "cl-7.6",
+              "cl-7.7",
+              "cl-7.8",
+              "cl-7.9",
+              "cl-9.1",
+              "cl-9.2",
+              "cl-9.3",
+              "cl-9.4",
+              "cl-9.5",
+              "cl-9.6",
+              "cl-9.7",
+              "cl-9.8",
+              "A-F",
+              "A-H",
+              "A-I",
+              "A-J",
+              "A-L",
+              "cl-13.14",
+              "cl-13.20",
+              "cl-13.1",
+              "cl-13.2",
+              "cl-13.3",
+              "cl-13.4",
+              "cl-13.5",
+              "cl-13.6",
+              "cl-13.7",
+              "cl-13.8",
+              "cl-13.9",
+              "cl-13.10",
+              "cl-13.11",
+              "cl-13.12",
+              "cl-13.15",
+              "cl-13.16",
+              "cl-13.17",
+              "cl-13.18",
+              "cl-13.19",
+              "cl-13.21",
+              "C-001",
+              "A-D",
+              "A-K",
+              "A-C"
+            ]
+          },
+          "state": {
+            "enum": [
+              "true",
+              "false",
+              "unknown",
+              "conflict"
+            ]
+          }
+        }
+      },
+      "description": "One sorted unique record per supported catalog leaf; exact coverage is a consumer semantic check, not a fixed wire denominator."
+    },
+    "obligations": {
+      "type": "array",
+      "maxItems": 4096,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirementId",
+          "ownerModule",
+          "parentClause",
+          "strength",
+          "state",
+          "bodyRefs",
+          "contextRefs",
+          "conditionRefs",
+          "strengthRef"
+        ],
+        "properties": {
+          "requirementId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^\\x00-\\x20\\x7f]+$",
+            "not": {
+              "pattern": "[\\x00-\\x20\\x7f]"
+            }
+          },
+          "ownerModule": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^\\x00-\\x20\\x7f]+$",
+            "not": {
+              "pattern": "[\\x00-\\x20\\x7f]"
+            }
+          },
+          "parentClause": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[^\\x00-\\x20\\x7f]+$",
+            "not": {
+              "pattern": "[\\x00-\\x20\\x7f]"
+            }
+          },
+          "strength": {
+            "enum": [
+              "MUST",
+              "SHOULD"
+            ]
+          },
+          "state": {
+            "enum": [
+              "true",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "bodyRefs": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 32,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "startLine",
+                "endLine",
+                "startColumn",
+                "endColumn",
+                "textSha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "startLine": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "endLine": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "startColumn": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "endColumn": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "textSha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$",
+                  "minLength": 64,
+                  "maxLength": 64
+                }
+              }
+            }
+          },
+          "contextRefs": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 32,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "startLine",
+                "endLine",
+                "startColumn",
+                "endColumn",
+                "textSha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "startLine": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "endLine": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "startColumn": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "endColumn": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "textSha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$",
+                  "minLength": 64,
+                  "maxLength": 64
+                }
+              }
+            }
+          },
+          "conditionRefs": {
+            "type": "array",
+            "maxItems": 32,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "startLine",
+                "endLine",
+                "startColumn",
+                "endColumn",
+                "textSha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "startLine": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "endLine": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "startColumn": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "endColumn": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "textSha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$",
+                  "minLength": 64,
+                  "maxLength": 64
+                }
+              }
+            }
+          },
+          "strengthRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "startLine",
+              "endLine",
+              "startColumn",
+              "endColumn",
+              "textSha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "startLine": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "endLine": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "startColumn": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "endColumn": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "textSha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$",
+                "minLength": 64,
+                "maxLength": 64
+              }
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "migration_incomplete",
+        "unresolved",
+        "resolved"
+      ]
+    },
+    "authorityVerified": {
+      "const": false
+    },
+    "qualificationEligible": {
+      "const": false
+    },
+    "digestMethod": {
+      "const": "rfc8785-jcs-utf8-sha256"
+    },
+    "contextPackDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "minLength": 71,
+      "maxLength": 71
+    }
+  },
+  "$defs": {
+    "policyRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyId",
+        "policyDigest",
+        "policyGeneration",
+        "authorityEpoch"
+      ],
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "policyDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "policyGeneration": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "authorityEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateDigest",
+        "deploymentBaselineDigest"
+      ],
+      "properties": {
+        "candidateDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "deploymentBaselineDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

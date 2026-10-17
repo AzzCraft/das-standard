@@ -10,6 +10,139 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 VALID_GATES = {"all", "bundle-files", "schemas", "release-snapshot", "compat-release"}
+REFERENCE_CONTRACTS = {
+    "das-http-declaration/v1": "http_declaration.schema.json",
+    "das-http-inventory/v1": "http_inventory.schema.json",
+    "das-verification-plan/v1": "verification_plan.schema.json",
+    "das-verification-evidence/v1": "verification_evidence.schema.json",
+    "das-action-decision/v1": "action_decision.schema.json",
+    "das-integration-plan/v1": "integration_plan.schema.json",
+    "das-integration-receipt/v1": "integration_receipt.schema.json",
+    "das-completion/v1": "completion.schema.json",
+    **{'das-' + name.replace('_', '-') + '/v1': name + '.schema.json'
+       for name in ('analysis_task_binding', 'analysis_verification_plan',
+                    'analysis_verification_evidence', 'analysis_action_decision', 'analysis_completion',
+                    'version_verification_plan', 'version_verification_evidence', 'version_action_decision')},
+    'das-approved-facts-check/v1': 'approved_facts_check.schema.json',
+    'das-bundle-resolution/v1': 'bundle_resolution.schema.json',
+    'das-context-pack/v1': 'context_pack.schema.json',
+    "das-approved-facts/v1": "approved_facts.schema.json",
+    "das-approved-facts-preview-input/v1": "approved_facts_preview_input.schema.json",
+    "das-candidate-binding/v1": "candidate_binding.schema.json",
+    "das-version-tree-plan/v1": "version_tree_plan.schema.json",
+    "das-version-switch-receipt/v1": "version_switch_receipt.schema.json",
+    "das-resource-action-intent/v1": "resource_action_intent.schema.json",
+    "das-action-authorization/v1": "action_authorization.schema.json",
+    "das-bundle-preview-input/v1": "bundle_preview_input.schema.json",
+    "das-bundle-preview/v1": "bundle_preview.schema.json",
+    "das-bundle-preview-input/v2": "bundle_preview_input_v2.schema.json",
+    "das-bundle-preview/v2": "bundle_preview_v2.schema.json",
+    "das-bundle-preview-input/v3": "bundle_preview_input_v3.schema.json",
+    "das-bundle-preview/v3": "bundle_preview_v3.schema.json",
+    "das-approved-facts-check/v2": "approved_facts_check_v2.schema.json",
+    "das-bundle-resolution/v2": "bundle_resolution_v2.schema.json",
+    "das-context-pack/v2": "context_pack_v2.schema.json",
+    "das-text-delta/v1": "text_delta.schema.json",
+    "das-text-delta-end/v1": "text_delta_end.schema.json",
+}
+
+def check_definition_classes() -> None:
+    """Enforce S04's explicit labels in its single normative Markdown author.
+
+    This establishes classification, not a producer's lossless mapping proof.
+    No duplicate registry or new schema is needed for the document table.
+    """
+    text = (ROOT / 'modules/edition-1.5.md').read_text(encoding='utf-8')
+    section = text.split('<a id="s04"></a>', 1)[-1].split('<a id="s05"></a>', 1)[0]
+    expected = {
+        'ErrorEnvelope、Diagnostics、Budget、RunManifest、PipelineResult、JobEnvelope、DatasetManifest、EvalReport': 'normative_semantic_model',
+        'AnnotatedContent / CitationSet': 'normative_semantic_model',
+        '现有 StreamFrame': 'normative_semantic_model',
+        '标准 manifest、registry/report、locks 等已有正式 schema': 'normative_reference_contract',
+        '新授权、证据绑定和受保护完成交换对象': 'normative_reference_contract',
+    }
+    found = {}
+    for line in section.splitlines():
+        if not line.startswith('|') or line.startswith(('| 对象 |', '|---')):
+            continue
+        fields = [field.strip() for field in line.split('|')[1:-1]]
+        if len(fields) != 3 or fields[0] in found:
+            raise ValueError('definition classification is missing, malformed or duplicated')
+        found[fields[0]] = fields[1].strip('`')
+    if found != expected or any(phrase not in section for phrase in (
+            '文档分类不得撤销已有 required 字段语义。',
+            '上述语义模型中的 JSON 展示为 `informative_example`',
+            '不据此强制示例字段布局；其中已声明的最低信息义务仍须保留。')):
+        raise ValueError('definition classification changed model, exact-contract or minimum-information semantics')
+
+def check_reference_contracts(manifest: dict) -> None:
+    """Check the selected reference profile offline in the standalone bundle.
+
+    These hashes check content closure, not independent approval. Actual payload
+    validation, exact numbers and native signatures remain the tools' contract.
+    """
+    reference = manifest['extensions'].get('referenceContracts', {})
+    if (set(reference) != {'authorRepo', 'authorPath', 'use', 'qualificationEligible', 'schemas'}
+            or reference['authorRepo'] != 'cadence-oss/cadence-protocol'
+            or reference['authorPath'] != 'schemas/das_v1_5'
+            or reference['use'] != 'reference_only' or reference['qualificationEligible'] is not False):
+        raise ValueError('reference contract provenance or nonqualification boundary changed')
+    records = reference['schemas']
+    if (not isinstance(records, list) or len(records) != len(REFERENCE_CONTRACTS)
+            or any(not isinstance(item, dict) or set(item) != {'contractIdentity', 'path', 'sha256'} for item in records)):
+        raise ValueError('reference contract inventory is incomplete or malformed')
+    identities, schema_ids = set(), set()
+    required = set(manifest['requiredArtifacts'])
+    for item in records:
+        identity = item['contractIdentity']
+        if identity not in REFERENCE_CONTRACTS or identity in identities:
+            raise ValueError('unknown or duplicate reference contract identity')
+        identities.add(identity)
+        relative = 'contracts/das_v1_5/' + REFERENCE_CONTRACTS[identity]
+        if item['path'] != relative or relative not in required:
+            raise ValueError('reference contract path is absent from required artifacts')
+        path = ROOT / relative
+        if (not path.is_file() or any(parent.is_symlink() for parent in (path, path.parent, path.parent.parent))):
+            raise ValueError('reference contract is not a local regular file: ' + relative)
+        data = path.read_bytes()
+        if hashlib.sha256(data).hexdigest() != item['sha256']:
+            raise ValueError('reference contract digest mismatch: ' + relative)
+        def unique(pairs):
+            value = {}
+            for name, field in pairs:
+                if name in value:
+                    raise ValueError('duplicate reference schema member')
+                value[name] = field
+            return value
+        schema = json.loads(data, object_pairs_hook=unique)
+        if (schema.get('$schema') != 'https://json-schema.org/draft/2020-12/schema'
+                or not isinstance(schema.get('$id'), str) or schema['$id'] in schema_ids
+                or schema.get('properties', {}).get('contractIdentity', {}).get('const') != identity):
+            raise ValueError('reference schema dialect or identity mismatch')
+        schema_ids.add(schema['$id'])
+        Draft202012Validator.check_schema(schema)
+        pending = [schema]
+        while pending:
+            node = pending.pop()
+            if isinstance(node, dict):
+                if ('$vocabulary' in node or '$dynamicRef' in node
+                        or (node is not schema and '$id' in node)):
+                    raise ValueError('unapproved reference schema vocabulary or resolution scope')
+                if '$ref' in node:
+                    ref = node['$ref']
+                    if not isinstance(ref, str) or not ref.startswith('#/'):
+                        raise ValueError('reference schema cannot fetch external rules')
+                    target = schema
+                    try:
+                        for token in ref[2:].split('/'):
+                            target = target[token.replace('~1', '/').replace('~0', '~')]
+                    except (KeyError, TypeError):
+                        raise ValueError('unresolved local reference schema pointer') from None
+                    if not isinstance(target, (dict, bool)):
+                        raise ValueError('reference schema pointer does not address a schema')
+                pending.extend(node.values())
+            elif isinstance(node, list):
+                pending.extend(node)
 
 def load(rel: str) -> dict:
     return json.loads((ROOT / rel).read_text(encoding="utf-8"))
@@ -49,7 +182,7 @@ def section(text: str, title: str, by_slug: bool = False) -> str:
             selected = index, level
             break
     if selected is None:
-        raise AssertionError(f"missing section or anchor: {title}")
+        raise ValueError(f"missing section or anchor: {title}")
     start, level = selected
     end = next((index for index, other_level, _ in headings(text) if index > start and other_level <= level), len(lines))
     return "\n".join(lines[start:end])
@@ -75,90 +208,133 @@ def check_enum_definitions(manifest: dict) -> None:
         "verifyReportOutcomes": "gateOutcomeDefinitions",
     }
     for enum_name, definitions_name in bindings.items():
-        assert set(manifest["enums"][enum_name]) == set(manifest[definitions_name]), f"{definitions_name} must exactly define {enum_name}"
+        if not (set(manifest['enums'][enum_name]) == set(manifest[definitions_name])):
+            raise ValueError(f'{definitions_name} must exactly define {enum_name}')
 
 def check_templates(manifest: dict) -> None:
     catalog = load("template_catalog.json")["templates"]
-    assert {item["docType"] for item in catalog} == set(manifest["docTypes"])
-    assert len({item["docType"] for item in catalog}) == len(catalog)
+    if not ({item['docType'] for item in catalog} == set(manifest['docTypes'])):
+        raise ValueError("template catalog must cover every declared document type")
+    if not (len({item['docType'] for item in catalog}) == len(catalog)):
+        raise ValueError("template catalog has duplicate document types")
     for item in catalog:
         path = ROOT / item["artifactPath"]
-        assert path.is_file(), f"missing template artifact: {item['artifactPath']}"
+        if not (path.is_file()):
+            raise ValueError(f"missing template artifact: {item['artifactPath']}")
         body = section(path.read_text(encoding="utf-8"), item["sectionAnchor"], by_slug=True)
         missing = set(manifest["requiredDocMetadata"][item["docType"]]) - metadata_fields(section(body, "Document Control"))
-        assert not missing, f"template {item['docType']} missing metadata: {sorted(missing)}"
+        if missing:
+            raise ValueError(f"template {item['docType']} missing metadata: {sorted(missing)}")
         present = {normalize(title) for _, _, title in headings(body)}
         missing = [
             name
             for name in manifest["requiredSections"][item["docType"]]
             if not any(actual == normalize(name) or actual.startswith(normalize(name) + " ") for actual in present)
         ]
-        assert not missing, f"template {item['docType']} missing sections: {missing}"
+        if missing:
+            raise ValueError(f"template {item['docType']} missing sections: {missing}")
 
 def check_addenda(manifest: dict) -> None:
     for ref_name in ("deploymentAddendum", "governanceAddendum"):
         path = ROOT / manifest["normativeArtifactRefs"][ref_name]
         text = path.read_text(encoding="utf-8")
         missing = set(manifest["requiredDocMetadata"]["normative_addendum"]) - metadata_fields(section(text, "Document Control"))
-        assert not missing, f"{path.name} missing metadata: {sorted(missing)}"
+        if missing:
+            raise ValueError(f'{path.name} missing metadata: {sorted(missing)}')
         present = {normalize(title) for _, _, title in headings(text)}
         missing = [name for name in manifest["requiredSections"]["normative_addendum"] if normalize(name) not in present]
-        assert not missing, f"{path.name} missing sections: {missing}"
+        if missing:
+            raise ValueError(f'{path.name} missing sections: {missing}')
 
 def check_ids_and_context(manifest: dict) -> None:
     chapters = {item["id"] for item in load("chapter_index.json")["chapters"]}
     clauses = {item["id"] for item in load("clause_index.json")["clauses"]}
     appendices = {f"A-{item['id'].split('-', 1)[1].upper()}" for item in load("chapter_index.json")["appendices"]}
     ids = load("ids/standard_ids.json")
-    assert ids["standardVersion"] == manifest["standardVersion"]
-    assert set(ids["appendixIds"]) == appendices
+    if not (ids['standardVersion'] == manifest['standardVersion']):
+        raise ValueError("Standard ID registry version differs from manifest")
+    if not (set(ids['appendixIds']) == appendices):
+        raise ValueError("Standard ID registry omits or adds an appendix identity")
     contracts = load("context_packs/contracts-and-naming.json")["summary"].lower()
-    assert "compatibility mode by default" in contracts and "refactor mode only" in contracts and "strict or tolerant" not in contracts
+    if not ('compatibility mode by default' in contracts and 'refactor mode only' in contracts and ('strict or tolerant' not in contracts)):
+        raise ValueError("contracts Context Pack lost its declared compatibility/refactor semantics")
     evidence = load("context_packs/verification-and-evidence.json")
-    assert evidence["chapters"] == ["ch-10"]
-    assert "offline-first" not in evidence["summary"].lower() and "signing" not in evidence["summary"].lower()
+    if not (evidence['chapters'] == ['ch-10']):
+        raise ValueError("verification Context Pack has an incorrect chapter mapping")
+    if not ('offline-first' not in evidence['summary'].lower() and 'signing' not in evidence['summary'].lower()):
+        raise ValueError("verification Context Pack claims undeclared offline/signing requirements")
     for path in (ROOT / "context_packs").glob("*.json"):
         pack = json.loads(path.read_text(encoding="utf-8"))
-        assert pack["standardVersion"] == manifest["standardVersion"]
-        assert set(pack["chapters"]) <= chapters
-        assert set(pack["clauses"]) <= clauses
+        if not (pack['standardVersion'] == manifest['standardVersion']):
+            raise ValueError("standard contract check failed: pack['standardVersion'] == manifest['standardVersion']")
+        if not (set(pack['chapters']) <= chapters):
+            raise ValueError("standard contract check failed: set(pack['chapters']) <= chapters")
+        if not (set(pack['clauses']) <= clauses):
+            raise ValueError("standard contract check failed: set(pack['clauses']) <= clauses")
 
 def check_snapshot_registry(manifest: dict) -> None:
     snapshot = load("release_snapshot_manifest.json")
-    paths = {item["path"] for item in snapshot["artifacts"]}
-    missing = sorted((set(manifest["requiredArtifacts"]) - {"release_snapshot_manifest.json"}) - paths)
-    assert not missing, f"snapshot missing required artifacts: {missing}"
+    names = [item["path"] for item in snapshot["artifacts"]]
+    required = manifest["requiredArtifacts"]
+    if (names != sorted(set(names)) or len({name.casefold() for name in names}) != len(names)
+            or len(required) != len(set(required))
+            or set(names) != set(required) - {"release_snapshot_manifest.json"}
+            or "release_snapshot_manifest.json" in names):
+        raise ValueError('snapshot member inventory must exactly close the required non-circular content')
+    if (snapshot['standardVersion'] != manifest['standardVersion']
+            or snapshot['standardManifestVersion'] != manifest['standardVersion']):
+        raise ValueError('snapshot edition differs from the Standard manifest')
     registry = load("verify_registry.json")
     default = registry["defaultVerifyCommand"]
     actual = {item["command"].split()[-1] for item in registry["gates"] if item["command"].startswith(default + " --gate ")}
-    assert actual == {"bundle-files", "schemas", "release-snapshot", "compat-release"}, f"registry gate mismatch: {sorted(actual)}"
+    if not (actual == {'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}):
+        raise ValueError(f'registry gate mismatch: {sorted(actual)}')
     for item in snapshot["artifacts"]:
-        path = ROOT / item["path"]
-        assert path.is_file(), f"snapshot artifact missing: {item['path']}"
+        name = item['path']
+        if (not name or name.startswith('/') or '\\' in name or ':' in name
+                or any(ord(char) < 32 or ord(char) == 127 for char in name)
+                or any(part in ('', '.', '..') for part in name.split('/'))
+                or item['required'] is not True or not re.fullmatch(r'[0-9a-f]{64}', item['sha256'])):
+            raise ValueError('noncanonical required snapshot member')
+        path = ROOT
+        for part in name.split('/'):
+            path = path / part
+            if path.is_symlink(): raise ValueError('snapshot member cannot traverse a symlink')
+        if not path.is_file() or path.stat().st_nlink != 1:
+            raise ValueError(f"snapshot artifact missing: {item['path']}")
         actual_hash = hashlib.sha256(path.read_bytes()).hexdigest()
-        assert actual_hash == item["sha256"], f"snapshot hash mismatch: {item['path']}"
+        if not (actual_hash == item['sha256']):
+            raise ValueError(f"snapshot hash mismatch: {item['path']}")
     joined = "\n".join(f"{item['path']}:{item['sha256']}" for item in sorted(snapshot["artifacts"], key=lambda value: value["path"]))
-    assert hashlib.sha256(joined.encode()).hexdigest() == snapshot["bundleDigest"]
+    if not (hashlib.sha256(joined.encode()).hexdigest() == snapshot['bundleDigest']):
+        raise ValueError("standard contract check failed: hashlib.sha256(joined.encode()).hexdigest() == snapshot['bundleDigest']")
 
 def check_compat(manifest: dict) -> None:
     version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     fixture = ROOT / "tests" / "compat" / f"v{version}" / "standard_manifest.json"
-    assert fixture.is_file(), f"missing current compatibility fixture: {fixture.relative_to(ROOT)}"
-    assert json.loads(fixture.read_text(encoding="utf-8")) == manifest, "current compatibility fixture must exactly copy the canonical manifest"
+    if not (fixture.is_file()):
+        raise ValueError(f'missing current compatibility fixture: {fixture.relative_to(ROOT)}')
+    if not (json.loads(fixture.read_text(encoding='utf-8')) == manifest):
+        raise ValueError('current compatibility fixture must exactly copy the canonical manifest')
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--gate", choices=sorted(VALID_GATES), default="all")
     args = parser.parse_args()
     manifest = load("standard_manifest.json")
-    assert manifest["interactionProfiles"] == manifest["enums"]["interactionProfiles"]
-    assert manifest["gateCadences"] == manifest["enums"]["gateCadences"]
+    if not (manifest['interactionProfiles'] == manifest['enums']['interactionProfiles']):
+        raise ValueError("standard contract check failed: manifest['interactionProfiles'] == manifest['enums']['interactionProfiles']")
+    if not (manifest['gateCadences'] == manifest['enums']['gateCadences']):
+        raise ValueError("standard contract check failed: manifest['gateCadences'] == manifest['enums']['gateCadences']")
     check_enum_definitions(manifest)
     if args.gate in {"all", "bundle-files"}:
+        check_definition_classes()
+        check_reference_contracts(manifest)
         check_templates(manifest)
         check_addenda(manifest)
         check_ids_and_context(manifest)
     if args.gate in {"all", "schemas"}:
+        check_reference_contracts(manifest)
         for data, schema in (
             ("standard_manifest.example.json", "standard_manifest.schema.json"),
             ("chapter_index.json", "chapter_index.schema.json"),

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/bundle-preview-input/v2",
+  "title": "DAS unapproved Bundle preview input with partial leaf applicability",
+  "type": "object",
+  "properties": {
+    "contractIdentity": {
+      "const": "das-bundle-preview-input/v2"
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "catalog": {
+      "type": "object"
+    },
+    "facts": {
+      "type": "array",
+      "maxItems": 4096,
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]{0,127}$"
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "const": "unknown"
+              }
+            ]
+          },
+          "sourceRef": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "sourceRef"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "requirementsCatalog": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "contractIdentity",
+    "scope",
+    "policyDigest",
+    "catalog",
+    "facts",
+    "requirementsCatalog"
+  ],
+  "additionalProperties": false
+}

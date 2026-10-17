@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/das-action-authorization/v1",
+  "title": "DAS action authorization v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contractIdentity": {
+      "const": "das-action-authorization/v1"
+    },
+    "taskKey": {
+      "type": "object",
+      "required": [
+        "authorityDomain",
+        "projectId",
+        "changeId",
+        "taskId"
+      ],
+      "properties": {
+        "authorityDomain": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "projectId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "changeId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "taskId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "additionalProperties": false
+    },
+    "authorizationId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "issuer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "representedSubject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "resourceId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "resourceInstance": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "businessActionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "budgetId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "taskRevision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "taskCycle": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "authorityEpoch": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "authorizationGeneration": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "leaseGeneration": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "maxCost": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "targetGeneration": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "requestDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "toolDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "notBefore": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "ancestors": {
+      "type": "array",
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      }
+    },
+    "action": {
+      "enum": [
+        "inspect",
+        "plan",
+        "apply",
+        "submit",
+        "integrate",
+        "complete",
+        "rollback",
+        "audit"
+      ]
+    },
+    "delegateActors": {
+      "type": "array",
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      }
+    }
+  },
+  "required": [
+    "contractIdentity",
+    "taskKey",
+    "authorizationId",
+    "issuer",
+    "audience",
+    "actor",
+    "representedSubject",
+    "resourceId",
+    "resourceInstance",
+    "businessActionId",
+    "budgetId",
+    "taskRevision",
+    "taskCycle",
+    "authorityEpoch",
+    "authorizationGeneration",
+    "leaseGeneration",
+    "maxCost",
+    "targetGeneration",
+    "requestDigest",
+    "toolDigest",
+    "policyDigest",
+    "notBefore",
+    "expiresAt",
+    "ancestors",
+    "action",
+    "delegateActors"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "not": {
+              "const": "audit"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "leaseGeneration": {
+            "minimum": 1
+          }
+        }
+      }
+    }
+  ]
+}

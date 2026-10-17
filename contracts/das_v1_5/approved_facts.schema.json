@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/approved-facts/v1",
+  "title": "DAS scope-bound approved fact payload; authority requires independently supplied current trust",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "factsId",
+    "factsGeneration",
+    "issuer",
+    "audience",
+    "scope",
+    "proposedBy",
+    "policyRef",
+    "target",
+    "standardVersion",
+    "catalogDigest",
+    "requirementsCatalogDigest",
+    "digestMethod",
+    "notBefore",
+    "expiresAt",
+    "facts"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-approved-facts/v1"
+    },
+    "factsId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x20\\x7f]+$",
+      "not": {
+        "pattern": "[\\x00-\\x20\\x7f]"
+      }
+    },
+    "factsGeneration": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "issuer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x20\\x7f]+$",
+      "not": {
+        "pattern": "[\\x00-\\x20\\x7f]"
+      }
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x20\\x7f]+$",
+      "not": {
+        "pattern": "[\\x00-\\x20\\x7f]"
+      }
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x20\\x7f]+$",
+      "not": {
+        "pattern": "[\\x00-\\x20\\x7f]"
+      }
+    },
+    "proposedBy": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x20\\x7f]+$",
+      "not": {
+        "pattern": "[\\x00-\\x20\\x7f]"
+      }
+    },
+    "policyRef": {
+      "$ref": "#/$defs/policyRef"
+    },
+    "target": {
+      "$ref": "#/$defs/target"
+    },
+    "standardVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x20\\x7f]+$",
+      "not": {
+        "pattern": "[\\x00-\\x20\\x7f]"
+      }
+    },
+    "catalogDigest": {
+      "type": "string",
+      "minLength": 71,
+      "maxLength": 71,
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "requirementsCatalogDigest": {
+      "type": "string",
+      "minLength": 71,
+      "maxLength": 71,
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "digestMethod": {
+      "const": "rfc8785-jcs-utf8-sha256"
+    },
+    "notBefore": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 64
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 64
+    },
+    "facts": {
+      "type": "array",
+      "maxItems": 4096,
+      "items": {
+        "$ref": "#/$defs/fact"
+      }
+    }
+  },
+  "$defs": {
+    "fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "value",
+        "sourceRef"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{0,127}$",
+          "not": {
+            "pattern": "[^a-z0-9_.-]"
+          }
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "unknown"
+            }
+          ]
+        },
+        "sourceRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        }
+      }
+    },
+    "policyRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyId",
+        "policyDigest",
+        "policyGeneration",
+        "authorityEpoch"
+      ],
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x20\\x7f]+$",
+          "not": {
+            "pattern": "[\\x00-\\x20\\x7f]"
+          }
+        },
+        "policyDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "policyGeneration": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "authorityEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateDigest",
+        "deploymentBaselineDigest"
+      ],
+      "properties": {
+        "candidateDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "deploymentBaselineDigest": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

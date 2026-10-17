@@ -1,77 +1,77 @@
 {
   "$schema": "./template_catalog.schema.json",
   "schemaVersion": "1.0.0",
-  "standardVersion": "1.4.0",
+  "standardVersion": "1.5.0-beta.1",
   "templates": [
     {
       "docType": "master_doc",
       "artifactPath": "appendices/appendix-c-project-master-doc-template.md",
       "sectionAnchor": "appendix-c-master-doc-template",
       "templateKind": "canonical_full",
-      "notes": "Canonical full Master Doc template."
+      "notes": "Canonical full Master Doc template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "prd",
       "artifactPath": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
       "sectionAnchor": "appendix-m-prd-template",
       "templateKind": "minimal_governed",
-      "notes": "Minimal governed PRD template."
+      "notes": "Minimal governed PRD template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "ui_spec",
       "artifactPath": "appendices/appendix-d-ui-spec-appendix-template.md",
       "sectionAnchor": "appendix-d-ui-spec-template",
       "templateKind": "canonical_full",
-      "notes": "Canonical UI Spec Appendix template."
+      "notes": "Canonical UI Spec Appendix template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "headless_surface_note",
       "artifactPath": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
       "sectionAnchor": "appendix-m-headless-surface-note-template",
       "templateKind": "minimal_governed",
-      "notes": "Headless interaction documentation template."
+      "notes": "Headless interaction documentation template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "module_doc",
       "artifactPath": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
       "sectionAnchor": "appendix-m-module-doc-template",
       "templateKind": "minimal_governed",
-      "notes": "Module MASTER_DOC template for packages/libraries/workers/services."
+      "notes": "Module MASTER_DOC template for packages/libraries/workers/services. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "runbook",
       "artifactPath": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
       "sectionAnchor": "appendix-m-runbook-template",
       "templateKind": "minimal_governed",
-      "notes": "Operational runbook template."
+      "notes": "Operational runbook template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "deployment_doc",
       "artifactPath": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
       "sectionAnchor": "appendix-m-deployment-doc-template",
       "templateKind": "minimal_governed",
-      "notes": "Deployment doc template."
+      "notes": "Deployment doc template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "context_pack",
       "artifactPath": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
       "sectionAnchor": "appendix-m-context-pack-template",
       "templateKind": "minimal_governed",
-      "notes": "Context Pack template."
+      "notes": "Context Pack template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "support_note",
       "artifactPath": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
       "sectionAnchor": "appendix-m-support-note-template",
       "templateKind": "minimal_governed",
-      "notes": "Support note template."
+      "notes": "Support note template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     },
     {
       "docType": "normative_addendum",
       "artifactPath": "appendices/appendix-m-doc-family-governance-and-module-doc-templates.md",
       "sectionAnchor": "appendix-m-normative-addendum-template",
       "templateKind": "minimal_governed",
-      "notes": "Standard-release normative addendum template."
+      "notes": "Standard-release normative addendum template. Normative portions: required metadata, required sections and applicable explicit requirements. Informative portions: placeholder/example values and illustrative layouts; these do not assert actual approval or execution."
     }
   ]
 }

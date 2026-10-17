@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "standardVersion": "1.4.0",
+  "standardVersion": "1.5.0-beta.1",
   "templates": [
     {"docType":"master_doc","artifactPath":"templates/master_doc.md","sectionAnchor":"#overview","templateKind":"canonical_full"},
     {"docType":"prd","artifactPath":"templates/prd.md","sectionAnchor":"#scope","templateKind":"canonical_full"},

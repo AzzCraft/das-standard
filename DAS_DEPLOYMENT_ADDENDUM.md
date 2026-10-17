@@ -5,8 +5,8 @@
 - **Doc ID:** DAS-DEPLOYMENT-ADDENDUM
 - **Owner:** DAS Standard Maintainers
 - **Status:** active
-- **Governing standard:** Docs as Software (DAS) Standard v1.4.0
-- **Last updated:** 2026-04-06
+- **Governing standard:** Docs as Software (DAS) Standard v1.5.0-beta.1
+- **Last updated:** 2026-10-06
 - **Scope:** Deployment, environments, release operations, and production-readiness guidance
 - **Parent standard:** Docs as Software (DAS) Standard
 - **Doc family role:** subordinate_doc
@@ -33,7 +33,7 @@ This is required for most real-world L1/L2 products. Pure libraries or research-
 
 ## Relationship to the main standard
 
-This addendum is subordinate to the Docs as Software (DAS) Standard v1.4.0. It extends the standard's deployment and operations guidance without changing the governing conformance, precedence, or verification rules in the main specification.
+This addendum is subordinate to the Docs as Software (DAS) Standard v1.5.0-beta.1. It extends the standard's deployment and operations guidance without changing the governing conformance, precedence, or verification rules in the main specification.
 
 ---
 

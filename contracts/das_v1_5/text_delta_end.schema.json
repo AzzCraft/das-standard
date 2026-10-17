@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/text-delta-end/v1",
+  "title": "DAS text delta validated end",
+  "type": "object",
+  "required": [
+    "taskKey",
+    "taskRevision",
+    "taskCycle",
+    "streamId",
+    "candidateDigest",
+    "contractIdentity",
+    "laneWatermarks",
+    "finalDigest"
+  ],
+  "properties": {
+    "taskKey": {
+      "type": "object",
+      "required": [
+        "authorityDomain",
+        "projectId",
+        "changeId",
+        "taskId"
+      ],
+      "properties": {
+        "authorityDomain": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "projectId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "changeId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "taskId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "additionalProperties": false
+    },
+    "taskRevision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "taskCycle": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "streamId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "candidateDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "contractIdentity": {
+      "const": "das-text-delta-end/v1"
+    },
+    "laneWatermarks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "required": [
+          "laneId",
+          "seq"
+        ],
+        "properties": {
+          "laneId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+          },
+          "seq": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "finalDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

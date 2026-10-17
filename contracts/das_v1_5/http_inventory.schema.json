@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/schemas/das-v1.5/http_inventory/v1",
+  "title": "DAS reference http inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "declarationDigest",
+    "scope",
+    "openapiVersion",
+    "jsonSchemaDialect",
+    "operations",
+    "referenceTargets",
+    "declaredCoverage",
+    "schemaValidation",
+    "authority",
+    "qualification"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-http-inventory/v1"
+    },
+    "declarationDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "openapiVersion": {
+      "enum": [
+        "3.0.3",
+        "3.1.1"
+      ]
+    },
+    "jsonSchemaDialect": {
+      "enum": [
+        "oas-3.0.3-schema-object",
+        "https://spec.openapis.org/oas/3.1/dialect/base",
+        "https://json-schema.org/draft/2020-12/schema"
+      ]
+    },
+    "operations": {
+      "type": "array",
+      "maxItems": 1024,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "operationId",
+          "method",
+          "path",
+          "documentURI",
+          "securityOrigin",
+          "security"
+        ],
+        "properties": {
+          "operationId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "method": {
+            "enum": [
+              "GET",
+              "PUT",
+              "POST",
+              "DELETE",
+              "OPTIONS",
+              "HEAD",
+              "PATCH",
+              "TRACE"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "documentURI": {
+            "type": "string",
+            "format": "uri",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "securityOrigin": {
+            "enum": [
+              "root",
+              "operation",
+              "absent"
+            ]
+          },
+          "security": {
+            "type": "array",
+            "maxItems": 64,
+            "items": {
+              "type": "object",
+              "maxProperties": 32,
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "additionalProperties": {
+                "type": "array",
+                "maxItems": 64,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 256
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "referenceTargets": {
+      "type": "array",
+      "maxItems": 4096,
+      "items": {
+        "type": "string",
+        "format": "uri",
+        "minLength": 1,
+        "maxLength": 2048
+      },
+      "uniqueItems": true
+    },
+    "declaredCoverage": {
+      "const": "unknown"
+    },
+    "schemaValidation": {
+      "const": false
+    },
+    "authority": {
+      "const": false
+    },
+    "qualification": {
+      "const": false
+    }
+  }
+}

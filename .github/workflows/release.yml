@@ -83,9 +83,10 @@ jobs:
           dir="$RUNNER_TEMP/das-standard-release-artifacts"
           archive="das-standard-${version}-source.tar.gz"
           sbom="das-standard-${version}.spdx.json"
+          content=""; snapshot=""; content_assets=()
           mkdir -p "$dir"
           git archive --format=tar --prefix="das-standard-${version}/" "$commit" | gzip -n > "$dir/$archive"
-          python3 - "$dir/$sbom" "$version" "$commit" <<'PY'
+          python3 -I -B - "$dir/$sbom" "$version" "$commit" <<'PY'
           import hashlib, json, subprocess, sys
           from datetime import datetime, timezone
           from pathlib import Path
@@ -103,14 +104,27 @@ jobs:
           payload = {"SPDXID": "SPDXRef-DOCUMENT", "creationInfo": {"created": created, "creators": ["Tool: DAS deterministic source SBOM generator"]}, "dataLicense": "CC0-1.0", "documentNamespace": f"https://github.com/AzzCraft/das-standard/sbom/{version}/{commit}", "files": files, "name": f"das-standard-{version}-source-inventory", "packages": [{"SPDXID": "SPDXRef-Package-Source", "copyrightText": "NOASSERTION", "downloadLocation": "NOASSERTION", "filesAnalyzed": True, "licenseConcluded": "NOASSERTION", "licenseDeclared": "CC-BY-4.0", "name": "das-standard", "packageVerificationCode": {"packageVerificationCodeValue": hashlib.sha1("".join(sorted(sha1s)).encode()).hexdigest()}, "supplier": "NOASSERTION", "versionInfo": version}], "relationships": [{"spdxElementId": "SPDXRef-DOCUMENT", "relationshipType": "DESCRIBES", "relatedSpdxElement": "SPDXRef-Package-Source"}, *relationships], "spdxVersion": "SPDX-2.3"}
           Path(output).write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
           PY
-          python3 - "$dir/release-manifest.json" "$version" "$tag" "$tag_object" "$commit" "$archive" "$sbom" <<'PY'
-          import json, sys
+          # The unprivileged producer uses the reviewed component generator.
+          # The credentialed job below reconstructs its bytes independently.
+          IFS=. read -r major minor patch <<< "${version%%[-+]*}"
+          if (( major > 1 || (major == 1 && minor >= 5) )); then
+            content="das-standard-${version}-content.zip"; snapshot="release_snapshot_manifest.json"
+            content_assets=("$content" "$snapshot")
+            python3 -I -B tools/generate_content_snapshot.py --archive "$dir/$content"
+            cp release_snapshot_manifest.json "$dir/$snapshot"
+          fi
+          python3 -I -B - "$dir/release-manifest.json" "$version" "$tag" "$tag_object" "$commit" "$archive" "$sbom" "$content" "$snapshot" <<'PYCODE'
+          import hashlib, json, sys
           from pathlib import Path
-          path, version, tag, tag_object, commit, archive, sbom = sys.argv[1:]
-          Path(path).write_text(json.dumps({"commit": commit, "repository": "das-standard", "sbom": sbom, "sbomKind": "SPDX-2.3 deterministic source inventory from the exact commit", "sourceArchive": archive, "tag": tag, "tagObject": tag_object, "version": version}, indent=2, sort_keys=True) + "\n")
-          PY
+          path, version, tag, tag_object, commit, archive, sbom, content, snapshot = sys.argv[1:]
+          directory = Path(path).parent
+          payload = {"commit": commit, "repository": "das-standard", "sbom": sbom, "sbomKind": "SPDX-2.3 deterministic source inventory from the exact commit", "sourceArchive": archive, "tag": tag, "tagObject": tag_object, "version": version}
+          if content:
+              payload.update(contentArchive=content, contentArchiveSha256=hashlib.sha256((directory/content).read_bytes()).hexdigest(), contentSnapshot=snapshot, contentSnapshotSha256=hashlib.sha256((directory/snapshot).read_bytes()).hexdigest())
+          Path(path).write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+          PYCODE
           test -f "$dir/$archive" && test -f "$dir/$sbom" && test -f LICENSE && test -f NOTICE
-          (cd "$dir" && while IFS= read -r file; do sha256sum "$file"; done < <(printf '%s\n' "$archive" "$sbom" release-manifest.json | LC_ALL=C sort) > SHA256SUMS && sha256sum --check SHA256SUMS)
+          (cd "$dir" && while IFS= read -r file; do sha256sum "$file"; done < <(printf '%s\n' "$archive" "$sbom" "${content_assets[@]}" release-manifest.json | LC_ALL=C sort) > SHA256SUMS && sha256sum --check SHA256SUMS)
           printf 'path=%s\nversion=%s\ntag=%s\ntag_object=%s\ncommit=%s\n' "$dir" "$version" "$tag" "$tag_object" "$commit" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -140,21 +154,27 @@ jobs:
         env:
           DEFAULT_BRANCH: "${{ github.event.repository.default_branch }}"
           TAG: "${{ needs.validate.outputs.tag }}"
+          REQUESTED_TAG: "${{ inputs.ref }}"
           VERSION: "${{ needs.validate.outputs.version }}"
           TAG_OBJECT: "${{ needs.validate.outputs.tag_object }}"
           COMMIT: "${{ needs.validate.outputs.commit }}"
         run: |
           set -euo pipefail
+          [[ "$TAG" == "$REQUESTED_TAG" && "$TAG" == "v$VERSION" ]] || { echo "validated tag/version differs from requested release" >&2; exit 1; }
           [[ "$(tr -d '\r\n' < VERSION)" == "$VERSION" ]]
           [[ "$(git cat-file -t "$TAG_OBJECT")" == "tag" ]]
           [[ "$(git rev-parse "refs/tags/$TAG")" == "$TAG_OBJECT" ]]
           [[ "$(git rev-parse "$TAG^{commit}")" == "$COMMIT" ]]
+          [[ "$(git rev-parse HEAD^{commit})" == "$COMMIT" ]]
           git fetch --no-tags origin "+refs/heads/$DEFAULT_BRANCH:refs/remotes/origin/$DEFAULT_BRANCH"
           git merge-base --is-ancestor "$COMMIT" "refs/remotes/origin/$DEFAULT_BRANCH"
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: "das-standard-release-validation-${{ needs.validate.outputs.version }}-${{ needs.validate.outputs.commit }}"
           path: "${{ runner.temp }}/release-artifacts"
+      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
+        with:
+          python-version: "3.11"
       - name: Independently rebuild archive, inventory, manifest, and checksums
         id: trusted_artifact
         shell: bash
@@ -168,10 +188,11 @@ jobs:
           set -euo pipefail
           trusted="$RUNNER_TEMP/trusted-evidence"; mkdir -p "$trusted"
           archive="das-standard-${VERSION}-source.tar.gz"; sbom="das-standard-${VERSION}.spdx.json"
+          content=""; snapshot=""; content_assets=()
           git archive --format=tar --prefix="das-standard-${VERSION}/" "$COMMIT" | gzip -n > "$trusted/$archive"
           # Reconstruct the complete inventory only from Git objects; no
           # tagged program or script is executed in this privileged job.
-          python3 - "$trusted/$sbom" "$VERSION" "$COMMIT" <<'PY'
+          python3 -I -B - "$trusted/$sbom" "$VERSION" "$COMMIT" <<'PY'
           import hashlib, json, subprocess, sys
           from datetime import datetime, timezone
           from pathlib import Path
@@ -190,17 +211,91 @@ jobs:
           PY
           cmp "$UNTRUSTED/$archive" "$trusted/$archive"
           cmp "$UNTRUSTED/$sbom" "$trusted/$sbom"
-          python3 - "$trusted/release-manifest.json" "$VERSION" "$TAG" "$TAG_OBJECT" "$COMMIT" "$archive" "$sbom" <<'PY'
-          import json,sys
+          # Only Git objects are data inputs here. Do not import the tagged
+          # generator or extract/execute anything from the producer artifact.
+          IFS=. read -r major minor patch <<< "${VERSION%%[-+]*}"
+          if (( major > 1 || (major == 1 && minor >= 5) )); then
+          content="das-standard-${VERSION}-content.zip"; snapshot="release_snapshot_manifest.json"
+          content_assets=("$content" "$snapshot")
+          python3 -I -B - "$trusted/$content" "$trusted/$snapshot" "$VERSION" "$COMMIT" <<'PYCODE'
+          import hashlib, io, json, stat, subprocess, sys, zipfile
+          from pathlib import Path, PurePosixPath
+          output, snapshot_output, version, commit = sys.argv[1:]
+          git = lambda *args: subprocess.check_output(["git", *args])
+          def require(condition, message):
+              if not condition: raise SystemExit(message)
+          tree = {}
+          for entry in git("ls-tree", "-r", "-z", "--full-tree", commit).split(b"\0"):
+              if not entry: continue
+              meta, name = entry.split(b"\t", 1)
+              mode, kind, oid = meta.decode().split()
+              tree[name.decode("utf-8")] = (mode, kind, oid)
+          def blob(name):
+              require(isinstance(name, str) and name and "\\" not in name and not PurePosixPath(name).is_absolute(), "unsafe content name")
+              require(all(part not in ("", ".", "..") for part in name.split("/")), "noncanonical content name")
+              mode, kind, oid = tree[name]
+              require(kind == "blob" and mode in ("100644", "100755"), "content must be a regular Git blob")
+              require(int(git("cat-file", "-s", oid)) <= 4 * 1024 * 1024, "content member exceeds limit")
+              return git("cat-file", "blob", oid)
+          def unique(pairs):
+              result = {}
+              for key, value in pairs:
+                  require(key not in result, "duplicate JSON member")
+                  result[key] = value
+              return result
+          raw = blob("release_snapshot_manifest.json")
+          declared = json.loads(raw, object_pairs_hook=unique)
+          manifest = json.loads(blob("standard_manifest.json"), object_pairs_hook=unique)
+          require(blob("VERSION").decode().strip() == version, 'invalid Standard content declaration')
+          require(declared["schemaVersion"] == "1.0.0" and declared["snapshotKind"] == "standard_content_bundle", 'invalid Standard content declaration')
+          require(declared["standardVersion"] == declared["standardManifestVersion"] == version, 'invalid Standard content declaration')
+          required = manifest["requiredArtifacts"]
+          require(isinstance(required, list) and 0 < len(required) <= 4096 and len(set(required)) == len(required), 'invalid Standard content declaration')
+          rows = declared["artifacts"]
+          require(isinstance(rows, list) and 0 < len(rows) <= 4096, 'invalid Standard content declaration')
+          names = [row["path"] for row in rows]
+          require(names == sorted(set(names)) and set(names) == set(required) - {"release_snapshot_manifest.json"}, "snapshot member closure differs")
+          joined = "\n".join(row["path"] + ":" + row["sha256"] for row in rows)
+          require(declared["bundleDigestAlgorithm"] == "sha256" and declared["bundleDigest"] == hashlib.sha256(joined.encode()).hexdigest(), 'invalid Standard content declaration')
+          payloads = {"release_snapshot_manifest.json": raw}
+          total = len(raw)
+          for row in rows:
+              data = blob(row["path"])
+              total += len(data)
+              require(total <= 32 * 1024 * 1024, "content bundle exceeds limit")
+              require(row["required"] is True and hashlib.sha256(data).hexdigest() == row["sha256"], "snapshot member digest differs")
+              payloads[row["path"]] = data
+          buffer = io.BytesIO()
+          with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as zipped:
+              for name, data in sorted(payloads.items()):
+                  entry = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+                  entry.create_system = 3
+                  entry.external_attr = (stat.S_IFREG | 0o644) << 16
+                  entry.compress_type = zipfile.ZIP_DEFLATED
+                  zipped.writestr(entry, data)
+          payload = buffer.getvalue()
+          require(len(payload) <= 4 * 1024 * 1024, "content archive exceeds limit")
+          Path(output).write_bytes(payload)
+          Path(snapshot_output).write_bytes(raw)
+          PYCODE
+          cmp "$UNTRUSTED/$content" "$trusted/$content"
+          cmp "$UNTRUSTED/$snapshot" "$trusted/$snapshot"
+          fi
+          python3 -I -B - "$trusted/release-manifest.json" "$VERSION" "$TAG" "$TAG_OBJECT" "$COMMIT" "$archive" "$sbom" "$content" "$snapshot" <<'PYCODE'
+          import hashlib, json, sys
           from pathlib import Path
-          path,version,tag,tag_object,commit,archive,sbom=sys.argv[1:]
-          Path(path).write_text(json.dumps({"commit":commit,"repository":"das-standard","sbom":sbom,"sbomKind":"SPDX-2.3 deterministic source inventory from the exact commit","sourceArchive":archive,"tag":tag,"tagObject":tag_object,"version":version},indent=2,sort_keys=True)+"\n",encoding="utf-8")
-          PY
+          path, version, tag, tag_object, commit, archive, sbom, content, snapshot = sys.argv[1:]
+          directory = Path(path).parent
+          payload = {"commit": commit, "repository": "das-standard", "sbom": sbom, "sbomKind": "SPDX-2.3 deterministic source inventory from the exact commit", "sourceArchive": archive, "tag": tag, "tagObject": tag_object, "version": version}
+          if content:
+              payload.update(contentArchive=content, contentArchiveSha256=hashlib.sha256((directory/content).read_bytes()).hexdigest(), contentSnapshot=snapshot, contentSnapshotSha256=hashlib.sha256((directory/snapshot).read_bytes()).hexdigest())
+          Path(path).write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+          PYCODE
           cmp "$UNTRUSTED/release-manifest.json" "$trusted/release-manifest.json"
-          (cd "$trusted" && while IFS= read -r file; do sha256sum "$file"; done < <(printf '%s\n' "$archive" "$sbom" release-manifest.json | LC_ALL=C sort) > SHA256SUMS)
+          (cd "$trusted" && while IFS= read -r file; do sha256sum "$file"; done < <(printf '%s\n' "$archive" "$sbom" "${content_assets[@]}" release-manifest.json | LC_ALL=C sort) > SHA256SUMS)
           cmp "$UNTRUSTED/SHA256SUMS" "$trusted/SHA256SUMS"
           bundle="$RUNNER_TEMP/das-standard-${VERSION}-evidence.tar"
-          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner -cf "$bundle" -C "$trusted" "$archive" "$sbom" release-manifest.json SHA256SUMS
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner -cf "$bundle" -C "$trusted" "$archive" "$sbom" "${content_assets[@]}" release-manifest.json SHA256SUMS
           printf 'bundle=%s\n' "$bundle" >> "$GITHUB_OUTPUT"
       - name: Attest trusted standards evidence bundle
         uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0

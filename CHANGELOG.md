@@ -88,3 +88,33 @@ First public release of the DAS: Docs as Software Standard.
 
 Notes:
 - Only the public SemVer tags in this repository are normative for the open-source standard.
+
+<!-- DAS-EDITION-1.5-CHANGELOG -->
+
+## v1.5.0-beta.1 — unpublished content candidate, 2026-10-06
+
+Normative additions cover approved applicability, precise exchange boundaries,
+current authorization, independent isolated verification, immutable candidates,
+evidence-bound integration/completion, HTTP/UI/sealed evaluation and release
+lifecycle. Original obligations, stable IDs, conditions and historical fixtures
+remain preserved against the independent 1.4 baseline. Chapter 13 is generated
+from the edition author; the module and leaf catalogs remain separate metadata.
+
+This is a development content edition, not a published beta or a compatibility
+approval. Catalog 3.0.0 contains complete mappings for 1,745 legacy leaves and 978
+edition leaves across all 21 edition sections, with 518 carriers overall.
+The independent original baseline and explicitly pinned supplementary sources
+retain leaf or repeated-source mappings. Information duties retain activation/profile
+and actual-surface conditions; recommendations and example cells are not
+strengthened. Carrier coverage does not establish compatibility, installed
+qualification or final compatibility approval.
+Versioned reference contracts and consumers are shipped; complete tool scenarios,
+installed deployment qualification and publication are unfinished. All 136
+product acceptance cases retain their denominator and remain not_run.
+
+The final SemVer/obligation compatibility decision must precede publication.
+Readable historical formats do not confer current protected authority.
+
+The existing content snapshot generator can package its verified members as a
+deterministic flat ZIP, independently of companion repositories. This runtime
+payload is distinct from the source archive and from final release evidence.

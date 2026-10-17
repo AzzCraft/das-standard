@@ -1,0 +1,316 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/bundle-preview/v2",
+  "title": "DAS unapproved Bundle preview with partial leaf applicability",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "scope",
+    "standardVersion",
+    "policyDigest",
+    "factsDigest",
+    "catalogDigest",
+    "digestMethod",
+    "resolvedModules",
+    "unresolvedModules",
+    "factStates",
+    "ruleTrace",
+    "authorityVerified",
+    "qualificationEligible",
+    "limitations",
+    "previewDigest",
+    "requirementsCatalogDigest",
+    "leafMigrationComplete",
+    "requirementTrace"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-bundle-preview/v2"
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "standardVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "factsDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "catalogDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "digestMethod": {
+      "const": "rfc8785-jcs-utf8-sha256"
+    },
+    "resolvedModules": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true
+    },
+    "unresolvedModules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "moduleId",
+          "state"
+        ],
+        "properties": {
+          "moduleId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "state": {
+            "enum": [
+              "true",
+              "false",
+              "unknown",
+              "conflict"
+            ]
+          }
+        }
+      }
+    },
+    "factStates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "state",
+          "sourceRefs"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "state": {
+            "enum": [
+              "true",
+              "false",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "sourceRefs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "ruleTrace": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "moduleId",
+          "state"
+        ],
+        "properties": {
+          "moduleId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "state": {
+            "enum": [
+              "true",
+              "false",
+              "unknown",
+              "conflict"
+            ]
+          }
+        }
+      }
+    },
+    "authorityVerified": {
+      "const": false
+    },
+    "qualificationEligible": {
+      "const": false
+    },
+    "limitations": {
+      "const": [
+        "facts_are_unapproved_proposals",
+        "requirement_leaf_migration_incomplete",
+        "protected_resolution_not_enabled"
+      ]
+    },
+    "previewDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "requirementsCatalogDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "leafMigrationComplete": {
+      "const": false
+    },
+    "requirementTrace": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4096,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirementId",
+          "ownerModule",
+          "parentClause",
+          "state"
+        ],
+        "properties": {
+          "requirementId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "ownerModule": {
+            "enum": [
+              "das.ai-runtime-evaluation",
+              "das.architecture-modularity",
+              "das.contracts-compatibility",
+              "das.core",
+              "das.governance.documentation",
+              "das.governance.verification-release",
+              "das.interaction.headless",
+              "das.interaction.hfvi",
+              "das.interaction.standard-ui",
+              "das.security-agent"
+            ]
+          },
+          "parentClause": {
+            "enum": [
+              "A-E",
+              "A-G",
+              "cl-10.1",
+              "cl-10.2",
+              "cl-10.3",
+              "cl-10.3.1",
+              "cl-10.3.2",
+              "cl-10.4",
+              "cl-10.5",
+              "cl-10.6",
+              "cl-10.7",
+              "cl-10.8",
+              "cl-11.1",
+              "cl-11.2",
+              "cl-12.1",
+              "cl-12.2",
+              "cl-12.3",
+              "cl-12.4",
+              "cl-12.5",
+              "cl-12.6",
+              "cl-13.13",
+              "cl-2.3",
+              "cl-2.4",
+              "cl-2.5",
+              "cl-3.1",
+              "cl-3.3",
+              "cl-3.4",
+              "cl-3.5",
+              "cl-3.6",
+              "cl-4.1",
+              "cl-4.2",
+              "cl-4.3",
+              "cl-4.4",
+              "cl-4.5",
+              "cl-5.2",
+              "cl-5.3",
+              "cl-5.4",
+              "cl-5.7",
+              "cl-6.2",
+              "cl-6.3",
+              "cl-6.4",
+              "cl-6.5",
+              "cl-6.6",
+              "cl-6.7",
+              "cl-6.8",
+              "cl-7.3",
+              "cl-7.4",
+              "cl-7.5",
+              "cl-7.6",
+              "cl-7.7",
+              "cl-7.8",
+              "cl-7.9",
+              "cl-9.1",
+              "cl-9.2",
+              "cl-9.3",
+              "cl-9.4",
+              "cl-9.5",
+              "cl-9.6",
+              "cl-9.7",
+              "cl-9.8",
+              "A-F",
+              "A-H",
+              "A-I",
+              "A-J",
+              "A-L",
+              "cl-13.14",
+              "cl-13.20",
+              "cl-13.1",
+              "cl-13.2",
+              "cl-13.3",
+              "cl-13.4",
+              "cl-13.5",
+              "cl-13.6",
+              "cl-13.7",
+              "cl-13.8",
+              "cl-13.9",
+              "cl-13.10",
+              "cl-13.11",
+              "cl-13.12",
+              "cl-13.15",
+              "cl-13.16",
+              "cl-13.17",
+              "cl-13.18",
+              "cl-13.19",
+              "cl-13.21",
+              "C-001",
+              "A-D",
+              "A-K",
+              "A-C"
+            ]
+          },
+          "state": {
+            "enum": [
+              "true",
+              "false",
+              "unknown",
+              "conflict"
+            ]
+          }
+        }
+      },
+      "description": "One sorted unique record per supported catalog leaf; exact coverage is a consumer semantic check, not a fixed wire denominator."
+    }
+  }
+}

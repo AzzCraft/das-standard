@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cadence.das.dev/contracts/bundle-preview/v1",
+  "title": "DAS unapproved Bundle preview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractIdentity",
+    "scope",
+    "standardVersion",
+    "policyDigest",
+    "factsDigest",
+    "catalogDigest",
+    "digestMethod",
+    "resolvedModules",
+    "unresolvedModules",
+    "factStates",
+    "ruleTrace",
+    "authorityVerified",
+    "qualificationEligible",
+    "limitations",
+    "previewDigest"
+  ],
+  "properties": {
+    "contractIdentity": {
+      "const": "das-bundle-preview/v1"
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "standardVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "factsDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "catalogDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "digestMethod": {
+      "const": "rfc8785-jcs-utf8-sha256"
+    },
+    "resolvedModules": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true
+    },
+    "unresolvedModules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "moduleId",
+          "state"
+        ],
+        "properties": {
+          "moduleId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "state": {
+            "enum": [
+              "true",
+              "false",
+              "unknown",
+              "conflict"
+            ]
+          }
+        }
+      }
+    },
+    "factStates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "state",
+          "sourceRefs"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "state": {
+            "enum": [
+              "true",
+              "false",
+              "unknown",
+              "conflict"
+            ]
+          },
+          "sourceRefs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "ruleTrace": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "moduleId",
+          "state"
+        ],
+        "properties": {
+          "moduleId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "state": {
+            "enum": [
+              "true",
+              "false",
+              "unknown",
+              "conflict"
+            ]
+          }
+        }
+      }
+    },
+    "authorityVerified": {
+      "const": false
+    },
+    "qualificationEligible": {
+      "const": false
+    },
+    "limitations": {
+      "const": [
+        "facts_are_unapproved_proposals",
+        "legacy_leaf_applicability_not_migrated",
+        "protected_resolution_not_enabled"
+      ]
+    },
+    "previewDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}

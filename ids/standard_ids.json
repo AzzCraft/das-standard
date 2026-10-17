@@ -1,6 +1,6 @@
 {
   "$schema": "../standard_ids.schema.json",
-  "standardVersion": "1.4.0",
+  "standardVersion": "1.5.0-beta.1",
   "description": "DAS stable ID registry. Every ID listed here MUST never be reused; deprecated IDs are retired with replacement pointers.",
   "clauseIds": {
     "C-001": "Standard purpose and scope",
@@ -9,7 +9,28 @@
     "C-200": "Task lifecycle and locking",
     "C-300": "Evidence model",
     "C-400": "Verification gates",
-    "C-500": "Profile / tier compatibility"
+    "C-500": "Profile / tier compatibility",
+    "cl-13.1": "SPECIFICATION.md#131-建立规范模块保留既有术语与规范效力",
+    "cl-13.2": "SPECIFICATION.md#132-依据经核准事实计算适用-bundle",
+    "cl-13.3": "SPECIFICATION.md#133-模块目录索引与-manifest-的兼容扩展",
+    "cl-13.4": "SPECIFICATION.md#134-canonical-shape-的定义分级",
+    "cl-13.5": "SPECIFICATION.md#135-精确化-streamframe-的路径与增量行为",
+    "cl-13.6": "SPECIFICATION.md#136-未知字段策略按安全语义分层",
+    "cl-13.7": "SPECIFICATION.md#137-明确-camelcase-的边界与原生格式映射",
+    "cl-13.8": "SPECIFICATION.md#138-区分原始字节摘要语义摘要与来源证明",
+    "cl-13.9": "SPECIFICATION.md#139-增加-agent-零信任与可信计算基要求",
+    "cl-13.10": "SPECIFICATION.md#1310-受保护动作的授权与副作用门禁",
+    "cl-13.11": "SPECIFICATION.md#1311-独立验证执行隔离与验收基线保护",
+    "cl-13.12": "SPECIFICATION.md#1312-证据绑定可信签发与完整覆盖",
+    "cl-13.13": "SPECIFICATION.md#1313-最小安全控制审计与例外",
+    "cl-13.14": "SPECIFICATION.md#1314-工具中立的-change-task-完成语义",
+    "cl-13.15": "SPECIFICATION.md#1315-http-事实权威覆盖与稳定身份",
+    "cl-13.16": "SPECIFICATION.md#1316-ui-以工作流和行为证据验收",
+    "cl-13.17": "SPECIFICATION.md#1317-算法评测密封数据与声明资格",
+    "cl-13.18": "SPECIFICATION.md#1318-元数据版本来源与旧工件迁移",
+    "cl-13.19": "SPECIFICATION.md#1319-自验证参考部署与配套发布门槛",
+    "cl-13.20": "SPECIFICATION.md#1320-共享契约与受保护决定",
+    "cl-13.21": "SPECIFICATION.md#1321-beta-预发布受控试用与正式发布"
   },
   "appendixIds": {
     "A-C": "Project Master Doc Template",

@@ -4,6 +4,9 @@ import hashlib
 import json
 import shutil
 import subprocess
+import os
+import sys
+import zipfile
 from pathlib import Path
 from tests._root_contract import repository_root_for_test_file
 
@@ -32,6 +35,23 @@ def test_std_001_old_compat_fixtures_decode_within_declared_window() -> None:
         payload = _load_json(fixture_path)
         assert payload["standardVersion"] == fixture["version"]
         assert {"standardVersion", "requiredArtifacts", "normativeArtifactRefs"} <= set(payload)
+
+
+def test_declared_content_zip_validates_without_adjacent_source_checkout(tmp_path: Path) -> None:
+    """The distributable, rather than a full source copy, must close tool inputs."""
+    archive = tmp_path / 'content.zip'
+    built = subprocess.run([sys.executable, '-I', '-B', 'tools/generate_content_snapshot.py',
+                            '--archive', str(archive)], cwd=STANDARD_ROOT,
+                           capture_output=True, text=True, timeout=10)
+    assert built.returncode == 0, built.stdout + built.stderr
+    installed = tmp_path / 'installed'; installed.mkdir()
+    with zipfile.ZipFile(archive) as bundle:
+        bundle.extractall(installed)
+    verified = subprocess.run(['bash', 'scripts/verify', '--gate', 'schemas'], cwd=installed,
+        env=dict(os.environ, PYTHON=sys.executable, PYTHONDONTWRITEBYTECODE='1', PYTEST_DISABLE_PLUGIN_AUTOLOAD='1'),
+        capture_output=True, text=True, timeout=30)
+    assert verified.returncode == 0, verified.stdout + verified.stderr
+    assert 'release bundle verify: PASS' in verified.stdout
 
 
 def test_std_001_release_report_links_sbom_changelog_and_verify_artifacts() -> None:

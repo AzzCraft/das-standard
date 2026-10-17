@@ -1,0 +1,3634 @@
+{
+  "schemaVersion": "1.0.0",
+  "standardVersion": "1.5.0-beta.1",
+  "kind": "das-module-navigation",
+  "qualificationEligible": false,
+  "units": [
+    {
+      "id": "legacy-text-de7276bb-0092",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.3",
+      "textSha256": "904216a7ffdbec78c79b2f4b09aea340e093b081fa96720de6bae32ef9ef731b"
+    },
+    {
+      "id": "legacy-text-de7276bb-0093",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.3",
+      "textSha256": "e53654c8773e7a5edea7e28e451a03e6fddb801030a8403f2b41b30fb0c581f2"
+    },
+    {
+      "id": "legacy-text-de7276bb-0094",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.4",
+      "textSha256": "971b558ec3f140275de462914c3828ecc0e1c1ce53f9382b1e320b919efb1d07"
+    },
+    {
+      "id": "legacy-text-de7276bb-0095",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.4",
+      "textSha256": "f8c3db1ed181be0bcd43d4d1273d7d70be2915461dac1c128f29fa456f3fab9b"
+    },
+    {
+      "id": "legacy-text-de7276bb-0096",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.5",
+      "textSha256": "63ce2b4529c8e8fe383db6e1023c01d99487a8810d40f21d01aa8ee8748b20f2"
+    },
+    {
+      "id": "legacy-text-de7276bb-0097",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.6",
+      "textSha256": "d26a09209d1406230d28a36988322a8b8c55f8e54f2b6fd0db28611760ab98f9"
+    },
+    {
+      "id": "legacy-text-de7276bb-0098",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.7",
+      "textSha256": "e8d9698ef57f2331f777f755aa28a3ac2ae5bdab59b208fa6a4c04ca1e830735"
+    },
+    {
+      "id": "legacy-text-de7276bb-0099",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.8",
+      "textSha256": "f9094a2eb49c005ac8bb55b80084d82614294018050e450b7018dee1a9e2964f"
+    },
+    {
+      "id": "legacy-text-de7276bb-0100",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.8",
+      "textSha256": "5b391dd3c612a8932735f48570270347a4b1b1968e2ffb48b5fda54e85e298d4"
+    },
+    {
+      "id": "legacy-text-de7276bb-0101",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-7.9",
+      "textSha256": "32cc0c516f3d6e146533b161a0cfd32749d8500b8c5f56cff28a941d0de00535"
+    },
+    {
+      "id": "legacy-text-38706f1d-0040",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "fa004c4905809826bd2ba43d56f539cab54a5f3e2f6f0cd2679e3b4fd295746f"
+    },
+    {
+      "id": "legacy-text-38706f1d-0041",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "794b973e857c3f4a61192a9f4bb79a777dc5bd6a43dfc152e7d0b3cec31965ec"
+    },
+    {
+      "id": "legacy-text-38706f1d-0042",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "8b2ffd1c3c065bc5b00216250e60db5477a5802633d87b8848acb749511d451c"
+    },
+    {
+      "id": "legacy-text-38706f1d-0043",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "4a50f8390edabae15e2d005f5db5069d23ddf18edcd66daf9bd996fb5e703874"
+    },
+    {
+      "id": "legacy-text-38706f1d-0044",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "5a338df8393444b1e0a50f42b20c22427fd1bb2a2546d7b3b6864ffccabaff5d"
+    },
+    {
+      "id": "legacy-text-38706f1d-0045",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "7c4a13a7ba4fae36b5b232bf2a4654947f4a8483639347284cd484ef174f2f10"
+    },
+    {
+      "id": "legacy-text-38706f1d-0046",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "c22cd9b8ebe4fb9868de930ee309c2e64b8a5ba4e9397a998eee5e3daf8cbfb0"
+    },
+    {
+      "id": "legacy-text-38706f1d-0047",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "13a29e88ffa2bfc1a4eefbcb9edad4012864bfe8bb781c8be7d2ca689c813679"
+    },
+    {
+      "id": "legacy-text-38706f1d-0048",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "6b4a9da7a528fbb140140ccf89e6639aca9fc029365e28bd985d91841dc968cd"
+    },
+    {
+      "id": "legacy-text-38706f1d-0049",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "cb660f11d399d21ce015d3295f26d2b43250d628769b852c50532ef5384f2223"
+    },
+    {
+      "id": "legacy-text-38706f1d-0050",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "900125f1c72250cf99e007a2ceb3d97fd866eb0ad6b298cf462a9b71d0476900"
+    },
+    {
+      "id": "legacy-text-38706f1d-0051",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "b4e07088c64f7894728312a3f8421e2bc31ff76bcc44f9cf6e3e23949e881644"
+    },
+    {
+      "id": "legacy-text-38706f1d-0052",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "717d205c2e16f76269ff551f18c873b06accc2b646641c351154020af497b742"
+    },
+    {
+      "id": "legacy-text-38706f1d-0053",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "f8def98529042122bd0e5ca892aeb00af397659dc55980fdd6984eb23961328b"
+    },
+    {
+      "id": "legacy-minimum-de7276bb-10-2-algo",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.2",
+      "textSha256": "efafe858c0089dec214c03ec6a6873b01aab8035a4df9124e685e430413ea9ad"
+    },
+    {
+      "id": "legacy-guide-g-dataset-pointer",
+      "ownerModule": "das.ai-runtime-evaluation",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "A-G",
+      "textSha256": "1c31ac11ec085563fbacb8b7ee95d4f752bd42ba76d0e671ef8779843806018c"
+    },
+    {
+      "id": "legacy-text-de7276bb-0017",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.1",
+      "textSha256": "ee5b3fd3e8c2382374bba57a93924f63b9d82f14d2dff50f1da00991d8f651a3"
+    },
+    {
+      "id": "legacy-text-de7276bb-0018",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.3",
+      "textSha256": "c2f88270b550780725867a0ed86cde039c2fb033ae8729fbf2964998e6db914e"
+    },
+    {
+      "id": "legacy-text-de7276bb-0019",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.4",
+      "textSha256": "b14d865e0de02c44a47af370a4b2bb33770edff378757187b988e6ae71624fa8"
+    },
+    {
+      "id": "legacy-text-de7276bb-0020",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.4",
+      "textSha256": "64ac169f499749238925285411dd41f98109626c3d85af4bfa4ffd5cbb0b2d96"
+    },
+    {
+      "id": "legacy-text-de7276bb-0021",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.4",
+      "textSha256": "42d3505662fdb3eef07bb5dad54adb8f8fa86f5c1e79ebb67b98508e5e8d5291"
+    },
+    {
+      "id": "legacy-text-de7276bb-0022",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.4",
+      "textSha256": "23e2683a1c9950cdfa01da9406bad48b4fb3732356ee151882efc15c2c5df1e8"
+    },
+    {
+      "id": "legacy-text-de7276bb-0023",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.4",
+      "textSha256": "042d737e4a61170a6bcc27774b1c8861f3bd3802e2cf256e67c5a8f13e1f2147"
+    },
+    {
+      "id": "legacy-text-de7276bb-0024",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.5",
+      "textSha256": "aa4f4d422faf1cde6438b6bded93bbac44db4fa64482db63504033709041eecf"
+    },
+    {
+      "id": "legacy-text-de7276bb-0025",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.5",
+      "textSha256": "682bae05732266c22fa54cd90920fa53314e85a337808a6d8e1d83a16db8fa38"
+    },
+    {
+      "id": "legacy-text-de7276bb-0026",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.5",
+      "textSha256": "4d6912c2ea8bd10dea5036d50216e673a9bb7363093739fe5a6e622e67f9cd81"
+    },
+    {
+      "id": "legacy-text-de7276bb-0027",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.5",
+      "textSha256": "1bb25f4ecaa35e6b7921741f662cb87a6952a78128093ef96c097700050733fc"
+    },
+    {
+      "id": "legacy-text-de7276bb-0028",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.5",
+      "textSha256": "5916e2d0857f96423823a40d78a2ffcc005be31f9b360072f4a9c86b914f8d86"
+    },
+    {
+      "id": "legacy-text-de7276bb-0029",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.6",
+      "textSha256": "59393fabefd191da3d73d6dafcaba73cdbfd4fb621b90982fce204d8beea2a6c"
+    },
+    {
+      "id": "legacy-text-de7276bb-0030",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-3.6",
+      "textSha256": "beb5c202503e75ca4be346842867c55ac510da9ce2bcc1b7ef80336980264c82"
+    },
+    {
+      "id": "legacy-text-de7276bb-0058",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.2",
+      "textSha256": "531d237eac80a3cfb38c2deb351c4af8e35809215e5d8345873078b9895bda37"
+    },
+    {
+      "id": "legacy-text-de7276bb-0059",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.3",
+      "textSha256": "ecffca4eb22ed4d80402629a2e34c042e0ab59ae28e53807a50cc6070506eaa1"
+    },
+    {
+      "id": "legacy-text-de7276bb-0060",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.3",
+      "textSha256": "2a4404b4a9ad65847c87516f0b30943782895bab243cecf668e3b5e654b71292"
+    },
+    {
+      "id": "legacy-text-de7276bb-0061",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.3",
+      "textSha256": "fcca5fb46679a21a66df33247a5ff2174e5f3b468d12ce95a655c14220ca50ca"
+    },
+    {
+      "id": "legacy-text-de7276bb-0062",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.3",
+      "textSha256": "e90abaf2fe818b3f2ed772cd8f2761d1b9faf84cc0cef201c3632b76643f6fdd"
+    },
+    {
+      "id": "legacy-text-de7276bb-0063",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.3",
+      "textSha256": "ef75636ea7315fd6b6e50909c8dd4131b73f03337ec86b1cca4230b08b3be228"
+    },
+    {
+      "id": "legacy-text-de7276bb-0064",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.4",
+      "textSha256": "bb9c2351913b46f4c7ed0b9f76c6e27517673c5280d7968964cb26b30ceb7929"
+    },
+    {
+      "id": "legacy-text-de7276bb-0065",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.4",
+      "textSha256": "6e06879eff201c51848243207c5df9de07d5f452e4d008ea4989a8194cab73d9"
+    },
+    {
+      "id": "legacy-text-de7276bb-0066",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.4",
+      "textSha256": "8b4a042202c44e8888d0b02726ae482e876e11a2b354bdaec6537eb23ada6f28"
+    },
+    {
+      "id": "legacy-text-de7276bb-0067",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-5.7",
+      "textSha256": "d1c332025e308103309f72978e975d27bd25d776190208ed693bbe82cb4c93a9"
+    },
+    {
+      "id": "legacy-text-de7276bb-0146",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.1",
+      "textSha256": "be52465c248d62c9b947f27cc4cf7e636e63286145f3be98b9e7e4b8ed23ad5e"
+    },
+    {
+      "id": "legacy-text-de7276bb-0147",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.1",
+      "textSha256": "56c0148a90f7b701cf9eecf37c0d778a708330ac65e99b7a60beeb1d1af471d1"
+    },
+    {
+      "id": "legacy-text-de7276bb-0148",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.1",
+      "textSha256": "5fc798f6e1ac57c1564cbd644235cb3563f94c55b3f617946a46b69a99949eb8"
+    },
+    {
+      "id": "legacy-text-de7276bb-0149",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.2",
+      "textSha256": "687f216f00dcef33d7e4402794e7bdc8717965c206bfff5218607713f600ba9e"
+    },
+    {
+      "id": "legacy-text-de7276bb-0150",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.2",
+      "textSha256": "6b8feb88d4c149018b2602603311bcce7f3f7742b6702b56c735cddd53e66661"
+    },
+    {
+      "id": "legacy-text-de7276bb-0151",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.2",
+      "textSha256": "fb6e666aa7f8630a9dfd7d9290cd9106365d36159955d44ad22c7ae4b6427e06"
+    },
+    {
+      "id": "legacy-text-de7276bb-0152",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.2",
+      "textSha256": "1055bafd6a686624455b073531d3f71f9449a3df015f10a599a6c992c80d16de"
+    },
+    {
+      "id": "legacy-text-de7276bb-0153",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.2",
+      "textSha256": "22eed1cc13dc9ee2b0bd264a7dbe0f7f24a7e570c586d27d2fb2775309b63c81"
+    },
+    {
+      "id": "legacy-text-de7276bb-0154",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.3",
+      "textSha256": "d9b207e1c8683f25568a8b2d53fd3554f4daa7007a8b5ac0994e97d2af084c44"
+    },
+    {
+      "id": "legacy-text-de7276bb-0155",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.4",
+      "textSha256": "00052b1f2531e7e95b98b1df568a0da3f9f96ee18586469eda61baab8d42ac31"
+    },
+    {
+      "id": "legacy-text-de7276bb-0156",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.4",
+      "textSha256": "2f14582f07f18bdfed01943efae6acd48bf2d93bb860de4d74334708cb95db7a"
+    },
+    {
+      "id": "legacy-text-de7276bb-0157",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.4",
+      "textSha256": "0f0b45b97f7636f51b28c05e4cc8487cac5bf6ac95fef07784d389fa91918672"
+    },
+    {
+      "id": "legacy-text-de7276bb-0158",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.5",
+      "textSha256": "1f4bc659a5c61e0a1a86ae707c7e35e7da024c4419f570edd8d67217d91029ae"
+    },
+    {
+      "id": "legacy-text-de7276bb-0159",
+      "ownerModule": "das.architecture-modularity",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-12.6",
+      "textSha256": "81d21181e53eff1c004132129e2aa18428edf3125c9572aaa248c864f1afcc09"
+    },
+    {
+      "id": "legacy-text-165796df-0001",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "6e5a0b525b92afb782cbce62cb9701c8d20992a1515805fb91bd59c969598382"
+    },
+    {
+      "id": "legacy-text-165796df-0002",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "e4ffa29a6ae59d0b26c6ab352c1bbff0396759c97dfa93a40596e55dbf03711f"
+    },
+    {
+      "id": "legacy-text-165796df-0003",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "16082cb6aac665e68400009f3499afb93ce87d3428934f6aedbae8253c7ee577"
+    },
+    {
+      "id": "legacy-text-165796df-0004",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "3a5725d21ef74fbf1d85692f9eb03fde3feacb80e5788b20bb72142b03419bda"
+    },
+    {
+      "id": "legacy-text-165796df-0005",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "274e139fdd7c8f3374a575c2c16ee0fa7c3c7137f8275d0c25983cd37132b0ab"
+    },
+    {
+      "id": "legacy-text-165796df-0006",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "2c195c3479e9f5b14f5945a83ed6060b81134cb90a5538d22751786ebc1ce6f5"
+    },
+    {
+      "id": "legacy-text-165796df-0007",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "91909b8d7d19541b7e2275240cf1daf9c5c59ff7537f0aa963b8c525aef7eea0"
+    },
+    {
+      "id": "legacy-text-165796df-0008",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "43631d64915fb0bca4570df452c993ac780f1a6d57ac4e7f4b5bec1e61f97bf5"
+    },
+    {
+      "id": "legacy-text-165796df-0009",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "e9fd9c6689ac0431a6549df2575c6bed2d55b7d627b5aed34412d9641d32b29b"
+    },
+    {
+      "id": "legacy-text-165796df-0010",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "3d8341b48d552c8c5a8cfd61a5cc2dd3aec5824046887da05f6b4a30d0413f5d"
+    },
+    {
+      "id": "legacy-text-165796df-0011",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "4c4a4cac7916804b135d6bbf432f464fbc20bfb83c52edc8764bed4f29dcfb0e"
+    },
+    {
+      "id": "legacy-text-165796df-0012",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "0e87c3dad5e99818452923627cc6ea3687dd0c710d4cebeae71a891affc73e9f"
+    },
+    {
+      "id": "legacy-text-165796df-0013",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "babf3f7a01b345e4d51b5d0acc04798de44e207cc10af834c52d147fd6e1ed52"
+    },
+    {
+      "id": "legacy-text-165796df-0014",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "783422fb86a2492952076b5a2221a3f377227451a3ef798f9442f214b5d9461c"
+    },
+    {
+      "id": "legacy-text-165796df-0015",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "f68f116e6a1344ca663f42af5a6a2514b8af45b0562418fbe1c5de0f5fdbf93c"
+    },
+    {
+      "id": "legacy-text-165796df-0026",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "24e32b6be879b0c1a57be97dda3b176fcacc8585d647b5c1a5d1034d0a3fc29b"
+    },
+    {
+      "id": "legacy-text-165796df-0027",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "08dca18224e5137c94c537b8d25cd35dcf40f0c4fc4cbe2b6e7f98678619616b"
+    },
+    {
+      "id": "legacy-text-165796df-0039",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "e4cf3d6ce3b64f199edc5927fda94a98f7fe24a3d9629d56abb8ac019b311128"
+    },
+    {
+      "id": "legacy-text-165796df-0041",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "7f962faa52136e20f90077217cf833af0e29f989960764985d9c810be6fc4c0d"
+    },
+    {
+      "id": "legacy-text-165796df-0042",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "4fb5f7ab0432c174d307251fccbc0219147023b071d8f94255f9534cb0b191ec"
+    },
+    {
+      "id": "legacy-text-165796df-0045",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "4224d92b65f3236bea4bf5a2d8f107f124cea386f563dc7b7772d8fafb38d51e"
+    },
+    {
+      "id": "legacy-text-165796df-0047",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "90620988f41f09f76ca0b28b9f387b7f9b2932bd19cea22a232f91e1d526658e"
+    },
+    {
+      "id": "legacy-text-165796df-0048",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "6e7079355a67459e6ca0136697f3f1f7bba163dd23d245ea7d41c3e78b6ae20c"
+    },
+    {
+      "id": "legacy-text-165796df-0049",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "11c2e4df90be189553f157cf1206f5b93d7aebe780aec6b35652cd07d640b930"
+    },
+    {
+      "id": "legacy-text-165796df-0050",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "e49ef0242001ce7e99da38feedbf54962fcee5f0e1a9a744c7a7fe269b52f6c5"
+    },
+    {
+      "id": "legacy-text-165796df-0051",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "286339f3791d36df295e48c694dd79db6a08133daefc80af95b9d24365061e21"
+    },
+    {
+      "id": "legacy-text-165796df-0052",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "b1479093c5da83128feaa271e1ceef3ade5d4e3540b25aa93f3c0b80046c5447"
+    },
+    {
+      "id": "legacy-text-165796df-0053",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "e38ae2ca37f73ac6e96da08651297226eb246655afd381f9892e4f0ef423f991"
+    },
+    {
+      "id": "legacy-text-165796df-0054",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "4342ae46a510c3bf724b820727c93f2755a4afd838fb04755982a056a3c6f365"
+    },
+    {
+      "id": "legacy-text-165796df-0055",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "a9cb780ea1ac1052320add5d894ddddc55a31596da5c4905c86014d00fd71299"
+    },
+    {
+      "id": "legacy-text-165796df-0056",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "c0a63c7720a99d8976b0336e632df80ef69f50bb87e2a6f395915aa18c90533b"
+    },
+    {
+      "id": "legacy-text-165796df-0057",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "3ab9c6daf9bb64922400d5a3356253de13870d5edc461ccc622184c1e379d63a"
+    },
+    {
+      "id": "legacy-text-165796df-0058",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "f66c398eba221e17c2d9b7fc0328abe95b5fc0405c9206f868e67a993584c08f"
+    },
+    {
+      "id": "legacy-text-165796df-0059",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "526c95aceac06cd4541a245704b4ae457c354601cd4e7990459228d11eafc611"
+    },
+    {
+      "id": "legacy-text-165796df-0060",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "616de2a891db2ea31848af56f7b76d6dba7fa0af6b2e653ab0717452972ced85"
+    },
+    {
+      "id": "legacy-text-165796df-0061",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "2ed737b0ff40fced101ecad558ec7ccf358dbecf7adcd7ea5576ed9053409684"
+    },
+    {
+      "id": "legacy-text-165796df-0062",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "526c95aceac06cd4541a245704b4ae457c354601cd4e7990459228d11eafc611"
+    },
+    {
+      "id": "legacy-text-165796df-0063",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "3afd9ca1d3330446ad1e73ed0223ae579d37d5f5715088a9d7d470163025e3ab"
+    },
+    {
+      "id": "legacy-text-165796df-0064",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "2250a6e9382d934965a8043295b92d368493ad438cf173391b497f1ba0945c9e"
+    },
+    {
+      "id": "legacy-text-165796df-0065",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "a048e6d96047a0d60041799379e41ebb5a5d46a58f097959d8abdd440e91fd01"
+    },
+    {
+      "id": "legacy-text-165796df-0066",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "d58992c6faea13ed855b995a96e44da9236202d45bd276f0a97e674d15494666"
+    },
+    {
+      "id": "legacy-text-165796df-0067",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "3a29f6bd0b80d0148620bbebfcbf5f1ce59bdde84d80c1456952839ee369faaa"
+    },
+    {
+      "id": "legacy-text-165796df-0068",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "67d461c9cd0f41521663ac5cfa01bd92f5c3249c162b08c4509508a61b8da5db"
+    },
+    {
+      "id": "legacy-text-165796df-0069",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "ba3e78393f1f276584dc6440a78f4905dfeb38c6ff0174c7215f2ffeaf8f13c0"
+    },
+    {
+      "id": "legacy-text-165796df-0070",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "8e82247eddc6f3e49dcae1a55c1b307f9622d698a53133588a648885fee31736"
+    },
+    {
+      "id": "legacy-text-165796df-0071",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "00fbaf5f5db592f2223258d29358734d9016f3c8b293c3ea03ed78031994829f"
+    },
+    {
+      "id": "legacy-text-165796df-0072",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "4e4fee20dcb7daee0d217d5486c7d0870220527b7e7a9bea24add4b999de5305"
+    },
+    {
+      "id": "legacy-text-165796df-0073",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "65d2bc48bbb72d008128a7a2fa2c7444672298054111907e0c9dc625fa047bc9"
+    },
+    {
+      "id": "legacy-text-165796df-0074",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "97705015aa8807809438e4af47139092c8bdfc4983542d70e19a900c1e9d9593"
+    },
+    {
+      "id": "legacy-text-165796df-0075",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "0ac26b4cd4f36bec52485b06558a4ccdff2b82ae1377543239eb00adfa9b099b"
+    },
+    {
+      "id": "legacy-text-165796df-0076",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "14aa8eb7a65b0f640340271a1fb7f5a2713460c36c441516b7493877ac26e9e0"
+    },
+    {
+      "id": "legacy-text-165796df-0077",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "689e9fea626ec412e0e54e5629bc4655db3463b4aee5b297f5d9ff0f79b35e65"
+    },
+    {
+      "id": "legacy-text-165796df-0078",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "c61b4e3147f0643cae1f39efbbe56e97f4626158c536fff5ab6bdf31e0e100f1"
+    },
+    {
+      "id": "legacy-text-165796df-0079",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "6589e546d9a7f97b7b1f80a44c0eaee9bd67c24a1195511fa7c02e67d057e237"
+    },
+    {
+      "id": "legacy-text-165796df-0080",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "7c1e721828ae600c7f891be0bf7ab9ac15d0908f8a95f5751c163a5b43b51437"
+    },
+    {
+      "id": "legacy-text-165796df-0081",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "0eddc2b77ae67a828d6491215fdc1927506865c8ea7393e26b260f75f8cd19cf"
+    },
+    {
+      "id": "legacy-text-165796df-0082",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "6e83f866329fed0801f64afd2bf419dbc4d3737583a92fdb1c40a95fb1a8b165"
+    },
+    {
+      "id": "legacy-text-165796df-0083",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "9ab3fc47af7f926af7dae8fe3fef55572188be917d61bfdf859fe8dfe9a88f90"
+    },
+    {
+      "id": "legacy-text-e80f2d11-0001",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-f-sdmm-refactoring-migration-playbook.md",
+      "parentClause": "",
+      "textSha256": "5246c8e8813cac7017de6f2bbf04f531400e040639ab0b5efc72085627bb16f1"
+    },
+    {
+      "id": "legacy-text-e80f2d11-0002",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-f-sdmm-refactoring-migration-playbook.md",
+      "parentClause": "",
+      "textSha256": "b6792e2f40ccd11388a474082be77971edbe611902afce082dd6527beecc2633"
+    },
+    {
+      "id": "legacy-text-329162a7-0001",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-i-ddd-playbook.md",
+      "parentClause": "",
+      "textSha256": "f96de7cea4b8e04be676628b3bd176b05c1e3a2032440ea6efcb3095ce7179b2"
+    },
+    {
+      "id": "legacy-text-329162a7-0002",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-i-ddd-playbook.md",
+      "parentClause": "",
+      "textSha256": "3f88aa1ef7758640a7108f65b890de0fec1e0b3470c720bf71f71f3f63ee108b"
+    },
+    {
+      "id": "legacy-text-329162a7-0003",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-i-ddd-playbook.md",
+      "parentClause": "",
+      "textSha256": "5d2ff42d66af423c213c3114474130d48aaa4d33a2475fd430a74e561df26cbf"
+    },
+    {
+      "id": "legacy-text-329162a7-0004",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-i-ddd-playbook.md",
+      "parentClause": "",
+      "textSha256": "76de8dbb967915ae7a315699c7bad14aeaf5201be0081bf68e0f1556dca5705b"
+    },
+    {
+      "id": "legacy-text-329162a7-0005",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-i-ddd-playbook.md",
+      "parentClause": "",
+      "textSha256": "a2888faa54c4bc6c881d930ffe791992ff88a9366ea7a6352632bfa736df9e58"
+    },
+    {
+      "id": "legacy-text-329162a7-0006",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-i-ddd-playbook.md",
+      "parentClause": "",
+      "textSha256": "d985728bf42ecebe1ebcb6901cdad9b67696f378773a40116357b1de3455d333"
+    },
+    {
+      "id": "legacy-text-329162a7-0007",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-i-ddd-playbook.md",
+      "parentClause": "",
+      "textSha256": "f4cb561785959ada4b0f756aeda1ed41e385461870e88193bcf2f3cd0f800f30"
+    },
+    {
+      "id": "legacy-text-38706f1d-0006",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "7b9324023f10d30dafb915243ba6a2c00d13bcb1c8f1b541439d32ac0f59a32c"
+    },
+    {
+      "id": "legacy-text-38706f1d-0007",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "eb78c7b441b6ad3594fbc1ae46bd4c2611cc478fc16700c2ef44b6b5b962e05f"
+    },
+    {
+      "id": "legacy-text-38706f1d-0008",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "1ba3ac3c027e1280568078049603282febd2f09e57324a3b2a2f68e9a0f54bba"
+    },
+    {
+      "id": "legacy-text-38706f1d-0009",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "f29d6d53be50e902aeddfd2ae270f0dd813043179952667f03e38cf92fe8d07c"
+    },
+    {
+      "id": "legacy-text-38706f1d-0010",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "e02c88544f6d32a83842e323f9ba87d930136a7dd87dafecc5e67719961ee0c8"
+    },
+    {
+      "id": "legacy-text-38706f1d-0011",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "1a40ec2ce239396e0edc04c5aa213a7198c4bc95499da66135f4ff6c14e18367"
+    },
+    {
+      "id": "legacy-text-38706f1d-0012",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "3030c27e3a4aac47f282adaa301fe2a482987d483190d13fe7e15e856c36bea0"
+    },
+    {
+      "id": "legacy-text-38706f1d-0013",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "70c3da2d6959d2deaa14d55fdbb897305b094b4d6b8f470df49623970a162892"
+    },
+    {
+      "id": "legacy-text-38706f1d-0014",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "98d17bf4a190f0ab55435fb36fedee43833a5ea1cc6f4c5c1bb29e6a8e06674c"
+    },
+    {
+      "id": "legacy-text-38706f1d-0015",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "acbb95b9f59f052cfe1ad9b287e0cdee808f3ab11933bddea0a092db040cf27c"
+    },
+    {
+      "id": "legacy-text-38706f1d-0016",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "9beece8b974553e667fcc2aed44502525691acab9b2e12dc5987b33a920520b7"
+    },
+    {
+      "id": "legacy-text-38706f1d-0017",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "7d2ccbf5d6bf676dec3cfa1cc9821b182d892926334ce0c6b534454acae18c54"
+    },
+    {
+      "id": "legacy-text-38706f1d-0018",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "e0b8d76dee60a060a78cb6f2f9adbfb08a2de4f6b05271d5782f6d42fb70e172"
+    },
+    {
+      "id": "legacy-text-38706f1d-0019",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "11c04cc29b05d06def8c22eec5d1ced24a76d8c9d2ef30fe74a107fd134df4da"
+    },
+    {
+      "id": "legacy-text-38706f1d-0020",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "4994ff6834da0aa0e108203a4cc726662acc0e8d5794199c50c9351057033514"
+    },
+    {
+      "id": "legacy-text-38706f1d-0021",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "e6466f30c3c31928edce5faafb5cee4ce97fe383222849865b52889eed6b074f"
+    },
+    {
+      "id": "legacy-text-38706f1d-0022",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "c7d6096f2f4fa639150ed8aeeba6eb75d2ea534eb17df3fb987b9c9f47c7d5df"
+    },
+    {
+      "id": "legacy-text-38706f1d-0023",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "32d9709d1bbfe284b37f1fb0e12105f1344946185d1c402e870a2b88900a6269"
+    },
+    {
+      "id": "legacy-text-38706f1d-0024",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "383dd93af3822cf7f286a5f75d10758cd5c2580ca0b0dd3007fe15a7d1f3fe91"
+    },
+    {
+      "id": "legacy-text-38706f1d-0025",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "00dd0bc08fed8031faaa7e09c76379441a61f4dd8afe04ad0377512ac68ec3b5"
+    },
+    {
+      "id": "legacy-text-38706f1d-0026",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "bddc57dede7f6c378f45d522edb8076d3195a8941038c54e1c493a5ef521b924"
+    },
+    {
+      "id": "legacy-text-38706f1d-0027",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "b95668bdc7da686cd13fd8180361e9a5a62ee2fad170d2e1363b0ddbd7d5a0f9"
+    },
+    {
+      "id": "legacy-guide-e80f2d11-required",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-f-sdmm-refactoring-migration-playbook.md",
+      "parentClause": "A-F",
+      "textSha256": "73094e6e0037ce9b4519e2b685bb2996e32bc3071a5d625527d3e2961b032a6d"
+    },
+    {
+      "id": "legacy-guide-e80f2d11-cutover",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-f-sdmm-refactoring-migration-playbook.md",
+      "parentClause": "A-F",
+      "textSha256": "3b0db605145d6706281bdbd1d2fe249e3ef839ddffae891397e91af7688542a3"
+    },
+    {
+      "id": "legacy-text-d2a39e69-0001",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+      "parentClause": "",
+      "textSha256": "6035bda20770198910135ba94ae3ab9ee11e525a82599bf05b6318a8a012a136"
+    },
+    {
+      "id": "legacy-text-d2a39e69-0002",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+      "parentClause": "",
+      "textSha256": "ea7c90a87834c665a689c52e5bbe6a6b0aad5485622c109f4e152c5836899327"
+    },
+    {
+      "id": "legacy-text-d2a39e69-0003",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+      "parentClause": "",
+      "textSha256": "ef48779c52fa5b2c1c11f48885f77d847bf41b82c59971a3f33533f728b70782"
+    },
+    {
+      "id": "legacy-text-d2a39e69-0004",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+      "parentClause": "",
+      "textSha256": "bdbbe496db782fb74ca1befaf1f8b188e555ee163703117f9e6e9640657e71af"
+    },
+    {
+      "id": "legacy-text-d2a39e69-0005",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+      "parentClause": "",
+      "textSha256": "c87ca465914be6bf6799c67576a6be4d6828424e0b96feff96a8b86c5385770d"
+    },
+    {
+      "id": "legacy-text-d2a39e69-0006",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+      "parentClause": "",
+      "textSha256": "c0d3ccb80b36625ec9f00fd7f2275ace91cb69118256d1b2db63ee70b592b95c"
+    },
+    {
+      "id": "legacy-text-d2a39e69-0007",
+      "ownerModule": "das.architecture-modularity",
+      "source": "appendices/appendix-j-bdd-scenarios-verification-playbook.md",
+      "parentClause": "",
+      "textSha256": "f39a2827c30c5afb5f1045b9134cb345ac41b11652e58525d6a71912d2dafe8b"
+    },
+    {
+      "id": "legacy-text-165796df-0016",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "f4bbeacc321f6ea12599534f1b7e39820549c3cfc0567b716200cd8eb6d9a5b4"
+    },
+    {
+      "id": "legacy-text-165796df-0017",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "674cd8cb90fe0263278386aee71d99177e4c54de8f5326b81ef74720e54ad3cb"
+    },
+    {
+      "id": "legacy-text-165796df-0018",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "d6c380686c2161a2c447ec6f60768b6530b7546cc95a0860c9a961a25f0a4882"
+    },
+    {
+      "id": "legacy-text-165796df-0019",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "103413a3b1d35a5871f98f201691f6cb906ec4c923915528ed4ca04f8950c7ca"
+    },
+    {
+      "id": "legacy-text-165796df-0020",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "1e39dae7dc01c50cb2e0f7cd44aa2391924091288cedc1a907c40466eac743d2"
+    },
+    {
+      "id": "legacy-text-165796df-0021",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "e272055336b126c902b405b5997f6745a8a65dac836d9a200fdc5bc2dfa2812b"
+    },
+    {
+      "id": "legacy-text-165796df-0022",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "1a75f39295d65221dac70da2362d2b2a7b1bd665a074f8ad62825e01db167b96"
+    },
+    {
+      "id": "legacy-text-165796df-0023",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "b927a1905671fc2d76ace3e21069bb836259975a55ef4a95de48a59709c18344"
+    },
+    {
+      "id": "legacy-text-165796df-0024",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "acba41240b98c5cd6a52c65eb8bc008ff44f8ab68e97d8e3e4f686bad0b72c9c"
+    },
+    {
+      "id": "legacy-text-165796df-0025",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "647f1ef1eaf6e115b6020853a8277d5eed11005adc722d146304a4c934ab3784"
+    },
+    {
+      "id": "legacy-text-165796df-0028",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "712b14c20e68df1056a0dba3e39247f36df53daa380e055e5e6f12f48d8a5011"
+    },
+    {
+      "id": "legacy-text-165796df-0029",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "97aa205e8562dff6c73607aa4708fd3cf0f97b65e60fea3ff053cdefc7cbe7d8"
+    },
+    {
+      "id": "legacy-text-165796df-0030",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "dcc8baac54346e2f9b322e3cd7a01f50495ca318481dfd8c607ca0b4b1a9a404"
+    },
+    {
+      "id": "legacy-text-165796df-0031",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "20a3031533b34fc8bc2d084cd02f31bdd737fb57ab61bb781dd468bdc641c46b"
+    },
+    {
+      "id": "legacy-text-165796df-0032",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "1d020dd3f9add1f4d47d522ddc652bc258ec301faeae686d598859cbb82890cb"
+    },
+    {
+      "id": "legacy-text-165796df-0033",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "cf5246b455dd93646bb3d88f2c4a698a89694dc0671b1c4d2c08fdf38a36bad8"
+    },
+    {
+      "id": "legacy-text-165796df-0034",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "4249659acba64497ddd8ba1d8541ed85fdddb1caf9411175b702e729011b0046"
+    },
+    {
+      "id": "legacy-text-165796df-0035",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "832d10066094bd226eada0762390c5426ca240879ce49d8b0077142094387546"
+    },
+    {
+      "id": "legacy-text-165796df-0036",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "2a037dafed955a5ef89a453c5824f84722611cb1b79676a4dbeb703137f3ac28"
+    },
+    {
+      "id": "legacy-text-165796df-0037",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "490d383f5c11d38b9b7a23fe810ae773e7ced876b142b20e1b3bf916e1a10cb1"
+    },
+    {
+      "id": "legacy-text-165796df-0038",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "9bbb329de16d9dddcc76ac730746ab09ca1ac08c4b14a9ba4d7f03398a0e405f"
+    },
+    {
+      "id": "legacy-text-165796df-0040",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "0c2dd1aa481fdbcf951d5556b2273150112f693d3d4eae42f3f85a725de415f8"
+    },
+    {
+      "id": "legacy-text-165796df-0043",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "46d92706e597f3e9b7903b15cf367b3c1912aefd5f94aeeb9cbba66339df16aa"
+    },
+    {
+      "id": "legacy-text-165796df-0044",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "149ecb00f7e8334c59937adf2020814f621a645811d60f8b262d5186364aeb8b"
+    },
+    {
+      "id": "legacy-text-165796df-0046",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "appendices/appendix-e-multi-repo-contract-driven-standard.md",
+      "parentClause": "",
+      "textSha256": "66145b90c5fa5f530c782699203d545af9e3b9f33d3e518c1d1e88e905699edb"
+    },
+    {
+      "id": "legacy-text-de7276bb-0031",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.1",
+      "textSha256": "030b85e670a2232db193bbbdb8236c22c8813de73f0510e2daa6fe0d59a24231"
+    },
+    {
+      "id": "legacy-text-de7276bb-0032",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.1",
+      "textSha256": "5430ebd42e838445f73887a112fff8dda5d02418a20d703c679c21f31fb57083"
+    },
+    {
+      "id": "legacy-text-de7276bb-0033",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.1",
+      "textSha256": "682b5167df6443803b7a1839b57c6293e36fb78123527fd872d0e4222497f6aa"
+    },
+    {
+      "id": "legacy-text-de7276bb-0034",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.2",
+      "textSha256": "0d007d266b28a05899f12dbfcda878da875be27c684ec16bf103094d6f73b537"
+    },
+    {
+      "id": "legacy-text-de7276bb-0035",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.2",
+      "textSha256": "406bf759729e84fe29529ac4a2227350a8f1438f196d60c239873fd3c792804f"
+    },
+    {
+      "id": "legacy-text-de7276bb-0036",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.2",
+      "textSha256": "6b97ba72e2b1e0389d40092138bfaaf60aa165a494efadb78bbc5723ec4977db"
+    },
+    {
+      "id": "legacy-text-de7276bb-0037",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.2",
+      "textSha256": "d2bce07eb131e4252f2ca39fff3a0f1681ac6c156f7e8f46c8adc763d4f486ee"
+    },
+    {
+      "id": "legacy-text-de7276bb-0038",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.3",
+      "textSha256": "8a16cfc97b1e3d87f1499d06137631d04c3d3c6f7c1e7ac92faba2592044ed87"
+    },
+    {
+      "id": "legacy-text-de7276bb-0039",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "1709f1f4eea47ffb5e5ad4fc68947c651aaa934522de9ce046ea16f09ae719d1"
+    },
+    {
+      "id": "legacy-text-de7276bb-0040",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "16bd5a1f5e2b6f24cd515c45557a61eeb66cb063424a9c19b0788b3d5c6a21f8"
+    },
+    {
+      "id": "legacy-text-de7276bb-0041",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "c04b0c38f13837c1d6ad95ef5b6fe40aeb57d2788a930973324f424c97e94d4f"
+    },
+    {
+      "id": "legacy-text-de7276bb-0042",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "bacdc1d41440802ff5c8a53fe6ab7c8187b2784ff400c44915fc1047f047f902"
+    },
+    {
+      "id": "legacy-text-de7276bb-0043",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "823965dbad0ffd347902056ad9ab834e7cd4d6f12a91fb3736221e85a21e38f2"
+    },
+    {
+      "id": "legacy-text-de7276bb-0044",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "a26b97aace567210c7ab894c9c08418df91ba89bbb8c9cfdbfe0f030a897991a"
+    },
+    {
+      "id": "legacy-text-de7276bb-0045",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "fbb7462bcfa3ee235c09d9513d010d9074c08663a13714164cb8f9b3ac4aef8e"
+    },
+    {
+      "id": "legacy-text-de7276bb-0046",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "e555ee4a962a6d7c09a70fcc87d45c1c3b7d78ad1bb0385aaae91be9d099b508"
+    },
+    {
+      "id": "legacy-text-de7276bb-0047",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "c0dc6d4f61a0ad3334b082efcc32d97831e0cc8d6f7f87dd4be99d86e77c7725"
+    },
+    {
+      "id": "legacy-text-de7276bb-0048",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "a53ed85e900fae1c57fca67da0f27e64741676f010facba00aeafeab002fa99f"
+    },
+    {
+      "id": "legacy-text-de7276bb-0049",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "fe3b8a75058f281ad86b43f4ce044461deb9a8ec617eba1a255a7c4438432e28"
+    },
+    {
+      "id": "legacy-text-de7276bb-0050",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "a583ca69ed76a9f2c91fde9469f6e8625f40deb5bb7648130b9b8c6075e73b0e"
+    },
+    {
+      "id": "legacy-text-de7276bb-0051",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "37556914869dee80edb1af38b28e49653e1bf674e982e0a838cec0fd784c07ba"
+    },
+    {
+      "id": "legacy-text-de7276bb-0052",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "cf4a1c85eda0967d939e346edf133daa285c688cc119059613cba5be66868492"
+    },
+    {
+      "id": "legacy-text-de7276bb-0053",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "7ee77c06fee71b0e6013487eac86a10f630a4bc8745c280a6b4b427c2f1270d2"
+    },
+    {
+      "id": "legacy-text-de7276bb-0054",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "cbaa8227d2647c371c819b74bbcd5657a3cfe2a69b6cae60730c4ca16528daff"
+    },
+    {
+      "id": "legacy-text-de7276bb-0055",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.4",
+      "textSha256": "2f74396974a8d102f5a0f67f3fb61ad0b076b54b51378c2655006db39713ba18"
+    },
+    {
+      "id": "legacy-text-de7276bb-0056",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.5",
+      "textSha256": "6076ca737407656c55039134afcac1ec39c89349fdc7c424f9d94756f6f411ff"
+    },
+    {
+      "id": "legacy-text-de7276bb-0057",
+      "ownerModule": "das.contracts-compatibility",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-4.5",
+      "textSha256": "0025844a8d45a6cca5a7a1ee28477f8001f6392189d4960f955af5dfd8955350"
+    },
+    {
+      "id": "legacy-text-de7276bb-0001",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "",
+      "textSha256": "d482927aaa6475a67324c1fe003fd24c7bcc9ee68147e2bec4bec67ee49a534c"
+    },
+    {
+      "id": "legacy-text-de7276bb-0002",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "",
+      "textSha256": "e98585473acb9fc430250bb2f81008d13e693121a884036c2bf5c54d74b208b3"
+    },
+    {
+      "id": "legacy-text-de7276bb-0003",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.1",
+      "textSha256": "86d6041517ea74d5d95ac95b6418f86c0c2240cc55bd77e0224e702bb033856d"
+    },
+    {
+      "id": "legacy-text-de7276bb-0004",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.3",
+      "textSha256": "5bd21f024a01c24b3f70cacee51ca7ff513ec8cd7be89433ef23ce5465982634"
+    },
+    {
+      "id": "legacy-text-de7276bb-0005",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.3",
+      "textSha256": "4c284bfc542ba61c950c86082d6253e064d327454bd8681754acf0def9f035ad"
+    },
+    {
+      "id": "legacy-text-de7276bb-0006",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.3",
+      "textSha256": "580ed5f6154c2e19130ca152a068f3a800a2f219b7d198590dc2427ca682c2ae"
+    },
+    {
+      "id": "legacy-text-de7276bb-0007",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.3",
+      "textSha256": "9d6126e47186fef990f10bb974f1a18ff867c52cb361753b70407350d0973b21"
+    },
+    {
+      "id": "legacy-text-de7276bb-0008",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.4",
+      "textSha256": "3e2dd2b0567ad075401968177ac8c540c66bdc6d3d3f68c9002f6362a97a45e8"
+    },
+    {
+      "id": "legacy-text-de7276bb-0009",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.4",
+      "textSha256": "90a4f3c4d0452e291acdcd8da024ec23be4ee9b3df6f20e219cb3b68772a0e87"
+    },
+    {
+      "id": "legacy-text-de7276bb-0010",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.5",
+      "textSha256": "cdbbdc72cee2e270ee54c0c608aefed81321cfc432023fbbd0aaaa2e8631e6c6"
+    },
+    {
+      "id": "legacy-text-de7276bb-0011",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.5",
+      "textSha256": "51bca195ba05868141f13fb347870817faf8dc3f4fb34a0cb79e8b264440577b"
+    },
+    {
+      "id": "legacy-text-de7276bb-0012",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.5",
+      "textSha256": "e11a313c49f3c1b8ca7c3480e391437c189983b17349dfad160e7d938f617433"
+    },
+    {
+      "id": "legacy-text-de7276bb-0013",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.5",
+      "textSha256": "51f2d65934d3f66977874a02f4e39f274b4bf44a424eac65dea41dabb67b0ad2"
+    },
+    {
+      "id": "legacy-text-de7276bb-0014",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.5",
+      "textSha256": "8b544105ad1bbc81e61765ddaf9dc2ef4c8e7678a5669f3c8b6a6575d97ec1bb"
+    },
+    {
+      "id": "legacy-text-de7276bb-0015",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.5",
+      "textSha256": "19f6e7b385db4f56cb7e746ad925c23da18f4a5ee8384ffdd9351a45020f95f8"
+    },
+    {
+      "id": "legacy-text-de7276bb-0016",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-2.5",
+      "textSha256": "fa1f001e8eb57ff9d614ee098f99a1fc12e68629420ee6910e8e06a0a036d68d"
+    },
+    {
+      "id": "legacy-text-de7276bb-0102",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "",
+      "textSha256": "0694e91637c4f51cde902e766d64d8fce6e418bf699a65c626b7c201e7e37924"
+    },
+    {
+      "id": "legacy-text-de7276bb-0160",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "",
+      "textSha256": "ef8fea396998c8caa482467ada27f8662f1349d52234ad98f8b1087d929195b4"
+    },
+    {
+      "id": "legacy-text-de7276bb-0161",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "",
+      "textSha256": "54c7ca90f8756d1f48b160f319bd6b678bdfd351834d6c5a89d632a924c40e38"
+    },
+    {
+      "id": "legacy-text-de7276bb-0162",
+      "ownerModule": "das.core",
+      "source": "SPECIFICATION.md",
+      "parentClause": "",
+      "textSha256": "7b2063741846dc3b019a145b4305efc7cbf7c959d12e4e7d50d9733e6a3c7521"
+    },
+    {
+      "id": "legacy-text-38706f1d-0001",
+      "ownerModule": "das.core",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "e70d5d70c6ca53eafac0b78d0ebdc9cbbb0d981c00617e8536d9a0681e4d451f"
+    },
+    {
+      "id": "legacy-text-38706f1d-0002",
+      "ownerModule": "das.core",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "9aced4c7a31c0ef863c29992f83cf1ffa14c7b659fc2213fc87afd670eb469ce"
+    },
+    {
+      "id": "legacy-text-38706f1d-0003",
+      "ownerModule": "das.core",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "d97b7ce63a50513ed9b5a1da7da3cf2e33d6f90180f10142b1b9872048f8da00"
+    },
+    {
+      "id": "legacy-text-38706f1d-0004",
+      "ownerModule": "das.core",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "f2ceb4ec86e1e3416aa8dc8ef70ff22da17cf9cd53c6411248074a856b6305bd"
+    },
+    {
+      "id": "legacy-text-38706f1d-0005",
+      "ownerModule": "das.core",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "78229c3d23e9f8469fdf28bd18f964ccc7be8a8f2557f6eec9f75f72846a0740"
+    },
+    {
+      "id": "legacy-text-f39710c0-0001",
+      "ownerModule": "das.governance.documentation",
+      "source": "DAS_STANDARD_CONTEXT_PACK.md",
+      "parentClause": "",
+      "textSha256": "91a1428ff80447970ae95e23453a7c851d4dc0391dcd9f2f3a78a7f7be571445"
+    },
+    {
+      "id": "legacy-text-de7276bb-0103",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.1",
+      "textSha256": "b0a8052d2383739c7a3d7c3f61e2b5dc55106617811690d2d0705608d27bafd8"
+    },
+    {
+      "id": "legacy-text-de7276bb-0104",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.1",
+      "textSha256": "1b87a8f6e597384763c65364d9fa184a733cddeaa6a473a2dfa737f504685a48"
+    },
+    {
+      "id": "legacy-text-de7276bb-0105",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.1",
+      "textSha256": "47229ea79176552134cb7032964ea6627099187ab46695a25ddcab1d257fa1e9"
+    },
+    {
+      "id": "legacy-text-de7276bb-0106",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.2",
+      "textSha256": "7f778d04c8d296250411bad1def62eac2ce786f80df541f03e75bd35c4d67e2a"
+    },
+    {
+      "id": "legacy-text-de7276bb-0107",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.2",
+      "textSha256": "706e2d490f4555b06372f99fb781d95f8d956239d0e7d3892e30598222b15a43"
+    },
+    {
+      "id": "legacy-text-de7276bb-0108",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.3",
+      "textSha256": "2e362fb3ffce687a8a46d9495d46cc4b4a53d49f497f0c4931c2c05d57f921ad"
+    },
+    {
+      "id": "legacy-text-de7276bb-0109",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.3",
+      "textSha256": "65233b2f786d0edc54bbe4572a3656c62808c726087547dddf727d8daf35be5b"
+    },
+    {
+      "id": "legacy-text-de7276bb-0110",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.3",
+      "textSha256": "b8f2b056d7e457fa18dfe2b7b323107e07c54422be8be1779682775ce3f64738"
+    },
+    {
+      "id": "legacy-text-de7276bb-0111",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.4",
+      "textSha256": "b0b9c250cb166710ca8268e3408af161605723694b6f0f1eaa2537f12dc66dc2"
+    },
+    {
+      "id": "legacy-text-de7276bb-0112",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.4",
+      "textSha256": "7648e07f625afa15a1d236ffd7f3aa8808150ddea15ed6d3b8dbe779096bfc9a"
+    },
+    {
+      "id": "legacy-text-de7276bb-0113",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.5",
+      "textSha256": "fcc47f3b7ffd250fdfe9307b9200cc40520ed2d69439af742824331950860895"
+    },
+    {
+      "id": "legacy-text-de7276bb-0114",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.5",
+      "textSha256": "ffe692d7f6ac81d0c0b75c8f77f724751ea0f7a20003d0fd4fb81455107929bc"
+    },
+    {
+      "id": "legacy-text-de7276bb-0115",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.6",
+      "textSha256": "d39600dc4641aeb45850b912ff9c614040900bc7cc3f195d595957a2beaaf9d7"
+    },
+    {
+      "id": "legacy-text-de7276bb-0116",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.6",
+      "textSha256": "6d6b06574d893098d12083e9690e13c0b8b4e1ac3b147aa8f403cc9fb139869e"
+    },
+    {
+      "id": "legacy-text-de7276bb-0117",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.6",
+      "textSha256": "4f488a6208cac4d6ef41203a4b00fc7df1b5276ca043868c29d9554095d7e8ab"
+    },
+    {
+      "id": "legacy-text-de7276bb-0118",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.7",
+      "textSha256": "e8869848cf63c64129495010795c1dccce5aae61fc56b20040f5f803e1829baa"
+    },
+    {
+      "id": "legacy-text-de7276bb-0119",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.7",
+      "textSha256": "93135a367c996b0e2ace77afe2a2b8a84b1cdf1763b4f1f334dd2f59f23b631b"
+    },
+    {
+      "id": "legacy-text-de7276bb-0120",
+      "ownerModule": "das.governance.documentation",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-9.8",
+      "textSha256": "0a2fd185d12c420df052be40ac61c21581dda2501dc87b89cbe4220c1ad143a9"
+    },
+    {
+      "id": "legacy-text-5046745a-0001",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "72ca12b0be3eebe3676f95ac909997ab86d9072ad893b48c9acf8a2d97b6573e"
+    },
+    {
+      "id": "legacy-text-5046745a-0002",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "f34cd76fa5ffa2415a8188c2ceed4983de4f6b52185a4357fbf0d53b27985c5f"
+    },
+    {
+      "id": "legacy-text-5046745a-0003",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "026f3bdad813a97cd7aaf483c5f520ec3b2360f074647ce9260483cf42a7836f"
+    },
+    {
+      "id": "legacy-text-5046745a-0004",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "8df6b1cefeca71c475e3ad056c7b251d8ff40a78bb82442ce11ee1e92671f099"
+    },
+    {
+      "id": "legacy-text-5046745a-0005",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "27ee1d6771f292032626904233dd43e46bef60c716c062d129ec83217ea2f1af"
+    },
+    {
+      "id": "legacy-text-5046745a-0006",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "9af74ed4f0ccd2a36daeb367f1d8562820a403b98cbce905c00de2c98caf383e"
+    },
+    {
+      "id": "legacy-text-5046745a-0007",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "2d6ab4207c0a591d1fdd5e85ed2ce5e0a1156733d9a68a25411083c8dd647f72"
+    },
+    {
+      "id": "legacy-text-5046745a-0008",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "c8b6b738488e7acbe9e3611d9b483e0e71f6491f9169768ae214660e0eeee340"
+    },
+    {
+      "id": "legacy-text-5046745a-0009",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "4db3a1eb8f15b180367e1d414fd3aec4b4479ef7ff260426ba811d64d544b896"
+    },
+    {
+      "id": "legacy-text-5046745a-0010",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "e40ffa4fa96b8344c2b247d32c1042011a3270e1307aae6f6e18dc90c70094f7"
+    },
+    {
+      "id": "legacy-text-5046745a-0011",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "ff0268b27b491b50a3b3dcf1beb1c96a73288d9397fc16e6f5b91baed3633a8c"
+    },
+    {
+      "id": "legacy-text-5046745a-0012",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "de370a630aad9f4813faac744de029b7e11523fbf7ba7e90f14ee9b09c78f1e3"
+    },
+    {
+      "id": "legacy-text-5046745a-0013",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "44f260de597fa75b3d5a878578a05826edc8376c2f5f704c3ac41a7e7f215cbd"
+    },
+    {
+      "id": "legacy-text-5046745a-0014",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "a4a1b62e7405bb51f371806758bb7feb451a27698ce2755a9c86a21312400feb"
+    },
+    {
+      "id": "legacy-text-5046745a-0015",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "7c1a2c74e14291341b8abb08bdc7beda809d1812f17e18246497137cf40a707a"
+    },
+    {
+      "id": "legacy-text-5046745a-0016",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "b1175b79e17153b8d12a56128307091e71b4fca3ab596b92010bcf62979ebe2c"
+    },
+    {
+      "id": "legacy-text-5046745a-0017",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "ec2110aa23681acaa5650df1eea3327639c4507cc18ce0e736592de79687e590"
+    },
+    {
+      "id": "legacy-text-5046745a-0018",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "be765371b5df63e28548fb933ada4f21ba2b0d8fe7f46eec6ea4e6e8ab087ada"
+    },
+    {
+      "id": "legacy-text-5046745a-0019",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "5f21ea0e5ab22589d14736b9bd2961541d74e0393efad58592f85dc3936e2193"
+    },
+    {
+      "id": "legacy-text-5046745a-0020",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "4be6dcb55c55bb808a5a34cace88eb3cbfad9d92e44dce0864127e64c2873d1a"
+    },
+    {
+      "id": "legacy-text-5046745a-0021",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "24dc202ad612ab38f43ab95f1e331b299db2f983b9a5c486a69afaa907fbd32e"
+    },
+    {
+      "id": "legacy-text-5046745a-0022",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "f328ffc6b71a5ea80a378a4ae140c4169d2b32f23f24c288f1dcd7acdfcaf429"
+    },
+    {
+      "id": "legacy-text-5046745a-0023",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "5325795a278ac1303a7ac7273b4aed6babbe646da25fd5057a05a1b6ea5c4dba"
+    },
+    {
+      "id": "legacy-text-5046745a-0024",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "39d01e9205d873f016ff2389f43a571e409cb132f69e757802aeca7adf13e44b"
+    },
+    {
+      "id": "legacy-text-5046745a-0025",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "ce2b775c3a2c75a69b9bee7ecb4c94e01dff34ffb4dd446a4198d0740dc3bbe6"
+    },
+    {
+      "id": "legacy-text-5046745a-0026",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "07e950d4132d7d2a666a2b63d175b89db7ed88e609aaee774854884d7465c08d"
+    },
+    {
+      "id": "legacy-text-5046745a-0027",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "ba37d293850f298b6fd0807d58c171a9ea4b5122e8cca7e2c08e37a67c7d9454"
+    },
+    {
+      "id": "legacy-text-5046745a-0028",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "84d997d76f89e6df69b62a6196b470f41998049506ea29264754ecb82e9c7879"
+    },
+    {
+      "id": "legacy-text-5046745a-0029",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "f8f5e36abd2011b59fb234b8721c327cc56cfd70c5cae030f98795c8404a872d"
+    },
+    {
+      "id": "legacy-text-5046745a-0030",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "601cd706a5e87b2bcd58e4b869cd9119d0056de612dc02964fbc737370b6753d"
+    },
+    {
+      "id": "legacy-text-5046745a-0031",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "389c1db31ac8a82b2b96d8790169da6732d64db6941f9228dc02e4f3f74bbf64"
+    },
+    {
+      "id": "legacy-text-5046745a-0032",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "3e08524abd0c573d1e20e03407c6c6496e54bf115f06f43466e9cc2cc34577e8"
+    },
+    {
+      "id": "legacy-text-5046745a-0033",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "f7ab0d6e093e6f65f05a5ffd19302fd847eb95f3796ea5e3bc3941f1f92f7800"
+    },
+    {
+      "id": "legacy-text-5046745a-0034",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "244d3c7c0132295bfd26b5cdb6cdaf51d89be8414edbd53564243b5b334ccfe0"
+    },
+    {
+      "id": "legacy-text-5046745a-0035",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "92652039a0ad24d0ef8d2e32b9551a7ba9ed0620be44239712b1126cd20afebb"
+    },
+    {
+      "id": "legacy-text-5046745a-0036",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "ecaa6a9d094778d9f5426b06617651cb5edb815430141fcf1f822385a0f625c0"
+    },
+    {
+      "id": "legacy-text-5046745a-0037",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "4d614ec3a2e5406a67331752ee2b9d954bd0343d3781d5b9a8b745a3c29edd67"
+    },
+    {
+      "id": "legacy-text-5046745a-0038",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "",
+      "textSha256": "158b703c7db7b4442e201fb0e96260aee68eeeb6b0bc1d6730f250ba906071cc"
+    },
+    {
+      "id": "legacy-guide-c-traceability",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "703834931518da5e604d486208d824dbed3eacb491ec0ed672d984567335ad85"
+    },
+    {
+      "id": "legacy-guide-c-domain-glossary",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "b53e27dcff67e2a86f6418d463412e7e5c9f28b257f6dabb8e166e4cfaee3341"
+    },
+    {
+      "id": "legacy-guide-c-environment-matrix",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "3e44a89bda93d6c101f3ba9a94dfdd41fa4035c726bb231180fe1d2a571246ab"
+    },
+    {
+      "id": "legacy-guide-c-deployment-record",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "7de61f5d2ef162eade9d46dfb84c06198d4bbf12b0ce3adcd1232a1263772b00"
+    },
+    {
+      "id": "legacy-guide-c-vendor-record",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "16ce7ec38f348fa920a3b52c117c54e0a258b423644e644f6540732a931c0982"
+    },
+    {
+      "id": "legacy-guide-c-security-declarations",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "3fce17a7140e133257998fc3560c8909484a9b8cc0d1a082ad36b476cb145cd6"
+    },
+    {
+      "id": "legacy-guide-c-production-replay-record",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "ae199d0497691c9c79fab8a908caf49e9fcd9e79cb2041e4ae44de29d498b7fc"
+    },
+    {
+      "id": "legacy-guide-c-breaking-migration-record",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "093580820bcd53536a5daaf07fb2c206e3eb7edea10ba5a16ea80497475469f6"
+    },
+    {
+      "id": "legacy-guide-c-contract-index",
+      "ownerModule": "das.governance.documentation",
+      "source": "appendices/appendix-c-project-master-doc-template.md",
+      "parentClause": "A-C",
+      "textSha256": "6711bf25136671225e17408bc1583651ec8aebd6eb53d267968c1e58d527163f"
+    },
+    {
+      "id": "legacy-manifest-l2-master-doc-requires-context-pack",
+      "ownerModule": "das.governance.documentation",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "54c2a17b845a57e276010f63bd5a8193d9d1099107617c664ddadc96e03462dd"
+    },
+    {
+      "id": "legacy-manifest-worker-service-module-docs-require-interaction-profile",
+      "ownerModule": "das.governance.documentation",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "7a20d18d3eceafc7650ef0924542e604569ff544324268882533f348077d663e"
+    },
+    {
+      "id": "legacy-manifest-master-doc-requires-canonical-entrypoint-role",
+      "ownerModule": "das.governance.documentation",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "d7c5f32d11b26e446108918654c58981f11cc15d330e88a3500036e94558764e"
+    },
+    {
+      "id": "legacy-manifest-module-doc-requires-module-doc-role",
+      "ownerModule": "das.governance.documentation",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "dc1bfb950ec45753319324a5ffe81f7a71d989b0f488a56467745cc8d8a11462"
+    },
+    {
+      "id": "legacy-manifest-normative-addendum-requires-subordinate-role",
+      "ownerModule": "das.governance.documentation",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "a84a6ae02271c78e8565f9464a871f64b8a0369dc6f3d648fad0136bd0b597fe"
+    },
+    {
+      "id": "legacy-text-06572a96-0001",
+      "ownerModule": "das.governance.verification-release",
+      "source": "CHANGELOG.md",
+      "parentClause": "",
+      "textSha256": "0e751d60300887dba282a7ee326f09547e87220e1f2add4205266febd944b444"
+    },
+    {
+      "id": "legacy-text-06572a96-0002",
+      "ownerModule": "das.governance.verification-release",
+      "source": "CHANGELOG.md",
+      "parentClause": "",
+      "textSha256": "56232e77a7304e57957e6aa7a162bf5eddd8abf89a356213caca9dfc0433ff8c"
+    },
+    {
+      "id": "legacy-text-16280e97-0001",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "529dfbf232ee8f26343c64498f5d80db09365727ef2fb4a510173166c1b60dea"
+    },
+    {
+      "id": "legacy-text-16280e97-0002",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "510cee0cd850cec834926d5b4497b3b4b925ad3cea35e6e26870720b71092ace"
+    },
+    {
+      "id": "legacy-text-16280e97-0003",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "897406614885a45dc85f6ec51a1b2ebc4dcceb1aca27418cd9ad0e8ceaecb602"
+    },
+    {
+      "id": "legacy-text-16280e97-0004",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "07fa85c9e79d746d2a18c363aaf0b88944d5eb9e203b211b540fc92d83e9e29e"
+    },
+    {
+      "id": "legacy-text-16280e97-0005",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "c4d04a2d96439f86d37415928d500c621faff344f2f96d93fec220db32cc3ec3"
+    },
+    {
+      "id": "legacy-text-16280e97-0006",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "949b10bb83fa0c559abb57ddc7e1014d185a9378860dd5ad7672f44d2436e53a"
+    },
+    {
+      "id": "legacy-text-16280e97-0007",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "47172ba08a39571f397e0dd8c8d316e2e3dccbf9ce819b230d4567053da1910a"
+    },
+    {
+      "id": "legacy-text-16280e97-0008",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "8b3bceb688a99636ce3b0c355a46ac83b4d5379283a58dc7083a4e6bbc8d2767"
+    },
+    {
+      "id": "legacy-text-16280e97-0009",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "ff217b470671fd2b8e88f893676f2f0c7c14f1161cccd775443f91f04fc6dfac"
+    },
+    {
+      "id": "legacy-text-16280e97-0010",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "3af60fef6509eaaf95fe1d3239a21564e6f788e7b0714a7f3e59538d365fc703"
+    },
+    {
+      "id": "legacy-text-16280e97-0011",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "674c901c888f2b11ea4f6699bac973acb11a78c3d97a36d8ee3c840516571314"
+    },
+    {
+      "id": "legacy-text-16280e97-0012",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "df00d974aa1322dbf9dd0bdaf295141c7b01ac69a8e34cc55ad9d5eb1de35708"
+    },
+    {
+      "id": "legacy-text-16280e97-0013",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "5da38b9a5df984afceca8c8425404c98d71fbbccb4e486269d3e444e6815a581"
+    },
+    {
+      "id": "legacy-text-16280e97-0014",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "43be54552ad8e29339b9595a14289511bfa676ced6e266354a94a55b1e32292d"
+    },
+    {
+      "id": "legacy-text-16280e97-0015",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "3d8e978c3c226961a9d04f887b8748d9761785b51a62a4b5a05d612633266ae7"
+    },
+    {
+      "id": "legacy-text-16280e97-0016",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "5665b8d7700f2b7a8139e3bfbef56e74cd3c9f89fab12508d930cec8eda35fc7"
+    },
+    {
+      "id": "legacy-text-16280e97-0017",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "2e0f23a28915b7901547d9af8721470167cae521e941802078ce667a3690de82"
+    },
+    {
+      "id": "legacy-text-16280e97-0018",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "d430f2aab334d0e6ade4b464d5c1ffc3e4cb8610e2d2a29f77eef89034db0f2c"
+    },
+    {
+      "id": "legacy-text-16280e97-0019",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "4f6f0ecc58d9046cea92b542103021fe58788036fe9172bcb6e370f00d0d8f91"
+    },
+    {
+      "id": "legacy-text-16280e97-0020",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "194c5c012d22a753535bb1a2bf1e4cdf7f9324a1821daabaa580447312974c18"
+    },
+    {
+      "id": "legacy-text-16280e97-0021",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "97b5b3ce32b0f63cf7b0619699ba0dacb7dfa007bfde19a5a5727cf2802a907b"
+    },
+    {
+      "id": "legacy-text-16280e97-0022",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "a344b3e1224a7fb5e7a681db1e383ec3473200e5fb66d5082c52ff7b51ff8872"
+    },
+    {
+      "id": "legacy-text-16280e97-0023",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "e4d859cb433c0f3fc064f32c8fc19c4104a2020ef18ebb2fe90a0dc53568e365"
+    },
+    {
+      "id": "legacy-text-16280e97-0024",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "746819a6e3870fb7f83738ec8682c864254be90c46e0e3239cd28e8f6333b881"
+    },
+    {
+      "id": "legacy-text-16280e97-0025",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "41ee0b4cd065822c027aa1ffb46c27a151f67e5ca7d18ca915c47b0e4fdc454f"
+    },
+    {
+      "id": "legacy-text-16280e97-0026",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "619c746d818fb50c212107d28a0e29a40e28f84c74ec59e412043587443e6008"
+    },
+    {
+      "id": "legacy-text-16280e97-0027",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "fcd729b35526ba6f56a3cd62251063829aa3ab0825b4518f3dfe5bc7f527fb61"
+    },
+    {
+      "id": "legacy-text-16280e97-0028",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "48a0e601922e0934d52091a4f5feed3d70d7ae1417b6f2aff91ddb286d127922"
+    },
+    {
+      "id": "legacy-text-16280e97-0029",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "39b3490622780e97d9b84b1266d4d85c85d79f14eaf92233a0ca3827f6876f3a"
+    },
+    {
+      "id": "legacy-text-16280e97-0030",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "dbfc2623f478f7376467faf440cb98d8621193e55c78b718348c57e4e280ce91"
+    },
+    {
+      "id": "legacy-text-16280e97-0031",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "11d85514b7cffb2b82d5f5d58f8430aa1b46f78fa15e95ad602afce8d52c3fc2"
+    },
+    {
+      "id": "legacy-text-16280e97-0032",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "abf9d31a82d572edb21a8da3f746b3a592c8c671d0dd57b1e2f82cb93c067344"
+    },
+    {
+      "id": "legacy-text-16280e97-0033",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "56b7947844b815899809c279e302ecb28cd225173915411942743753bf66d3bd"
+    },
+    {
+      "id": "legacy-text-16280e97-0034",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "3aa7ddf45a79f9c87f043bf86fe84e5aadd9213f9146d257e306d7486bedb3e1"
+    },
+    {
+      "id": "legacy-text-16280e97-0035",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "a600f1249e18fbe88ec2ce12df53d93fa50ef21f4c7921730a27e98b99617d16"
+    },
+    {
+      "id": "legacy-text-16280e97-0036",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_DEPLOYMENT_ADDENDUM.md",
+      "parentClause": "",
+      "textSha256": "dc7b372fc967eeede171c69151f8f82a09c5491f19e3f2da773471b31ed19d2a"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0001",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "529dfbf232ee8f26343c64498f5d80db09365727ef2fb4a510173166c1b60dea"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0002",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "6879e6d55ffb07a5cc61ecd5d90d50c2ed71a862f0eaa90b200d5a134e7b89d9"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0003",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "9feae7ce007557417f43b5f6af5c45801d81218abbafdcbbb85fe71e1fbca943"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0004",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "f5dec281479b624edfe099c7fa3387b12eceffcfe01983d9144d6486bd99baf2"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0005",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "d4923517838e4582bceb3199f28ea73db2c146d893868d330870f7602990dd56"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0006",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "235c2b3e4e3f3ddfbb3b4875fbcece1b6fd7fc9057357f93a1c86552560e9207"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0007",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "ae7ba3e9a0fd9ddd999a01c2de2015629a375b66cafc996f7e57fea44eab5904"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0008",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "151f3a67f3b539fa8bf33b2b321c354d0f1be4a6426abf6eab43190a976a303b"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0009",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "ed95e515e1dfbdb695b883561c53299780cc959bc99e37fcd88c94a8ecf258d9"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0010",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "49f8de1e680305c331e28f3ec8d408b62457003b434d693081f4af1d04b7c4b4"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0011",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "4449e0b750ecf5a9f91d6c67030e709429ddf442023cb9838ec8cc6e4c2709db"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0012",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "9f3beccac35070c311089fec922738ade7de280699d4b73a5eb0392e4de0a63c"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0013",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "55234b62d7b14819ec52016dffcddffd18d015a8fd49e3737a716e8dbb608560"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0014",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "c04ef7daf3ce0819f065bf9b80bbf81d3f61bdc020901ee1d0d26c82f56615a4"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0015",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "5d72f1f6f95beb2b13145ef59c9c6aef7d521fe3be93daf223b9edc4c68f1fd0"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0016",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "23b48742593014dd43861d6ef57676ddb274ee36df4835ebfcf178ef8d5baa8f"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0017",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "b93fa9ad02e4386de751f0e45d96beee0fb79f1a867b0ecf8624c0f6e3ee2a62"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0018",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "0c759399c742c737920430e0d8147b46525f852b15acc1395ee6bddfa30ded11"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0019",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "5f176d691b3a39195a836d7d7084c9bbbf33c72fee7510904cb2f1fe9c5fb447"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0020",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "176cec10b056765c854954a6fa8a2be55c392e8b43b192bb37094f87f797303b"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0021",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "39a8e40bb60917d78c6fc1778f376894230556f7b1d90e1f7cdffc64c83d4ae3"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0022",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "6fc06459bd122f8760e151556dfc7c0ba3bc1d33c417b5a630f390caf63b1317"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0023",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "eb62061455847e839dc02933d326c8e10b21eba8602e2870a60f48ad3276e6fd"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0024",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "a4d3f01f81bef2479c33ee09598d21d1918a668d3f35a2693fef10f70edeef09"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0025",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "12d996dd18838af213b04b13588f1ecaa161ef180a47a8bf302a732490598494"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0026",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "0384638f821c380698e0c6adaff92dc94e0ed34c8d82a1996acf3e7857b5dc5a"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0027",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "4df27bd789cd1146c6aa05cce8c86391a829186e77a658c2acd980de060234ec"
+    },
+    {
+      "id": "legacy-text-1be6a1ed-0028",
+      "ownerModule": "das.governance.verification-release",
+      "source": "DAS_GOVERNANCE_COLLABORATION.md",
+      "parentClause": "",
+      "textSha256": "7a5ae865548939d87415c15344ad0ee15a33ddd5d4bc3021e4400cfd40b9f181"
+    },
+    {
+      "id": "legacy-text-de7276bb-0121",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.1",
+      "textSha256": "4c986c687d6f51ea171604898d169d78fafdfab69797f3db9c8f531f2813ef31"
+    },
+    {
+      "id": "legacy-text-de7276bb-0122",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.1",
+      "textSha256": "ba355ef53facca1c3ffa66a3a6ea159bdbc9d54800e7041d878452fc3c3037ac"
+    },
+    {
+      "id": "legacy-text-de7276bb-0123",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.1",
+      "textSha256": "44873047450edc01d7fbb78581c1d20873ac9986da685b1682617a5f3b8e64e5"
+    },
+    {
+      "id": "legacy-text-de7276bb-0124",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.1",
+      "textSha256": "2598d09d8d31c91208df3bfe2b9bb396d7cf3c21ef6bfadcaa1e84f563f64d23"
+    },
+    {
+      "id": "legacy-text-de7276bb-0125",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.1",
+      "textSha256": "2e64996d361a609a8be924179fe04751c4d1ef223146120096f8bd43b2c350f7"
+    },
+    {
+      "id": "legacy-text-de7276bb-0126",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.1",
+      "textSha256": "97f92d819819937352cc04d9dc4f5ee0850bc7c6d4376a7987ac7288379c1977"
+    },
+    {
+      "id": "legacy-text-de7276bb-0127",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3",
+      "textSha256": "b9c0589fe2e41fd954c5f67eac876acb43672ad140ca80cf0e459134b70534c4"
+    },
+    {
+      "id": "legacy-text-de7276bb-0128",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3",
+      "textSha256": "9d96c048b1a38920524a65cc3f11492ccc832c2a4b88b4b888fbfb3a2ce1c12e"
+    },
+    {
+      "id": "legacy-text-de7276bb-0129",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3",
+      "textSha256": "af17b3b79cf37334be9071523a535ae1fc469efa06c56e8b0c30afc25ddb354b"
+    },
+    {
+      "id": "legacy-text-de7276bb-0130",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3",
+      "textSha256": "554d031857adbbc8f63cb8148c363f3be8f7b731c6cd711f1c8a878dbc64380a"
+    },
+    {
+      "id": "legacy-text-de7276bb-0131",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3",
+      "textSha256": "5fd3bd4b44cc795e9d19bbc6a131fa7df08a1914dc3665151c948cb40f2f6893"
+    },
+    {
+      "id": "legacy-text-de7276bb-0132",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3",
+      "textSha256": "0d025c17d3bb38afc7d1672d8cde1415645315667184ff0302eb08ffcb95373a"
+    },
+    {
+      "id": "legacy-text-de7276bb-0133",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3.1",
+      "textSha256": "c37def8394712b39a755d12d47fe59c38736915fb35504168dd6988d07fe439b"
+    },
+    {
+      "id": "legacy-text-de7276bb-0134",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3.1",
+      "textSha256": "43813025cdbcca7c4f4a20745d5e416b61c6be808e2d113571532cb83ae3ae64"
+    },
+    {
+      "id": "legacy-text-de7276bb-0135",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3.1",
+      "textSha256": "4c7996ac2d893bf0b99c8ebe78be7e48cb6b443f839b30d984c76ce866ffd0ef"
+    },
+    {
+      "id": "legacy-text-de7276bb-0136",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3.2",
+      "textSha256": "9354eb1770afae7310412e280176fcae89f03bfbd64f8ab9e76f20a74b728430"
+    },
+    {
+      "id": "legacy-text-de7276bb-0137",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.3.2",
+      "textSha256": "8f1949f51d1d875f08f85d3ad28ddf3b03f99586aea0480a16dc54c6f0598617"
+    },
+    {
+      "id": "legacy-text-de7276bb-0138",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.4",
+      "textSha256": "2ec92c897a79916f8a214b3c08c6192d530e632404b683cab7064f3dd127970f"
+    },
+    {
+      "id": "legacy-text-de7276bb-0139",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.5",
+      "textSha256": "ba4d9e8c7bfce996033573b227007eff2b99d65da2684e38d5e6fee1a35d84aa"
+    },
+    {
+      "id": "legacy-text-de7276bb-0140",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.6",
+      "textSha256": "37c03a98440cab7e5b97c1548d970dce194f4fddec9a0d3a92ed972551a258d6"
+    },
+    {
+      "id": "legacy-text-de7276bb-0141",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.7",
+      "textSha256": "5ea16250ea9cac96c1aad527c774afe34783ef334aa2721cb29f379ed8206e3c"
+    },
+    {
+      "id": "legacy-text-de7276bb-0142",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.8",
+      "textSha256": "93d46e1ff672648b15cb97657aa7807b589f5fc25a3323f75506adf35cc1d3c0"
+    },
+    {
+      "id": "legacy-text-de7276bb-0143",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.8",
+      "textSha256": "7685f97e5b62d92cf25f5e55e49444e5f07b4cbb0601a4e036dfbe8a9dab0d17"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0001",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "cafe78bf4e520c9e745da08b1c31c2ae0882dddc2abd5a542fb62cc75d8c1ba9"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0002",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "87a5dfc7025cb816adf9a3790d5bfcee120070211dfaf472ffea144c73bd07ce"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0003",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "c11f943fc56fbd65dc38fbe7bf3504f7f80c18639463bf69ed4d0494394a7a8d"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0004",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "b6410690393cfca9847dbe5106a202c38200679ae3e659e18e4cf5260bff91b1"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0005",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "2614cc9fe5ed5bb76609785132976d38216b80c77c69e30225f1c4933a4b4727"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0006",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "51eb2c484547bb6db67974627cb61142a256fe62e10e85a68876dd5e99ecb549"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0007",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "86252226554d8f111ebe606669dcbae6043f4210d16d1ef2a98712efe34779c9"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0008",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "9df85b8c60833d0aa751efa5240207e309bfb4a83bfc257a77717f9d0fd46011"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0009",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "a14a3dcbbf0c68450b25d27861598729b69172bdb7d29fb6e6e59f791919f568"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0010",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "26b7499fdc93ff1251d32b8ffbac775c79acc104426e9b8c7abc9bc8ccac9851"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0011",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "79ac572156b68095ecda5212dff3fac8788b495a915c37b64bb0d184807cee07"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0012",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "8f6ebd0e7a30ba8d1ba76ad9dd35cf3d0f4edeb0413716041d4e7c62c3675fea"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0013",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "737108b7859494b819dafb1e930a98c983bfd8633035871ecc7aeaeb3d19c865"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0014",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "a2c48f373fe842104bbfe2f65d99d9885f4859adcaf303da55b2e4bdae441867"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0015",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "e22da89109a1e9b7690ae1c3de1fccf656120bae95e5fd52fe24895039d6fe79"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0016",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "35cd993ab1c29a0e37d3331e328726caaff1435ac0a603e25a0d2127fd1917cd"
+    },
+    {
+      "id": "legacy-text-33cd7d6c-0017",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-l-tooling-standard.md",
+      "parentClause": "",
+      "textSha256": "209716636b1f92315ed1ec10e7ac60518d8060c53006ddb076d481df6dd63af0"
+    },
+    {
+      "id": "legacy-minimum-de7276bb-10-2-backend",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.2",
+      "textSha256": "77e67fbd599dcae767a69a1979cb0a49ef407e628525e74b1470277abfca38c5"
+    },
+    {
+      "id": "legacy-minimum-de7276bb-10-2-contracts",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.2",
+      "textSha256": "2089e531fe61372bebfb7e2d291e898c8270604946b64cf562032bed7e38f43d"
+    },
+    {
+      "id": "legacy-minimum-de7276bb-10-2-docs",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.2",
+      "textSha256": "3779491f445392399e33daf19c574f483d1a23ea25e2180cb604caf345a50f5d"
+    },
+    {
+      "id": "legacy-minimum-de7276bb-10-2-integration",
+      "ownerModule": "das.governance.verification-release",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.2",
+      "textSha256": "263c03b0f2244ef7016147ba6b7b19118497d1b888f777ce2df7eb85153a5a30"
+    },
+    {
+      "id": "legacy-text-38706f1d-0028",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "2d72c8b3f91b6df5dd8cd69bb8696135d47307f62c234e7f176c124991a393d7"
+    },
+    {
+      "id": "legacy-text-38706f1d-0029",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "6dc18dfbbd422fb8ffb9b69dec9fc14eb8ea9c78d86712805aed76121c974f46"
+    },
+    {
+      "id": "legacy-text-38706f1d-0030",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "5e250719c7fb0a6b82e10ca4ea3b032c250d35bc71335abfdbb5a80883d80ec5"
+    },
+    {
+      "id": "legacy-text-38706f1d-0031",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "4f5b4a5f4c3fcb85bf7ade137ec3186dcd6b19831fd2cdbefdb1839aa2517229"
+    },
+    {
+      "id": "legacy-text-38706f1d-0032",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "a76a71e03ea763b63f1d5f6f005c6b7371ab56eae4e6b2cf8946abf057fe8ca3"
+    },
+    {
+      "id": "legacy-text-38706f1d-0033",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "e71756b5d2e2a9be984096001f5c5f4923de0e38f0e2dac2b54ae18d9578aadc"
+    },
+    {
+      "id": "legacy-text-38706f1d-0034",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "02eeb74cd0b98f571fca58426133c0b945bf80093f234239fad2666c323b36c6"
+    },
+    {
+      "id": "legacy-text-38706f1d-0035",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "0fc95ad12eee370b4dc98d8ffca2840307f6623c95dffb83ffefdfa3a4422216"
+    },
+    {
+      "id": "legacy-text-38706f1d-0036",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "7534c854bf542b61b54c0bbe174f190c56575ca29ac6fcdb3c0a64ac30a01137"
+    },
+    {
+      "id": "legacy-text-38706f1d-0037",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "0d4f39c559c7227c6cc4ee8e6c1d2dfe18f66a40692e7110b98d7378f181b57e"
+    },
+    {
+      "id": "legacy-text-38706f1d-0038",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "eb8a7647d25d92ef7dfa17570d41d75f3721d281516476b4453aa7e89c19374f"
+    },
+    {
+      "id": "legacy-text-38706f1d-0039",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "3937d32d0aded07ca187f3925d5bcc84c0407cafa2f9c71bc22f0bb1dab266ab"
+    },
+    {
+      "id": "legacy-text-38706f1d-0054",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "3b9227426a4c5c6394a47a30086c19dc6f23941b7a94e23ed1938c34564299f4"
+    },
+    {
+      "id": "legacy-text-38706f1d-0055",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "fccd8e71a8c2b889a58261ca3ee8e4c11edda96d5705e478a477c94445383c56"
+    },
+    {
+      "id": "legacy-text-38706f1d-0056",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "a7d43e56e9c83935dd39b45c9baa280a617c90cffd25e79ab4fd796c85e57007"
+    },
+    {
+      "id": "legacy-text-38706f1d-0057",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "af31c0d48a5adef511b608c1fd83b029ce9a49192c0060bffc02c8d3eb819ff2"
+    },
+    {
+      "id": "legacy-text-38706f1d-0058",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "8be75c1f98238a1bd77cf70802e48bc69b107e3224068b7c04ad5d4032dddc8d"
+    },
+    {
+      "id": "legacy-text-38706f1d-0059",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "19c55f52db5e4233088d409f870d67b9be50ab90653d21c1c3b433f089146e41"
+    },
+    {
+      "id": "legacy-text-38706f1d-0060",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "7fcbb1cb2a120285a331a5bd5e64358343dde61c30825566bfc8909e75a434b3"
+    },
+    {
+      "id": "legacy-text-38706f1d-0061",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "2921d1fef790ca7195f4b80e65604d3a2fc6c7339bb9ef99b0821028faadcffc"
+    },
+    {
+      "id": "legacy-text-38706f1d-0062",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "d5dcee041e8a5925f14f15abae92ad28919d3fa34e6bd4fda841ce98f25023dd"
+    },
+    {
+      "id": "legacy-text-38706f1d-0063",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "1a4779c976945e468ec0ede310292ca03f06f68dee8a0aacf6c58e9063ca5594"
+    },
+    {
+      "id": "legacy-text-38706f1d-0064",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "63620e3aa2885241cbf265dfcdd1a0d0c0f2fc8bf521e395a670823d87649e34"
+    },
+    {
+      "id": "legacy-text-38706f1d-0065",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "672fdd6015679f2901b5553ea1739abb4afac017a255937a33b120a9ccef0252"
+    },
+    {
+      "id": "legacy-text-38706f1d-0077",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "068323d2854c233fd6cbe18d9ee366a7019bf93fdeec93074198af1c70d3e5b0"
+    },
+    {
+      "id": "legacy-text-38706f1d-0078",
+      "ownerModule": "das.governance.verification-release",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "6ba02df0c89151e04ab4b66357d1e04583894122dedc8bab1611a70d7f2757f2"
+    },
+    {
+      "id": "legacy-manifest-headless-master-doc-requires-headless-surface-note",
+      "ownerModule": "das.interaction.headless",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "86197d81185390412e387595226d9e845d5d2a85b855869914cdeedf5ec4eaa5"
+    },
+    {
+      "id": "legacy-manifest-ui-spec-requires-non-headless-interaction-profile",
+      "ownerModule": "das.interaction.headless",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "93c7879588f5b8848f55c0f668a3292d15d426beaa553bf53892a8e39c9b3030"
+    },
+    {
+      "id": "legacy-manifest-headless-surface-note-requires-headless-interaction-profile",
+      "ownerModule": "das.interaction.headless",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "50f98f4f98831a895c3816715f7021d9a5b51557cc136f0037f0204d5d11897c"
+    },
+    {
+      "id": "legacy-text-de7276bb-0083",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "7261b34a00efc7d5bffec7db4f8574aef939e70f2e35c388579f6e7895f108d0"
+    },
+    {
+      "id": "legacy-text-de7276bb-0084",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "c65628779dbc968d1125f0c407c1c6512add534a375c16432fa11d9c79c3aaf2"
+    },
+    {
+      "id": "legacy-text-de7276bb-0085",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "d7fa3b4da285c9e61fd40bbf8c234ab0932c3483a84c28a762e0ce5de6ee6ab7"
+    },
+    {
+      "id": "legacy-text-de7276bb-0086",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "d78efbde8cb6e76e6f11d6eb611878d4146e2758e79570ce09d1395b05a2465d"
+    },
+    {
+      "id": "legacy-text-de7276bb-0087",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "5d81054d2b6c584bf3532d3cedd5872c52bdb665bcd7ad4eaa68299225d25576"
+    },
+    {
+      "id": "legacy-text-de7276bb-0088",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "3d7c1fcd26637c1a059dc25aaea0c8c78bf285a478b3076e6a67fa63070cc7d5"
+    },
+    {
+      "id": "legacy-text-de7276bb-0089",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "7e28be69db9535bd6651ca199e41135b421260fcc047127a048977deec198fbf"
+    },
+    {
+      "id": "legacy-text-de7276bb-0090",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "0b5e04bd6126874fbf048943e308885429fa9b1e77b6ed4d46ea4dbd45ae34d6"
+    },
+    {
+      "id": "legacy-text-de7276bb-0091",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.8",
+      "textSha256": "5fa47f13fcf5640aa1038d6c241b68a6bd483739cb5b0ad6e5986b57607b9f81"
+    },
+    {
+      "id": "legacy-text-090eaa80-0001",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "9d379097b839eb2eacca56896957247dfda3a4105d4a889144807d550b0c7dbe"
+    },
+    {
+      "id": "legacy-text-090eaa80-0002",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "dba4a71a1ae6733bc992dda9337936dd52b252b716f775024155c69ed2b807ee"
+    },
+    {
+      "id": "legacy-text-090eaa80-0003",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "41ca614c631eee3a969bb2b583595a218dfd45cf8ada9c77a11acfe49401bed4"
+    },
+    {
+      "id": "legacy-text-090eaa80-0004",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "605819c9044fe92215abaf8d35708e42fb280a25026e9f88fb3451bee992ac24"
+    },
+    {
+      "id": "legacy-text-090eaa80-0005",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "fb631b6f69f124d7ae67034e013832dea8c76174e5a2079b4c94c70c9ea26d2b"
+    },
+    {
+      "id": "legacy-text-090eaa80-0006",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "abbd493f9a670801face63983820e00ef64f9373b6bc295d129254ba74c49282"
+    },
+    {
+      "id": "legacy-text-090eaa80-0007",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "1d17cfe58af2329f351083e72a9a4db2d06ff35ad2fa7161a5f87dd6ede893e6"
+    },
+    {
+      "id": "legacy-text-090eaa80-0008",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "dbbb4067941a10226c2f323cfc1daf19da1750eedd36215f9be2472927da2f36"
+    },
+    {
+      "id": "legacy-text-090eaa80-0009",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "",
+      "textSha256": "136ca0f7b049776075184e54a3229e3f8933761621928fd750295c93a16cb4b3"
+    },
+    {
+      "id": "legacy-guide-k-conventions-inventory",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "A-K",
+      "textSha256": "f2264fe203fc2d89f6784c7a196c5610bb3d29e459781d77b99083822baf88d5"
+    },
+    {
+      "id": "legacy-guide-k-critical-verification",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "appendices/appendix-k-hfvi-vis-template.md",
+      "parentClause": "A-K",
+      "textSha256": "abca9ef6eb3356d786ea9d8fd1b9a20d4093b06d1ce12da9d2d3c15d0e1396e1"
+    },
+    {
+      "id": "legacy-manifest-hfvi-projects-require-vis-appendix",
+      "ownerModule": "das.interaction.hfvi",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "35202c2dd2af0c4c3867d0186caa5da900d09c5cd3a3b30dbe3e39d05c193d07"
+    },
+    {
+      "id": "legacy-text-de7276bb-0068",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.2",
+      "textSha256": "12b4d665715a1a3ea291b782588642948b15a66cd49fe857e2c3a35cafe0591c"
+    },
+    {
+      "id": "legacy-text-de7276bb-0069",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.3",
+      "textSha256": "73af6432d688ff0ec135065650f1a36323a80e7a30627a1dc1073edcbf72f335"
+    },
+    {
+      "id": "legacy-text-de7276bb-0070",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.4",
+      "textSha256": "0ad00d0578e3059acb25ef6bd74973800cb9363493fea58868117b9a28df0771"
+    },
+    {
+      "id": "legacy-text-de7276bb-0071",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.4",
+      "textSha256": "b070d04ce9dc64f48719c80f261a51635e7a02b2a39259893988d591d6172f4c"
+    },
+    {
+      "id": "legacy-text-de7276bb-0072",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.5",
+      "textSha256": "68a34e4a4b66eb05eed3409ec4d8d5612837f97db46b109d0ca5d8d9b9d944c9"
+    },
+    {
+      "id": "legacy-text-de7276bb-0073",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.6",
+      "textSha256": "95936067448f05d86599fed89d441507af2c869cadae764b0522349d1e4d1760"
+    },
+    {
+      "id": "legacy-text-de7276bb-0074",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.6",
+      "textSha256": "cab46947cc24df95244c55007a5e959c963ad6a990ed7e286a29ceb38e29bb2e"
+    },
+    {
+      "id": "legacy-text-de7276bb-0075",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.6",
+      "textSha256": "000a3ba35096a760db5f92a49b44dd508149cf35f78ae14a30f13fe26d531291"
+    },
+    {
+      "id": "legacy-text-de7276bb-0076",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.6",
+      "textSha256": "71472791917d19a25be86dbf9f5c8ed8f1bac9c7e982d658f3d04a253c2be038"
+    },
+    {
+      "id": "legacy-text-de7276bb-0077",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.6",
+      "textSha256": "cdc1072c1758a7bf1dcb71a54e2292e1f2da21b288ca98e09a1b3ec2ae34fe68"
+    },
+    {
+      "id": "legacy-text-de7276bb-0078",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.7",
+      "textSha256": "ba803cb9ab921cf8edba84c68158f004e793a6e84167dc89e2cc70b586f08f06"
+    },
+    {
+      "id": "legacy-text-de7276bb-0079",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.7",
+      "textSha256": "380a85e306409d4109bd2f2f23e6df120b6af920f2132c260ff57fccd276abcd"
+    },
+    {
+      "id": "legacy-text-de7276bb-0080",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.7",
+      "textSha256": "a82dc52597d845567d028c5ab39acce79803c845c337de422754548d5433672b"
+    },
+    {
+      "id": "legacy-text-de7276bb-0081",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.7",
+      "textSha256": "8bd27d519bdd4a77b791eb17820cf87a167c85e075715fb0f815409d486994ae"
+    },
+    {
+      "id": "legacy-text-de7276bb-0082",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-6.7",
+      "textSha256": "7c6d3bfa0aa0a915d686968c4ab2ce7607046ac55d3f2d0540571cf556868175"
+    },
+    {
+      "id": "legacy-text-8d48152b-0001",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "",
+      "textSha256": "582ec112e306c345495f6090f9ec70290f26fefb1c2627751ccd9e568802aae6"
+    },
+    {
+      "id": "legacy-text-8d48152b-0002",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "",
+      "textSha256": "ba8e172d42e73ad45e300eec2a281424fdd61dd5b23ea41f1835b3adb3daa328"
+    },
+    {
+      "id": "legacy-text-8d48152b-0003",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "",
+      "textSha256": "1ac50075f1ac99e08c9399b854ccc2f4780b347049af4527a001f70fbff163f6"
+    },
+    {
+      "id": "legacy-text-8d48152b-0004",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "",
+      "textSha256": "a04d3fd00614f2f5e811610972c01a9c5e54728ad11c4edd4703e7fc8221e6e2"
+    },
+    {
+      "id": "legacy-text-8d48152b-0005",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "",
+      "textSha256": "d8fe85043876cc75f42fdba7cb31022a95e4df150f01c07329f50284c76d73e6"
+    },
+    {
+      "id": "legacy-text-8d48152b-0006",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "",
+      "textSha256": "f41ee2f9dc136f88c7d006ebdd84dddb4182102b4fa494d4e6a5586db848c056"
+    },
+    {
+      "id": "legacy-text-4d6c4f21-0001",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-h-ui-design-review-checklist.md",
+      "parentClause": "",
+      "textSha256": "944d6de9ece5ac01e1e1d6a31353ec88aa88528c51d0cbaa4c2394c3f6dd0a93"
+    },
+    {
+      "id": "legacy-text-4d6c4f21-0002",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-h-ui-design-review-checklist.md",
+      "parentClause": "",
+      "textSha256": "edd1a3f45e4176f2f55ac24838dbec879433d85ba0b3fa32a60934e337468650"
+    },
+    {
+      "id": "legacy-text-4d6c4f21-0003",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-h-ui-design-review-checklist.md",
+      "parentClause": "",
+      "textSha256": "af400c3dd6b34b51e9c7def54db909de4aac56ee5a4dc35ff561097e984d96ce"
+    },
+    {
+      "id": "legacy-minimum-de7276bb-10-2-frontend",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-10.2",
+      "textSha256": "6a92e67e2b116890e5249a599d46c8df64f0b8647f59142ccf13f8782ec9e4a4"
+    },
+    {
+      "id": "legacy-guide-4d6c4f21-checklist",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-h-ui-design-review-checklist.md",
+      "parentClause": "A-H",
+      "textSha256": "02a7a7e6c8ea33619deb749f928c8735ecb9fcfd58e69c1b4f8ed6e2589a5022"
+    },
+    {
+      "id": "legacy-guide-d-primary-states",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "A-D",
+      "textSha256": "23db36a55f88749fbeb20e1e84a501a81cd0163c751fe3609352a317ced75a1f"
+    },
+    {
+      "id": "legacy-guide-d-ai-states",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "A-D",
+      "textSha256": "3ea2bf1c7d9a71d4fa268cabe8b9691c830ed48f8e303c357f2db4368d43a274"
+    },
+    {
+      "id": "legacy-guide-d-controls-record",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "A-D",
+      "textSha256": "d751cd610dbadf4d594930a724438db8e0b3a1d6d2ffa8e51faa2faefc266523"
+    },
+    {
+      "id": "legacy-guide-d-citation-record",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "A-D",
+      "textSha256": "97fd550f0622d1b97ade6061b8317d06b646370dd25504c887289d422765105b"
+    },
+    {
+      "id": "legacy-guide-d-accessibility-record",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "A-D",
+      "textSha256": "f6d552cc2a79ff03a3970546bf1a38977acdba1d0f5e5be38d8a690290ed9b83"
+    },
+    {
+      "id": "legacy-guide-d-multidevice-record",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "A-D",
+      "textSha256": "c3555e683c2e79d6baccb15c94c608597506df58422d4055f3119e60174ed7e4"
+    },
+    {
+      "id": "legacy-guide-d-workflow-map",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-d-ui-spec-appendix-template.md",
+      "parentClause": "A-D",
+      "textSha256": "bbd89c283069a648dacd0f7f680caef313098c7dc76e3ea2be9a8f7b7924ce47"
+    },
+    {
+      "id": "legacy-guide-g-ui-content",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "A-G",
+      "textSha256": "71697e714451e5ad65765999aef7a758f5413a2638a271322252593d23b09a7b"
+    },
+    {
+      "id": "legacy-manifest-ui-projects-require-ui-spec",
+      "ownerModule": "das.interaction.standard-ui",
+      "source": "standard_manifest.json",
+      "parentClause": "cl-2.5",
+      "textSha256": "eaec1e038ebdfd36b0f73526343b1e8beec6b7d1913f685048f168e96f75c3df"
+    },
+    {
+      "id": "legacy-text-de7276bb-0144",
+      "ownerModule": "das.security-agent",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-11.1",
+      "textSha256": "0ef54b97da98e1c4814b1b56ab1bca5ef04304f9b1ebaeedad0206089cdc3db4"
+    },
+    {
+      "id": "legacy-text-de7276bb-0145",
+      "ownerModule": "das.security-agent",
+      "source": "SPECIFICATION.md",
+      "parentClause": "cl-11.2",
+      "textSha256": "99917940ce4cdc6eecba05f1312cfd52c50be439efbbf9953038af75a9215b22"
+    },
+    {
+      "id": "legacy-text-38706f1d-0066",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "c0436e9747e58f9b384bf1402e42656740c4fc6dad357fa255857e80bc159034"
+    },
+    {
+      "id": "legacy-text-38706f1d-0067",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "33c401aff251ee8b0b8f481497debc8d89623791d3d0e3831d271c6e03ff8e6e"
+    },
+    {
+      "id": "legacy-text-38706f1d-0068",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "6f8bbfbe61e54362575236bddafaac82880d76412a64e1afc36120b43e10f7fe"
+    },
+    {
+      "id": "legacy-text-38706f1d-0069",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "602a18fdfd142473b2f60a045ebede5015aaa64813d22e1f7bb2309fc32459bd"
+    },
+    {
+      "id": "legacy-text-38706f1d-0070",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "b02137da894f5c017bfd888f04abb5a722e3e099bc60f256fc7f32b692662725"
+    },
+    {
+      "id": "legacy-text-38706f1d-0071",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "b103297494154ea569b69ec2e0e72fe28ab3508ad3c9f501b5ea15675df61f28"
+    },
+    {
+      "id": "legacy-text-38706f1d-0072",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "0633b319bd45a2b6f6baeaca8bcddf7109d754dea3c8acfa19a63371649b0ad0"
+    },
+    {
+      "id": "legacy-text-38706f1d-0073",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "a5edadda2e7ba2858348b6720698eee4dcabd86977b6d974aab2d542d97f20a8"
+    },
+    {
+      "id": "legacy-text-38706f1d-0074",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "30ad8f06240212f01ec7ff42040351c1d43b9949b82d5a6229770346e36ec85a"
+    },
+    {
+      "id": "legacy-text-38706f1d-0075",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "46089135c7267dd83c45e5fa6d23a6eafc5f710efe92f660c20fc76381803da6"
+    },
+    {
+      "id": "legacy-text-38706f1d-0076",
+      "ownerModule": "das.security-agent",
+      "source": "appendices/appendix-g-ai-product-engineering-principles-addendum.md",
+      "parentClause": "",
+      "textSha256": "a4008dedff8ff00a84a315c642b972468c1092bdad3ebc9355b2a682cb4d03a2"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "standardVersion": "1.4.0",
+  "standardVersion": "1.5.0-beta.1",
   "$schema": "./clause_index.schema.json",
   "clauses": [
     {
@@ -528,6 +528,174 @@
       "chapter": "ch-12",
       "title": "Classes, inheritance, and “domain objects” (implementation guidance)",
       "file": "SPECIFICATION.md#126-classes-inheritance-and-domain-objects-implementation-guidance",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.1",
+      "chapter": "ch-13",
+      "title": "建立规范模块，保留既有术语与规范效力",
+      "file": "SPECIFICATION.md#131-建立规范模块保留既有术语与规范效力",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.2",
+      "chapter": "ch-13",
+      "title": "依据经核准事实计算适用 Bundle",
+      "file": "SPECIFICATION.md#132-依据经核准事实计算适用-bundle",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.3",
+      "chapter": "ch-13",
+      "title": "模块目录、索引与 manifest 的兼容扩展",
+      "file": "SPECIFICATION.md#133-模块目录索引与-manifest-的兼容扩展",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.4",
+      "chapter": "ch-13",
+      "title": "Canonical Shape 的定义分级",
+      "file": "SPECIFICATION.md#134-canonical-shape-的定义分级",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.5",
+      "chapter": "ch-13",
+      "title": "精确化 StreamFrame 的路径与增量行为",
+      "file": "SPECIFICATION.md#135-精确化-streamframe-的路径与增量行为",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.6",
+      "chapter": "ch-13",
+      "title": "未知字段策略按安全语义分层",
+      "file": "SPECIFICATION.md#136-未知字段策略按安全语义分层",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.7",
+      "chapter": "ch-13",
+      "title": "明确 camelCase 的边界与原生格式映射",
+      "file": "SPECIFICATION.md#137-明确-camelcase-的边界与原生格式映射",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.8",
+      "chapter": "ch-13",
+      "title": "区分原始字节摘要、语义摘要与来源证明",
+      "file": "SPECIFICATION.md#138-区分原始字节摘要语义摘要与来源证明",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.9",
+      "chapter": "ch-13",
+      "title": "增加 Agent 零信任与可信计算基要求",
+      "file": "SPECIFICATION.md#139-增加-agent-零信任与可信计算基要求",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.10",
+      "chapter": "ch-13",
+      "title": "受保护动作的授权与副作用门禁",
+      "file": "SPECIFICATION.md#1310-受保护动作的授权与副作用门禁",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.11",
+      "chapter": "ch-13",
+      "title": "独立验证、执行隔离与验收基线保护",
+      "file": "SPECIFICATION.md#1311-独立验证执行隔离与验收基线保护",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.12",
+      "chapter": "ch-13",
+      "title": "证据绑定、可信签发与完整覆盖",
+      "file": "SPECIFICATION.md#1312-证据绑定可信签发与完整覆盖",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.13",
+      "chapter": "ch-13",
+      "title": "最小安全控制、审计与例外",
+      "file": "SPECIFICATION.md#1313-最小安全控制审计与例外",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.14",
+      "chapter": "ch-13",
+      "title": "工具中立的 Change / Task 完成语义",
+      "file": "SPECIFICATION.md#1314-工具中立的-change-task-完成语义",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.15",
+      "chapter": "ch-13",
+      "title": "HTTP 事实权威、覆盖与稳定身份",
+      "file": "SPECIFICATION.md#1315-http-事实权威覆盖与稳定身份",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.16",
+      "chapter": "ch-13",
+      "title": "UI 以工作流和行为证据验收",
+      "file": "SPECIFICATION.md#1316-ui-以工作流和行为证据验收",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.17",
+      "chapter": "ch-13",
+      "title": "算法评测、密封数据与声明资格",
+      "file": "SPECIFICATION.md#1317-算法评测密封数据与声明资格",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.18",
+      "chapter": "ch-13",
+      "title": "元数据、版本来源与旧工件迁移",
+      "file": "SPECIFICATION.md#1318-元数据版本来源与旧工件迁移",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.19",
+      "chapter": "ch-13",
+      "title": "自验证、参考部署与配套发布门槛",
+      "file": "SPECIFICATION.md#1319-自验证参考部署与配套发布门槛",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.20",
+      "chapter": "ch-13",
+      "title": "共享契约与受保护决定",
+      "file": "SPECIFICATION.md#1320-共享契约与受保护决定",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.21",
+      "chapter": "ch-13",
+      "title": "Beta 预发布、受控试用与正式发布",
+      "file": "SPECIFICATION.md#1321-beta-预发布受控试用与正式发布",
       "keywords": [],
       "gateLabels": []
     }

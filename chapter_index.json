@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "standardVersion": "1.4.0",
+  "standardVersion": "1.5.0-beta.1",
   "$schema": "./chapter_index.schema.json",
   "chapters": [
     {
@@ -95,6 +95,14 @@
       "id": "ch-12",
       "title": "DDD + BDD integration (domain + behavior as first-class artifacts)",
       "file": "SPECIFICATION.md#12-ddd-bdd-integration-domain-behavior-as-first-class-artifacts",
+      "roles": [
+        "all"
+      ]
+    },
+    {
+      "id": "ch-13",
+      "title": "Edition 1.5 normative additions",
+      "file": "SPECIFICATION.md#13-edition-15-normative-additions",
       "roles": [
         "all"
       ]

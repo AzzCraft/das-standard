@@ -1,7 +1,7 @@
 {
   "$schema": "./verify_registry.schema.json",
   "schemaVersion": "1.0.0",
-  "standardManifestVersion": "1.4.0",
+  "standardManifestVersion": "1.5.0-beta.1",
   "repoId": "das-standard",
   "repoRole": "standard_repo",
   "defaultVerifyCommand": "./scripts/verify",

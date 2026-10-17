@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://das-standard.dev/schemas/standard-modules/1.0.0",
+  "title": "DAS logical Standard Modules",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "./standard_modules.schema.json"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "standardVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "migrationStage": {
+      "const": "logical-mapping"
+    },
+    "baselineSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "das.core",
+              "das.architecture-modularity",
+              "das.contracts-compatibility",
+              "das.ai-runtime-evaluation",
+              "das.interaction.headless",
+              "das.interaction.standard-ui",
+              "das.interaction.hfvi",
+              "das.governance.documentation",
+              "das.governance.verification-release",
+              "das.security-agent"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "effect": {
+            "enum": [
+              "normative",
+              "informative"
+            ]
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "active",
+              "frozen",
+              "deprecated"
+            ]
+          },
+          "activation": {
+            "$ref": "#/$defs/expression"
+          },
+          "dependsOn": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "normativeSources": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "clauseIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "legacyUnitIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "requiredArtifactRefs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "gates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "introducedIn": {
+            "type": "string",
+            "const": "1.5.0-beta.1"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "effect",
+          "status",
+          "activation",
+          "dependsOn",
+          "normativeSources",
+          "clauseIds",
+          "legacyUnitIds",
+          "requiredArtifactRefs",
+          "gates",
+          "introducedIn"
+        ]
+      }
+    },
+    "conditionalMappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ownerModule": {
+            "enum": [
+              "das.core",
+              "das.architecture-modularity",
+              "das.contracts-compatibility",
+              "das.ai-runtime-evaluation",
+              "das.interaction.headless",
+              "das.interaction.standard-ui",
+              "das.interaction.hfvi",
+              "das.governance.documentation",
+              "das.governance.verification-release",
+              "das.security-agent"
+            ]
+          },
+          "authorRef": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authorSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "ruleId",
+          "ownerModule",
+          "authorRef",
+          "authorSha256"
+        ]
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "standardVersion",
+    "migrationStage",
+    "baselineSha256",
+    "modules",
+    "conditionalMappings"
+  ],
+  "$defs": {
+    "expression": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "const": "const"
+            },
+            "value": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "op",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "enum": [
+                "fact",
+                "exists"
+              ]
+            },
+            "key": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]{0,127}$"
+            }
+          },
+          "required": [
+            "op",
+            "key"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "op": {
+              "enum": [
+                "all",
+                "any"
+              ]
+            },
+            "args": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 32,
+              "items": {
+                "$ref": "#/$defs/expression"
+              }
+            }
+          },
+          "required": [
+            "op",
+            "args"
+          ]
+        }
+      ]
+    }
+  }
+}

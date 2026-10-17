@@ -1,7 +1,7 @@
 {
   "$schema": "./local_extension_manifest.schema.json",
   "schemaVersion": "1.0.0",
-  "standardManifestVersion": "1.4.0",
+  "standardManifestVersion": "1.5.0-beta.1",
   "extensions": [
     {
       "name": "org.example.repoRole.platform_subsuite",

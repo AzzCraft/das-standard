@@ -14,7 +14,7 @@
     "floating": false
   },
   "bundleDigestAlgorithm": "sha256",
-  "bundleDigest": "36dc30465cceb658fcd881bf2b0e88747d3f0a241222cd4f8e86921dfb872c59",
+  "bundleDigest": "c8172725794a0bdcb5cde3971d06a37c1311a98b46408cc54647487caf1ae214",
   "artifacts": [
     {
       "path": ".github/workflows/verify.yml",
@@ -516,7 +516,7 @@
     },
     {
       "path": "requirements-verify.txt",
-      "sha256": "306417c8c5112f07623744cc1e2ce968aadcc07769baae3b8bd4fab42573ee1c",
+      "sha256": "22917b4ecf32a170927c71e4b99db7fbf917c1bfd7807f496bd1e56fba2f2dda",
       "artifactClass": "supporting",
       "required": true
     },

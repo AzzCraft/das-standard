@@ -24499,7 +24499,7 @@ MUST retention windows for user data and derived artifacts
 
 # Edition requirement leaves
 
-The 978 leaves below map existing Z01–Z12 results and all S01–S21 sections, without adding obligations. Full source contexts preserve scope, enforcement, evidence and exceptions. The original S13 connection constraint proof remains SHOULD; SQLite-specific mandatory behavior retains its actual SQLite condition. The remaining legacy carriers and full product acceptance are not complete; section coverage alone does not establish complete leaf migration.
+The 978 leaves below map existing Z01–Z12 results and all S01–S21 sections, without adding obligations. Full source contexts preserve scope, enforcement, evidence and exceptions. The original S13 connection constraint proof remains SHOULD; SQLite-specific mandatory behavior retains its actual SQLite condition. Legacy and edition leaf mapping is complete; full product acceptance is not complete. Mapping coverage alone does not establish consumer correctness or qualification.
 
 Activation expresses when an obligation applies, not whether its checks passed. Missing facts stay unknown; conflicting sources remain conflict. A false preview result is an unapproved applicability proposal, not an authorized exemption.
 
@@ -29497,7 +29497,7 @@ Criterion: 禁止同 schema identity 改义
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.beta-positive-unpadded-increment-direct-ga-no-alpha-rc-required
 
@@ -29509,7 +29509,7 @@ Criterion: N 为本项目从 1 开始递增的正整数
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.beta-reader-writer-contract-deployment-storage-support-declared
 
@@ -29521,7 +29521,7 @@ Criterion: 逐次明确 reader、writer、schema/协议、部署及存储支持�
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.build-metadata-not-prerelease-precedence
 
@@ -29533,7 +29533,7 @@ Criterion: `+beta.1` 是构建元数据，不能表达相同的预发布优先�
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.changed-security-failure-runtime-version-adapter-negative-positive-recovery-observation
 
@@ -29545,7 +29545,7 @@ Criterion: 重新覆盖有关拒绝测试、正向对照、恢复及观察
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.code-rollback-no-revocation-budget-dedup-completion-audit-rollback
 
@@ -29557,7 +29557,7 @@ Criterion: 代码回退不能回滚授权撤销、预算、业务动作去重、
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.development-exact-source-build-contract-config-inputs-gap-record
 
@@ -29569,7 +29569,7 @@ Criterion: 每次受测源码、构建、合同及配置固定提交和摘要
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.development-missing-minimum-controls-only-safe-isolated-or-readonly
 
@@ -29581,7 +29581,7 @@ Criterion: 缺少适用 Z01–Z12 的能力保持关闭
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.different-byte-beta-top-signature-not-formal-proof
 
@@ -29593,7 +29593,7 @@ Criterion: 不能将某个 beta 包的顶层签名附给不同字节
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.different-implementation-green-subsets-not-one-qualified-deployment
 
@@ -29605,7 +29605,7 @@ Criterion: 不得把多个不同实现各自通过的子集拼成从未共同验
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.display-prerelease-latest-title-not-formal-identity
 
@@ -29617,7 +29617,7 @@ Criterion: 取消预发布勾选不产生正式 `1.5.0`
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.download-install-activation-separate-history-not-new-adoption
 
@@ -29629,7 +29629,7 @@ Criterion: 下载、安装和激活分别验收
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.ecosystem-normal-package-version-vs-das-approved-semver-target
 
@@ -29641,7 +29641,7 @@ Criterion: 工具包使用其生态的规范化合法版本
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.exact-version-digest-matrix-not-parser-success-authority
 
@@ -29653,7 +29653,7 @@ Criterion: 不能把包解析成功等同于标准支持或受保护授权
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.explicit-channel-choice-no-auto-14-migration
 
@@ -29665,7 +29665,7 @@ Criterion: 预发布渠道由有权主体显式选择
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.external-append-actual-publication-receipt-sealed-package-target-platform
 
@@ -29677,7 +29677,7 @@ Criterion: 实际发布事件由包外追加的受保护回执记录
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.failed-revoked-published-beta-number-not-reused
 
@@ -29689,7 +29689,7 @@ Criterion: 失败或撤销的已发布编号不重复使用
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.final-version-manifest-index-lock-signature-install-meta-recheck-top-proof
 
@@ -29701,7 +29701,7 @@ Criterion: 重新核对最终包闭包和顶层证据
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.first-beta-enabled-path-control-admission-no-formal-exit-claim
 
@@ -29713,7 +29713,7 @@ Criterion: 尚未完成正式试用退出不能声明正式配套就绪
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.first-beta-frozen-semantics-contracts-implementations-all-present
 
@@ -29725,7 +29725,7 @@ Criterion: F01–F11 的拟交付语义、试用交换合同与对应实现齐�
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.first-beta-three-component-reference-domains-runnable-no-hard-stop
 
@@ -29737,7 +29737,7 @@ Criterion: 三仓试用组合、开源参考执行链及最小领域样本可运
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.formal-all-gates-applicable-acceptance-trial-final-compatibility-artifact-approval
 
@@ -29749,7 +29749,7 @@ Criterion: 本版全部正式门槛、适用 A01–A32、三仓及参考部署�
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.formal-new-immutable-identity-final-input-output-tool-deployment-check
 
@@ -29761,7 +29761,7 @@ Criterion: 正式 `1.5.0` 形成新的不可变发布身份
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.formal-observation-coverage-all-must-compatibility-migration-recovery-no-hard-stop
 
@@ -29773,7 +29773,7 @@ Criterion: 转正式同时要求观察条件和实际覆盖完成、全部适用
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.formal-version-no-permanent-action-trust
 
@@ -29785,7 +29785,7 @@ Criterion: 正式号不授予永久信任
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.future-beta-not-supported-by-same-core-prefix
 
@@ -29797,7 +29797,7 @@ Criterion: 不能仅凭共同 `1.5.0` 前缀接受
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.incident-announcement-not-package-tag-original-receipt-change
 
@@ -29809,7 +29809,7 @@ Criterion: 受权事故公告不改变已发布包、tag绑定或原始回执
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.incident-business-rollback-retains-security-floor-and-ledger
 
@@ -29821,7 +29821,7 @@ Criterion: 事故处置和业务回退保留当前安全下界及历史账本
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.necessary-beta-fix-compatibility-migration-rollback-reuse-decisions
 
@@ -29833,7 +29833,7 @@ Criterion: 修复范围、兼容影响、迁移/回退及证据复用已经判�
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.necessary-beta-install-activation-separate-no-history-reset
 
@@ -29845,7 +29845,7 @@ Criterion: 新编号不能自动清除事故、预算、待核对动作或证据
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.necessary-beta-new-package-full-affected-tests-admission
 
@@ -29857,7 +29857,7 @@ Criterion: 新包完整自检、受影响测试和准入批准完成
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.new-beta-only-needed-public-new-artifact
 
@@ -29869,7 +29869,7 @@ Criterion: 不为每次讨论、文档编辑或源码提交发版
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.no-posthoc-package-time-rewrite
 
@@ -29881,7 +29881,7 @@ Criterion: 不得事后回写包内时间改变已验证字节
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.planned-commit-source-date-epoch-not-actual-receipt-time
 
@@ -29893,7 +29893,7 @@ Criterion: 不能填作实际发布回执时间
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.planning-development-actual-release-identities-separated
 
@@ -29905,7 +29905,7 @@ Criterion: 方案、开发提交和实际发行分别识别
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.project-final-package-real-deployment-limited-adoption-continued-current-controls
 
@@ -29917,7 +29917,7 @@ Criterion: 具体项目核对最终包与自身真实部署后取得限定采用
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.protected-exact-target-source-package-matrix-protocol-current-trust
 
@@ -29929,7 +29929,7 @@ Criterion: 受保护入口核对获批目标、源码、实际包摘要、支持
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.public-fix-next-unused-beta-number-original-package-event-retained
 
@@ -29941,7 +29941,7 @@ Criterion: 保留原包与原始事件
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.published-coordinate-package-manifest-tag-immutable
 
@@ -29953,7 +29953,7 @@ Criterion: 同一精确坐标不得换字节
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.release-first-approved-exact-target-channel-matrix-allocation-compatibility-admission
 
@@ -29965,7 +29965,7 @@ Criterion: 拒绝 Agent 擅自改目标
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.release-fourth-current-identity-authority-budget-generation-durable-intent
 
@@ -29977,7 +29977,7 @@ Criterion: 重新校验发布身份、授权、预算、目标代次和持久化
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.release-metadata-standard-channel-revision-digest-status-signing-basis
 
@@ -29989,7 +29989,7 @@ Criterion: 发布元数据记录标准目标、渠道、源码 revision、工具
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.release-second-final-artifact-source-deps-components-current-trust-no-mixed-beta
 
@@ -30001,7 +30001,7 @@ Criterion: 禁止跨 beta 混装
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.release-stage-assets-public-stable-business-keys-readback-receipt
 
@@ -30013,7 +30013,7 @@ Criterion: 发布后回读完整工件并追加实际回执
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.release-third-plan-real-slots-runs-valid-reuse-trial-hard-stop
 
@@ -30025,7 +30025,7 @@ Criterion: 未运行保持 `not_run`
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.releasedat-old-contract-date-vs-external-event
 
@@ -30037,7 +30037,7 @@ Criterion: 新映射区分包内日期声明和包外实际事件
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.reuse-only-unchanged-valid-approved-original-subartifact
 
@@ -30049,7 +30049,7 @@ Criterion: 只有未变且仍符合批准计划、来源和有效期的子工件
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.same-byte-mirror-retransmit-idempotent
 
@@ -30061,7 +30061,7 @@ Criterion: 相同字节的重传/镜像可以按幂等规则核对
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.semver-beta-numeric-prerelease-order-no-string-or-strip
 
@@ -30073,7 +30073,7 @@ Criterion: 不得按普通字符串排序或删除后缀
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.semver-build-metadata-not-pep440-local-comparison
 
@@ -30085,7 +30085,7 @@ Criterion: 不得直接套用到 PEP 440 的 local version 比较
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.standard-tool-protocol-deployment-versions-independent
 
@@ -30097,7 +30097,7 @@ Criterion: 两者允许不同编号，不要求三个仓库同时递增
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.state-upgrade-transaction-backup-recovery
 
@@ -30109,7 +30109,7 @@ Criterion: 状态库采用 S13 的事务、备份及恢复要求
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-denominator-preapproved-changes-retain-original-failures-impact
 
@@ -30121,7 +30121,7 @@ Criterion: 在结果产生前批准验收分母
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-exact-beta-source-components-protocol-runtime-config-policy-subject-resource
 
@@ -30133,7 +30133,7 @@ Criterion: 本次 beta 号或明确未发布修订、源码/内容摘要、三�
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-existing-task-plan-deployment-no-parallel-approval-system
 
@@ -30145,7 +30145,7 @@ Criterion: 不新增平行审批系统
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-exit-real-coverage-not-idle-days
 
@@ -30157,7 +30157,7 @@ Criterion: 无反馈、长期未修改或一次绿色 CI 均不能单独满足�
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-fix-config-impact-analysis-reuse-unknown-no-reuse
 
@@ -30169,7 +30169,7 @@ Criterion: 关系不明时不复用
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-general-chain-minimal-domains-adoption-applicability-counting
 
@@ -30181,7 +30181,7 @@ Criterion: 通用受保护执行链及配套最小 HTTP/UI/密封样本
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-hard-stop-unknown-impact-denial-independent-continue-release-approval
 
@@ -30193,7 +30193,7 @@ Criterion: 影响未明阻断相关资格
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-original-runs-failures-incidents-na-fixes-retest-reuse-disclosure
 
@@ -30205,7 +30205,7 @@ Criterion: 原始运行、候选/计划身份、失败/重试/事故、N/A批准
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-prior-window-load-concurrency-fault-recovery-defect-performance
 
@@ -30217,7 +30217,7 @@ Criterion: 事先确定观察窗口、有效负载、并发、故障及恢复场
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.trial-upgrade-activation-consumers-state-rollback-revoke-conflict-crash-backup-owners
 
@@ -30229,7 +30229,7 @@ Criterion: 必要 beta 间安装/激活、旧新消费者、状态迁移、代�
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.unimplemented-beta-not-supported-no-prerelease-acceptance-substitution
 
@@ -30241,7 +30241,7 @@ Criterion: 不得通过 beta 名称把未实现能力标为已支持
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.unknown-release-original-action-no-new-key-resend
 
@@ -30253,7 +30253,7 @@ Criterion: 不换键重发
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.unpublished-development-revision-not-published-object-overwrite
 
@@ -30265,7 +30265,7 @@ Criterion: 不能借相同版本字符串覆盖任何已发布对象
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.unreadable-new-state-approved-forward-recovery-not-old-writer
 
@@ -30277,7 +30277,7 @@ Criterion: 不强开旧 writer
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.upgrade-new-artifact-migration-before-protected-switch
 
@@ -30289,7 +30289,7 @@ Criterion: 升级先核验新制品及迁移计划，再在受保护边界切换
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.governance.verification-release.s21.version-precedence-package-range-resource-authority-distinct
 
@@ -30301,7 +30301,7 @@ Criterion: 版本优先级、包管理器匹配范围和资源授权分别判断
 
 Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-505), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s21).
+[Normative author](edition-1.5.md#release-lifecycle).
 
 ## das.interaction.standard-ui.s16.a11y-applicable-version-level-scope-approved
 
@@ -34621,7 +34621,7 @@ Criterion: 实际受保护资源执行点
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.action-receipt-minimum-binding
 
@@ -34633,7 +34633,7 @@ Criterion: 稳定业务动作 ID、含原发起主体的不可变请求指纹、
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.action-receipt-no-role-substitution
 
@@ -34645,7 +34645,7 @@ Criterion: 不作为新动作授权，不以超时代表未执行
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.activation-schema-semantics-positive-negative-errors-interop
 
@@ -34657,7 +34657,7 @@ Criterion: schema、语义说明、合法/非法 fixtures、错误契约与 prod
 
 Context and exceptions: [modules/edition-1.5.md:549–567](#requirement-context-527), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.adapter-approved-lossless-exact-binding
 
@@ -34669,7 +34669,7 @@ Criterion: 明确批准的无损适配
 
 Context and exceptions: [modules/edition-1.5.md:549–567](#requirement-context-527), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.authorization-authorized-producer
 
@@ -34681,7 +34681,7 @@ Criterion: 当前受权政策/批准服务
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.authorization-minimum-binding
 
@@ -34693,7 +34693,7 @@ Criterion: 发起/当前行为主体、受众、动作、规范化资源及创�
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.authorization-no-role-substitution
 
@@ -34705,7 +34705,7 @@ Criterion: 不兼任执行结果；不授权合同以外动作
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.bundle-authorized-producer
 
@@ -34717,7 +34717,7 @@ Criterion: 事实由有权控制面批准；Bundle 由受保护解析器计算
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.bundle-minimum-binding
 
@@ -34729,7 +34729,7 @@ Criterion: scope、来源、批准、标准/规则/事实/政策摘要、目标�
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.bundle-no-role-substitution
 
@@ -34741,7 +34741,7 @@ Criterion: 不能让扫描结果自我批准或让派生列表成为作者源
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.candidate-authorized-producer
 
@@ -34753,7 +34753,7 @@ Criterion: 受保护快照执行器
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.candidate-minimum-binding
 
@@ -34765,7 +34765,7 @@ Criterion: 内容闭包摘要、Task 引用、源版本、外部材料与构建�
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.candidate-no-role-substitution
 
@@ -34777,7 +34777,7 @@ Criterion: 不证明测试通过，不包括未来验证/完成记录
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.completion-authorized-producer
 
@@ -34789,7 +34789,7 @@ Criterion: 受保护完成入口
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.completion-minimum-binding
 
@@ -34801,7 +34801,7 @@ Criterion: taskKey/revision/cycle、父 Change 及状态前提、适用验证/�
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.completion-no-role-substitution
 
@@ -34813,7 +34813,7 @@ Criterion: 不修改原始 outcome，不作为无限期现时许可
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.completion-ordered-current-control-to-projection
 
@@ -34825,7 +34825,7 @@ Criterion: 当前控制面 → 批准 Task / 事实 / 验收
 
 Context and exceptions: [modules/edition-1.5.md:577–592](#requirement-context-528), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.consumer-same-contract
 
@@ -34837,7 +34837,7 @@ Criterion: 各消费者使用同一合同
 
 Context and exceptions: [modules/edition-1.5.md:549–567](#requirement-context-527), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.contract-single-governed-author
 
@@ -34849,7 +34849,7 @@ Criterion: 每份 schema/签名合同只有一个受治理作者源
 
 Context and exceptions: [modules/edition-1.5.md:549–567](#requirement-context-527), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.decision-authorized-producer
 
@@ -34861,7 +34861,7 @@ Criterion: 受信 Cadence 裁定链
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.decision-machine-reasons
 
@@ -34873,7 +34873,7 @@ Criterion: 授权缺失、上下文不匹配、验收未满足、必需证据缺
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.decision-minimum-binding
 
@@ -34885,7 +34885,7 @@ Criterion: 指定主体/受众/scope/action、taskKey、候选/目标前提、�
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.decision-no-cross-stage-permission
 
@@ -34897,7 +34897,7 @@ Criterion: 仅允许提交候选的 Decision 不能用于 integrate、complete�
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.decision-no-role-substitution
 
@@ -34909,7 +34909,7 @@ Criterion: 不授予业务权限，不证明动作已经发生，不允许跨阶
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.decision-report-outcome-separate
 
@@ -34921,7 +34921,7 @@ Criterion: 原 verify report 仍使用原有 outcome
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.decision-unknown-error-missing-deny
 
@@ -34933,7 +34933,7 @@ Criterion: 任何未知、错误或缺失不能默认允许
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.exception-original-failure-separate-limited-not-full-pass
 
@@ -34945,7 +34945,7 @@ Criterion: 原失败和例外分别保存
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.integration-receipt-authorized-producer
 
@@ -34957,7 +34957,7 @@ Criterion: 受保护集成入口
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.integration-receipt-minimum-binding
 
@@ -34969,7 +34969,7 @@ Criterion: 源候选、实际集成候选、后者的验证、目标、提交前
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.integration-receipt-no-role-substitution
 
@@ -34981,7 +34981,7 @@ Criterion: 不把旧分支名或准备状态当已集成
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.minimum-control-actual-enforcement-not-signature
 
@@ -34993,7 +34993,7 @@ Criterion: 实际拒绝/隔离/不可篡改结果必须由强制机制和实测�
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.no-integration-preapproved-branch
 
@@ -35005,7 +35005,7 @@ Criterion: 不需要集成的任务使用预先批准的完成分支
 
 Context and exceptions: [modules/edition-1.5.md:577–592](#requirement-context-528), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.post-integration-completion-recovery-actual-history-only
 
@@ -35017,7 +35017,7 @@ Criterion: 根据动作 ID 与可信目标历史恢复
 
 Context and exceptions: [modules/edition-1.5.md:577–592](#requirement-context-528), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.post-integration-no-reintegration-or-false-completion
 
@@ -35029,7 +35029,7 @@ Criterion: 不再次执行集成
 
 Context and exceptions: [modules/edition-1.5.md:577–592](#requirement-context-528), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.qualitative-review-bound-scope-candidate-duty-decision-window
 
@@ -35041,7 +35041,7 @@ Criterion: scope、候选、义务、决策和有效期
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.release-locked-contract-version-digest-mapping
 
@@ -35053,7 +35053,7 @@ Criterion: 发布闭包固定其版本、摘要和规范映射
 
 Context and exceptions: [modules/edition-1.5.md:549–567](#requirement-context-527), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.resource-changed-context-redecide-or-protected-equivalence
 
@@ -35065,7 +35065,7 @@ Criterion: 重新裁定或经受保护等价规则确认
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.resource-current-authentication-and-independent-grant
 
@@ -35077,7 +35077,7 @@ Criterion: 重新认证当前调用者，取得独立有效授权
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.resource-current-decision-context-evidence-recheck
 
@@ -35089,7 +35089,7 @@ Criterion: 用途、受众、taskKey、候选、规范化资源/目标版本/代
 
 Context and exceptions: [modules/edition-1.5.md:569–575](#requirement-context-529), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.target-aba-protected-generation-not-reusable-value
 
@@ -35101,7 +35101,7 @@ Criterion: 受保护目标代次或等效不可回滚事务序列检测
 
 Context and exceptions: [modules/edition-1.5.md:577–592](#requirement-context-528), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.task-authorized-producer
 
@@ -35113,7 +35113,7 @@ Criterion: 受保护治理批准入口
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.task-minimum-binding
 
@@ -35125,7 +35125,7 @@ Criterion: 不重新分配的受保护 Change/Task 身份、状态代次/任务�
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.task-no-role-substitution
 
@@ -35137,7 +35137,7 @@ Criterion: 不能仅凭可编辑任务列表产生当前权威，不能把取消
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.tool-not-normative-authority
 
@@ -35149,7 +35149,7 @@ Criterion: 不得将某个可执行工具或未经锁定的上游分支变成规
 
 Context and exceptions: [modules/edition-1.5.md:549–567](#requirement-context-527), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.verification-authorized-producer
 
@@ -35161,7 +35161,7 @@ Criterion: 受信采集/裁定/签发链
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.verification-minimum-binding
 
@@ -35173,7 +35173,7 @@ Criterion: 精确候选、已批准验收/计划槽位、实际 run/attempt 与�
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.verification-no-role-substitution
 
@@ -35185,7 +35185,7 @@ Criterion: 不直接授予资源写入权限，不把候选原始输出当可信
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.wire-new-identity-when-old-not-lossless
 
@@ -35197,7 +35197,7 @@ Criterion: 无法无损承载的部分用明确的新契约身份，保持旧 sc
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.wire-no-lossy-numeric-conversion
 
@@ -35209,7 +35209,7 @@ Criterion: 编号、时间和预算不能依赖可能丢精度的隐式数字转
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.wire-required-optional-defaults-types-limits-algorithms-signature-errors
 
@@ -35221,7 +35221,7 @@ Criterion: required/optional、缺省值、时间/代次类型、消息大小、
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s20.wire-separate-identity-schema-purpose-scope
 
@@ -35233,7 +35233,7 @@ Criterion: 区分 `contract identity`、schema 身份、消息用途与范围
 
 Context and exceptions: [modules/edition-1.5.md:555–567](#requirement-context-526), [modules/edition-1.5.md:334–334](#requirement-context-480)
 
-[Normative author](edition-1.5.md#s20).
+[Normative author](edition-1.5.md#shared-contracts).
 
 ## das.security-agent.s9.agent-and-generated-output-untrusted
 

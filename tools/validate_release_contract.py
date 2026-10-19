@@ -310,6 +310,7 @@ def check_snapshot_registry(manifest: dict) -> None:
         raise ValueError("standard contract check failed: hashlib.sha256(joined.encode()).hexdigest() == snapshot['bundleDigest']")
 
 def check_compat(manifest: dict) -> None:
+    check_sbom_dependencies()
     version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     fixture = ROOT / "tests" / "compat" / f"v{version}" / "standard_manifest.json"
     if not (fixture.is_file()):
@@ -317,10 +318,57 @@ def check_compat(manifest: dict) -> None:
     if not (json.loads(fixture.read_text(encoding='utf-8')) == manifest):
         raise ValueError('current compatibility fixture must exactly copy the canonical manifest')
 
+def check_sbom_dependencies() -> None:
+    pins = {}
+    for raw in (ROOT / 'requirements-verify.txt').read_text(encoding='utf-8').splitlines():
+        line = raw.split('#', 1)[0].strip()
+        if not line:
+            continue
+        match = re.fullmatch(r'([A-Za-z0-9][A-Za-z0-9_.-]*)==([A-Za-z0-9][A-Za-z0-9_.+-]*)', line)
+        if not match:
+            raise ValueError('unsupported verification dependency declaration')
+        name = re.sub(r'[-_.]+', '-', match[1]).lower()
+        if name in pins:
+            raise ValueError('duplicate verification dependency')
+        pins[name] = match[2]
+    packages = load('SBOM.spdx.json')['packages']
+    for name, version in pins.items():
+        matches = [p for p in packages if re.sub(r'[-_.]+', '-', p['name']).lower() == name]
+        if len(matches) != 1 or matches[0].get('versionInfo') != version:
+            raise ValueError('SBOM direct dependency mismatch: ' + name)
+
+def check_author_links() -> None:
+    text = (ROOT / 'modules/requirements.md').read_text(encoding='utf-8')
+    links = re.findall(r'\[Normative author\]\(([^)]+)\)', text)
+    if len(links) != len(load('standard_requirements.json')['editionRequirements']):
+        raise ValueError('edition author link count differs from leaf count')
+    for link in set(links):
+        name, separator, anchor = link.partition('#')
+        path = ROOT / 'modules' / name
+        if not separator or not path.is_file() or anchor not in re.findall(r'<a\s+id="([^"]+)"\s*>', path.read_text(encoding='utf-8')):
+            raise ValueError('unresolved normative author fragment: ' + link)
+
+def check_manifest_artifacts() -> None:
+    version = (ROOT / 'VERSION').read_text(encoding='utf-8').strip()
+    if not re.fullmatch(r'\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?', version):
+        raise ValueError('invalid VERSION')
+    validate('standard_manifest.json', 'standard_manifest.schema.json')
+    if load('standard_manifest.json')['standardVersion'] != version:
+        raise ValueError('standard_manifest standardVersion differs from VERSION')
+    for name in ('suite_version_closure', 'tooling_lock', 'local_extension_manifest'):
+        path = ROOT / (name + '.json')
+        if path.exists():
+            validate(name + '.json', name + '.schema.json')
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--gate", choices=sorted(VALID_GATES), default="all")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--gate", choices=sorted(VALID_GATES), default="all")
+    mode.add_argument("--manifest-artifacts-only", action="store_true")
     args = parser.parse_args()
+    if args.manifest_artifacts_only:
+        check_manifest_artifacts()
+        return 0
     manifest = load("standard_manifest.json")
     if not (manifest['interactionProfiles'] == manifest['enums']['interactionProfiles']):
         raise ValueError("standard contract check failed: manifest['interactionProfiles'] == manifest['enums']['interactionProfiles']")
@@ -328,6 +376,7 @@ def main() -> int:
         raise ValueError("standard contract check failed: manifest['gateCadences'] == manifest['enums']['gateCadences']")
     check_enum_definitions(manifest)
     if args.gate in {"all", "bundle-files"}:
+        check_author_links()
         check_definition_classes()
         check_reference_contracts(manifest)
         check_templates(manifest)

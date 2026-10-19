@@ -13,7 +13,7 @@ This is the adopted acceptance denominator, not a run report. All 136 product ca
 | Standard Module 目录、requirement 映射、Bundle | S01–S03 | DAS 定义；Cadence 解析；dasops 消费 | schema/dialect/配置、闭包、单一作者映射、三值/冲突/引擎错误、组合 fixtures、生成视图 |
 | 经核准事实与政策引用 | S02/S09 | 控制面批准；dasops 提案；Cadence 验证 | 来源/批准/目标绑定、实际控制权限与变更生效测试 |
 | Change / Task / Candidate Binding | S08/S11/S14、共享契约 | 受保护治理与快照入口产生；Cadence/集成/完成入口消费 | 完整 taskKey、身份不重分配/退役映射、非空/唯一/父子关系、状态代次与动作表、行政误关闭窄条件、原始树/物化/输出清单、OCI实际child/平台/层映射与并发测试 |
-| 动作裁定 Decision | S12、共享契约.2 | Cadence 对固定上下文裁定；资源入口复核当前前提 | 精确用途/受众/动作、资格与授权分离、必需/观察槽位分层、对象实例与过时快照及跨阶段拒绝 |
+| 动作裁定 Decision | S12、[共享契约 §13.20.2](edition-1.5.md#shared-contracts) | Cadence 对固定上下文裁定；资源入口复核当前前提 | 精确用途/受众/动作、资格与授权分离、必需/观察槽位分层、对象实例与过时快照及跨阶段拒绝 |
 | 动作授权与 Action Receipt | S10/S13/S18、共享契约 | 授权服务批准；实际资源入口执行并出据 | 稳定业务动作键、有效委派与共享预算、规范化资源/创建实例、发送/披露/撤销边界、持续读取、原生条件/受理/终态、跨层重试、实际argv解释、异步取消及未知结果；迁移计划的 preimage/postimage、实际修改边界与只读输出权限 |
 | 验证与签发 envelope | S08/S11/S12、共享契约 | 域外采集/裁定/签发；各受保护入口消费 | 精确签名 profile/原始字节、令牌用途互斥与受保护密钥解析、可信时间/实例恢复、CI 最终 gate/计划槽位及原生测试状态映射、实际测试资源及初始化/清理授权、原始运行/缓存来源、工件持久登记、HTTP摘要字节域与重组、原始数据/安全展示、历史核对/现时资格、失陷倒签/撤销/时效/重放 fixtures |
 | Integration / Completion 记录 | S14、共享契约 | 集成入口及完成入口分别签发 | C→I 映射、目标前后身份、CAS/代次、唯一键、恢复及不重开任务的限定重新验证 |
@@ -106,7 +106,7 @@ A01–A25、A30.1、A31–A32 中适用于工具/受治理执行链的要求不�
 | A15.5 | 删除项目/Change/目标资源后以同名或同内容重建，再提交旧授权、证据或待发送动作；另测同一对象改名 | 新实例不继承旧身份/Completion/许可；旧回执只归原历史；合法改名保持身份，新实例须重新批准且不重置原业务预算 | 受保护身份分配/退役记录、外部创建实例、解析前后身份、当前入口拒绝、合法映射及预算对照 | S10/S14；O05/O06/O10；C07 |
 | A16.1 | 必需 gate 缺失、skipped/not_run/error 或插件不可用，且无满足批准复用规则的有效原始证据 | 不能得到该动作资格；完整通过不能依赖空集合 | 可信计划与结果精确集合差异、复用规则及不可满足依据、限定裁定 | S12；C08 |
 | A16.2 | 同一计划槽位重复计数/同一来源结果冲突、替换低强度配置、虚报 artifactCount、挑选成功分片或必需引用已清理 | 拒绝不足覆盖及无法核验的必需证据；保留失败/重试/清理和历史完成事实 | 检查实例、配置/制品摘要、实际解析与保留状态、分片与重试记录 | S12；C06/C08/C09 |
-| A16.3 | 将 submit 的允许 Decision 用于集成，或裁定后改变政策/任务/目标 | 跨阶段用途拒绝；当前前提重新校验并重裁定，不凭旧签名直接执行 | Decision 上下文、独立授权、可控交错和入口拒绝 | S12、共享契约.2；O08；C04/C07/C08 |
+| A16.3 | 将 submit 的允许 Decision 用于集成，或裁定后改变政策/任务/目标 | 跨阶段用途拒绝；当前前提重新校验并重裁定，不凭旧签名直接执行 | Decision 上下文、独立授权、可控交错和入口拒绝 | S12、[共享契约 §13.20.2](edition-1.5.md#shared-contracts)；O08；C04/C07/C08 |
 | A16.4 | 同 gate 的获批多环境/分片全部运行；另测漏槽位、重签同一运行或缓存伪充独立重复 | 合法矩阵与批准的多要求映射可通过；缺槽位、重复贡献或不满足独立性条件拒绝 | 计划/槽位/要求映射、聚合规则、实际 run 与来源结果、缓存复用依据及合法对照 | S12；C04/C06/C08/C09 |
 | A16.5 | 必需槽位全部满足（含计划允许的有效原始证据复用），独立获批观察项 expected=true 但未执行/缺制品；另测必需项伪标 report_only/expected=false、共享采集器失效或动作明确要求整体 verify 成功 | 观察异常按批准范围处理；必需缺口、报告遗漏、共同信任故障及未满足的整体成功前提均阻断；旧 outcome/退出语义不改写，不宣称全检通过 | 事前计划/必需观察映射、原始报告及合法复用绑定、独立采集证据、限定 Decision、不阻断理由和必需失败对照 | S12；O08；C06/C08/C13 |
 | A16.6 | 必需检查xfail、strict xfail、run=False、选择器漏收集而exit 0；非必需观察及正常负向断言 | 原生结果保留；无有效必需断言拒绝；观察按计划分层；真实拒绝由受信断言证明 | 批准槽位/节点映射、collected/selected/deselected、真实执行与原生结果、普通失败及通过对照 | S12；C04/C08 |
@@ -210,6 +210,41 @@ A01–A25、A30.1、A31–A32 中适用于工具/受治理执行链的要求不�
 | 具体项目采用 | 真实身份/配置/目标、经核准事实、适用门禁及其证据有效期 | HTTP/UI/密封业务可据事实 N/A；通用 Agent 门槛仍强制，漂移后重判 |
 | 单次受保护动作 | 当前身份/独立授权、动作专属 Decision、对象/目标前提、额度、代次和证据 | 一次采用批准、历史 Completion 或有效签名均不能单独授权本次动作 |
 
-判定依据为 01 第 10 节及 S19。测试分母由受保护计划确定；本文件中的 `not_run` 不能经格式转换变成任何判定层的通过证据。
+判定依据为 [S19 发布与采用门槛](edition-1.5.md#s19)。测试分母由受保护计划确定；本文件中的 `not_run` 不能经格式转换变成任何判定层的通过证据。
 
 <a id="sources"></a>
+
+<a id="component-responsibilities"></a>
+## 配套责任标签定义
+
+O/C 是验收表的配套责任索引，不增加叶级义务或用例，也不表示实现已经通过。规范义务仍由 S 条款及各场景确定；公开工具入口的实际支持范围以其版本说明为准。
+
+| ID | 配套职责 | 公开入口 |
+|---|---|---|
+| O01 | 识别标准目标与工具能力，安全创建项目 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O02 | 只读盘点、事实提案与模块上下文 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O03 | 事务化 plan / apply / rollback | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O04 | 无特权客户端与受治理执行器分离 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O05 | 动作授权、批准与副作用引用 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O06 | Task 身份、修订、完成周期与旧状态映射 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O07 | 候选快照、提交与验证绑定 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O08 | 集成与完成入口，消除编号和 force 旁路 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O09 | 最小协调、租约代次与并发安全 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O10 | 追加式审计、撤销与恢复 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O11 | HTTP / UI / 评测与安全模板 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O12 | 兼容迁移与错误契约 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| O13 | 配套自检、参考部署与交付证明 | [dasops 源码与支持说明](https://github.com/AzzCraft/dasops#readme) |
+| C01 | 规范包、模块与索引闭包校验 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C02 | 共享、确定性的适用性 Resolver | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C03 | 精确契约、路径语义及兼容适配 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C04 | 受治理验证上下文与独立验收基线 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C05 | 真实隔离、受控适配器与禁止静默降级 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C06 | 可信结果采集与薄证据 Envelope | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C07 | 任务—候选—验证—集成关系校验 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C08 | 检查分母、结果语义与工件完整性 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C09 | 工具、插件、缓存与运行供应链 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C10 | HTTP 事实、覆盖与确定性 Inventory | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C11 | UI 工作流、浏览器与无障碍证据 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C12 | 评测资格与密封运行边界 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C13 | 兼容模式、默认入口与防降级 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |
+| C14 | 自检、配套发布与参考部署证据 | [cadence-oss 源码与支持说明](https://github.com/AzzCraft/cadence-oss#readme) |

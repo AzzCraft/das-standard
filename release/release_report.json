@@ -13,7 +13,7 @@
   "artifacts": {
     "sbom": {
       "path": "SBOM.spdx.json",
-      "sha256": "07306727ae05340dcc2703a4822eb91a860bf16a774156fae7e189ed07965f66"
+      "sha256": "f7fcab08f67e6d82bcdc8eeaf09205d07f248a8a5d22cb47d0f81bf365cdb453"
     },
     "changelog": {
       "path": "CHANGELOG.md",

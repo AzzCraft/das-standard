@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # Consumer-provided hashes cannot establish this independent denominator:
 # co-editing baseline, catalog and leaves must still fail. An intentional new
 # baseline needs a separately reviewed update of this pin.
+# Capture pin is immutable; public content-equivalent v1.4.0 blobs are documented in README.md.
 LEGACY_BASELINE_SHA256 = 'd0c337fd2dc69b9343b6ddc500b0c4209947dca5288f3b6a017662abc7081caf'
 MODULE_IDS = {
     "das.core", "das.architecture-modularity", "das.contracts-compatibility",
@@ -4689,7 +4690,7 @@ def render_views(catalog, baseline, root=ROOT):
         reading.extend([source_fragment(root, leaf['strengthRef']).strip() + ' ' + ' '.join(source_fragment(root, ref).strip() for ref in leaf['bodyRefs']), '',
                         '[Normative source](../' + units[leaf['legacyUnitId']]['source'] + '); legacy unit: `' + leaf['legacyUnitId'] + '`.', ''])
     reading.extend(['# Edition requirement leaves', '',
-        f"The {len(leaves['editionRequirements'])} leaves below map existing Z01–Z12 results and all S01–S21 sections, without adding obligations. Full source contexts preserve scope, enforcement, evidence and exceptions. The original S13 connection constraint proof remains SHOULD; SQLite-specific mandatory behavior retains its actual SQLite condition. The remaining legacy carriers and full product acceptance are not complete; section coverage alone does not establish complete leaf migration.", '',
+        f"The {len(leaves['editionRequirements'])} leaves below map existing Z01–Z12 results and all S01–S21 sections, without adding obligations. Full source contexts preserve scope, enforcement, evidence and exceptions. The original S13 connection constraint proof remains SHOULD; SQLite-specific mandatory behavior retains its actual SQLite condition. Legacy and edition leaf mapping is complete; full product acceptance is not complete. Mapping coverage alone does not establish consumer correctness or qualification.", '',
         'Activation expresses when an obligation applies, not whether its checks passed. Missing facts stay unknown; conflicting sources remain conflict. A false preview result is an unapproved applicability proposal, not an authorized exemption.', '',
         'Z02 approval duties and Z12 provenance/safe-stop duties always apply. Other positive predicates describe actual protected requests (including denied attempts), Agent/Worker participation, untrusted execution, verification, integration, completion and output. They do not describe permission or successful checks, and cannot be set false to avoid a configured path. A Worker activity includes editing/reading, not just executing candidate code. External bindings apply when external material is necessary; missing necessity facts remain unknown. Agent-authored tests and integration competition/rebase/changed merge results retain their specific conditions. The legacy breaking plan retains its AI-task and breaking-impact conditions.', '',
         EDITION_PREAPPROVAL, ''])
@@ -4699,7 +4700,7 @@ def render_views(catalog, baseline, root=ROOT):
             'Activation: `' + json.dumps(leaf['activation'], sort_keys=True, separators=(',', ':')) + '`.', '',
             'Criterion: ' + ' / '.join(source_fragment(root, ref) for ref in leaf['bodyRefs']), '',
             'Context and exceptions: ' + scope_links(leaf['contextRefs']), '',
-            '[Normative author](edition-1.5.md#' + ('s' + leaf['controlId'][1:].zfill(2) if leaf['controlId'].startswith('S') else 's13') + ').', ''])
+            '[Normative author](edition-1.5.md#' + ({'S20': 'shared-contracts', 'S21': 'release-lifecycle'}.get(leaf['controlId'], 's' + leaf['controlId'][1:].zfill(2)) if leaf['controlId'].startswith('S') else 's13') + ').', ''])
     reading.extend(['# Shared normative source scopes', '',
                     'Each leaf links to its full original conditions and exceptions below. Shared scopes are rendered once; they are not replaced by the shorter criterion or activation expression.', ''])
     for anchor, ref in contexts.values():
@@ -4718,10 +4719,10 @@ def render_views(catalog, baseline, root=ROOT):
     spec[9] = f'**Last updated:** {date}\n'
     edition = (root / 'modules/edition-1.5.md').read_text()
     edition = edition.split('\n', 1)[1].lstrip().replace('](../', '](')
-    edition = edition.replace('](acceptance-1.5.md)', '](modules/acceptance-1.5.md)')
+    edition = edition.replace('](acceptance-1.5.md', '](modules/acceptance-1.5.md')
     appendix = (root / 'modules/acceptance-1.5.md').read_text().split('\n', 1)[1].lstrip()
     appendix = appendix.replace('](../', '](')
-    appendix = appendix.replace('](edition-1.5.md)', '](modules/edition-1.5.md)')
+    appendix = appendix.replace('](edition-1.5.md', '](modules/edition-1.5.md')
     appendix = re.sub(r'^(#{2,3}) ', r'##\1 ', appendix, flags=re.M)
     full = ''.join(spec) + EDITION_MARKER + '\n<a id="edition-1-5"></a>\n## 13. Edition 1.5 normative additions\n\n'
     full += 'Generated view. Edit modules/edition-1.5.md and modules/acceptance-1.5.md; never edit this tail independently.\n\n' + edition

@@ -77,3 +77,31 @@ See [LICENSE](LICENSE) and [NOTICE](NOTICE).
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [DAS_GOVERNANCE_COLLABORATION.md](DAS_GOVERNANCE_COLLABORATION.md) for governance and review expectations.
+
+## Legacy baseline provenance and public verification
+
+`migration/legacy_normative_baseline.json` retains its captured source claim
+`6d90333aea16987fc490570746fb5f93c930b970`. That object is not available from
+this public repository. This does not establish the history of that capture.
+The 17 recorded source files are content-equivalent to public v1.4.0 commit
+`ac5a52fe9e8997392b3d21a488097e394d8e3102`. The baseline bytes and independent
+SHA-256 pin `d0c337fd2dc69b9343b6ddc500b0c4209947dca5288f3b6a017662abc7081caf`
+remain unchanged. Content equivalence is not a claim that the commits share provenance.
+
+From this checkout, with the public v1.4.0 object available, verify the equivalence:
+
+```bash
+python3 - <<'PYCODE'
+import hashlib, json, subprocess
+from pathlib import Path
+commit = "ac5a52fe9e8997392b3d21a488097e394d8e3102"
+for item in json.loads(Path("migration/legacy_normative_baseline.json").read_text())["sources"]:
+    raw = subprocess.check_output(["git", "show", commit + ":" + item["path"]])
+    if hashlib.sha256(raw).hexdigest() != item["sha256"]:
+        raise SystemExit("Content differs: " + item["path"])
+print("Public content equivalence verified: 17 files")
+PYCODE
+```
+
+Missing Git objects are an unavailable provenance check, not a content PASS.
+Normal offline content verification needs no Git-history retrieval.

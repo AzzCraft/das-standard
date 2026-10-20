@@ -26,14 +26,32 @@ The DAS Standard uses **Semantic Versioning (SemVer)**: `MAJOR.MINOR.PATCH`.
 - **MINOR**: backward-compatible additions (new recommended practices, new optional sections, new conformance checks that can be ignored by older adopters).
 - **MAJOR**: breaking changes to requirements, conformance rules, or compatibility windows.
 
-A release is identified by a Git tag `vX.Y.Z`.
+A release is identified by an annotated `v<SemVer>` tag, including prereleases such as `v1.5.0-beta.1`.
 
 ## Release process
 
-A release MUST include:
-- an updated `CHANGELOG.md` entry,
-- updated version badges/metadata where relevant,
-- a Git tag `vX.Y.Z` created from `main`.
+1. Merge the intended source changes through the repository's PR/CI rules.
+   Update `CHANGELOG.md`, `VERSION` and matching manifest/metadata; prepare the
+   checked content snapshot and review the public source contents.
+2. A maintainer creates an **annotated** `v<SemVer>` tag whose suffix exactly
+   matches `VERSION`. The target commit must be reachable from the repository's
+   default branch; it need not equal the current tip. Lightweight tags reject.
+3. Run the `release-validation` workflow from the default branch with its `ref`
+   input set to that exact tag. See [release.yml](.github/workflows/release.yml).
+   It binds the tag object, target commit, VERSION and default-branch ancestry,
+   verifies source/tooling and builds the source/evidence artifacts.
+4. The trusted stage independently rebuilds the evidence and attests the exact
+   `das-standard-<version>-evidence.tar`. That direct attestation subject contains
+   the source archive, SBOM, content ZIP/snapshot where applicable, manifest and
+   checksums; it does **not** directly attest each inner file as a separate subject.
+5. Review the validation output and its identities before publishing. This
+   workflow does not create a tag or GitHub Release. The maintainer performs the
+   separately authorized publication and checks the published bytes against the
+   validated evidence. Validation success alone is not publication.
+
+See [the Standard](SPECIFICATION.md), §13.21, for the source publication and
+qualification boundary. Reading, citing, validating or packaging the Standard
+is independent of running an adopter production environment.
 
 ## Change process
 
@@ -63,8 +81,8 @@ Run `python3 -B tools/validate_modules.py`, then
 affected artifact digests in `release/release_report.json`, and finally run
 `python3 -B tools/generate_content_snapshot.py`.
 Use the affected `scripts/verify --gate <name>` checks while developing; they
-also enforce common index/module/snapshot consistency. Default/all/`--full`
-runs the broader tests. Content validation, ZIP generation, release-validation
+also enforce common index/module/snapshot consistency. Default/all runs the broader tests; `--full` labels the run mode and does not
+override an explicitly selected gate. Content validation, ZIP generation, release-validation
 and publishing are distinct operations. A checked-in snapshot is an input
 identity record, not a new execution report for each invocation; registry
 `producesArtifacts`/`expectedArtifactCount` describe that declared artifact

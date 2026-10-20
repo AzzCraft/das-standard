@@ -14,7 +14,7 @@
     "floating": false
   },
   "bundleDigestAlgorithm": "sha256",
-  "bundleDigest": "620b5f2ecc350656732dfc09964ac8a250ace9ada3614549126c4a0c13ccf330",
+  "bundleDigest": "bd7c1c2a3e00e16b34f127831c7959f29357916396dd1d8a57d9c8ad7e00f8c9",
   "artifacts": [
     {
       "path": ".github/workflows/verify.yml",
@@ -24,7 +24,7 @@
     },
     {
       "path": "BUILD_REQUIREMENTS.md",
-      "sha256": "c8eb169618cea4f0d9fd7cbe18515e63326aad7e71ff00524087fd4516b8be5f",
+      "sha256": "d4d3cd45deee4c84132323b18ded7b32dd000b867351e1c04207e7b84a1d765e",
       "artifactClass": "normative",
       "required": true
     },
@@ -672,7 +672,7 @@
     },
     {
       "path": "tools/validate_release_contract.py",
-      "sha256": "24d6ac08064f7b7143671c62c09252fdb01bd94efa606ac1c295dedc45e07528",
+      "sha256": "622b49e132f7911ecf6a37c7d2840c4c0411979f74096dbbf2a963061e715ea3",
       "artifactClass": "supporting",
       "required": true
     },

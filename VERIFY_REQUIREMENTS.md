@@ -25,4 +25,24 @@ python3 -m pip install -r requirements-verify.txt
 5. Snapshot hashes, registry-to-verifier gate parity, compatibility fixtures, and generated-output freshness.
 6. Generated-residue checks and the repository self-conformance test suite.
 
-Use `./scripts/verify --full` to label an explicit full run. It executes the same governed release checks as the default all-gates command; use `./scripts/verify --gate <name>` for one registry-backed gate.
+## Choosing the minimum relevant check
+
+| Invocation | Scope |
+|---|---|
+| `./scripts/verify` or `--gate all` | Common checks, all selected release-contract checks, residue check and pytest |
+| `./scripts/verify --full` | Same default all-gates scope, labelled full mode |
+| `./scripts/verify --gate schemas` | Common checks plus schema gate; no pytest suite |
+| `./scripts/verify --full --gate schemas` | Still the selected schema gate; full mode does not expand gate selection |
+| `./scripts/verify --gate compat-release` | Common checks and compatibility gate; skips generated-residue check |
+
+Every selected gate still executes shared required-file, structure, manifest,
+content/reference, index/module and snapshot-consistency checks. A gate is not
+an isolated single-file validator. The shell entry records toolchain versions,
+so even a gate that does not run pytest requires the pinned pytest package to be
+installed. It clears `PYTEST_ADDOPTS` to prevent inherited selection narrowing.
+
+Direct tools such as `python3 -B tools/validate_release_contract.py --gate schemas`
+are narrower diagnostics, not substitutes for all shell-entry common checks.
+Use the selected shell gate when checking the component contract; use focused
+pytest node IDs for a behavior change. Reserve all/default runs for CI or a
+specific broader risk, not every documentation edit.

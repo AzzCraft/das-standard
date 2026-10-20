@@ -95,3 +95,29 @@ def test_diff_helper_parses_supported_calls_and_propagates_git_errors(tmp_path):
     for args in [["HEAD", "nonexistent-ref"], ["--bad"], ["HEAD", "HEAD", "extra"]]:
         run = subprocess.run(["bash", str(scripts / "diff_standard"), *args], capture_output=True, text=True)
         assert run.returncode != 0
+
+
+@pytest.mark.parametrize("version,valid", [
+    ("01.5.0", False), ("1.5.0-beta..1", False), ("1.5.0-01", False),
+    ("１.５.０", False), ("1.5.0-", False), ("1.5.0+", False),
+    ("0.0.0", True), ("1.5.0", True), ("1.5.0-beta.1", True),
+    ("1.5.0+build.001", True), ("1.5.0-beta.1+build.001", True),
+])
+def test_manifest_version_uses_strict_release_semver(tmp_path, monkeypatch, version, valid):
+    for name in ["standard_manifest.json", "standard_manifest.schema.json"]:
+        shutil.copy2(ROOT / name, tmp_path / name)
+    (tmp_path / "VERSION").write_text(version + "\n")
+    manifest = json.loads((tmp_path / "standard_manifest.json").read_text())
+    manifest["standardVersion"] = version
+    (tmp_path / "standard_manifest.json").write_text(json.dumps(manifest))
+    monkeypatch.setattr(validator, "ROOT", tmp_path)
+    if valid:
+        validator.check_manifest_artifacts()
+    else:
+        with pytest.raises(ValueError, match="invalid VERSION"):
+            validator.check_manifest_artifacts()
+    # Keep acceptance aligned with the actual release workflow's Bash grammar.
+    workflow = (ROOT / ".github/workflows/release.yml").read_text()
+    grammar = workflow.split("semver='")[1].split("'", 1)[0]
+    check = subprocess.run(["bash", "-c", '[[ "$1" =~ ^v${2}$ ]]', "semver-case", "v" + version, grammar])
+    assert (check.returncode == 0) is valid

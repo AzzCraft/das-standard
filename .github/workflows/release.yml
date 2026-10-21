@@ -301,3 +301,11 @@ jobs:
         uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
         with:
           subject-path: "${{ steps.trusted_artifact.outputs.bundle }}"
+
+      - name: Retain the exact attested evidence bundle
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: das-standard-attested-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ steps.trusted_artifact.outputs.bundle }}
+          if-no-files-found: error
+          retention-days: 30

@@ -169,7 +169,8 @@
         "kind",
         "uri",
         "pinType",
-        "pinValue"
+        "pinValue",
+        "floating"
       ],
       "properties": {
         "kind": {

@@ -6,7 +6,13 @@ import hashlib
 import json
 import re
 from pathlib import Path
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
+
+# Resolve the adjacent helper explicitly; these maintenance scripts support -I.
+import importlib.util
+_io_spec = importlib.util.spec_from_file_location("das_standard_io", Path(__file__).with_name("standard_io.py"))
+standard_io = importlib.util.module_from_spec(_io_spec)
+_io_spec.loader.exec_module(standard_io)
 
 ROOT = Path(__file__).resolve().parents[1]
 VALID_GATES = {"all", "bundle-files", "schemas", "release-snapshot", "compat-release"}
@@ -114,7 +120,7 @@ def check_reference_contracts(manifest: dict) -> None:
                     raise ValueError('duplicate reference schema member')
                 value[name] = field
             return value
-        schema = json.loads(data, object_pairs_hook=unique)
+        schema = standard_io.loads(data)
         if (schema.get('$schema') != 'https://json-schema.org/draft/2020-12/schema'
                 or not isinstance(schema.get('$id'), str) or schema['$id'] in schema_ids
                 or schema.get('properties', {}).get('contractIdentity', {}).get('const') != identity):
@@ -145,10 +151,10 @@ def check_reference_contracts(manifest: dict) -> None:
                 pending.extend(node)
 
 def load(rel: str) -> dict:
-    return json.loads((ROOT / rel).read_text(encoding="utf-8"))
+    return standard_io.loads((ROOT / rel).read_text(encoding="utf-8"))
 
 def validate(data_rel: str, schema_rel: str) -> None:
-    Draft202012Validator(load(schema_rel)).validate(load(data_rel))
+    Draft202012Validator(load(schema_rel), format_checker=FormatChecker()).validate(load(data_rel))
 
 def headings(text: str) -> list[tuple[int, int, str]]:
     result = []
@@ -212,7 +218,13 @@ def check_enum_definitions(manifest: dict) -> None:
             raise ValueError(f'{definitions_name} must exactly define {enum_name}')
 
 def check_templates(manifest: dict) -> None:
-    catalog = load("template_catalog.json")["templates"]
+    roles = set(manifest['enums']['repoRoles'])
+    if set(load('verify_registry.schema.json')['properties']['repoRole']['enum']) != roles or set(load('suite_lock.schema.json')['$defs']['moduleLock']['properties']['role']['enum']) != roles:
+        raise ValueError('registry/suite-lock roles differ from canonical repoRoles')
+    catalog = load("template_catalog.json")
+    if catalog.get("standardVersion") != (ROOT / "VERSION").read_text().strip() or catalog.get("standardVersion") != manifest["standardVersion"]:
+        raise ValueError("canonical template catalog version differs from VERSION/manifest")
+    catalog = catalog["templates"]
     if not ({item['docType'] for item in catalog} == set(manifest['docTypes'])):
         raise ValueError("template catalog must cover every declared document type")
     if not (len({item['docType'] for item in catalog}) == len(catalog)):
@@ -264,7 +276,7 @@ def check_ids_and_context(manifest: dict) -> None:
     if not ('offline-first' not in evidence['summary'].lower() and 'signing' not in evidence['summary'].lower()):
         raise ValueError("verification Context Pack claims undeclared offline/signing requirements")
     for path in (ROOT / "context_packs").glob("*.json"):
-        pack = json.loads(path.read_text(encoding="utf-8"))
+        pack = standard_io.loads(path.read_text(encoding="utf-8"))
         if not (pack['standardVersion'] == manifest['standardVersion']):
             raise ValueError("standard contract check failed: pack['standardVersion'] == manifest['standardVersion']")
         if not (set(pack['chapters']) <= chapters):
@@ -273,6 +285,7 @@ def check_ids_and_context(manifest: dict) -> None:
             raise ValueError("standard contract check failed: set(pack['clauses']) <= clauses")
 
 def check_snapshot_registry(manifest: dict) -> None:
+    standard_io.validate_content_inventory(ROOT, manifest)
     snapshot = load("release_snapshot_manifest.json")
     names = [item["path"] for item in snapshot["artifacts"]]
     required = manifest["requiredArtifacts"]
@@ -315,7 +328,7 @@ def check_compat(manifest: dict) -> None:
     fixture = ROOT / "tests" / "compat" / f"v{version}" / "standard_manifest.json"
     if not (fixture.is_file()):
         raise ValueError(f'missing current compatibility fixture: {fixture.relative_to(ROOT)}')
-    if not (json.loads(fixture.read_text(encoding='utf-8')) == manifest):
+    if not (standard_io.loads(fixture.read_text(encoding='utf-8')) == manifest):
         raise ValueError('current compatibility fixture must exactly copy the canonical manifest')
 
 def check_sbom_dependencies() -> None:

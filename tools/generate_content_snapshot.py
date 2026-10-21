@@ -11,6 +11,12 @@ from pathlib import Path
 import stat
 import zipfile
 
+# Resolve the adjacent helper explicitly; these maintenance scripts support -I.
+import importlib.util
+_io_spec = importlib.util.spec_from_file_location("das_standard_io", Path(__file__).with_name("standard_io.py"))
+standard_io = importlib.util.module_from_spec(_io_spec)
+_io_spec.loader.exec_module(standard_io)
+
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "release_snapshot_manifest.json"
 
@@ -20,7 +26,8 @@ def sha(path: Path) -> str:
 
 
 def build() -> dict:
-    manifest = json.loads((ROOT / "standard_manifest.json").read_text(encoding="utf-8"))
+    manifest = standard_io.loads((ROOT / "standard_manifest.json").read_text(encoding="utf-8"))
+    standard_io.validate_content_inventory(ROOT, manifest)
     artifacts = []
     for rel in sorted(set(manifest["requiredArtifacts"]) - {OUTPUT.name}):
         if (not isinstance(rel, str) or not rel or Path(rel).is_absolute()
@@ -100,7 +107,7 @@ def archive(destination: Path, rendered: str) -> None:
         os.close(parent_fd)
     if not OUTPUT.is_file() or OUTPUT.read_bytes() != rendered.encode('utf-8'):
         raise SystemExit('release_snapshot_manifest.json is stale; regenerate before packaging')
-    snapshot = json.loads(rendered)
+    snapshot = standard_io.loads(rendered)
     expected = {row['path']: row['sha256'] for row in snapshot['artifacts']}
     expected[OUTPUT.name] = hashlib.sha256(rendered.encode('utf-8')).hexdigest()
     buffer = io.BytesIO()
@@ -155,7 +162,7 @@ def main() -> int:
         if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != rendered:
             raise SystemExit("release_snapshot_manifest.json is stale")
     else:
-        OUTPUT.write_text(rendered, encoding="utf-8")
+        standard_io.write_text(OUTPUT, rendered)
     return 0
 
 

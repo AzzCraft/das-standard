@@ -44,6 +44,13 @@ A release is identified by an annotated `v<SemVer>` tag, including prereleases s
    `das-standard-<version>-evidence.tar`. That direct attestation subject contains
    the source archive, SBOM, content ZIP/snapshot where applicable, manifest and
    checksums; it does **not** directly attest each inner file as a separate subject.
+   The trusted job also retains this exact tar in the Actions artifact
+   `das-standard-attested-evidence-<run_id>-<run_attempt>` for 30 days. Download
+   that artifact, extract the outer ZIP, and verify the tar before using its
+   contents: `gh attestation verify das-standard-<version>-evidence.tar --repo AzzCraft/das-standard`.
+   Compare the verified source/workflow identity to the reviewed run; retain the
+   tar, SHA-256 and verification output before expiry. The ZIP and inner source
+   archive are different byte objects, so neither substitutes for the subject.
 5. Review the validation output and its identities before publishing. This
    workflow does not create a tag or GitHub Release. The maintainer performs the
    separately authorized publication and checks the published bytes against the

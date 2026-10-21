@@ -14,8 +14,14 @@
     "floating": false
   },
   "bundleDigestAlgorithm": "sha256",
-  "bundleDigest": "bd7c1c2a3e00e16b34f127831c7959f29357916396dd1d8a57d9c8ad7e00f8c9",
+  "bundleDigest": "79fae347d0eb83f35a17c0bc92b945632024f573ebe8f210b47088533a9c0a7b",
   "artifacts": [
+    {
+      "path": ".github/workflows/release.yml",
+      "sha256": "09f403af16b2fc8b5ab9ad7366b07267112a151b61b230b1e49622aa08078eb1",
+      "artifactClass": "ci",
+      "required": true
+    },
     {
       "path": ".github/workflows/verify.yml",
       "sha256": "e8cfa44e3ca51e1a23d7092559ef7e1c8a3c18b13aa17ab8e8ff44ebb65a7a19",
@@ -35,6 +41,12 @@
       "required": true
     },
     {
+      "path": "CONTRIBUTING.md",
+      "sha256": "2b43abc5d6b1340f98f5aa16b127d598bd949d13c9fee89ace56db5a02c02fab",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
       "path": "DAS_DEPLOYMENT_ADDENDUM.md",
       "sha256": "3a44e8f275281002a0ffff604778dc3440eb62aef5d7b35f5ee8c3b6d9bc7c7f",
       "artifactClass": "normative",
@@ -49,6 +61,12 @@
     {
       "path": "DAS_STANDARD_CONTEXT_PACK.md",
       "sha256": "f177dd70d739b27caa008bba75341708a37c379752ed9a1697af3b8f40b21408",
+      "artifactClass": "normative",
+      "required": true
+    },
+    {
+      "path": "GOVERNANCE.md",
+      "sha256": "897eb30dfe9feaff8a1909d71cd2d1d779c998a755f260d903e80c4b184272d8",
       "artifactClass": "normative",
       "required": true
     },
@@ -77,6 +95,12 @@
       "required": true
     },
     {
+      "path": "NOTICE",
+      "sha256": "5034d22422c0265ba9a60644265c17a9364a013a4251bba4fffdde0e347602d6",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
       "path": "README.md",
       "sha256": "7459b2fbb99b139503d4966eb607832d70733e2fa1514251c962abd43c776677",
       "artifactClass": "normative",
@@ -84,7 +108,7 @@
     },
     {
       "path": "SBOM.spdx.json",
-      "sha256": "f7fcab08f67e6d82bcdc8eeaf09205d07f248a8a5d22cb47d0f81bf365cdb453",
+      "sha256": "a98ebdb365395c88925bd1a52f11c0042ac1cbc72175362c726a230c04bd7b11",
       "artifactClass": "supporting",
       "required": true
     },
@@ -174,7 +198,7 @@
     },
     {
       "path": "chapter_index.json",
-      "sha256": "4fa6bcb13367cd51830a066a46d0ea4fe28f7c8b54360751fb7c67c37a017a94",
+      "sha256": "711fee9bb1bcef4aec4c9093e797a2b532be55f76aafea083a47e8936261db3c",
       "artifactClass": "supporting",
       "required": true
     },
@@ -185,8 +209,14 @@
       "required": true
     },
     {
+      "path": "citation.cff",
+      "sha256": "1e5f4a4f97290db603fdc7465ad61da663b334de0e0dc5da05b38260fe84b19e",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
       "path": "clause_index.json",
-      "sha256": "c0bb096641a51f80061051f00e75b5cf995fcaa69914c485cd9089cbb1519086",
+      "sha256": "e63d23a2bc31168ee0074c9aac93f73f5a6f87556948f2b8f7d6bbfd720629e6",
       "artifactClass": "supporting",
       "required": true
     },
@@ -498,7 +528,7 @@
     },
     {
       "path": "release/release_report.json",
-      "sha256": "2a359a0a3040981e9f89591dea9cd45670619fbe602bd63c84c414099315e2ff",
+      "sha256": "c7d062bc2abb800b3f33ce0a7c3e14e06f42a6cf1a126bc7d1ab5c8914001c0c",
       "artifactClass": "supporting",
       "required": true
     },
@@ -516,19 +546,19 @@
     },
     {
       "path": "requirements-verify.txt",
-      "sha256": "22917b4ecf32a170927c71e4b99db7fbf917c1bfd7807f496bd1e56fba2f2dda",
+      "sha256": "5399d29ac94e157b4573e459f47134a81c6eefbcd9bdc5e842e693f176d4a986",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "scripts/verify",
-      "sha256": "a6411351fc5d84557aaa80d1bb72f66497e85a7dd21cb198623afea94c1fa028",
+      "sha256": "35209a07f118cadef46a4739e1b85ec488eb624b6a6cb7fb1b9cd0d579a7e310",
       "artifactClass": "script",
       "required": true
     },
     {
       "path": "standard_ids.schema.json",
-      "sha256": "3a49e7b1247932694d7f834908b6e3877a7a8129d2fc4e0a01ec49acdefde10d",
+      "sha256": "d80b5211dc07918ac6f10d14ec7fc7a993635d9382aa1c6cb6954e7a33687a72",
       "artifactClass": "schema",
       "required": true
     },
@@ -540,7 +570,7 @@
     },
     {
       "path": "standard_manifest.json",
-      "sha256": "fad8d537145af5771ec14c355e458bb5838016da6f7e44906c43ada68b51e9ad",
+      "sha256": "a03c4062ef9db8c1b7cea87eb28febff2c57de5258cb1c111f6466bc7fbb2a73",
       "artifactClass": "supporting",
       "required": true
     },
@@ -582,7 +612,7 @@
     },
     {
       "path": "suite_lock.schema.json",
-      "sha256": "64532328f53009b64ec71a9461b7da3c4ed8648a6b9d958446c245684e9953d8",
+      "sha256": "7a8b8ba8b9b8b0c47c53f708f272dbf7bee73a6d80b080945ee4989062c99285",
       "artifactClass": "schema",
       "required": true
     },
@@ -594,7 +624,7 @@
     },
     {
       "path": "suite_version_closure.schema.json",
-      "sha256": "330210438d4fbc0e879d528526c6a7efb4c638ba7f70419efcaf58fd9086e8e8",
+      "sha256": "9014c120524c06a7257ce75052c433f10e84cd67d4398c44e33aac5b43f78943",
       "artifactClass": "schema",
       "required": true
     },
@@ -636,7 +666,7 @@
     },
     {
       "path": "tests/compat/v1.5.0-beta.1/standard_manifest.json",
-      "sha256": "fad8d537145af5771ec14c355e458bb5838016da6f7e44906c43ada68b51e9ad",
+      "sha256": "a03c4062ef9db8c1b7cea87eb28febff2c57de5258cb1c111f6466bc7fbb2a73",
       "artifactClass": "supporting",
       "required": true
     },
@@ -654,25 +684,31 @@
     },
     {
       "path": "tools/generate_content_snapshot.py",
-      "sha256": "9d9042a95ba1fec7fc8604811ac81517e283e5122fba5eadda2866e2d90e8771",
+      "sha256": "e5da906e48f3258c0c2b4c2106155911ed461d6b5c771e8fcce1bbbd8bbb2097",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "tools/generate_spec_indexes.py",
-      "sha256": "8b1b45b2a6729a3d74a47bace6bffd0320432e4cb5b213637be2ec7cf609538b",
+      "sha256": "e61d85cd6b2298ff8ff2dbaf7f3259660cee984a95777581510a848d91491766",
+      "artifactClass": "supporting",
+      "required": true
+    },
+    {
+      "path": "tools/standard_io.py",
+      "sha256": "9be0a14bbe4a6224c4ae1417863c2b3ff0d164c60f5b1162c37895c5fe3df534",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "tools/validate_modules.py",
-      "sha256": "4b1592bd2198c3229732e610f19bae97f31d668ab1281d3b788406c1cf8a1555",
+      "sha256": "0126445618420117ce6b16c60cfc07d606b4d7348a1eaf7c9c634f74438fa787",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "tools/validate_release_contract.py",
-      "sha256": "622b49e132f7911ecf6a37c7d2840c4c0411979f74096dbbf2a963061e715ea3",
+      "sha256": "cfd6562a0e1490bb7714eda52372e7b14e6cd8a50104dbf389846539fbb8d1f2",
       "artifactClass": "supporting",
       "required": true
     },
@@ -690,7 +726,7 @@
     },
     {
       "path": "verify_registry.schema.json",
-      "sha256": "6e6f3e5a43103a83e4f617611a73f03b524ee7263ee119b575e731b028382c40",
+      "sha256": "42469e74a537b03ea1ad4105e296c8b423c4097990c339631c3bed762d16afec",
       "artifactClass": "schema",
       "required": true
     },
@@ -702,7 +738,7 @@
     },
     {
       "path": "verify_report.schema.json",
-      "sha256": "bdcada888c77ea4de02a4c7f1db82ef11ae5eadb1f35333bed7857c999e48f83",
+      "sha256": "00974b42fba1047636c905bda0029549ded23a1f6552e2c84cca606df0f401d1",
       "artifactClass": "schema",
       "required": true
     }

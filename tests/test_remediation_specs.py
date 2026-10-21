@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import unittest
 from jsonschema import Draft202012Validator
 from pathlib import Path
@@ -105,7 +106,7 @@ class StandardRemediationSpecTests(unittest.TestCase):
 
     def test_v9_01_version_at_least_140(self) -> None:
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
-        parts = tuple(int(x) for x in version.split('-', 1)[0].split("."))
+        parts = tuple(int(x) for x in version.split('+', 1)[0].split('-', 1)[0].split("."))
         self.assertGreaterEqual(parts, (1, 4, 0), f"VERSION is too old: {version}")
 
     def test_indexes_cover_every_numbered_spec_heading(self) -> None:
@@ -117,11 +118,10 @@ class StandardRemediationSpecTests(unittest.TestCase):
             for line in spec.splitlines()
             if line.startswith("## ") and line[3:4].isdigit()
         }
-        expected_clauses = {
-            line.split(" ", 2)[1]
-            for line in spec.splitlines()
-            if line.startswith("### ") and line[4:5].isdigit()
-        }
+        # Independently include the 33 formally numbered fourth-level clauses;
+        # acceptance-appendix numbering belongs to a separate document domain.
+        body = spec.split("#### Edition acceptance obligations (generated)")[0]
+        expected_clauses = set(re.findall(r"^#{3,4} ([0-9]+\.[0-9]+(?:\.[0-9]+)?) ", body, re.M))
         actual_chapters = {item["id"].removeprefix("ch-") for item in chapter_index["chapters"]}
         actual_clauses = {item["id"].removeprefix("cl-") for item in clause_index["clauses"]}
         self.assertEqual(actual_chapters, expected_chapters)

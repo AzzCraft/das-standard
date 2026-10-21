@@ -41,7 +41,9 @@ else
 fi
 
 VERSION="$(tr -d '[:space:]' < "$ROOT/VERSION")"
-if BUILD_SHA="$(git -C "$ROOT" rev-parse --verify HEAD 2>/dev/null)"; then
+if GIT_TOP="$(git -C "$ROOT" rev-parse --show-toplevel 2>/dev/null)" &&
+   [[ "$(cd "$GIT_TOP" && pwd -P)" == "$(cd "$ROOT" && pwd -P)" ]] &&
+   BUILD_SHA="$(git -C "$ROOT" rev-parse --verify HEAD 2>/dev/null)"; then
   BUILD_REF="git:$BUILD_SHA"
 else
   BUILD_REF="content:v$VERSION"
@@ -70,7 +72,7 @@ import sys
 from pathlib import Path
 
 try:
-    from jsonschema import Draft202012Validator
+    from jsonschema import Draft202012Validator, FormatChecker
 except (ModuleNotFoundError, ImportError) as exc:
     raise SystemExit(
         "jsonschema with Draft202012Validator is required; install verification dependencies with "
@@ -78,6 +80,10 @@ except (ModuleNotFoundError, ImportError) as exc:
     ) from exc
 
 root = Path(os.environ['ROOT'])
+import importlib.util
+io_spec = importlib.util.spec_from_file_location('das_standard_io', root / 'tools/standard_io.py')
+standard_io = importlib.util.module_from_spec(io_spec)
+io_spec.loader.exec_module(standard_io)
 gate = os.environ.get('GATE', 'all')
 valid_gates = {'all', 'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}
 if gate not in valid_gates:
@@ -85,13 +91,13 @@ if gate not in valid_gates:
 
 
 def load_json(path: Path):
-    return json.loads(path.read_text())
+    return standard_io.loads(path.read_text())
 
 
 def validate_json(data_path: Path, schema_path: Path):
     data = load_json(data_path)
     schema = load_json(schema_path)
-    Draft202012Validator(schema).validate(data)
+    Draft202012Validator(schema, format_checker=FormatChecker()).validate(data)
 
 
 def strip_fenced_code(text: str) -> str:

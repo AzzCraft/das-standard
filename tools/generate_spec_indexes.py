@@ -7,25 +7,44 @@ import json
 import re
 from pathlib import Path
 
+# Resolve the adjacent helper explicitly; these maintenance scripts support -I.
+import importlib.util
+_io_spec = importlib.util.spec_from_file_location("das_standard_io", Path(__file__).with_name("standard_io.py"))
+standard_io = importlib.util.module_from_spec(_io_spec)
+_io_spec.loader.exec_module(standard_io)
+
 ROOT = Path(__file__).resolve().parents[1]
 CHAPTER = re.compile(r"^## (?:([0-9]+)\. )?(.+)$")
-CLAUSE = re.compile(r"^### ([0-9]+\.[0-9]+(?:\.[0-9]+)?) (.+)$")
+CLAUSE = re.compile(r"^#{3,6} ([0-9]+\.[0-9]+(?:\.[0-9]+)*) (.+)$")
 
 
 def slug(text: str) -> str:
     value = text.strip().lower()
     value = re.sub(r"[^\w\- ]", "", value, flags=re.UNICODE)
-    return re.sub(r"[\s-]+", "-", value).strip("-")
+    return value.replace(" ", "-")
 
 
 def payloads() -> tuple[dict, dict]:
     text = (ROOT / "SPECIFICATION.md").read_text(encoding="utf-8")
     chapters = []
     clauses = []
+    fence = None
+    in_chapter = False
     for line in text.splitlines():
+        fenced = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
+        if fenced:
+            marker = fenced.group(1)
+            if fence is None: fence = marker
+            elif marker[0] == fence[0] and len(marker) >= len(fence): fence = None
+            continue
+        if fence is not None:
+            continue
+        if line == "#### Edition acceptance obligations (generated)":
+            break
         chapter_match = CHAPTER.match(line)
         if chapter_match:
             number, title = chapter_match.groups()
+            in_chapter = number is not None
             if number is not None:
                 chapters.append({
                     "id": f"ch-{number}", "title": title,
@@ -33,7 +52,7 @@ def payloads() -> tuple[dict, dict]:
                 })
             continue
         clause_match = CLAUSE.match(line)
-        if clause_match:
+        if clause_match and in_chapter:
             number, title = clause_match.groups()
             clauses.append({
                 "id": f"cl-{number}", "chapter": f"ch-{number.split('.', 1)[0]}",
@@ -66,7 +85,9 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    expected = zip((ROOT / "chapter_index.json", ROOT / "clause_index.json"), payloads())
+    expected = list(zip((ROOT / "chapter_index.json", ROOT / "clause_index.json"), payloads()))
+    if not args.check:
+        standard_io.preflight_outputs([path for path, _ in expected])
     stale = []
     for path, payload in expected:
         rendered = json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
@@ -74,7 +95,7 @@ def main() -> int:
             if not path.is_file() or path.read_text(encoding="utf-8") != rendered:
                 stale.append(path.name)
         else:
-            path.write_text(rendered, encoding="utf-8")
+            standard_io.write_text(path, rendered)
     if stale:
         raise SystemExit("stale generated indexes: " + ", ".join(stale))
     return 0

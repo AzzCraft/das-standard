@@ -35,7 +35,8 @@
         "control_plane_repo",
         "enterprise_subtree_repo",
         "product_repo",
-        "monorepo_local_tooling"
+        "monorepo_local_tooling",
+        "collaboration_enhancement_repo"
       ]
     },
     "defaultVerifyCommand": {
@@ -59,7 +60,9 @@
         "cadence",
         "enforcementClass",
         "command",
-        "failureOnNoResults"
+        "failureOnNoResults",
+        "owners",
+        "scope"
       ],
       "properties": {
         "gateId": {
@@ -106,12 +109,14 @@
         "owners": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "minItems": 1
         },
         "scope": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "failureOnNoResults": {
           "type": "boolean"

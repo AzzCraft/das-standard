@@ -233,7 +233,8 @@
             "control_plane_repo",
             "enterprise_subtree_repo",
             "product_repo",
-            "monorepo_local_tooling"
+            "monorepo_local_tooling",
+            "collaboration_enhancement_repo"
           ]
         },
         "lockedRef": {

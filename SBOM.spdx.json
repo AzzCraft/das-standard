@@ -37,6 +37,15 @@
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "versionInfo": "9.0.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-rfc3339-validator",
+      "name": "rfc3339-validator",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "versionInfo": "0.1.4"
     }
   ],
   "relationships": [
@@ -49,6 +58,11 @@
       "spdxElementId": "SPDXRef-Package-das-standard",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-Package-pytest"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-das-standard",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-rfc3339-validator"
     }
   ],
   "comment": "Source metadata only; filesAnalyzed=false. Not a final artifact, installed dependency inventory or publication proof."

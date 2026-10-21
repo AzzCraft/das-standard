@@ -30,7 +30,7 @@
     {
       "id": "ch-4",
       "title": "Canonical contracts and naming (cross-boundary + persisted)",
-      "file": "SPECIFICATION.md#4-canonical-contracts-and-naming-cross-boundary-persisted",
+      "file": "SPECIFICATION.md#4-canonical-contracts-and-naming-cross-boundary--persisted",
       "roles": [
         "all"
       ]
@@ -62,7 +62,7 @@
     {
       "id": "ch-8",
       "title": "Backend / Orchestrator Engineering (AI Product Engineering Principles)",
-      "file": "SPECIFICATION.md#8-backend-orchestrator-engineering-ai-product-engineering-principles",
+      "file": "SPECIFICATION.md#8-backend--orchestrator-engineering-ai-product-engineering-principles",
       "roles": [
         "all"
       ]
@@ -70,7 +70,7 @@
     {
       "id": "ch-9",
       "title": "Project documentation requirements (Master Doc + doc families + UI Spec)",
-      "file": "SPECIFICATION.md#9-project-documentation-requirements-master-doc-doc-families-ui-spec",
+      "file": "SPECIFICATION.md#9-project-documentation-requirements-master-doc--doc-families--ui-spec",
       "roles": [
         "all"
       ]
@@ -94,7 +94,7 @@
     {
       "id": "ch-12",
       "title": "DDD + BDD integration (domain + behavior as first-class artifacts)",
-      "file": "SPECIFICATION.md#12-ddd-bdd-integration-domain-behavior-as-first-class-artifacts",
+      "file": "SPECIFICATION.md#12-ddd--bdd-integration-domain--behavior-as-first-class-artifacts",
       "roles": [
         "all"
       ]

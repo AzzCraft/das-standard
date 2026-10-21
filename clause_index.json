@@ -63,7 +63,7 @@
       "id": "cl-3.3",
       "chapter": "ch-3",
       "title": "Recommended multi-repo baseline (Topology B / Hybrid)",
-      "file": "SPECIFICATION.md#33-recommended-multi-repo-baseline-topology-b-hybrid",
+      "file": "SPECIFICATION.md#33-recommended-multi-repo-baseline-topology-b--hybrid",
       "keywords": [],
       "gateLabels": []
     },
@@ -108,6 +108,22 @@
       "gateLabels": []
     },
     {
+      "id": "cl-4.2.1",
+      "chapter": "ch-4",
+      "title": "Compatibility rules (tolerant readers, explicit defaults)",
+      "file": "SPECIFICATION.md#421-compatibility-rules-tolerant-readers-explicit-defaults",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.2.2",
+      "chapter": "ch-4",
+      "title": "Versioning guidance",
+      "file": "SPECIFICATION.md#422-versioning-guidance",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
       "id": "cl-4.3",
       "chapter": "ch-4",
       "title": "Canonical identifiers (stability requirements)",
@@ -124,10 +140,106 @@
       "gateLabels": []
     },
     {
+      "id": "cl-4.4.1",
+      "chapter": "ch-4",
+      "title": "ErrorEnvelope (cross-boundary, bounded)",
+      "file": "SPECIFICATION.md#441-errorenvelope-cross-boundary-bounded",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.2",
+      "chapter": "ch-4",
+      "title": "Diagnostics (bounded, structured, safe to log)",
+      "file": "SPECIFICATION.md#442-diagnostics-bounded-structured-safe-to-log",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.3",
+      "chapter": "ch-4",
+      "title": "Budget (ledger-friendly; allocated/consumed/remaining)",
+      "file": "SPECIFICATION.md#443-budget-ledger-friendly-allocatedconsumedremaining",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.4",
+      "chapter": "ch-4",
+      "title": "RunManifest (required for production algorithm outputs)",
+      "file": "SPECIFICATION.md#444-runmanifest-required-for-production-algorithm-outputs",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.5",
+      "chapter": "ch-4",
+      "title": "PipelineResult (algorithm output envelope)",
+      "file": "SPECIFICATION.md#445-pipelineresult-algorithm-output-envelope",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.6",
+      "chapter": "ch-4",
+      "title": "JobEnvelope (orchestrator-level; long-running jobs)",
+      "file": "SPECIFICATION.md#446-jobenvelope-orchestrator-level-long-running-jobs",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.7",
+      "chapter": "ch-4",
+      "title": "DatasetManifest (evaluation inputs; pinned datasets)",
+      "file": "SPECIFICATION.md#447-datasetmanifest-evaluation-inputs-pinned-datasets",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.8",
+      "chapter": "ch-4",
+      "title": "EvalReport (bounded summary + pointers)",
+      "file": "SPECIFICATION.md#448-evalreport-bounded-summary--pointers",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.9",
+      "chapter": "ch-4",
+      "title": "AnnotatedContent and CitationSet (AI answers with references)",
+      "file": "SPECIFICATION.md#449-annotatedcontent-and-citationset-ai-answers-with-references",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.4.10",
+      "chapter": "ch-4",
+      "title": "StreamFrame (SSE/WS incremental updates)",
+      "file": "SPECIFICATION.md#4410-streamframe-ssews-incremental-updates",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
       "id": "cl-4.5",
       "chapter": "ch-4",
       "title": "Design system contracts (tokens + components)",
-      "file": "SPECIFICATION.md#45-design-system-contracts-tokens-components",
+      "file": "SPECIFICATION.md#45-design-system-contracts-tokens--components",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.5.1",
+      "chapter": "ch-4",
+      "title": "Design tokens as contracts (required when using a shared design system)",
+      "file": "SPECIFICATION.md#451-design-tokens-as-contracts-required-when-using-a-shared-design-system",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-4.5.2",
+      "chapter": "ch-4",
+      "title": "Shared component contracts (recommended)",
+      "file": "SPECIFICATION.md#452-shared-component-contracts-recommended",
       "keywords": [],
       "gateLabels": []
     },
@@ -244,10 +356,106 @@
       "gateLabels": []
     },
     {
+      "id": "cl-6.7.1",
+      "chapter": "ch-6",
+      "title": "Distinguish “Loading” from “Thinking”",
+      "file": "SPECIFICATION.md#671-distinguish-loading-from-thinking",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.7.2",
+      "chapter": "ch-6",
+      "title": "Streaming output",
+      "file": "SPECIFICATION.md#672-streaming-output",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.7.3",
+      "chapter": "ch-6",
+      "title": "Repair / recovery loops",
+      "file": "SPECIFICATION.md#673-repair--recovery-loops",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.7.4",
+      "chapter": "ch-6",
+      "title": "Optimistic updates",
+      "file": "SPECIFICATION.md#674-optimistic-updates",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.7.5",
+      "chapter": "ch-6",
+      "title": "Citations and references (high-trust RAG UI)",
+      "file": "SPECIFICATION.md#675-citations-and-references-high-trust-rag-ui",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
       "id": "cl-6.8",
       "chapter": "ch-6",
       "title": "High-fidelity visual interaction (HFVI) extension (canvas/WebGL/game surfaces)",
       "file": "SPECIFICATION.md#68-high-fidelity-visual-interaction-hfvi-extension-canvaswebglgame-surfaces",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.8.1",
+      "chapter": "ch-6",
+      "title": "Interaction profile declaration",
+      "file": "SPECIFICATION.md#681-interaction-profile-declaration",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.8.2",
+      "chapter": "ch-6",
+      "title": "Visual Interaction Spec Appendix (VIS)",
+      "file": "SPECIFICATION.md#682-visual-interaction-spec-appendix-vis",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.8.3",
+      "chapter": "ch-6",
+      "title": "Technical anchors and ubiquitous language",
+      "file": "SPECIFICATION.md#683-technical-anchors-and-ubiquitous-language",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.8.4",
+      "chapter": "ch-6",
+      "title": "Motion tokens (no magic motion)",
+      "file": "SPECIFICATION.md#684-motion-tokens-no-magic-motion",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.8.5",
+      "chapter": "ch-6",
+      "title": "Debug overlay and invariants",
+      "file": "SPECIFICATION.md#685-debug-overlay-and-invariants",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.8.6",
+      "chapter": "ch-6",
+      "title": "Verification gates: replay + visual regression",
+      "file": "SPECIFICATION.md#686-verification-gates-replay--visual-regression",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-6.8.7",
+      "chapter": "ch-6",
+      "title": "AI task decomposition for HFVI",
+      "file": "SPECIFICATION.md#687-ai-task-decomposition-for-hfvi",
       "keywords": [],
       "gateLabels": []
     },
@@ -271,7 +479,7 @@
       "id": "cl-7.3",
       "chapter": "ch-7",
       "title": "Determinism & replay tiers (required)",
-      "file": "SPECIFICATION.md#73-determinism-replay-tiers-required",
+      "file": "SPECIFICATION.md#73-determinism--replay-tiers-required",
       "keywords": [],
       "gateLabels": []
     },
@@ -319,7 +527,7 @@
       "id": "cl-7.9",
       "chapter": "ch-7",
       "title": "Refactoring & migration patterns",
-      "file": "SPECIFICATION.md#79-refactoring-migration-patterns",
+      "file": "SPECIFICATION.md#79-refactoring--migration-patterns",
       "keywords": [],
       "gateLabels": []
     },
@@ -351,7 +559,7 @@
       "id": "cl-9.4",
       "chapter": "ch-9",
       "title": "Package / library / worker / infra module docs model",
-      "file": "SPECIFICATION.md#94-package-library-worker-infra-module-docs-model",
+      "file": "SPECIFICATION.md#94-package--library--worker--infra-module-docs-model",
       "keywords": [],
       "gateLabels": []
     },
@@ -375,7 +583,7 @@
       "id": "cl-9.7",
       "chapter": "ch-9",
       "title": "Doc drift and inconsistency handling (code ↔ Master Doc)",
-      "file": "SPECIFICATION.md#97-doc-drift-and-inconsistency-handling-code-master-doc",
+      "file": "SPECIFICATION.md#97-doc-drift-and-inconsistency-handling-code--master-doc",
       "keywords": [],
       "gateLabels": []
     },
@@ -383,7 +591,7 @@
       "id": "cl-9.8",
       "chapter": "ch-9",
       "title": "Multi-party / multi-company documentation governance (humans + tools)",
-      "file": "SPECIFICATION.md#98-multi-party-multi-company-documentation-governance-humans-tools",
+      "file": "SPECIFICATION.md#98-multi-party--multi-company-documentation-governance-humans--tools",
       "keywords": [],
       "gateLabels": []
     },
@@ -487,7 +695,7 @@
       "id": "cl-12.1",
       "chapter": "ch-12",
       "title": "Mapping: this standard ↔ DDD ↔ BDD",
-      "file": "SPECIFICATION.md#121-mapping-this-standard-ddd-bdd",
+      "file": "SPECIFICATION.md#121-mapping-this-standard--ddd--bdd",
       "keywords": [],
       "gateLabels": []
     },
@@ -503,7 +711,7 @@
       "id": "cl-12.3",
       "chapter": "ch-12",
       "title": "DDD → contracts: commands, events, and state machines",
-      "file": "SPECIFICATION.md#123-ddd-contracts-commands-events-and-state-machines",
+      "file": "SPECIFICATION.md#123-ddd--contracts-commands-events-and-state-machines",
       "keywords": [],
       "gateLabels": []
     },
@@ -639,7 +847,7 @@
       "id": "cl-13.14",
       "chapter": "ch-13",
       "title": "工具中立的 Change / Task 完成语义",
-      "file": "SPECIFICATION.md#1314-工具中立的-change-task-完成语义",
+      "file": "SPECIFICATION.md#1314-工具中立的-change--task-完成语义",
       "keywords": [],
       "gateLabels": []
     },
@@ -692,10 +900,66 @@
       "gateLabels": []
     },
     {
+      "id": "cl-13.20.1",
+      "chapter": "ch-13",
+      "title": "消息职责与签发权限",
+      "file": "SPECIFICATION.md#13201-消息职责与签发权限",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.20.2",
+      "chapter": "ch-13",
+      "title": "裁定与结果保持独立",
+      "file": "SPECIFICATION.md#13202-裁定与结果保持独立",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.20.3",
+      "chapter": "ch-13",
+      "title": "受保护完成顺序",
+      "file": "SPECIFICATION.md#13203-受保护完成顺序",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
       "id": "cl-13.21",
       "chapter": "ch-13",
       "title": "Beta 预发布、受控试用与正式发布",
       "file": "SPECIFICATION.md#1321-beta-预发布受控试用与正式发布",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.21.1",
+      "chapter": "ch-13",
+      "title": "发行身份与使用准入",
+      "file": "SPECIFICATION.md#13211-发行身份与使用准入",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.21.2",
+      "chapter": "ch-13",
+      "title": "试用计划及退出条件",
+      "file": "SPECIFICATION.md#13212-试用计划及退出条件",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.21.3",
+      "chapter": "ch-13",
+      "title": "最终制品与证据绑定",
+      "file": "SPECIFICATION.md#13213-最终制品与证据绑定",
+      "keywords": [],
+      "gateLabels": []
+    },
+    {
+      "id": "cl-13.21.4",
+      "chapter": "ch-13",
+      "title": "发布入口判定顺序",
+      "file": "SPECIFICATION.md#13214-发布入口判定顺序",
       "keywords": [],
       "gateLabels": []
     }

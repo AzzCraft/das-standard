@@ -58,6 +58,14 @@ def _content_generator(root, monkeypatch):
     (root / 'SPECIFICATION.md').write_bytes('规则 MUST 保留。\n'.encode())
     manifest = dict(requiredArtifacts=['VERSION', 'SPECIFICATION.md', 'standard_manifest.json',
                                       'release_snapshot_manifest.json'], releasedAt='2026-10-06')
+    # A small archive fixture still needs the required self-check closure.
+    # Keep the actual dependencies; do not bypass the inventory validator.
+    for name in ('scripts/verify', 'verify_registry.json', 'tools/validate_release_contract.py',
+                 'tools/standard_io.py', 'requirements-verify.txt', '.github/workflows/verify.yml'):
+        target = root / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / name, target)
+        manifest['requiredArtifacts'].append(name)
     (root / 'standard_manifest.json').write_text(json.dumps(manifest))
     rendered = json.dumps(generator.build(), indent=2, ensure_ascii=False) + '\n'
     generator.OUTPUT.write_text(rendered)

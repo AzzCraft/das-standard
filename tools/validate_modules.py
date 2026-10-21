@@ -17,6 +17,12 @@ from pathlib import Path, PurePosixPath
 
 from jsonschema import Draft202012Validator
 
+# Resolve the adjacent helper explicitly; these maintenance scripts support -I.
+import importlib.util
+_io_spec = importlib.util.spec_from_file_location("das_standard_io", Path(__file__).with_name("standard_io.py"))
+standard_io = importlib.util.module_from_spec(_io_spec)
+_io_spec.loader.exec_module(standard_io)
+
 ROOT = Path(__file__).resolve().parents[1]
 # Reviewed pre-migration input from 6d90333aea16987fc490570746fb5f93c930b970.
 # Consumer-provided hashes cannot establish this independent denominator:
@@ -1186,7 +1192,7 @@ def manifest_rule_sources(root, baseline):
     required values and permitted mapped equivalents in its source fragments.
     """
     raw = local_file(root, 'standard_manifest.json').read_text()
-    manifest = json.loads(raw)
+    manifest = standard_io.loads(raw)
     rules = baseline['conditionalRequirements']
     if (manifest['conditionalRequirements'] != rules
             or {rule['ruleId'] for rule in rules} != set(MANIFEST_RULE_OWNERS)):
@@ -4205,7 +4211,7 @@ def _pairs(pairs):
 
 
 def load(path):
-    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_pairs)
+    return standard_io.loads(path.read_text(encoding="utf-8"))
 
 
 def digest(value):
@@ -4257,7 +4263,7 @@ def requirement_structure_check(schema_bytes):
     the root keeps all array and cross-field constraints. Changed schema or
     record content creates a new key. Failed checks are never cached.
     """
-    schema = json.loads(schema_bytes)
+    schema = standard_io.loads(schema_bytes)
     groups = ('requirements', 'editionRequirements')
     # Retain the original validator for schema features whose evaluation scope
     # cannot be split into the root and independent array elements.
@@ -4283,7 +4289,7 @@ def requirement_structure_check(schema_bytes):
 
     @lru_cache(maxsize=8192)
     def check_item(group, raw):
-        for error in item_validators[group].iter_errors(json.loads(raw)):
+        for error in item_validators[group].iter_errors(standard_io.loads(raw)):
             raise error
 
     def check(value):
@@ -4539,7 +4545,7 @@ def validate(catalog, baseline, root=ROOT):
     baseline_sha256 = hashlib.sha256(baseline_bytes).hexdigest()
     if baseline_sha256 != LEGACY_BASELINE_SHA256:
         raise ValueError('independent baseline differs from the reviewed pre-migration input')
-    if baseline != json.loads(baseline_bytes):
+    if baseline != standard_io.loads(baseline_bytes):
         raise ValueError('independent baseline object differs from its pinned file')
     if baseline.get("schemaVersion") != "1.0.0" or baseline.get("kind") != "das-legacy-normative-baseline":
         raise ValueError("wrong baseline identity")
@@ -4747,14 +4753,16 @@ def main():
     catalog = load(ROOT / "standard_modules.json")
     baseline = load(ROOT / "migration/legacy_normative_baseline.json")
     validate(catalog, baseline)
-    for relative, rendered in render_views(catalog, baseline).items():
+    views = render_views(catalog, baseline)
+    if not args.check:
+        standard_io.preflight_outputs([ROOT / relative for relative in views])
+    for relative, rendered in views.items():
         path = ROOT / relative
         if args.check:
             if not path.is_file() or path.read_text() != rendered:
                 raise SystemExit(f"stale generated module view: {relative}")
         else:
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(rendered, encoding="utf-8")
+            standard_io.write_text(path, rendered)
     print(f"modules: {len(catalog['modules'])} logical modules; {len(baseline['units'])} legacy text units preserved")
 
 

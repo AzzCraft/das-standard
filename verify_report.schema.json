@@ -14,7 +14,8 @@
     "startedAt",
     "endedAt",
     "overallOutcome",
-    "gates"
+    "gates",
+    "toolchain"
   ],
   "properties": {
     "$schema": {
@@ -62,7 +63,8 @@
             "type": "string"
           }
         }
-      }
+      },
+      "minItems": 1
     },
     "startedAt": {
       "type": "string",
@@ -356,5 +358,112 @@
         }
       ]
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "overallOutcome": {
+            "const": "pass"
+          }
+        },
+        "required": [
+          "overallOutcome"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gates": {
+            "allOf": [
+              {
+                "if": {
+                  "contains": {
+                    "properties": {
+                      "expected": {
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "expected"
+                    ]
+                  }
+                },
+                "then": {
+                  "contains": {
+                    "properties": {
+                      "expected": {
+                        "const": true
+                      },
+                      "executed": {
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "expected",
+                      "executed"
+                    ]
+                  }
+                }
+              },
+              {
+                "items": {
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "expected": {
+                            "const": true
+                          },
+                          "enforcementClass": {
+                            "enum": [
+                              "blocking",
+                              "source_of_truth"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "expected",
+                          "enforcementClass"
+                        ]
+                      },
+                      "then": {
+                        "properties": {
+                          "executed": {
+                            "const": true
+                          },
+                          "outcome": {
+                            "const": "pass"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "not": {
+                        "properties": {
+                          "expected": {
+                            "const": true
+                          },
+                          "failureOnNoResults": {
+                            "const": true
+                          },
+                          "artifactCount": {
+                            "const": 0
+                          }
+                        },
+                        "required": [
+                          "expected",
+                          "failureOnNoResults",
+                          "artifactCount"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

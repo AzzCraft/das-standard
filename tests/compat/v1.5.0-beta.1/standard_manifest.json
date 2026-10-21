@@ -472,7 +472,7 @@
     "tests/compat/v1.5.0-beta.1/standard_manifest.json",
     "tooling_lock.example.json",
     "tooling_lock.schema.json",
-    "tools/generate_content_snapshot.py",
+    "tools/generate_content_snapshot.py", "tools/standard_io.py", "citation.cff", "NOTICE", "CONTRIBUTING.md", "GOVERNANCE.md", ".github/workflows/release.yml",
     "tools/generate_spec_indexes.py",
     "tools/validate_modules.py",
     "tools/validate_release_contract.py",

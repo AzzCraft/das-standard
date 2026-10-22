@@ -7,6 +7,12 @@ Complete executable leaf applicability is still a separate migration gate.
 """
 from __future__ import annotations
 
+# Direct CLI use has the same dependency isolation as scripts/verify.
+import sys
+if __name__ == "__main__" and not sys.flags.isolated:
+    import os
+    os.execv(sys.executable, [sys.executable, "-I", "-B", __file__, *sys.argv[1:]])
+
 import argparse
 from copy import deepcopy
 from functools import lru_cache
@@ -4027,16 +4033,16 @@ EDITION_COMPLETION_GROUPS += (
         ["actual-executed-set-no-artificial-default-full-distinction", 526, "输出必须真实列出执行集合", 526, "必须", "MUST", ["activity.standard_release"], [526, 546]],
         ["formal-companion-standard-tool-full-matrix-reference-applicable-integration", 528, "标准自检、dasops/Cadence 自身完整测试、精确支持矩阵、最小参考部署及 A01–A32 适用联验", 528, "要求", "MUST", ["activity.standard_release", "release.official_companion"], [526, 546]],
         ["formal-standard-and-tool-support-joint-frozen-gates", 528, "必须共同满足冻结门槛", 528, "必须", "MUST", ["activity.standard_release", "release.formal_companion"], [526, 546]],
-        ["specific-product-adoption-still-separate", 528, "任何具体产品仍须完成采用层验证", 528, "须", "MUST", ["activity.standard_release"], [526, 546]],
+        ["specific-product-adoption-still-separate", 528, "任何具体产品仍须完成采用层验证", 528, "须", "MUST", ["activity.product_adoption"], [526, 546]],
         ["general-a30-incident-revocation-recovery-not-no-eval-na", 528, "不得按“没有评测”判为不适用", 528, "不得", "MUST", ["activity.standard_release", "release.official_companion"], [526, 546]],
         ["release-f-s-o-c-a-content-tool-deployment-adoption-denominators", 530, "区分规范内容、工具实现、参考部署和具体项目采用的分母", 530, "区分规范内容、工具实现、参考部署和具体项目采用的分母", "MUST", ["activity.standard_release"], [526, 546]],
         ["official-http-ui-sealed-support-samples-not-self-no-feature-waiver", 530, "不能让官方配套以自身无 HTTP/UI/密封业务为由跳过已冻结的契约消费与控制实现", 530, "不能", "MUST", ["activity.standard_release", "release.official_companion"], [526, 546]],
         ["minimal-domain-samples-no-full-business-platform-requirement", 530, "用最小受控 HTTP、UI 和密封评测样本证明各自承诺的支持", 530, "证明", "MUST", ["activity.standard_release", "release.official_companion"], [526, 546]],
         ["unsupported-combination-not-whole-frozen-capability-undelivered", 530, "不能替代整个冻结能力的交付", 530, "不能", "MUST", ["activity.standard_release", "release.official_companion"], [526, 546]],
-        ["adoption-actor-artifact-deployment-target-facts-policy-scope-time-binding", 532, "正式采用结论须绑定采用主体、标准/工具精确制品、部署配置、受保护目标、事实/政策、适用范围和证据有效区间", 532, "须", "MUST", ["activity.standard_release"], [526, 546]],
-        ["adoption-qualified-scope-time-not-permanent-trust", 532, "不能形成永久可信标记", 532, "不能", "MUST", ["activity.standard_release"], [526, 546]],
-        ["control-affecting-drift-stops-related-actions-reanalysis-reverification", 532, "停止受影响动作", 532, "停止受影响动作", "MUST", ["activity.standard_release"], [526, 546]],
-        ["every-new-action-current-authority", 532, "新的受保护动作仍逐次检查当前权威", 532, "新的受保护动作仍逐次检查当前权威", "MUST", ["activity.standard_release"], [526, 546]],
+        ["adoption-actor-artifact-deployment-target-facts-policy-scope-time-binding", 532, "正式采用结论须绑定采用主体、标准/工具精确制品、部署配置、受保护目标、事实/政策、适用范围和证据有效区间", 532, "须", "MUST", ["activity.product_adoption"], [526, 546]],
+        ["adoption-qualified-scope-time-not-permanent-trust", 532, "不能形成永久可信标记", 532, "不能", "MUST", ["activity.product_adoption"], [526, 546]],
+        ["control-affecting-drift-stops-related-actions-reanalysis-reverification", 532, "停止受影响动作", 532, "停止受影响动作", "MUST", {"op": "any", "args": [{"op": "fact", "key": "activity.product_adoption"}, {"op": "fact", "key": "activity.package_activation"}, {"op": "fact", "key": "activity.continued_operation"}]}, [526, 546]],
+        ["every-new-action-current-authority", 532, "新的受保护动作仍逐次检查当前权威", 532, "新的受保护动作仍逐次检查当前权威", "MUST", ["activity.protected_action"], [526, 546]],
         ["production-gate-explicit-checks-supported-runtime-failure-propagation", 534, "安全与发布判定必须使用在支持运行模式下仍然生效的显式检查和失败传播", 534, "必须", "MUST", ["activity.standard_release"], [526, 546]],
         ["runtime-assert-debug-optimization-not-sole-security-gate", 534, "不能作为唯一授权/摘要/闭包门禁", 534, "不能", "MUST", ["activity.standard_release"], [526, 546]],
         ["replace-runtime-asserts-explicit-failures", 534, "应改成明确条件与异常/非零退出", 534, "应", "SHOULD", ["activity.standard_release"], [526, 546]],
@@ -4131,7 +4137,7 @@ EDITION_COMPLETION_GROUPS += (
         ["release-fourth-current-identity-authority-budget-generation-durable-intent", 648, "重新校验发布身份、授权、预算、目标代次和持久化意图", 648, "重新校验发布身份、授权、预算、目标代次和持久化意图", "MUST", ["activity.standard_release"], [597, 649]],
         ["release-stage-assets-public-stable-business-keys-readback-receipt", 648, "发布后回读完整工件并追加实际回执", 648, "发布后回读完整工件并追加实际回执", "MUST", ["activity.standard_release"], [597, 649]],
         ["unknown-release-original-action-no-new-key-resend", 648, "不换键重发", 648, "不换键重发", "MUST", ["activity.standard_release"], [597, 649]],
-        ["project-final-package-real-deployment-limited-adoption-continued-current-controls", 649, "具体项目核对最终包与自身真实部署后取得限定采用结论", 649, "具体项目核对最终包与自身真实部署后取得限定采用结论", "MUST", ["activity.standard_release"], [597, 649]],
+        ["project-final-package-real-deployment-limited-adoption-continued-current-controls", 649, "具体项目核对最终包与自身真实部署后取得限定采用结论", 649, "具体项目核对最终包与自身真实部署后取得限定采用结论", "MUST", ["activity.product_adoption"], [597, 649]],
     )),
 )
 

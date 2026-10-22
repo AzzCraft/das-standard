@@ -22,13 +22,31 @@ python3 -m pip install -r requirements-verify.txt
 `pytest` for the repository's self-conformance tests. Both are required by
 `scripts/verify`.
 
+Invoke maintenance helpers with `python3 -I -B` or the shipped shell wrapper,
+using an interpreter with these dependencies installed. Helpers also restart
+with isolation before loading their verification dependencies. This restart
+cannot undo startup code already run by an initial interpreter without `-I`. `PYTHONPATH` and user-site
+packages do not supply their verification dependencies. JSON maintenance
+inputs reject duplicate keys, non-JSON constants and decimal overflow or
+nonzero underflow outside binary64 range, and value-changing decimal round-trips;
+ordinary representable decimal spellings use binary64,
+while integer tokens retain Python integer precision. This is not a change to
+the separately specified exact-number exchange contracts.
+
+Applicability facts describe distinct events: `activity.standard_release` is
+publishing the Standard, `activity.product_adoption` is a product's adoption,
+`activity.package_activation` is activating an adopted package, and
+`activity.continued_operation` is operating under it. A new protected action
+uses `activity.protected_action`. Publishing false cannot waive product duties;
+missing/conflicting facts retain the preview's unknown/conflict behavior.
+
 ## Content generation and packaging
 
 From this repository root, after the author/index updates described in
 [GOVERNANCE.md](GOVERNANCE.md):
 
 ```bash
-python3 -B tools/generate_content_snapshot.py --check
+python3 -I -B tools/generate_content_snapshot.py --check
 ```
 
 This checks the committed `release_snapshot_manifest.json` against current
@@ -40,7 +58,7 @@ To package current content, set `CONTENT_ZIP` to a new filename in an existing
 output directory **outside this source repository**:
 
 ```bash
-python3 -B tools/generate_content_snapshot.py --archive "$CONTENT_ZIP"
+python3 -I -B tools/generate_content_snapshot.py --archive "$CONTENT_ZIP"
 ```
 
 Use a normalized path with no `..` components and no symlinked parent. The output

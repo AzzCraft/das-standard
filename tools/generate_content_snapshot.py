@@ -2,6 +2,12 @@
 """Generate the non-circular standard content manifest checked into the repo."""
 from __future__ import annotations
 
+# Direct CLI use has the same dependency isolation as scripts/verify.
+import sys
+if __name__ == "__main__" and not sys.flags.isolated:
+    import os
+    os.execv(sys.executable, [sys.executable, "-I", "-B", __file__, *sys.argv[1:]])
+
 import argparse
 import hashlib
 import io

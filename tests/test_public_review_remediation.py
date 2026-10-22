@@ -131,7 +131,8 @@ def _io_helper():
 
 
 @pytest.mark.parametrize('raw', ['{"x":NaN}', '{"x":Infinity}', '{"x":-Infinity}',
-                                  '{"a":1,"a":2}', '{"a":1,"\\u0061":2}'])
+                                  '{"a":1,"a":2}', '{"a":1,"\\u0061":2}',
+                                  '{"x":1e309}', '{"x":-1e309}', '{"x":1e-999}', '{"x":1.00000000000000001}', '{"x":9007199254740993.0}'])
 def test_strict_json_rejects_ambiguous_or_non_json_inputs(raw):
     with pytest.raises(ValueError):
         _io_helper().loads(raw)
@@ -323,3 +324,91 @@ def test_verify_build_identity_belongs_to_content_root(tmp_path):
     git(independent,'init','-q');git(independent,'add','.');git(independent,'-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','content')
     identity='git:'+git(independent,'rev-parse','HEAD');verify(independent,identity)
     worktree=tmp_path/'worktree';git(independent,'worktree','add','--detach',str(worktree),'HEAD');verify(worktree,identity)
+
+
+def test_new_edition_pin_types_and_component_version_consistency():
+    from copy import deepcopy
+    from jsonschema import Draft202012Validator
+    for name, target in [('tooling_lock', 'sourceOfTruth'), ('suite_version_closure', 'refs')]:
+        schema = validator.load(name + '.schema.json')
+        value = validator.load(name + '.example.json')
+        Draft202012Validator(schema).validate(value)
+        for kind, pin in [('commit', 'HEAD'), ('digest', 'sha256:bad'), ('version', '4.x')]:
+            bad = deepcopy(value)
+            ref = bad[target] if name == 'tooling_lock' else bad[target]['factory']
+            ref.update(kind={'commit':'git','digest':'container_image','version':'package'}[kind], pinType=kind, pinValue=pin)
+            with pytest.raises(ValidationError): Draft202012Validator(schema).validate(bad)
+    value = validator.load('suite_version_closure.example.json')
+    validator.check_package_versions(value)
+    value['factoryVersion'] = '9.9.9'
+    with pytest.raises(ValueError, match='factory'): validator.check_package_versions(value)
+    value['factoryVersion'] = '1.2.0-beta.1'
+    value['refs']['factory']['pinValue'] = '1.2.0b1'
+    validator.check_package_versions(value)
+
+
+def test_registered_gate_rejects_middle_argument(monkeypatch):
+    real_load = validator.load
+    registry = real_load('verify_registry.json')
+    registry['gates'][0]['command'] = './scripts/verify --unexpected --gate bundle-files'
+    monkeypatch.setattr(validator, 'load', lambda name: registry if name == 'verify_registry.json' else real_load(name))
+    with pytest.raises(ValueError, match='exactly select'): validator.check_snapshot_registry(real_load('standard_manifest.json'))
+
+
+def test_registered_default_rejects_unsupported_grammar(monkeypatch):
+    real_load = validator.load
+    registry = real_load('verify_registry.json')
+    prefix = registry['defaultVerifyCommand']
+    registry['defaultVerifyCommand'] = prefix + ' --unsupported'
+    for gate in registry['gates']:
+        gate['command'] = gate['command'].replace(prefix, registry['defaultVerifyCommand'], 1)
+    monkeypatch.setattr(validator, 'load', lambda name: registry if name == 'verify_registry.json' else real_load(name))
+    with pytest.raises(ValueError, match='default command'):
+        validator.check_snapshot_registry(real_load('standard_manifest.json'))
+
+
+def test_direct_helpers_ignore_pythonpath(tmp_path):
+    import os
+    import sys
+    fake = tmp_path / 'jsonschema.py'
+    fake.write_text("raise RuntimeError('unapproved dependency loaded')\n")
+    for tool in ['validate_release_contract.py', 'validate_modules.py', 'generate_content_snapshot.py', 'generate_spec_indexes.py']:
+        run = subprocess.run([os.environ.get('PYTHON', sys.executable), str(ROOT/'tools'/tool), '--help'], env=dict(os.environ, PYTHONPATH=str(tmp_path)), text=True, capture_output=True)
+        assert run.returncode == 0, run.stderr
+        assert 'unapproved dependency loaded' not in run.stderr
+    marker = tmp_path/'startup-ran'
+    (tmp_path/'sitecustomize.py').write_text('from pathlib import Path\nPath('+repr(str(marker))+').write_text("startup")\n')
+    interpreter = os.environ.get('PYTHON', sys.executable)
+    env = dict(os.environ, PYTHONPATH=str(tmp_path), PYTHON=interpreter)
+    subprocess.run([interpreter, '-c', 'pass'], env=env, check=True)
+    assert marker.exists()  # Prove this environment can inject startup code.
+    marker.unlink()
+    actual = subprocess.run(['bash',str(ROOT/'scripts/validate_manifest_artifacts')],env=env,text=True,capture_output=True)
+    assert actual.returncode == 0, actual.stderr
+    assert not marker.exists()
+
+
+def test_historical_adapter_contract_checks_types_without_current_requirements(monkeypatch):
+    from copy import deepcopy
+    real_load = validator.load
+    current = real_load('standard_manifest.json')
+    old = real_load('tests/compat/v1.1.0/standard_manifest.json')
+    validator.check_compat(current)
+    for field, value in [('requiredArtifacts', 'SPECIFICATION.md'), ('normativeArtifactRefs', []), ('normativeArtifactRefs', {'specification': 7}), ('schemaVersion', 1), ('fixtureKind', 'current-manifest'), ('historicalSource', []), ('historicalSource', {'repository': 7})]:
+        malformed = deepcopy(old); malformed[field] = value
+        monkeypatch.setattr(validator,'load',lambda name: malformed if name == 'tests/compat/v1.1.0/standard_manifest.json' else real_load(name))
+        with pytest.raises(ValidationError): validator.check_compat(current)
+
+
+def test_historical_full_manifest_uses_formal_schema(monkeypatch):
+    from copy import deepcopy
+    real_load = validator.load
+    current = real_load('standard_manifest.json')
+    old = real_load('tests/compat/v1.4.0/standard_manifest.json')
+    validator.check_compat(current)
+    for field, value in [('docTypes', 'wrong'), ('tooling', []), ('requiredDocMetadata', []), ('standardId', 42)]:
+        malformed = deepcopy(old)
+        malformed[field] = value
+        monkeypatch.setattr(validator, 'load', lambda name: malformed if name == 'tests/compat/v1.4.0/standard_manifest.json' else real_load(name))
+        with pytest.raises(ValidationError):
+            validator.check_compat(current)

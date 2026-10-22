@@ -29059,7 +29059,7 @@ Context and exceptions: [modules/edition-1.5.md:526–546](#requirement-context-
 
 Owner: `das.governance.verification-release`; parent: `cl-13.19`; control: `S19`; strength: **MUST**.
 
-Activation: `{"key":"activity.standard_release","op":"fact"}`.
+Activation: `{"key":"activity.product_adoption","op":"fact"}`.
 
 Criterion: 正式采用结论须绑定采用主体、标准/工具精确制品、部署配置、受保护目标、事实/政策、适用范围和证据有效区间
 
@@ -29071,7 +29071,7 @@ Context and exceptions: [modules/edition-1.5.md:526–546](#requirement-context-
 
 Owner: `das.governance.verification-release`; parent: `cl-13.19`; control: `S19`; strength: **MUST**.
 
-Activation: `{"key":"activity.standard_release","op":"fact"}`.
+Activation: `{"key":"activity.product_adoption","op":"fact"}`.
 
 Criterion: 不能形成永久可信标记
 
@@ -29119,7 +29119,7 @@ Context and exceptions: [modules/edition-1.5.md:526–546](#requirement-context-
 
 Owner: `das.governance.verification-release`; parent: `cl-13.19`; control: `S19`; strength: **MUST**.
 
-Activation: `{"key":"activity.standard_release","op":"fact"}`.
+Activation: `{"args":[{"key":"activity.product_adoption","op":"fact"},{"key":"activity.package_activation","op":"fact"},{"key":"activity.continued_operation","op":"fact"}],"op":"any"}`.
 
 Criterion: 停止受影响动作
 
@@ -29131,7 +29131,7 @@ Context and exceptions: [modules/edition-1.5.md:526–546](#requirement-context-
 
 Owner: `das.governance.verification-release`; parent: `cl-13.19`; control: `S19`; strength: **MUST**.
 
-Activation: `{"key":"activity.standard_release","op":"fact"}`.
+Activation: `{"key":"activity.protected_action","op":"fact"}`.
 
 Criterion: 新的受保护动作仍逐次检查当前权威
 
@@ -29407,7 +29407,7 @@ Context and exceptions: [modules/edition-1.5.md:526–546](#requirement-context-
 
 Owner: `das.governance.verification-release`; parent: `cl-13.19`; control: `S19`; strength: **MUST**.
 
-Activation: `{"key":"activity.standard_release","op":"fact"}`.
+Activation: `{"key":"activity.product_adoption","op":"fact"}`.
 
 Criterion: 任何具体产品仍须完成采用层验证
 
@@ -29911,7 +29911,7 @@ Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-
 
 Owner: `das.governance.verification-release`; parent: `cl-13.21`; control: `S21`; strength: **MUST**.
 
-Activation: `{"key":"activity.standard_release","op":"fact"}`.
+Activation: `{"key":"activity.product_adoption","op":"fact"}`.
 
 Criterion: 具体项目核对最终包与自身真实部署后取得限定采用结论
 

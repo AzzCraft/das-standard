@@ -37,7 +37,7 @@ To produce the flat content ZIP consumed by reference tooling, first verify this
 edition, then run from this repository:
 
 ~~~bash
-python3 -B tools/generate_content_snapshot.py --archive /absolute/output/standard-content.zip
+python3 -I -B tools/generate_content_snapshot.py --archive /absolute/output/standard-content.zip
 ~~~
 
 The output directory must exist outside this repository; existing files are never

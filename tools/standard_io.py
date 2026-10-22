@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import math
+from decimal import Decimal, InvalidOperation
 import os
 from pathlib import Path
 import stat
@@ -22,7 +24,21 @@ def _constant(value):
 
 
 def loads(raw):
-    return json.loads(raw, object_pairs_hook=_unique, parse_constant=_constant)
+    # These maintenance contracts use finite binary64 decimals. JSON permits
+    # larger exponents, but silently converting them to infinity changes data.
+    def finite_float(token):
+        value = float(token)
+        mantissa = token.lower().split('e', 1)[0]
+        if not math.isfinite(value) or (value == 0 and any(c in '123456789' for c in mantissa)):
+            raise ValueError("JSON decimal exceeds the finite binary64 range")
+        try:
+            if Decimal(str(value)) != Decimal(token):
+                raise ValueError("JSON decimal loses value in binary64 round-trip")
+        except InvalidOperation as exc:
+            raise ValueError("JSON decimal is outside the supported numeric domain") from exc
+        return value
+    return json.loads(raw, object_pairs_hook=_unique, parse_constant=_constant,
+                      parse_float=finite_float)
 
 
 def preflight_outputs(paths):

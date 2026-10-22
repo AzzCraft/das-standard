@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 """Release self-conformance checks for the shipped DAS Standard bundle."""
 from __future__ import annotations
+
+# Direct CLI use has the same dependency isolation as scripts/verify.
+import sys
+if __name__ == "__main__" and not sys.flags.isolated:
+    import os
+    os.execv(sys.executable, [sys.executable, "-I", "-B", __file__, *sys.argv[1:]])
 import argparse
 import hashlib
 import json
 import re
+import shlex
 from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker
 
@@ -154,7 +161,22 @@ def load(rel: str) -> dict:
     return standard_io.loads((ROOT / rel).read_text(encoding="utf-8"))
 
 def validate(data_rel: str, schema_rel: str) -> None:
-    Draft202012Validator(load(schema_rel), format_checker=FormatChecker()).validate(load(data_rel))
+    value = load(data_rel)
+    Draft202012Validator(load(schema_rel), format_checker=FormatChecker()).validate(value)
+    if schema_rel == 'suite_version_closure.schema.json':
+        check_package_versions(value)
+
+def check_package_versions(closure):
+    for component, field in [('standard', 'standardVersion'), ('suite', 'suiteVersion'),
+                             ('factory', 'factoryVersion'), ('verifyRuntime', 'verifyRuntimeVersion'),
+                             ('policyPack', 'policyPackVersion')]:
+        ref = closure.get('refs', {}).get(component, {})
+        if ref.get('kind') != 'package' or ref.get('pinType') != 'version' or field not in closure:
+            continue
+        def package_version(value):
+            return re.sub(r'-(alpha|beta|rc)\.(\d+)', lambda m: {'alpha':'a','beta':'b','rc':'rc'}[m[1]]+m[2], value)
+        if package_version(closure[field]) != package_version(ref['pinValue']):
+            raise ValueError(f'{component}: {field} differs from package pinValue')
 
 def headings(text: str) -> list[tuple[int, int, str]]:
     result = []
@@ -299,8 +321,16 @@ def check_snapshot_registry(manifest: dict) -> None:
         raise ValueError('snapshot edition differs from the Standard manifest')
     registry = load("verify_registry.json")
     default = registry["defaultVerifyCommand"]
-    actual = {item["command"].split()[-1] for item in registry["gates"] if item["command"].startswith(default + " --gate ")}
-    if not (actual == {'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}):
+    prefix = shlex.split(default)
+    if prefix not in (["./scripts/verify"], ["./scripts/verify", "--full"]):
+        raise ValueError('registry default command must use the supported verify grammar')
+    actual = []
+    for item in registry['gates']:
+        argv = shlex.split(item['command'])
+        if len(argv) != len(prefix) + 2 or argv[:-2] != prefix or argv[-2] != '--gate':
+            raise ValueError('registry command must exactly select one supported gate')
+        actual.append(argv[-1])
+    if len(actual) != 4 or set(actual) != {'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}:
         raise ValueError(f'registry gate mismatch: {sorted(actual)}')
     for item in snapshot["artifacts"]:
         name = item['path']
@@ -330,6 +360,31 @@ def check_compat(manifest: dict) -> None:
         raise ValueError(f'missing current compatibility fixture: {fixture.relative_to(ROOT)}')
     if not (standard_io.loads(fixture.read_text(encoding='utf-8')) == manifest):
         raise ValueError('current compatibility fixture must exactly copy the canonical manifest')
+    for item in load('tests/compat/compat_window.json')['fixtures']:
+        payload = load(item['path'])
+        if item['version'] == '1.1.0':
+            # The 1.1 record is an explicit adapter, not a full manifest.
+            # Validate its whole recorded shape, including source identity.
+            source_fields = {
+                'repository': {'type': 'string', 'format': 'uri'},
+                'tag': {'const': 'v1.1.0'},
+                **{key: {'type': 'string', 'pattern': '^[0-9a-f]{40}$'} for key in ('commit', 'tree')},
+                **{key: {'type': 'string', 'pattern': '^[0-9a-f]{64}$'} for key in ('specificationSha256', 'licenseSha256')},
+            }
+            properties = {
+                'schemaVersion': {'const': '1.0.0'},
+                'fixtureKind': {'const': 'historical-compatibility-adapter'},
+                'standardVersion': {'const': '1.1.0'},
+                'requiredArtifacts': {'type': 'array', 'minItems': 1, 'uniqueItems': True, 'items': {'type': 'string', 'minLength': 1}},
+                'normativeArtifactRefs': {'type': 'object', 'minProperties': 1, 'additionalProperties': {'type': 'string', 'minLength': 1}},
+                'historicalSource': {'type': 'object', 'required': list(source_fields), 'properties': source_fields, 'additionalProperties': False},
+            }
+            schema = {'type': 'object', 'required': list(properties), 'properties': properties, 'additionalProperties': False}
+        else:
+            # The full 1.4/current fixtures share the shipped manifest contract.
+            schema = load('standard_manifest.schema.json')
+        Draft202012Validator(schema, format_checker=FormatChecker()).validate(payload)
+        Draft202012Validator({'properties': {'standardVersion': {'const': item['version']}}}).validate(payload)
 
 def check_sbom_dependencies() -> None:
     pins = {}

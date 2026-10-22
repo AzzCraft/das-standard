@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-"${PYTHON:-python3}" -B "$ROOT/tools/validate_release_contract.py" --manifest-artifacts-only
+"${PYTHON:-python3}" -I -B "$ROOT/tools/validate_release_contract.py" --manifest-artifacts-only
 echo 'validate_manifest_artifacts: PASS'

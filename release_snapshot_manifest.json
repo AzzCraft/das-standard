@@ -14,7 +14,7 @@
     "floating": false
   },
   "bundleDigestAlgorithm": "sha256",
-  "bundleDigest": "79fae347d0eb83f35a17c0bc92b945632024f573ebe8f210b47088533a9c0a7b",
+  "bundleDigest": "198cd832efacac1d68bb95f5d8d1ff520ba2bf2c6d4678ffd4661dd1b4feff27",
   "artifacts": [
     {
       "path": ".github/workflows/release.yml",
@@ -30,7 +30,7 @@
     },
     {
       "path": "BUILD_REQUIREMENTS.md",
-      "sha256": "d4d3cd45deee4c84132323b18ded7b32dd000b867351e1c04207e7b84a1d765e",
+      "sha256": "bbfc011ae35f334dfd068ee6ae7b4e59e7730c2cb50e99faa5badf1a61cf35bc",
       "artifactClass": "normative",
       "required": true
     },
@@ -66,7 +66,7 @@
     },
     {
       "path": "GOVERNANCE.md",
-      "sha256": "897eb30dfe9feaff8a1909d71cd2d1d779c998a755f260d903e80c4b184272d8",
+      "sha256": "e5f851c1191e1bffdd5f2370b9397cb2c1606c9460bde1cf8c061da5f891eadd",
       "artifactClass": "normative",
       "required": true
     },
@@ -102,7 +102,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "7459b2fbb99b139503d4966eb607832d70733e2fa1514251c962abd43c776677",
+      "sha256": "0bb2f4ae4a8d6f8eeaaa5c11cd507f64b573330199993c2613e2e69550884538",
       "artifactClass": "normative",
       "required": true
     },
@@ -522,7 +522,7 @@
     },
     {
       "path": "modules/requirements.md",
-      "sha256": "9eddf42a65d18938fa9237c70d9ff50ebf87a59c913dfc074694eb0495c16516",
+      "sha256": "5ef3dfc872de495932e5309330ae50b4cab62c4d2045241251520276e5bfc7a5",
       "artifactClass": "normative",
       "required": true
     },
@@ -594,7 +594,7 @@
     },
     {
       "path": "standard_requirements.json",
-      "sha256": "2c9eb9a069fab14819eb5fd103dd43f1707c71d4e4db610105c96935fd9e47d4",
+      "sha256": "0420e589e26df5216be6f355b37f1c6c29096ea704c1f46c133bc9391d4f2b88",
       "artifactClass": "supporting",
       "required": true
     },
@@ -618,13 +618,13 @@
     },
     {
       "path": "suite_version_closure.example.json",
-      "sha256": "881669f7714fd529024d6b54d9b65b471c14e76b931a27d7e9a6a070a88069e3",
+      "sha256": "60edfe586ae02d96d17e8583fa1852821932fc1304b2c793efce348d106d53ee",
       "artifactClass": "example",
       "required": true
     },
     {
       "path": "suite_version_closure.schema.json",
-      "sha256": "9014c120524c06a7257ce75052c433f10e84cd67d4398c44e33aac5b43f78943",
+      "sha256": "160dc5cd80b4a9c8ceac8f5584054aadf04b4219a75c7eaecc47219bf2985d90",
       "artifactClass": "schema",
       "required": true
     },
@@ -672,43 +672,43 @@
     },
     {
       "path": "tooling_lock.example.json",
-      "sha256": "f8da961cf3bf724293d67ad0c9d95deb096f42bd881ffdfeaf41ee07b39535b9",
+      "sha256": "4e598fe8135bd329d89f53b892ec016c0479ddfeaea30bc98ce25cc896906450",
       "artifactClass": "example",
       "required": true
     },
     {
       "path": "tooling_lock.schema.json",
-      "sha256": "3ab5e0a50c5e6dd355b3d882eab2a2258b1daf170eb8c9d9541b6cf2ee380cf5",
+      "sha256": "5a818565fd7a86d0e31e955017cb35e5307b093714ffacebaedba22407d52a35",
       "artifactClass": "schema",
       "required": true
     },
     {
       "path": "tools/generate_content_snapshot.py",
-      "sha256": "e5da906e48f3258c0c2b4c2106155911ed461d6b5c771e8fcce1bbbd8bbb2097",
+      "sha256": "2eb0aef7d347c081616ce1146881bf1ea160929de3bef15c3e21f5b0a1d25923",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "tools/generate_spec_indexes.py",
-      "sha256": "e61d85cd6b2298ff8ff2dbaf7f3259660cee984a95777581510a848d91491766",
+      "sha256": "cfc540cea3e88ecbc69dabd83a85bf354380126b128df333cc90caa323dd9bba",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "tools/standard_io.py",
-      "sha256": "9be0a14bbe4a6224c4ae1417863c2b3ff0d164c60f5b1162c37895c5fe3df534",
+      "sha256": "437e48803bc9074fc2b4ddf265220eb56ee6e23e8a3b52262631d40a5eee9d79",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "tools/validate_modules.py",
-      "sha256": "0126445618420117ce6b16c60cfc07d606b4d7348a1eaf7c9c634f74438fa787",
+      "sha256": "cbe915bbe34ed40127b41df8ce6a044a0be48633a7d9b5c505547625454fc4b6",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "tools/validate_release_contract.py",
-      "sha256": "cfd6562a0e1490bb7714eda52372e7b14e6cd8a50104dbf389846539fbb8d1f2",
+      "sha256": "1d26b3d36b1e1dd4adc79a9e43b611dd613f93b021f11930bfffa6acfd6d6f60",
       "artifactClass": "supporting",
       "required": true
     },

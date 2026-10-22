@@ -2,6 +2,12 @@
 """Generate complete deterministic indexes from SPECIFICATION.md headings."""
 from __future__ import annotations
 
+# Direct CLI use has the same dependency isolation as scripts/verify.
+import sys
+if __name__ == "__main__" and not sys.flags.isolated:
+    import os
+    os.execv(sys.executable, [sys.executable, "-I", "-B", __file__, *sys.argv[1:]])
+
 import argparse
 import json
 import re

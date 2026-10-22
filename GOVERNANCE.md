@@ -83,10 +83,10 @@ If you publish a forked variant, please use a different name to avoid confusing 
 Edit `modules/edition-1.5.md` and `modules/acceptance-1.5.md` for 1.5 prose.
 Chapter 13 in `SPECIFICATION.md` is a generated reading view, not a second author.
 Legacy chapters remain authored in `SPECIFICATION.md` and their named appendices.
-Run `python3 -B tools/validate_modules.py`, then
-`python3 -B tools/generate_spec_indexes.py` when headings/indexes change, update
+Run `python3 -I -B tools/validate_modules.py`, then
+`python3 -I -B tools/generate_spec_indexes.py` when headings/indexes change, update
 affected artifact digests in `release/release_report.json`, and finally run
-`python3 -B tools/generate_content_snapshot.py`.
+`python3 -I -B tools/generate_content_snapshot.py`.
 Use the affected `scripts/verify --gate <name>` checks while developing; they
 also enforce common index/module/snapshot consistency. Default/all runs the broader tests; `--full` labels the run mode and does not
 override an explicitly selected gate. Content validation, ZIP generation, release-validation

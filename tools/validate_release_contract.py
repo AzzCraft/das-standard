@@ -169,7 +169,7 @@ def validate(data_rel: str, schema_rel: str) -> None:
 def check_package_versions(closure):
     for component, field in [('standard', 'standardVersion'), ('suite', 'suiteVersion'),
                              ('factory', 'factoryVersion'), ('verifyRuntime', 'verifyRuntimeVersion'),
-                             ('policyPack', 'policyPackVersion')]:
+                             ('policyPack', 'policyPackVersion'), ('generatorTemplate', 'generatorTemplateVersion')]:
         ref = closure.get('refs', {}).get(component, {})
         if ref.get('kind') != 'package' or ref.get('pinType') != 'version' or field not in closure:
             continue

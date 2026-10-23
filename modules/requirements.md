@@ -29623,7 +29623,7 @@ Context and exceptions: [modules/edition-1.5.md:597–649](#requirement-context-
 
 Owner: `das.governance.verification-release`; parent: `cl-13.21`; control: `S21`; strength: **MUST**.
 
-Activation: `{"key":"activity.standard_release","op":"fact"}`.
+Activation: `{"args":[{"key":"activity.product_adoption","op":"fact"},{"key":"activity.package_activation","op":"fact"}],"op":"any"}`.
 
 Criterion: 下载、安装和激活分别验收
 

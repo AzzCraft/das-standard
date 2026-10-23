@@ -20,6 +20,15 @@ def inputs(root=ROOT):
     return validator.load(root / 'standard_modules.json'), validator.load(root / 'migration/legacy_normative_baseline.json')
 
 
+def test_download_install_activation_is_a_product_event():
+    leaves = validator.validate_requirements(*inputs(), ROOT)
+    leaf = next(x for x in leaves['editionRequirements'] if x['criterion'] == 'download-install-activation-separate-history-not-new-adoption')
+    assert leaf['activation'] == {'op': 'any', 'args': [
+        {'op': 'fact', 'key': 'activity.product_adoption'},
+        {'op': 'fact', 'key': 'activity.package_activation'}]}
+    assert leaf['strength'] == 'MUST'
+
+
 def test_deployment_mapping_retains_profile_subset_and_selected_strategy():
     leaves = validator.validate_requirements(*inputs(), ROOT)
     deployment = {leaf['criterion']: leaf for leaf in leaves['requirements']

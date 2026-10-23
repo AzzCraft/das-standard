@@ -4129,7 +4129,7 @@ EDITION_COMPLETION_GROUPS += (
         ["planned-commit-source-date-epoch-not-actual-receipt-time", 639, "不能填作实际发布回执时间", 639, "不能", "MUST", ["activity.standard_release"], [597, 649]],
         ["display-prerelease-latest-title-not-formal-identity", 641, "取消预发布勾选不产生正式 `1.5.0`", 641, "取消预发布勾选不产生正式 `1.5.0`", "MUST", ["activity.standard_release"], [597, 649]],
         ["incident-announcement-not-package-tag-original-receipt-change", 641, "受权事故公告不改变已发布包、tag绑定或原始回执", 641, "受权事故公告不改变已发布包、tag绑定或原始回执", "MUST", ["activity.standard_release"], [597, 649]],
-        ["download-install-activation-separate-history-not-new-adoption", 641, "下载、安装和激活分别验收", 641, "下载、安装和激活分别验收", "MUST", ["activity.standard_release"], [597, 649]],
+        ["download-install-activation-separate-history-not-new-adoption", 641, "下载、安装和激活分别验收", 641, "下载、安装和激活分别验收", "MUST", {"op": "any", "args": [{"op": "fact", "key": "activity.product_adoption"}, {"op": "fact", "key": "activity.package_activation"}]}, [597, 649]],
         ["incident-business-rollback-retains-security-floor-and-ledger", 641, "事故处置和业务回退保留当前安全下界及历史账本", 641, "事故处置和业务回退保留当前安全下界及历史账本", "MUST", ["activity.standard_release"], [597, 649]],
         ["release-first-approved-exact-target-channel-matrix-allocation-compatibility-admission", 645, "拒绝 Agent 擅自改目标", 645, "拒绝 Agent 擅自改目标", "MUST", ["activity.standard_release"], [597, 649]],
         ["release-second-final-artifact-source-deps-components-current-trust-no-mixed-beta", 646, "禁止跨 beta 混装", 646, "禁止", "MUST", ["activity.standard_release"], [597, 649]],

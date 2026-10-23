@@ -347,6 +347,48 @@ def test_new_edition_pin_types_and_component_version_consistency():
     validator.check_package_versions(value)
 
 
+def test_mirror_pins_share_current_strictness_without_changing_legacy():
+    from copy import deepcopy
+    from jsonschema import Draft202012Validator
+    check = Draft202012Validator(validator.load('tooling_lock.schema.json')).validate
+    base = validator.load('tooling_lock.example.json')
+    for kind, pin, bad, good in [('git', 'commit', 'HEAD', 'a'*40),
+                                ('container_image', 'digest', 'sha256:bad', 'sha256:'+'b'*64),
+                                ('package', 'version', '4.x', '2026.04.06'),
+                                ('git', 'tag', 'latest', 'v1.2.0-beta.1'),
+                                ('file', 'path', None, './snapshot.json')]:
+        ref = dict(kind=kind, uri='https://example.invalid/pkg', pinType=pin, pinValue=good, floating=False)
+        value = deepcopy(base)
+        mirror = dict(kind='standard_local_copy', path='standard', sourceOfTruth='official',
+                      mirrorPurpose='test', localModificationsAllowed=False, snapshotRef=ref)
+        value['mirrors'] = [deepcopy(mirror), deepcopy(mirror)]
+        check(value)
+        if bad is not None:
+            value['mirrors'][1]['snapshotRef']['pinValue'] = bad
+            with pytest.raises(ValidationError): check(value)
+            value['standardManifestVersion'] = '1.4.0'
+            check(value)
+    check(base)
+
+
+def test_generator_template_version_is_checked_by_formal_closure_entry(tmp_path, monkeypatch):
+    from copy import deepcopy
+    value = validator.load('suite_version_closure.example.json')
+    schema = validator.load('suite_version_closure.schema.json')
+    (tmp_path/'suite_version_closure.schema.json').write_text(json.dumps(schema))
+    value['refs']['generatorTemplate'] = dict(kind='package', uri='https://example.invalid/template',
+        pinType='version', pinValue=value['generatorTemplateVersion'], floating=False)
+    monkeypatch.setattr(validator, 'ROOT', tmp_path)
+    for defect in [False, True, 'absent', 'file']:
+        case = deepcopy(value)
+        if defect is True: case['refs']['generatorTemplate']['pinValue'] = '9.9.9'
+        elif defect == 'absent': del case['generatorTemplateVersion']
+        elif defect == 'file': case['refs']['generatorTemplate'].update(kind='file', pinType='path', pinValue='template.json')
+        (tmp_path/'closure.json').write_text(json.dumps(case))
+        if defect is True:
+            with pytest.raises(ValueError, match='generatorTemplate'): validator.validate('closure.json','suite_version_closure.schema.json')
+        else: validator.validate('closure.json','suite_version_closure.schema.json')
+
 def test_registered_gate_rejects_middle_argument(monkeypatch):
     real_load = validator.load
     registry = real_load('verify_registry.json')

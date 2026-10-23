@@ -14,7 +14,7 @@
     "floating": false
   },
   "bundleDigestAlgorithm": "sha256",
-  "bundleDigest": "198cd832efacac1d68bb95f5d8d1ff520ba2bf2c6d4678ffd4661dd1b4feff27",
+  "bundleDigest": "138245b73821cdd054fdb7de57c28319a6a749ee28157c12fc301dd59c933961",
   "artifacts": [
     {
       "path": ".github/workflows/release.yml",
@@ -522,7 +522,7 @@
     },
     {
       "path": "modules/requirements.md",
-      "sha256": "5ef3dfc872de495932e5309330ae50b4cab62c4d2045241251520276e5bfc7a5",
+      "sha256": "c6284edfd30a0ab598625e869404b7dd253b886735d104553a3ab25742032ea9",
       "artifactClass": "normative",
       "required": true
     },
@@ -594,7 +594,7 @@
     },
     {
       "path": "standard_requirements.json",
-      "sha256": "0420e589e26df5216be6f355b37f1c6c29096ea704c1f46c133bc9391d4f2b88",
+      "sha256": "4c694ee2d6a2ffbae97dd3c3f9792d400b9deade7a703d0c4f8aea91953ed82f",
       "artifactClass": "supporting",
       "required": true
     },
@@ -678,7 +678,7 @@
     },
     {
       "path": "tooling_lock.schema.json",
-      "sha256": "5a818565fd7a86d0e31e955017cb35e5307b093714ffacebaedba22407d52a35",
+      "sha256": "8352c45a4f0dc994ec9a83a197bfcac9da377e323832606bdf12540e4caf3f0f",
       "artifactClass": "schema",
       "required": true
     },
@@ -702,13 +702,13 @@
     },
     {
       "path": "tools/validate_modules.py",
-      "sha256": "cbe915bbe34ed40127b41df8ce6a044a0be48633a7d9b5c505547625454fc4b6",
+      "sha256": "0282d61dfa3b827f941d8a18c30066ad5c570d43070377562bbee445994f4ab7",
       "artifactClass": "supporting",
       "required": true
     },
     {
       "path": "tools/validate_release_contract.py",
-      "sha256": "1d26b3d36b1e1dd4adc79a9e43b611dd613f93b021f11930bfffa6acfd6d6f60",
+      "sha256": "fadbec79627511d683ab3f12cd7a2f276792d491f3117ea88a70dea1601c93f3",
       "artifactClass": "supporting",
       "required": true
     },

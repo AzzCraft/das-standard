@@ -45,7 +45,7 @@
         "kind": "git",
         "uri": "git@example.com:cadence-oss.git",
         "pinType": "commit",
-        "pinValue": "deadbeef",
+        "pinValue": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
         "floating": false
       },
       "required": true,

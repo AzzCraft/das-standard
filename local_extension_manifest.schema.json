@@ -42,12 +42,15 @@
       ],
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "minLength": 3,
+          "pattern": "^(?:x-|org\\.)[A-Za-z0-9][A-Za-z0-9_.-]*$"
         },
         "namespace": {
           "type": "string",
-          "pattern": "^(x-|org\\.)",
-          "description": "Namespace prefix must start with x- or org."
+          "pattern": "^(?:x-|org\\.)[A-Za-z0-9][A-Za-z0-9_.-]*$",
+          "description": "Namespace prefix must start with x- or org.",
+          "minLength": 3
         },
         "kind": {
           "enum": [

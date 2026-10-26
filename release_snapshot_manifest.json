@@ -14,7 +14,7 @@
     "floating": false
   },
   "bundleDigestAlgorithm": "sha256",
-  "bundleDigest": "138245b73821cdd054fdb7de57c28319a6a749ee28157c12fc301dd59c933961",
+  "bundleDigest": "e41b72767c95381c774155f3e523ace0e2048df333a35db67dce4c09331e6a04",
   "artifacts": [
     {
       "path": ".github/workflows/release.yml",
@@ -486,7 +486,7 @@
     },
     {
       "path": "local_extension_manifest.schema.json",
-      "sha256": "3d98f8703a2cd307db7ef7a1005bf2f7e44f037bc510503e59bf57c200c1c575",
+      "sha256": "b4f297fc30918202539d00ca909dfd0daa886b2979925c7f818d1991421ca2cd",
       "artifactClass": "schema",
       "required": true
     },
@@ -552,7 +552,7 @@
     },
     {
       "path": "scripts/verify",
-      "sha256": "35209a07f118cadef46a4739e1b85ec488eb624b6a6cb7fb1b9cd0d579a7e310",
+      "sha256": "898192c1cc055e9e7d7580d004dbb124ce2a6ac82fe028e18742efd9db1ccbde",
       "artifactClass": "script",
       "required": true
     },
@@ -606,13 +606,13 @@
     },
     {
       "path": "suite_lock.example.json",
-      "sha256": "9546faecc0269745461b270d36bdd2567f7ab4773d6e0a590f105af989e3e1c6",
+      "sha256": "2918da260b04123d595f09eda999df7b3c28dc5b241a654cc762b89d486f79aa",
       "artifactClass": "example",
       "required": true
     },
     {
       "path": "suite_lock.schema.json",
-      "sha256": "7a8b8ba8b9b8b0c47c53f708f272dbf7bee73a6d80b080945ee4989062c99285",
+      "sha256": "91361cd60ff526e0e002b9cf1e2505340ebcab2a5b1cae81f490d494a0cd34fa",
       "artifactClass": "schema",
       "required": true
     },
@@ -708,7 +708,7 @@
     },
     {
       "path": "tools/validate_release_contract.py",
-      "sha256": "fadbec79627511d683ab3f12cd7a2f276792d491f3117ea88a70dea1601c93f3",
+      "sha256": "1427693ec582a07e2c27b1d917d8c762a11833573fac275a7f0a1fb66a3fe324",
       "artifactClass": "supporting",
       "required": true
     },
@@ -738,7 +738,7 @@
     },
     {
       "path": "verify_report.schema.json",
-      "sha256": "00974b42fba1047636c905bda0029549ded23a1f6552e2c84cca606df0f401d1",
+      "sha256": "7b9b64de8d2f7c48511e8f21daacea58c648df72ea5de31207410d03c50eea44",
       "artifactClass": "schema",
       "required": true
     }

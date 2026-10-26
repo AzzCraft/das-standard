@@ -275,6 +275,113 @@
           "type": "string"
         }
       }
+    },
+    "fixedPinValue": {
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "pinType": {
+                "const": "commit"
+              }
+            },
+            "required": [
+              "pinType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinValue": {
+                "pattern": "^[0-9a-f]{40}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "pinType": {
+                "const": "digest"
+              }
+            },
+            "required": [
+              "pinType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinValue": {
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "pinType": {
+                "const": "version"
+              }
+            },
+            "required": [
+              "pinType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinValue": {
+                "pattern": "^[0-9]+(?:\\.[0-9]+)*(?:(?:a|b|rc|\\.post|\\.dev)[0-9]+)?(?:[-+][0-9A-Za-z.-]+)?$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "pinType": {
+                "const": "tag"
+              }
+            },
+            "required": [
+              "pinType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "pinValue": {
+                "pattern": "^v?[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$"
+              }
+            }
+          }
+        }
+      ]
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "standardManifestVersion": {
+            "pattern": "^1\\.5\\."
+          }
+        },
+        "required": [
+          "standardManifestVersion"
+        ]
+      },
+      "then": {
+        "properties": {
+          "modules": {
+            "additionalProperties": {
+              "properties": {
+                "lockedRef": {
+                  "$ref": "#/$defs/fixedPinValue"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

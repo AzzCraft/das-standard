@@ -306,6 +306,20 @@ def check_ids_and_context(manifest: dict) -> None:
         if not (set(pack['clauses']) <= clauses):
             raise ValueError("standard contract check failed: set(pack['clauses']) <= clauses")
 
+def check_registry_commands(registry):
+    default = registry["defaultVerifyCommand"]
+    prefix = shlex.split(default)
+    if prefix not in (["./scripts/verify"], ["./scripts/verify", "--full"]):
+        raise ValueError('registry default command must use the supported verify grammar')
+    actual = []
+    for item in registry['gates']:
+        argv = shlex.split(item['command'])
+        if len(argv) != len(prefix) + 2 or argv[:-2] != prefix or argv[-2] != '--gate':
+            raise ValueError('registry command must exactly select one supported gate')
+        actual.append(argv[-1])
+    if len(actual) != 4 or set(actual) != {'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}:
+        raise ValueError(f'registry gate mismatch: {sorted(actual)}')
+
 def check_snapshot_registry(manifest: dict) -> None:
     standard_io.validate_content_inventory(ROOT, manifest)
     snapshot = load("release_snapshot_manifest.json")
@@ -320,18 +334,7 @@ def check_snapshot_registry(manifest: dict) -> None:
             or snapshot['standardManifestVersion'] != manifest['standardVersion']):
         raise ValueError('snapshot edition differs from the Standard manifest')
     registry = load("verify_registry.json")
-    default = registry["defaultVerifyCommand"]
-    prefix = shlex.split(default)
-    if prefix not in (["./scripts/verify"], ["./scripts/verify", "--full"]):
-        raise ValueError('registry default command must use the supported verify grammar')
-    actual = []
-    for item in registry['gates']:
-        argv = shlex.split(item['command'])
-        if len(argv) != len(prefix) + 2 or argv[:-2] != prefix or argv[-2] != '--gate':
-            raise ValueError('registry command must exactly select one supported gate')
-        actual.append(argv[-1])
-    if len(actual) != 4 or set(actual) != {'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}:
-        raise ValueError(f'registry gate mismatch: {sorted(actual)}')
+    check_registry_commands(registry)
     for item in snapshot["artifacts"]:
         name = item['path']
         if (not name or name.startswith('/') or '\\' in name or ':' in name
@@ -454,6 +457,7 @@ def main() -> int:
         check_reference_contracts(manifest)
         for data, schema in (
             ("standard_manifest.example.json", "standard_manifest.schema.json"),
+            ("suite_version_closure.example.json", "suite_version_closure.schema.json"),
             ("chapter_index.json", "chapter_index.schema.json"),
             ("clause_index.json", "clause_index.schema.json"),
             ("ids/standard_ids.json", "standard_ids.schema.json"),

@@ -454,3 +454,58 @@ def test_historical_full_manifest_uses_formal_schema(monkeypatch):
         monkeypatch.setattr(validator, 'load', lambda name: malformed if name == 'tests/compat/v1.4.0/standard_manifest.json' else real_load(name))
         with pytest.raises(ValidationError):
             validator.check_compat(current)
+
+
+def test_four_repo_contract_boundaries():
+    from copy import deepcopy
+    from jsonschema import Draft202012Validator
+    report=validator.load('verify_report.example.json')
+    check=Draft202012Validator(validator.load('verify_report.schema.json')).validate
+    check(report)
+    for overall in ['pass','fail']:
+        bad=deepcopy(report);bad['overallOutcome']=overall
+        bad['gates'][0]['failureOnNoResults']=True
+        with pytest.raises(ValidationError):check(bad)
+    suite=validator.load('suite_lock.example.json')
+    check=Draft202012Validator(validator.load('suite_lock.schema.json')).validate
+    check(suite)
+    entry=next(iter(suite['modules'].values()))['lockedRef']
+    entry.update(kind='git',pinType='commit',pinValue='HEAD')
+    with pytest.raises(ValidationError):check(suite)
+    suite['standardManifestVersion']='1.4.0';check(suite)
+    extension=validator.load('local_extension_manifest.example.json')
+    check=Draft202012Validator(validator.load('local_extension_manifest.schema.json')).validate
+    check(extension)
+    for field in ['name','namespace']:
+        for bad in ['', 'x-', 'org.', 'DAS-CORE-001']:
+            case=deepcopy(extension);case['extensions'][0][field]=bad
+            with pytest.raises(ValidationError):check(case)
+    registry=validator.load('verify_registry.json')
+    registry['defaultVerifyCommand']='./scripts/verify --full'
+    for gate in registry['gates']:gate['command']='./scripts/verify --full --gate '+gate['command'].split()[-1]
+    validator.check_registry_commands(registry)
+
+
+def test_public_schema_and_full_default_registry_gates(tmp_path):
+    import shutil
+    import subprocess
+    import os
+    import sys
+    import hashlib
+    source=validator.ROOT
+    for rel in validator.load('standard_manifest.json')['requiredArtifacts']:
+        dest=tmp_path/rel;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source/rel,dest)
+    registry_path=tmp_path/'verify_registry.json';registry=json.loads(registry_path.read_text())
+    registry['defaultVerifyCommand']='./scripts/verify --full'
+    for gate in registry['gates']:gate['command']='./scripts/verify --full --gate '+gate['command'].split()[-1]
+    registry_path.write_text(json.dumps(registry))
+    snapshot_path=tmp_path/'release_snapshot_manifest.json';snapshot=json.loads(snapshot_path.read_text())
+    for row in snapshot['artifacts']:row['sha256']=hashlib.sha256((tmp_path/row['path']).read_bytes()).hexdigest()
+    snapshot['bundleDigest']=hashlib.sha256('\n'.join(f"{row['path']}:{row['sha256']}" for row in sorted(snapshot['artifacts'],key=lambda r:r['path'])).encode()).hexdigest()
+    snapshot_path.write_text(json.dumps(snapshot,indent=2)+'\n')
+    env=dict(os.environ,PYTHON=sys.executable,PYTHONDONTWRITEBYTECODE='1')
+    result=subprocess.run(['bash','scripts/verify','--gate','release-snapshot'],cwd=tmp_path,env=env,text=True,capture_output=True)
+    assert result.returncode==0,result.stdout+result.stderr
+    example=tmp_path/'suite_version_closure.example.json';value=json.loads(example.read_text());value['factoryVersion']='9.9.9';example.write_text(json.dumps(value))
+    result=subprocess.run(['bash','scripts/verify','--gate','schemas'],cwd=tmp_path,env=env,text=True,capture_output=True)
+    assert result.returncode!=0 and 'factory' in result.stderr,result.stdout+result.stderr

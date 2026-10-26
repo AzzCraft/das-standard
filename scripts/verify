@@ -84,6 +84,9 @@ import importlib.util
 io_spec = importlib.util.spec_from_file_location('das_standard_io', root / 'tools/standard_io.py')
 standard_io = importlib.util.module_from_spec(io_spec)
 io_spec.loader.exec_module(standard_io)
+contract_spec = importlib.util.spec_from_file_location("das_release_contract", root / "tools/validate_release_contract.py")
+release_contract = importlib.util.module_from_spec(contract_spec)
+contract_spec.loader.exec_module(release_contract)
 gate = os.environ.get('GATE', 'all')
 valid_gates = {'all', 'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}
 if gate not in valid_gates:
@@ -194,6 +197,8 @@ def run_schemas():
     ]
     for data_file, schema_file in pairs:
         validate_json(root / data_file, root / schema_file)
+        if schema_file == 'suite_version_closure.schema.json':
+            release_contract.check_package_versions(load_json(root / data_file))
 
 
 def run_release_snapshot():
@@ -209,19 +214,7 @@ def run_release_snapshot():
     if missing:
         raise ValueError(f'release snapshot missing requiredArtifacts: {missing}')
 
-    implemented_gates = {'bundle-files', 'schemas', 'release-snapshot', 'compat-release'}
-    default_command = verify_registry['defaultVerifyCommand']
-    if not ((root / default_command.removeprefix('./')).exists()):
-        raise ValueError(f'default verify command does not resolve: {default_command}')
-
-    for item in verify_registry['gates']:
-        command = item['command']
-        if not (command == default_command or command.startswith(f'{default_command} --gate ')):
-            raise ValueError(f'verify registry command is not backed by {default_command}: {command}')
-        if command.startswith(f"{default_command} --gate "):
-            declared_gate = command.split()[-1]
-            if not (declared_gate in implemented_gates):
-                raise ValueError(f'verify registry references unsupported gate: {declared_gate}')
+    release_contract.check_registry_commands(verify_registry)
 
     for artifact in release_snapshot['artifacts']:
         path = root / artifact['path']

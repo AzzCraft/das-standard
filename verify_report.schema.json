@@ -355,6 +355,39 @@
               }
             }
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "expected": {
+                "const": true
+              },
+              "executed": {
+                "const": true
+              },
+              "failureOnNoResults": {
+                "const": true
+              },
+              "artifactCount": {
+                "const": 0
+              }
+            },
+            "required": [
+              "expected",
+              "executed",
+              "failureOnNoResults",
+              "artifactCount"
+            ]
+          },
+          "then": {
+            "properties": {
+              "outcome": {
+                "not": {
+                  "const": "pass"
+                }
+              }
+            }
+          }
         }
       ]
     }
